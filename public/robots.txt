@@ -1,0 +1,9 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+
+# Host
+Host: https://sprintstack.digital
+
+# Sitemaps
+Sitemap: https://sprintstack.digital/sitemap.xml

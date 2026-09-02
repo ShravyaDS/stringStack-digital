@@ -1,0 +1,292 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 222 47% 6%; /* #090D16 */
+    --foreground: 210 40% 98%;
+    --card: 222 39% 11%; /* #111827 */
+    --card-foreground: 210 40% 98%;
+    --popover: 222 39% 11%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 217 91% 60%; /* #3B82F6 */
+    --primary-foreground: 222 47% 11%;
+    --secondary: 239 84% 67%; /* #6366F1 */
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 217 91% 60%;
+    --accent-foreground: 210 40% 98%;
+    --success: 160 84% 39%; /* #10B981 */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 215 28% 17%; /* #1F2937 */
+    --input: 215 28% 17%;
+    --ring: 217 91% 60%;
+    --radius: 1rem;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-[#090D16] text-slate-100 antialiased selection:bg-accent-blue/30 selection:text-white;
+    background-color: #090D16;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+/* Background Grids, Circuits & Aurora Glows */
+.bg-grid-pattern {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+}
+
+.bg-dot-pattern {
+  background-size: 24px 24px;
+  background-image: radial-gradient(rgba(59, 130, 246, 0.25) 1.2px, transparent 1.2px);
+}
+
+.bg-circuit-pattern {
+  background-size: 60px 60px;
+  background-image: 
+    radial-gradient(circle at 50% 50%, rgba(99, 102, 241, 0.2) 1px, transparent 1px),
+    linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+}
+
+/* Aurora Ambient Multi-Gradient */
+.aurora-bg {
+  background: 
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(59, 130, 246, 0.18), transparent 70%),
+    radial-gradient(ellipse 60% 40% at 80% 60%, rgba(99, 102, 241, 0.12), transparent 70%),
+    radial-gradient(ellipse 50% 50% at 20% 80%, rgba(16, 185, 129, 0.08), transparent 70%);
+}
+
+/* Ultra Glassmorphism with inner light reflection */
+.glass-panel {
+  background: rgba(15, 22, 38, 0.72);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.14), 0 12px 36px -8px rgba(0, 0, 0, 0.6);
+}
+
+.glass-nav {
+  background: rgba(7, 11, 20, 0.82);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+}
+
+.glass-card-premium {
+  background: linear-gradient(135deg, rgba(20, 29, 51, 0.75) 0%, rgba(11, 16, 28, 0.85) 100%);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.12),
+    0 16px 40px -12px rgba(0, 0, 0, 0.7);
+}
+
+/* High-Tech Glowing Cards */
+.glow-card {
+  position: relative;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 6px 24px -4px rgba(0, 0, 0, 0.5), inset 0 1px 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.glow-card::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    135deg,
+    rgba(59, 130, 246, 0.45),
+    rgba(99, 102, 241, 0.2),
+    transparent 60%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0.6;
+  transition: opacity 0.4s ease, background 0.4s ease;
+}
+
+.glow-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 20px 40px -8px rgba(59, 130, 246, 0.18), inset 0 1px 2px 0 rgba(255, 255, 255, 0.2);
+}
+
+.glow-card:hover::before {
+  opacity: 1;
+  background: linear-gradient(
+    135deg,
+    rgba(59, 130, 246, 0.8),
+    rgba(99, 102, 241, 0.4),
+    transparent 75%
+  );
+}
+
+.glow-emerald-card::before {
+  background: linear-gradient(
+    135deg,
+    rgba(16, 185, 129, 0.5),
+    rgba(6, 182, 212, 0.2),
+    transparent 60%
+  );
+}
+
+.glow-emerald-card:hover {
+  box-shadow: 0 20px 40px -8px rgba(16, 185, 129, 0.2), inset 0 1px 2px 0 rgba(255, 255, 255, 0.2);
+}
+
+.glow-emerald-card:hover::before {
+  opacity: 1;
+  background: linear-gradient(
+    135deg,
+    rgba(16, 185, 129, 0.85),
+    rgba(6, 182, 212, 0.45),
+    transparent 75%
+  );
+}
+
+/* Radiant Glow Beams */
+.radial-beam {
+  background: radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.22), transparent 70%);
+}
+
+.radial-beam-emerald {
+  background: radial-gradient(circle at 50% 0%, rgba(16, 185, 129, 0.2), transparent 70%);
+}
+
+.radial-beam-indigo {
+  background: radial-gradient(circle at 50% 0%, rgba(99, 102, 241, 0.22), transparent 70%);
+}
+
+/* Pulsing radar rings */
+@keyframes radarPing {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.6);
+    opacity: 0.2;
+  }
+  100% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+}
+
+.animate-radar {
+  animation: radarPing 3s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+/* Shimmer Animation for Badges & Buttons */
+@keyframes shimmerWave {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.shimmer-text {
+  background: linear-gradient(
+    90deg,
+    #ffffff 0%,
+    #93c5fd 25%,
+    #c7d2fe 50%,
+    #93c5fd 75%,
+    #ffffff 100%
+  );
+  background-size: 200% auto;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: shimmerWave 6s linear infinite;
+}
+
+.shimmer-emerald-text {
+  background: linear-gradient(
+    90deg,
+    #ffffff 0%,
+    #6ee7b7 25%,
+    #a7f3d0 50%,
+    #6ee7b7 75%,
+    #ffffff 100%
+  );
+  background-size: 200% auto;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: shimmerWave 6s linear infinite;
+}
+
+/* Subtle Floating Animation */
+@keyframes floatGentle {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.animate-float {
+  animation: floatGentle 5s ease-in-out infinite;
+}
+
+/* Shimmer Button */
+.btn-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-shimmer::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    60deg,
+    transparent,
+    rgba(255, 255, 255, 0.15),
+    transparent
+  );
+  transform: rotate(30deg);
+  animation: shimmerWave 3.5s infinite;
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #070B14;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1E293B;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}
