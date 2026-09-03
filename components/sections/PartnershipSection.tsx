@@ -36,82 +36,82 @@ export function PartnershipSection() {
   ];
 
   return (
-    <section id="partnerships" className="py-20 md:py-24 bg-[#070A12] border-t border-slate-800/80 relative">
+    <section id="partnerships" className="py-20 md:py-24 relative" style={{ background: "linear-gradient(180deg, #0E1623 0%, #090D16 100%)", borderTop: "1px solid rgba(255,255,255,0.07)" }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-3 mb-12 md:mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-slate-900 border border-slate-800 text-xs font-mono text-cyan-400">
-            <span className="font-semibold uppercase tracking-wider">
-              WHITE-LABEL &amp; PARTNERS
-            </span>
+        <div className="text-center max-w-3xl mx-auto space-y-4 mb-12 md:mb-16">
+          <div className="flex items-center justify-center">
+            <span className="section-label">White-Label &amp; Partners</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight">
-            White-Label &amp; Partners
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-[1.1]">
+            White-Label &amp;{" "}
+            <span className="text-gradient-hero">Partners</span>
           </h2>
-          <p className="text-slate-300 text-base leading-relaxed">
+          <p className="text-[#A3A2B0] text-base leading-relaxed">
             SprintStack provides 100% white-label software engineering capacity for <strong className="text-white">Digital consultancies</strong>, <strong className="text-white">Marketing agencies</strong>, and <strong className="text-white">IT service providers</strong>.
           </p>
 
-          {/* Clean 3-Step Model Visual */}
-          <div className="pt-4 grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-2xl mx-auto text-xs font-mono text-left">
-            <div className="p-3.5 rounded-xl bg-slate-900 border border-slate-800 space-y-1">
-              <span className="text-[10px] text-cyan-400 font-bold">STEP 01</span>
-              <div className="text-white font-semibold">Agency Lands Client</div>
-              <p className="text-[11px] text-slate-400">You scope and price under your agency brand.</p>
+          {/* 3-Step Model */}
+          <div className="pt-4 grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-2xl mx-auto text-xs text-left">
+            <div className="p-4 rounded-xl space-y-1.5" style={{ background: "rgba(99,102,241,0.08)", border: "1px solid rgba(59,130,246,0.18)" }}>
+              <span className="text-[10px] font-bold uppercase tracking-wider" style={{ color: "#818CF8" }}>Step 01</span>
+              <div className="text-white font-semibold text-sm">Agency Lands Client</div>
+              <p className="text-xs text-[#A3A2B0]">You scope and price under your agency brand.</p>
             </div>
-            <div className="p-3.5 rounded-xl bg-slate-900 border border-slate-700 space-y-1">
-              <span className="text-[10px] text-blue-400 font-bold">STEP 02</span>
-              <div className="text-white font-semibold">SprintStack Builds</div>
-              <p className="text-[11px] text-slate-400">We engineer behind the scenes under strict NDA.</p>
+            <div className="p-4 rounded-xl space-y-1.5" style={{ background: "rgba(59,130,246,0.08)", border: "1px solid rgba(59,130,246,0.2)" }}>
+              <span className="text-[10px] font-bold uppercase tracking-wider" style={{ color: "#60A5FA" }}>Step 02</span>
+              <div className="text-white font-semibold text-sm">SprintStack Builds</div>
+              <p className="text-xs text-[#A3A2B0]">We engineer behind the scenes under strict NDA.</p>
             </div>
-            <div className="p-3.5 rounded-xl bg-slate-900 border border-slate-800 space-y-1">
-              <span className="text-[10px] text-emerald-400 font-bold">STEP 03</span>
-              <div className="text-white font-semibold">Agency Delivers</div>
-              <p className="text-[11px] text-slate-400">You deliver production code with 100% IP ownership.</p>
+            <div className="p-4 rounded-xl space-y-1.5" style={{ background: "rgba(16,185,129,0.08)", border: "1px solid rgba(16,185,129,0.2)" }}>
+              <span className="text-[10px] font-bold uppercase tracking-wider" style={{ color: "#34D399" }}>Step 03</span>
+              <div className="text-white font-semibold text-sm">Agency Delivers</div>
+              <p className="text-xs text-[#A3A2B0]">You deliver production code with 100% IP ownership.</p>
             </div>
           </div>
         </div>
 
         {/* 3 Core Pillars */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6">
           {partnershipPillars.map((pillar) => (
             <div
               key={pillar.title}
-              className="rounded-2xl p-6 sm:p-8 bg-slate-900/40 border border-slate-800 hover:border-slate-700 transition-colors flex flex-col justify-between space-y-6"
+              className="card-raised rounded-2xl p-6 sm:p-7 flex flex-col justify-between space-y-5 hover-glow-violet"
             >
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <div className="p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-300">
+                  <div className="icon-box icon-box-violet">
                     {pillar.icon}
                   </div>
-                  <span className="text-[10px] font-mono uppercase px-2.5 py-1 rounded-md bg-slate-800 text-slate-300 border border-slate-700 font-semibold">
+                  <span
+                    className="text-[10px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full"
+                    style={{ background: "rgba(59,130,246,0.10)", border: "1px solid rgba(59,130,246,0.18)", color: "#A5B4FC" }}
+                  >
                     {pillar.badge}
                   </span>
                 </div>
 
                 <div>
-                  <span className="text-[11px] font-mono text-slate-400 uppercase tracking-wider font-semibold">
+                  <span className="text-[11px] font-semibold uppercase tracking-widest text-[#6B6A78] block mb-1">
                     {pillar.subtitle}
                   </span>
-                  <h3 className="text-xl font-bold text-white tracking-tight mt-1">
+                  <h3 className="text-xl font-bold text-white tracking-tight">
                     {pillar.title}
                   </h3>
-                  <p className="text-xs sm:text-sm text-slate-300 mt-2.5 leading-relaxed font-normal">
+                  <p className="text-sm text-[#A3A2B0] mt-2.5 leading-relaxed">
                     {pillar.description}
                   </p>
                 </div>
               </div>
 
-              <div className="pt-5 border-t border-slate-800">
-                <Button
+              <div className="pt-4" style={{ borderTop: "1px solid rgba(255,255,255,0.07)" }}>
+                <button
                   onClick={openBookingModal}
-                  variant="outline"
-                  size="md"
-                  className="w-full justify-center text-xs font-semibold border-slate-700 hover:border-slate-600 text-slate-200"
+                  className="btn-primary w-full inline-flex items-center justify-center gap-2 py-2.5 rounded-xl text-sm font-semibold text-white cursor-pointer"
                 >
                   <span>Discuss White-Label Terms</span>
                   <ArrowRight className="w-4 h-4" />
-                </Button>
+                </button>
               </div>
             </div>
           ))}

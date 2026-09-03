@@ -10,274 +10,190 @@ import {
   Workflow,
   ArrowRight,
 } from "lucide-react";
-import { Badge } from "../ui/Badge";
-import { Button } from "../ui/Button";
 import { CORE_CAPABILITIES } from "@/lib/constants";
 import { useBookingModal } from "../ModalProvider";
+
+const CARD_THEMES = [
+  {
+    Icon: Code2,
+    iconClass: "icon-box-blue",
+    accentBorder: "card-blue",
+    accentText: "text-blue-400",
+    accentHover: "hover:text-blue-300",
+    glowClass: "hover-glow-blue",
+    badgeBg: "rgba(59, 130, 246, 0.12)",
+    badgeBorder: "rgba(59, 130, 246, 0.25)",
+    badgeColor: "#93C5FD",
+    linkColor: "#60A5FA",
+    ctaLink: "/services/web-development",
+    ctaLabel: "Deep Dive Architecture & Sprints",
+    scopeLabel: "Scope Web Build",
+  },
+  {
+    Icon: Smartphone,
+    iconClass: "icon-box-cyan",
+    accentBorder: "card-cyan",
+    accentText: "text-cyan-400",
+    accentHover: "hover:text-cyan-300",
+    glowClass: "hover-glow-blue",
+    badgeBg: "rgba(6, 182, 212, 0.12)",
+    badgeBorder: "rgba(6, 182, 212, 0.25)",
+    badgeColor: "#67E8F9",
+    linkColor: "#22D3EE",
+    ctaLink: "/services/mobile-apps",
+    ctaLabel: "Explore Mobile Systems",
+    scopeLabel: "Scope Mobile Build",
+  },
+  {
+    Icon: ShoppingBag,
+    iconClass: "icon-box-emerald",
+    accentBorder: "card-emerald",
+    accentText: "text-emerald-400",
+    accentHover: "hover:text-emerald-300",
+    glowClass: "hover-glow-emerald",
+    badgeBg: "rgba(16, 185, 129, 0.12)",
+    badgeBorder: "rgba(16, 185, 129, 0.25)",
+    badgeColor: "#6EE7B7",
+    linkColor: "#34D399",
+    ctaLink: "/services/web-development",
+    ctaLabel: "Explore Commerce Architecture",
+    scopeLabel: "Scope Commerce Engine",
+  },
+  {
+    Icon: Workflow,
+    iconClass: "icon-box-violet",
+    accentBorder: "card-violet",
+    accentText: "text-indigo-400",
+    accentHover: "hover:text-indigo-300",
+    glowClass: "hover-glow-violet",
+    badgeBg: "rgba(99, 102, 241, 0.12)",
+    badgeBorder: "rgba(99, 102, 241, 0.25)",
+    badgeColor: "#A5B4FC",
+    linkColor: "#818CF8",
+    ctaLink: "/services/web-development",
+    ctaLabel: "Explore Middleware Pipeline",
+    scopeLabel: "Scope Integration Build",
+  },
+];
 
 export function ServiceBento() {
   const { openBookingModal } = useBookingModal();
 
-  const webCap = CORE_CAPABILITIES[0];
-  const mobileCap = CORE_CAPABILITIES[1];
-  const ecomCap = CORE_CAPABILITIES[2];
-  const integrationCap = CORE_CAPABILITIES[3];
+  const capabilities = [
+    CORE_CAPABILITIES[0],
+    CORE_CAPABILITIES[1],
+    CORE_CAPABILITIES[2],
+    CORE_CAPABILITIES[3],
+  ];
 
   return (
-    <section id="solutions" className="py-20 md:py-24 bg-[#080C14] border-t border-slate-800/80 relative">
+    <section
+      id="solutions"
+      className="py-20 md:py-28 relative"
+      style={{ background: "linear-gradient(180deg, #0E1623 0%, #090D16 100%)" }}
+    >
+      {/* Section glow */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[600px] pointer-events-none"
+        style={{ background: "radial-gradient(ellipse 60% 40% at 50% 0%, rgba(59,130,246,0.07) 0%, transparent 70%)" }} />
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-        {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 md:mb-16 gap-6">
-          <div className="space-y-2.5">
-            <span className="text-xs font-mono uppercase tracking-widest text-cyan-400 font-bold">
-              WHAT WE BUILD
-            </span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight">
-              Core Engineering Capabilities
+
+        {/* ── Section Header ── */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-6">
+          <div className="space-y-4">
+            <div className="section-label-blue section-label">
+              What We Build
+            </div>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-[1.1]">
+              Core Engineering{" "}
+              <span className="text-gradient-blue-violet">Capabilities</span>
             </h2>
           </div>
-          <p className="text-slate-300 max-w-md text-sm sm:text-base leading-relaxed">
-            From high-concurrency web platforms to native mobile apps and enterprise middleware — built by senior software engineers on fixed weekly sprints.
+          <p className="text-[#A3A2B0] max-w-md text-sm sm:text-base leading-relaxed">
+            From high-concurrency web platforms to native mobile apps and enterprise middleware — built by senior engineers on fixed weekly sprints.
           </p>
         </div>
 
-        {/* 4 Identical, Symmetrical Capability Cards (2x2 Balanced Grid) */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
-          {/* Card 1: Web Applications & Dynamic Business Platforms */}
-          <div className="rounded-2xl bg-slate-900/40 border border-slate-800 p-6 sm:p-8 flex flex-col justify-between space-y-6 hover:border-slate-700 transition-colors">
-            <div className="space-y-4">
-              <div className="flex items-center justify-between">
-                <div className="w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-blue-400">
-                  <Code2 className="w-5 h-5" />
-                </div>
-                <Badge variant="blue">{webCap.badge}</Badge>
-              </div>
-
-              <div>
-                <span className="text-xs font-mono uppercase text-slate-400 tracking-wider font-semibold">
-                  {webCap.category}
-                </span>
-                <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight mt-1">
-                  {webCap.headline}
-                </h3>
-                <p className="text-slate-300 text-sm mt-2 leading-relaxed">
-                  {webCap.description}
-                </p>
-              </div>
-
-              {/* High-Resolution Web Architecture UI Preview */}
-              <div className="rounded-xl overflow-hidden border border-slate-800 bg-[#070A12] relative aspect-[16/9] w-full">
-                <Image
-                  src="/images/services/web-apps.jpg"
-                  alt="Enterprise Web Application Architecture"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-
-              {/* Tech Stack Tags */}
-              <div className="flex flex-wrap gap-2 pt-1">
-                {webCap.techStack.map((tech) => (
-                  <span
-                    key={tech}
-                    className="px-2.5 py-1 rounded-md bg-slate-900 border border-slate-800 text-xs font-mono text-slate-300"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            <div className="pt-5 border-t border-slate-800 flex items-center justify-between">
-              <Link
-                href="/services/web-development"
-                className="inline-flex items-center gap-2 text-xs font-semibold text-blue-400 hover:text-blue-300 transition-colors"
+        {/* ── 4 Capability Cards (2x2 grid) ── */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 md:gap-6">
+          {capabilities.map((cap, idx) => {
+            const theme = CARD_THEMES[idx];
+            return (
+              <div
+                key={cap.headline}
+                className={`card-raised rounded-2xl ${theme.accentBorder} ${theme.glowClass} flex flex-col justify-between`}
+                style={{ padding: "1.75rem" }}
               >
-                <span>Deep Dive Architecture &amp; Sprints</span>
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-              <Button onClick={openBookingModal} variant="outline" size="sm" className="text-xs border-slate-700 hover:border-slate-600">
-                Scope Web Build
-              </Button>
-            </div>
-          </div>
+                <div className="space-y-5">
+                  {/* Card header */}
+                  <div className="flex items-center justify-between">
+                    <div className={`icon-box ${theme.iconClass}`}>
+                      <theme.Icon className="w-5 h-5" />
+                    </div>
+                    <span
+                      className="text-[11px] font-semibold tracking-wider px-2.5 py-1 rounded-full"
+                      style={{ background: theme.badgeBg, border: `1px solid ${theme.badgeBorder}`, color: theme.badgeColor }}
+                    >
+                      {cap.badge}
+                    </span>
+                  </div>
 
-          {/* Card 2: Native & Cross-Platform Mobile Applications */}
-          <div className="rounded-2xl bg-slate-900/40 border border-slate-800 p-6 sm:p-8 flex flex-col justify-between space-y-6 hover:border-slate-700 transition-colors">
-            <div className="space-y-4">
-              <div className="flex items-center justify-between">
-                <div className="w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-cyan-400">
-                  <Smartphone className="w-5 h-5" />
+                  {/* Card content */}
+                  <div>
+                    <span className="text-[11px] font-semibold uppercase tracking-widest text-[#6B6A78] block mb-1.5">
+                      {cap.category}
+                    </span>
+                    <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight mb-2.5">
+                      {cap.headline}
+                    </h3>
+                    <p className="text-[#A3A2B0] text-sm leading-relaxed">
+                      {cap.description}
+                    </p>
+                  </div>
+
+                  {/* Preview image */}
+                  <div className="img-frame relative aspect-[16/9] w-full">
+                    <Image
+                      src={`/images/services/${idx === 0 ? "web-apps" : idx === 1 ? "mobile-apps" : idx === 2 ? "ecommerce" : "integrations"}.jpg`}
+                      alt={cap.headline}
+                      fill
+                      className="object-cover"
+                    />
+                    {/* Subtle overlay */}
+                    <div className="absolute inset-0 rounded-[inherit]"
+                      style={{ background: "linear-gradient(to top, rgba(9,13,22,0.4), transparent 60%)" }} />
+                  </div>
+
+                  {/* Tech stack pills */}
+                  <div className="flex flex-wrap gap-1.5">
+                    {cap.techStack.map((tech) => (
+                      <span key={tech} className="tech-pill">{tech}</span>
+                    ))}
+                  </div>
                 </div>
-                <Badge variant="cyan">{mobileCap.badge}</Badge>
-              </div>
 
-              <div>
-                <span className="text-xs font-mono uppercase text-slate-400 tracking-wider font-semibold">
-                  {mobileCap.category}
-                </span>
-                <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight mt-1">
-                  {mobileCap.headline}
-                </h3>
-                <p className="text-slate-300 text-sm mt-2 leading-relaxed">
-                  {mobileCap.description}
-                </p>
-              </div>
-
-              {/* High-Resolution Mobile Architecture UI Preview */}
-              <div className="rounded-xl overflow-hidden border border-slate-800 bg-[#070A12] relative aspect-[16/9] w-full">
-                <Image
-                  src="/images/services/mobile-apps.jpg"
-                  alt="Cross-Platform Mobile Application Architecture"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-
-              {/* Tech Stack Tags */}
-              <div className="flex flex-wrap gap-2 pt-1">
-                {mobileCap.techStack.map((tech) => (
-                  <span
-                    key={tech}
-                    className="px-2.5 py-1 rounded-md bg-slate-900 border border-slate-800 text-xs font-mono text-slate-300"
+                {/* Card footer */}
+                <div className="pt-5 mt-5 flex items-center justify-between"
+                  style={{ borderTop: "1px solid rgba(255,255,255,0.07)" }}>
+                  <Link
+                    href={theme.ctaLink}
+                    className="inline-flex items-center gap-1.5 text-xs font-semibold transition-colors group"
+                    style={{ color: theme.linkColor }}
                   >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            <div className="pt-5 border-t border-slate-800 flex items-center justify-between">
-              <Link
-                href="/services/mobile-apps"
-                className="inline-flex items-center gap-2 text-xs font-semibold text-cyan-400 hover:text-cyan-300 transition-colors"
-              >
-                <span>Explore Mobile Systems</span>
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-              <Button onClick={openBookingModal} variant="outline" size="sm" className="text-xs border-slate-700 hover:border-slate-600">
-                Scope Mobile Build
-              </Button>
-            </div>
-          </div>
-
-          {/* Card 3: E-commerce Architecture & Digital Commerce */}
-          <div className="rounded-2xl bg-slate-900/40 border border-slate-800 p-6 sm:p-8 flex flex-col justify-between space-y-6 hover:border-slate-700 transition-colors">
-            <div className="space-y-4">
-              <div className="flex items-center justify-between">
-                <div className="w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-emerald-400">
-                  <ShoppingBag className="w-5 h-5" />
+                    <span>{theme.ctaLabel}</span>
+                    <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+                  </Link>
+                  <button
+                    onClick={openBookingModal}
+                    className="btn-ghost text-xs px-3.5 py-1.5 rounded-lg cursor-pointer"
+                    style={{ border: "1px solid rgba(255,255,255,0.08)" }}
+                  >
+                    {theme.scopeLabel}
+                  </button>
                 </div>
-                <Badge variant="emerald">{ecomCap.badge}</Badge>
               </div>
-
-              <div>
-                <span className="text-xs font-mono uppercase text-slate-400 tracking-wider font-semibold">
-                  {ecomCap.category}
-                </span>
-                <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight mt-1">
-                  {ecomCap.headline}
-                </h3>
-                <p className="text-slate-300 text-sm mt-2 leading-relaxed">
-                  {ecomCap.description}
-                </p>
-              </div>
-
-              {/* High-Resolution E-Commerce UI Preview */}
-              <div className="rounded-xl overflow-hidden border border-slate-800 bg-[#070A12] relative aspect-[16/9] w-full">
-                <Image
-                  src="/images/services/ecommerce.jpg"
-                  alt="Headless E-Commerce & Checkout Architecture"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-
-              {/* Tech Stack Tags */}
-              <div className="flex flex-wrap gap-2 pt-1">
-                {ecomCap.techStack.map((tech) => (
-                  <span
-                    key={tech}
-                    className="px-2.5 py-1 rounded-md bg-slate-900 border border-slate-800 text-xs font-mono text-slate-300"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            <div className="pt-5 border-t border-slate-800 flex items-center justify-between">
-              <Link
-                href="/services/web-development"
-                className="inline-flex items-center gap-2 text-xs font-semibold text-emerald-400 hover:text-emerald-300 transition-colors"
-              >
-                <span>Explore Commerce Architecture</span>
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-              <Button onClick={openBookingModal} variant="outline" size="sm" className="text-xs border-slate-700 hover:border-slate-600">
-                Scope Commerce Engine
-              </Button>
-            </div>
-          </div>
-
-          {/* Card 4: System Integrations & Process Automation */}
-          <div className="rounded-2xl bg-slate-900/40 border border-slate-800 p-6 sm:p-8 flex flex-col justify-between space-y-6 hover:border-slate-700 transition-colors">
-            <div className="space-y-4">
-              <div className="flex items-center justify-between">
-                <div className="w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-indigo-400">
-                  <Workflow className="w-5 h-5" />
-                </div>
-                <Badge variant="indigo">{integrationCap.badge}</Badge>
-              </div>
-
-              <div>
-                <span className="text-xs font-mono uppercase text-slate-400 tracking-wider font-semibold">
-                  {integrationCap.category}
-                </span>
-                <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight mt-1">
-                  {integrationCap.headline}
-                </h3>
-                <p className="text-slate-300 text-sm mt-2 leading-relaxed">
-                  {integrationCap.description}
-                </p>
-              </div>
-
-              {/* High-Resolution API Integrations UI Preview */}
-              <div className="rounded-xl overflow-hidden border border-slate-800 bg-[#070A12] relative aspect-[16/9] w-full">
-                <Image
-                  src="/images/services/integrations.jpg"
-                  alt="Enterprise API Middleware & Automation Pipeline"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-
-              {/* Tech Stack Tags */}
-              <div className="flex flex-wrap gap-2 pt-1">
-                {integrationCap.techStack.map((tech) => (
-                  <span
-                    key={tech}
-                    className="px-2.5 py-1 rounded-md bg-slate-900 border border-slate-800 text-xs font-mono text-slate-300"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            <div className="pt-5 border-t border-slate-800 flex items-center justify-between">
-              <Link
-                href="/services/web-development"
-                className="inline-flex items-center gap-2 text-xs font-semibold text-indigo-400 hover:text-indigo-300 transition-colors"
-              >
-                <span>Explore Middleware Pipeline</span>
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-              <Button onClick={openBookingModal} variant="outline" size="sm" className="text-xs border-slate-700 hover:border-slate-600">
-                Scope Integration Build
-              </Button>
-            </div>
-          </div>
+            );
+          })}
         </div>
       </div>
     </section>

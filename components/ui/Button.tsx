@@ -10,26 +10,26 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant = "primary", size = "md", children, ...props }, ref) => {
     const sizeClasses = {
-      sm: "px-3.5 py-1.5 text-xs font-medium rounded-xl",
+      sm: "px-4 py-2 text-xs font-semibold rounded-xl",
       md: "px-5 py-2.5 text-sm font-semibold rounded-xl",
-      lg: "px-7 py-3.5 text-base font-semibold rounded-2xl",
+      lg: "px-7 py-3.5 text-sm font-semibold rounded-xl",
     };
 
     const variantClasses = {
       primary:
-        "bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-xl shadow-blue-500/25 hover:shadow-blue-500/40 hover:from-blue-500 hover:to-indigo-500 active:scale-[0.98] border border-blue-400/30 transition-all duration-300",
+        "btn-primary text-white",
       secondary:
-        "bg-surface/90 text-slate-100 hover:bg-surface-hover hover:text-white border border-border/90 hover:border-slate-600 shadow-lg shadow-black/40 active:scale-[0.98] transition-all duration-300 backdrop-blur-md",
+        "btn-secondary",
       outline:
-        "bg-transparent text-slate-200 border border-slate-700/80 hover:border-slate-500 hover:bg-slate-800/50 hover:text-white active:scale-[0.98] transition-all duration-300",
+        "bg-transparent text-[#D4D3E0] border border-white/10 hover:border-white/20 hover:bg-white/5 hover:text-white active:scale-[0.98] transition-all duration-200",
       ghost:
-        "bg-transparent text-slate-300 hover:text-white hover:bg-slate-800/60 active:scale-[0.98] transition-all duration-200",
+        "bg-transparent text-[#A3A2B0] hover:text-white hover:bg-white/5 active:scale-[0.98] transition-all duration-200",
       emerald:
-        "bg-gradient-to-r from-emerald-600 to-teal-600 text-white shadow-xl shadow-emerald-500/25 hover:shadow-emerald-500/40 hover:from-emerald-500 hover:to-teal-500 active:scale-[0.98] border border-emerald-400/30 transition-all duration-300",
+        "btn-emerald text-white",
       indigo:
-        "bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-xl shadow-indigo-500/25 hover:shadow-indigo-500/40 hover:from-indigo-500 hover:to-purple-500 active:scale-[0.98] border border-indigo-400/30 transition-all duration-300",
+        "bg-gradient-to-r from-indigo-600 to-purple-700 text-white border border-indigo-400/25 shadow-lg shadow-indigo-500/25 hover:shadow-indigo-500/40 hover:from-indigo-500 hover:to-purple-600 active:scale-[0.98] transition-all duration-250",
       shimmer:
-        "bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-600 text-white shadow-xl shadow-blue-500/30 btn-shimmer border border-white/20 active:scale-[0.98] transition-all duration-300",
+        "bg-gradient-to-r from-violet-600 via-indigo-600 to-blue-600 text-white border border-white/15 shadow-lg shadow-violet-500/30 active:scale-[0.98] transition-all duration-250 overflow-hidden relative before:absolute before:inset-0 before:bg-gradient-to-r before:from-white/0 before:via-white/15 before:to-white/0 before:translate-x-[-200%] hover:before:translate-x-[200%] before:transition-transform before:duration-700",
     };
 
     return (

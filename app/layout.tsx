@@ -125,7 +125,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareAppSchema) }}
         />
       </head>
-      <body className="min-h-screen bg-obsidian text-slate-100 font-sans flex flex-col antialiased">
+      <body className="min-h-screen font-sans flex flex-col antialiased" style={{ background: "#090D16", color: "#F0F4FF" }}>
         <ModalProvider>
           <Navigation />
           <main className="flex-1">{children}</main>

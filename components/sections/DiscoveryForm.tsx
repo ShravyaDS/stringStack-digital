@@ -70,13 +70,13 @@ export function DiscoveryForm() {
   };
 
   return (
-    <section id="contact" className="py-20 md:py-24 bg-[#070A12] border-t border-slate-800/80 relative">
+    <section id="contact" className="py-20 md:py-24 relative" style={{ background: "linear-gradient(180deg, #090D16 0%, #0E1623 100%)", borderTop: "1px solid rgba(255,255,255,0.07)" }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
           {/* Left Column: Context & Guarantees (5 cols) */}
           <div className="lg:col-span-5 space-y-6">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-slate-900 border border-slate-800 text-xs font-mono text-cyan-400">
-              <span className="font-semibold uppercase tracking-wider">Direct Technical Scoping</span>
+            <div>
+              <span className="section-label">Direct Technical Scoping</span>
             </div>
 
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-tight">

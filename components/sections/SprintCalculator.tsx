@@ -73,16 +73,19 @@ export function SprintCalculator() {
   };
 
   return (
-    <section id="estimator" className="py-20 md:py-24 bg-[#080C14] border-t border-slate-800/80 relative">
+    <section id="estimator" className="py-20 md:py-24 relative" style={{ background: "linear-gradient(180deg, #090D16 0%, #0E1623 100%)", borderTop: "1px solid rgba(255,255,255,0.07)" }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-2.5 mb-12 md:mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-slate-900 border border-slate-800 text-xs font-mono text-cyan-400">
-            <Sliders className="w-3.5 h-3.5" />
-            <span className="font-semibold uppercase tracking-wider">LIVE SCOPE SIMULATOR</span>
+        <div className="text-center max-w-3xl mx-auto space-y-4 mb-12 md:mb-16">
+          <div className="flex items-center justify-center gap-2">
+            <span className="section-label">
+              <Sliders className="w-3 h-3" />
+              Live Scope Simulator
+            </span>
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight">
-            Sprint Scope &amp; Timeline Estimator
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-[1.1]">
+            Sprint Scope &amp;{" "}
+            <span className="text-gradient-blue-violet">Timeline Estimator</span>
           </h2>
           <p className="text-slate-300 text-base leading-relaxed">
             Configure your project parameters to compute sprint milestones, architecture recommendations, and dedicated squad composition in real time.
@@ -197,7 +200,7 @@ export function SprintCalculator() {
 
               {/* Major Metric Numbers */}
               <div className="grid grid-cols-2 gap-4">
-                <div className="p-4 rounded-xl bg-[#080C14] border border-slate-800 space-y-1">
+                <div className="p-4 rounded-xl bg-surface border border-slate-800 space-y-1">
                   <span className="text-xs text-slate-400 font-mono">Estimated Cadence</span>
                   <div className="text-2xl sm:text-3xl font-bold text-white font-mono flex items-baseline gap-1">
                     {estimatedSprints} <span className="text-xs font-normal text-slate-400 font-sans">Sprints</span>
@@ -205,7 +208,7 @@ export function SprintCalculator() {
                   <div className="text-[11px] text-cyan-400 font-mono">Fixed 1-2 week cycles</div>
                 </div>
 
-                <div className="p-4 rounded-xl bg-[#080C14] border border-slate-800 space-y-1">
+                <div className="p-4 rounded-xl bg-surface border border-slate-800 space-y-1">
                   <span className="text-xs text-slate-400 font-mono">Target Delivery</span>
                   <div className="text-2xl sm:text-3xl font-bold text-emerald-400 font-mono flex items-baseline gap-1">
                     ~{estimatedDays} <span className="text-xs font-normal text-slate-400 font-sans">Days</span>
@@ -223,7 +226,7 @@ export function SprintCalculator() {
                   {stackRecommendations[projectType]?.map((tech) => (
                     <span
                       key={tech}
-                      className="px-2.5 py-1 rounded-md bg-[#080C14] border border-slate-800 text-xs font-mono text-slate-300"
+                      className="px-2.5 py-1 rounded-md bg-surface border border-slate-800 text-xs font-mono text-slate-300"
                     >
                       {tech}
                     </span>
@@ -232,7 +235,7 @@ export function SprintCalculator() {
               </div>
 
               {/* Sprint Guarantees */}
-              <div className="p-3.5 rounded-xl bg-[#080C14] border border-slate-800 space-y-2 text-xs">
+              <div className="p-3.5 rounded-xl bg-surface border border-slate-800 space-y-2 text-xs">
                 <div className="flex items-center gap-2 text-slate-200">
                   <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
                   <span>100% Unencumbered IP Transfer on Day 1</span>

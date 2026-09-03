@@ -63,68 +63,53 @@ export function TransformationCompare() {
   const current = comparisons[activeTab];
 
   return (
-    <section className="py-20 md:py-24 bg-[#070A12] border-t border-slate-800/80 relative">
+    <section className="py-20 md:py-24 relative" style={{ background: "linear-gradient(180deg, #090D16 0%, #0E1623 100%)", borderTop: "1px solid rgba(255,255,255,0.07)" }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-2.5 mb-12">
-          <span className="text-xs font-mono uppercase tracking-widest text-indigo-400 font-bold">
-            SYSTEM MODERNIZATION COMPARISON
-          </span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight">
-            The Difference in Execution
+        <div className="text-center max-w-3xl mx-auto space-y-4 mb-12">
+          <div className="flex items-center justify-center">
+            <span className="section-label">System Modernization</span>
+          </div>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-[1.1]">
+            The Difference{" "}
+            <span className="text-gradient-blue-violet">in Execution</span>
           </h2>
-          <p className="text-slate-300 text-base leading-relaxed">
+          <p className="text-[#A3A2B0] text-base leading-relaxed">
             See how custom enterprise engineering eliminates the friction, delays, and hidden costs of legacy software.
           </p>
         </div>
 
         {/* Tab Selector */}
         <div className="flex justify-center mb-10">
-          <div className="p-1 rounded-xl bg-slate-900 border border-slate-800 inline-flex gap-1">
-            <button
-              onClick={() => setActiveTab("operations")}
-              className={`px-4 sm:px-5 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-colors cursor-pointer ${
-                activeTab === "operations"
-                  ? "bg-slate-800 text-white"
-                  : "text-slate-400 hover:text-white"
-              }`}
-            >
-              Workforce &amp; Operations
-            </button>
-            <button
-              onClick={() => setActiveTab("engineering")}
-              className={`px-4 sm:px-5 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-colors cursor-pointer ${
-                activeTab === "engineering"
-                  ? "bg-slate-800 text-white"
-                  : "text-slate-400 hover:text-white"
-              }`}
-            >
-              Software Delivery Model
-            </button>
-            <button
-              onClick={() => setActiveTab("governance")}
-              className={`px-4 sm:px-5 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-colors cursor-pointer ${
-                activeTab === "governance"
-                  ? "bg-slate-800 text-white"
-                  : "text-slate-400 hover:text-white"
-              }`}
-            >
-              CRM &amp; Process Governance
-            </button>
+          <div className="p-1 rounded-xl inline-flex gap-1" style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)" }}>
+            {(["operations", "engineering", "governance"] as const).map((tab, i) => (
+              <button
+                key={tab}
+                onClick={() => setActiveTab(tab)}
+                className="px-4 sm:px-5 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all cursor-pointer"
+                style={{
+                  background: activeTab === tab ? "rgba(59,130,246,0.18)" : "transparent",
+                  border: `1px solid ${activeTab === tab ? "rgba(99,102,241,0.32)" : "transparent"}`,
+                  color: activeTab === tab ? "#F4F3F8" : "#6B6A78",
+                }}
+              >
+                {["Workforce & Operations", "Software Delivery", "CRM & Governance"][i]}
+              </button>
+            ))}
           </div>
         </div>
 
         {/* Comparison Grid (Side-by-Side) */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 items-stretch">
-          {/* Left: Legacy / Traditional Approach */}
-          <div className="p-6 sm:p-8 rounded-2xl bg-slate-900/30 border border-slate-800 flex flex-col justify-between space-y-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 md:gap-6 items-stretch">
+          {/* Left: Legacy */}
+          <div className="p-6 sm:p-8 rounded-2xl flex flex-col justify-between space-y-6" style={{ background: "rgba(244,63,94,0.04)", border: "1px solid rgba(244,63,94,0.15)" }}>
             <div className="space-y-4">
-              <div className="flex items-center justify-between pb-3 border-b border-slate-800">
-                <span className="text-xs font-mono uppercase text-rose-400 font-semibold flex items-center gap-1.5">
+              <div className="flex items-center justify-between pb-3" style={{ borderBottom: "1px solid rgba(255,255,255,0.07)" }}>
+                <span className="text-xs font-semibold uppercase tracking-wider text-rose-400 flex items-center gap-1.5">
                   <AlertTriangle className="w-3.5 h-3.5" />
                   Legacy / Fragmented Approach
                 </span>
-                <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-rose-400 border border-slate-700">
+                <span className="text-[10px] font-semibold px-2 py-0.5 rounded" style={{ background: "rgba(244,63,94,0.1)", color: "#FB7185", border: "1px solid rgba(244,63,94,0.2)" }}>
                   High Overhead
                 </span>
               </div>
@@ -135,28 +120,28 @@ export function TransformationCompare() {
 
               <div className="space-y-3 pt-1">
                 {current.legacyPoints.map((point) => (
-                  <div key={point} className="flex items-start gap-3 text-xs sm:text-sm text-slate-400">
-                    <XCircle className="w-4 h-4 text-rose-500/80 shrink-0 mt-0.5" />
+                  <div key={point} className="flex items-start gap-3 text-xs sm:text-sm text-[#A3A2B0]">
+                    <XCircle className="w-4 h-4 text-rose-400 shrink-0 mt-0.5" />
                     <span>{point}</span>
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className="pt-4 border-t border-slate-800 text-xs font-mono text-slate-400">
+            <div className="pt-4 text-xs text-[#6B6A78]" style={{ borderTop: "1px solid rgba(255,255,255,0.07)" }}>
               Outcome: Operational bottlenecks &amp; lost billable hours.
             </div>
           </div>
 
           {/* Right: SprintStack Modern Approach */}
-          <div className="p-6 sm:p-8 rounded-2xl bg-slate-900/60 border border-slate-700 flex flex-col justify-between space-y-6">
+          <div className="p-6 sm:p-8 rounded-2xl flex flex-col justify-between space-y-6" style={{ background: "rgba(16,185,129,0.04)", border: "1px solid rgba(16,185,129,0.18)" }}>
             <div className="space-y-4">
-              <div className="flex items-center justify-between pb-3 border-b border-slate-800">
-                <span className="text-xs font-mono uppercase text-emerald-400 font-semibold flex items-center gap-1.5">
+              <div className="flex items-center justify-between pb-3" style={{ borderBottom: "1px solid rgba(255,255,255,0.07)" }}>
+                <span className="text-xs font-semibold uppercase tracking-wider text-emerald-400 flex items-center gap-1.5">
                   <Zap className="w-3.5 h-3.5" />
                   SprintStack Engineering Standard
                 </span>
-                <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-emerald-400 border border-slate-700 font-semibold">
+                <span className="text-[10px] font-semibold px-2 py-0.5 rounded" style={{ background: "rgba(16,185,129,0.12)", color: "#34D399", border: "1px solid rgba(16,185,129,0.25)" }}>
                   Zero Technical Debt
                 </span>
               </div>
@@ -167,7 +152,7 @@ export function TransformationCompare() {
 
               <div className="space-y-3 pt-1">
                 {current.modernPoints.map((point) => (
-                  <div key={point} className="flex items-start gap-3 text-xs sm:text-sm text-slate-200">
+                  <div key={point} className="flex items-start gap-3 text-xs sm:text-sm text-[#D4D3E0]">
                     <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
                     <span>{point}</span>
                   </div>
@@ -175,8 +160,8 @@ export function TransformationCompare() {
               </div>
             </div>
 
-            <div className="pt-4 border-t border-slate-800 flex items-center justify-between">
-              <span className="text-xs font-mono text-emerald-400 font-semibold">
+            <div className="pt-4 flex items-center justify-between" style={{ borderTop: "1px solid rgba(255,255,255,0.07)" }}>
+              <span className="text-xs font-semibold text-emerald-400">
                 Outcome: 100% IP ownership &amp; sub-second speed.
               </span>
               <Button
