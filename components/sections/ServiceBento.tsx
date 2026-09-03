@@ -3,75 +3,45 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import {
-  Code2,
-  Smartphone,
-  ShoppingBag,
-  Workflow,
-  ArrowRight,
-} from "lucide-react";
+import { Code2, Smartphone, ShoppingBag, Workflow } from "lucide-react";
 import { CORE_CAPABILITIES } from "@/lib/constants";
 import { useBookingModal } from "../ModalProvider";
 
 const CARD_THEMES = [
   {
     Icon: Code2,
-    iconClass: "icon-box-blue",
-    accentBorder: "card-blue",
-    accentText: "text-blue-400",
-    accentHover: "hover:text-blue-300",
-    glowClass: "hover-glow-blue",
-    badgeBg: "rgba(59, 130, 246, 0.12)",
-    badgeBorder: "rgba(59, 130, 246, 0.25)",
-    badgeColor: "#93C5FD",
-    linkColor: "#60A5FA",
+    accentColor: "bg-blue-600",
+    iconBg: "bg-blue-50 text-blue-600 border-blue-100",
+    badgeBg: "bg-blue-50 text-blue-700 border-blue-200/70",
     ctaLink: "/services/web-development",
-    ctaLabel: "Deep Dive Architecture & Sprints",
+    ctaLabel: "Architecture & Sprints",
     scopeLabel: "Scope Web Build",
   },
   {
     Icon: Smartphone,
-    iconClass: "icon-box-cyan",
-    accentBorder: "card-cyan",
-    accentText: "text-cyan-400",
-    accentHover: "hover:text-cyan-300",
-    glowClass: "hover-glow-blue",
-    badgeBg: "rgba(6, 182, 212, 0.12)",
-    badgeBorder: "rgba(6, 182, 212, 0.25)",
-    badgeColor: "#67E8F9",
-    linkColor: "#22D3EE",
+    accentColor: "bg-indigo-600",
+    iconBg: "bg-indigo-50 text-indigo-600 border-indigo-100",
+    badgeBg: "bg-indigo-50 text-indigo-700 border-indigo-200/70",
     ctaLink: "/services/mobile-apps",
     ctaLabel: "Explore Mobile Systems",
     scopeLabel: "Scope Mobile Build",
   },
   {
     Icon: ShoppingBag,
-    iconClass: "icon-box-emerald",
-    accentBorder: "card-emerald",
-    accentText: "text-emerald-400",
-    accentHover: "hover:text-emerald-300",
-    glowClass: "hover-glow-emerald",
-    badgeBg: "rgba(16, 185, 129, 0.12)",
-    badgeBorder: "rgba(16, 185, 129, 0.25)",
-    badgeColor: "#6EE7B7",
-    linkColor: "#34D399",
+    accentColor: "bg-violet-600",
+    iconBg: "bg-violet-50 text-violet-600 border-violet-100",
+    badgeBg: "bg-violet-50 text-violet-700 border-violet-200/70",
     ctaLink: "/services/web-development",
-    ctaLabel: "Explore Commerce Architecture",
+    ctaLabel: "Commerce Architecture",
     scopeLabel: "Scope Commerce Engine",
   },
   {
     Icon: Workflow,
-    iconClass: "icon-box-violet",
-    accentBorder: "card-violet",
-    accentText: "text-indigo-400",
-    accentHover: "hover:text-indigo-300",
-    glowClass: "hover-glow-violet",
-    badgeBg: "rgba(99, 102, 241, 0.12)",
-    badgeBorder: "rgba(99, 102, 241, 0.25)",
-    badgeColor: "#A5B4FC",
-    linkColor: "#818CF8",
+    accentColor: "bg-cyan-600",
+    iconBg: "bg-cyan-50 text-cyan-600 border-cyan-100",
+    badgeBg: "bg-cyan-50 text-cyan-700 border-cyan-200/70",
     ctaLink: "/services/web-development",
-    ctaLabel: "Explore Middleware Pipeline",
+    ctaLabel: "Middleware Pipeline",
     scopeLabel: "Scope Integration Build",
   },
 ];
@@ -87,106 +57,105 @@ export function ServiceBento() {
   ];
 
   return (
-    <section
-      id="solutions"
-      className="py-20 md:py-28 relative"
-      style={{ background: "linear-gradient(180deg, #0E1623 0%, #090D16 100%)" }}
-    >
-      {/* Section glow */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[600px] pointer-events-none"
-        style={{ background: "radial-gradient(ellipse 60% 40% at 50% 0%, rgba(59,130,246,0.07) 0%, transparent 70%)" }} />
+    <section id="solutions" className="py-20 lg:py-28 bg-[#FAFAF8] border-t border-[#E2E8F0] relative overflow-hidden">
+      {/* ── Aesthetic Architectural Wireframe Background (like TechMatrix) ── */}
+      <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden select-none">
+        <Image
+          src="/images/tech-stack/tech-stack-bg.jpg"
+          alt="Engineering Architectural Blueprint"
+          fill
+          priority={false}
+          className="object-cover object-center opacity-45"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#FAFAF8]/90 via-[#FAFAF8]/60 to-[#FAFAF8]/90" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(228,230,234,0.5)_1px,transparent_1px),linear-gradient(to_bottom,rgba(228,230,234,0.5)_1px,transparent_1px)] [background-size:36px_36px] [mask-image:radial-gradient(ellipse_80%_70%_at_50%_50%,black_25%,transparent_80%)] opacity-65" />
+      </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+      {/* Soft "Color Bleed" Glow Effect (One Side Only — Top-Left Soft Bleed) */}
+      <div className="absolute -top-24 -left-20 w-[550px] h-[550px] bg-[radial-gradient(circle,rgba(37,99,235,0.14)_0%,rgba(99,102,241,0.08)_40%,transparent_70%)] blur-[90px] pointer-events-none z-0" />
 
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        
         {/* ── Section Header ── */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-6">
-          <div className="space-y-4">
-            <div className="section-label-blue section-label">
-              What We Build
-            </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-[1.1]">
-              Core Engineering{" "}
-              <span className="text-gradient-blue-violet">Capabilities</span>
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6 scroll-reveal">
+          <div className="space-y-3">
+            <span className="section-label">What We Build</span>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0F172A] tracking-tight">
+              Core Engineering Capabilities
             </h2>
           </div>
-          <p className="text-[#A3A2B0] max-w-md text-sm sm:text-base leading-relaxed">
+          <p className="text-[#475569] max-w-md text-sm sm:text-base leading-relaxed">
             From high-concurrency web platforms to native mobile apps and enterprise middleware — built by senior engineers on fixed weekly sprints.
           </p>
         </div>
 
-        {/* ── 4 Capability Cards (2x2 grid) ── */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 md:gap-6">
+        {/* ── 4 Capability Cards with Rich Accent Visuals ── */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 scroll-stagger">
           {capabilities.map((cap, idx) => {
             const theme = CARD_THEMES[idx];
             return (
               <div
                 key={cap.headline}
-                className={`card-raised rounded-2xl ${theme.accentBorder} ${theme.glowClass} flex flex-col justify-between`}
-                style={{ padding: "1.75rem" }}
+                className="bg-white rounded-2xl border border-[#E2E8F0] hover:border-[#CBD5E1] p-6 sm:p-7 shadow-[0_4px_16px_rgba(15,23,42,0.04)] card-interactive flex flex-col justify-between group transition-all duration-200 relative overflow-hidden"
               >
-                <div className="space-y-5">
-                  {/* Card header */}
+                {/* Top colored accent line */}
+                <div className={`absolute top-0 left-0 right-0 h-1 ${theme.accentColor}`} />
+
+                <div className="space-y-5 pt-1">
+                  {/* Card Header: Rich Icon + Badge */}
                   <div className="flex items-center justify-between">
-                    <div className={`icon-box ${theme.iconClass}`}>
+                    <div className={`w-10 h-10 rounded-xl flex items-center justify-center border transition-transform duration-200 group-hover:scale-105 ${theme.iconBg}`}>
                       <theme.Icon className="w-5 h-5" />
                     </div>
-                    <span
-                      className="text-[11px] font-semibold tracking-wider px-2.5 py-1 rounded-full"
-                      style={{ background: theme.badgeBg, border: `1px solid ${theme.badgeBorder}`, color: theme.badgeColor }}
-                    >
+                    <span className={`text-[11px] font-semibold px-2.5 py-0.5 rounded-full border ${theme.badgeBg}`}>
                       {cap.badge}
                     </span>
                   </div>
 
-                  {/* Card content */}
+                  {/* Headline & Description */}
                   <div>
-                    <span className="text-[11px] font-semibold uppercase tracking-widest text-[#6B6A78] block mb-1.5">
-                      {cap.category}
-                    </span>
-                    <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight mb-2.5">
+                    <h3 className="text-xl sm:text-2xl font-bold text-[#0F172A] tracking-tight mb-2 group-hover:text-blue-600 transition-colors duration-200">
                       {cap.headline}
                     </h3>
-                    <p className="text-[#A3A2B0] text-sm leading-relaxed">
+                    <p className="text-[#475569] text-sm leading-relaxed">
                       {cap.description}
                     </p>
                   </div>
 
-                  {/* Preview image */}
-                  <div className="img-frame relative aspect-[16/9] w-full">
+                  {/* Preview Image with subtle zoom on hover */}
+                  <div className="relative aspect-[16/9] w-full rounded-xl overflow-hidden border border-[#E2E8F0] bg-slate-100">
                     <Image
                       src={`/images/services/${idx === 0 ? "web-apps" : idx === 1 ? "mobile-apps" : idx === 2 ? "ecommerce" : "integrations"}.jpg`}
                       alt={cap.headline}
                       fill
-                      className="object-cover"
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
                     />
-                    {/* Subtle overlay */}
-                    <div className="absolute inset-0 rounded-[inherit]"
-                      style={{ background: "linear-gradient(to top, rgba(9,13,22,0.4), transparent 60%)" }} />
                   </div>
 
                   {/* Tech stack pills */}
-                  <div className="flex flex-wrap gap-1.5">
+                  <div className="flex flex-wrap gap-1.5 pt-1">
                     {cap.techStack.map((tech) => (
-                      <span key={tech} className="tech-pill">{tech}</span>
+                      <span
+                        key={tech}
+                        className="inline-flex items-center px-2.5 py-0.5 rounded-md text-[11px] font-medium bg-[#F1F5F9] text-[#334155] border border-[#E2E8F0]"
+                      >
+                        {tech}
+                      </span>
                     ))}
                   </div>
                 </div>
 
                 {/* Card footer */}
-                <div className="pt-5 mt-5 flex items-center justify-between"
-                  style={{ borderTop: "1px solid rgba(255,255,255,0.07)" }}>
+                <div className="pt-5 mt-5 flex items-center justify-between border-t border-[#F1F5F9]">
                   <Link
                     href={theme.ctaLink}
-                    className="inline-flex items-center gap-1.5 text-xs font-semibold transition-colors group"
-                    style={{ color: theme.linkColor }}
+                    className="text-xs font-semibold text-[#2563EB] hover:text-[#1D4ED8] transition-colors"
                   >
-                    <span>{theme.ctaLabel}</span>
-                    <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+                    {theme.ctaLabel}
                   </Link>
                   <button
                     onClick={openBookingModal}
-                    className="btn-ghost text-xs px-3.5 py-1.5 rounded-lg cursor-pointer"
-                    style={{ border: "1px solid rgba(255,255,255,0.08)" }}
+                    className="text-xs font-semibold px-3.5 py-1.5 rounded-lg bg-[#F8FAFC] hover:bg-[#EEF2FF] hover:text-[#2563EB] text-[#334155] border border-[#E2E8F0] hover:border-blue-200 cursor-pointer transition-colors"
                   >
                     {theme.scopeLabel}
                   </button>
@@ -195,6 +164,7 @@ export function ServiceBento() {
             );
           })}
         </div>
+
       </div>
     </section>
   );

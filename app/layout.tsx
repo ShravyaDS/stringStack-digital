@@ -8,6 +8,7 @@ import {
   generateSoftwareApplicationSchema,
 } from "@/lib/seo";
 import { ModalProvider } from "@/components/ModalProvider";
+import { ScrollRevealProvider } from "@/components/ScrollRevealProvider";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 
@@ -125,11 +126,13 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareAppSchema) }}
         />
       </head>
-      <body className="min-h-screen font-sans flex flex-col antialiased" style={{ background: "#090D16", color: "#F0F4FF" }}>
+      <body className="min-h-screen font-sans flex flex-col antialiased bg-[#FAFAF8] text-[#0F172A]">
         <ModalProvider>
-          <Navigation />
-          <main className="flex-1">{children}</main>
-          <Footer />
+          <ScrollRevealProvider>
+            <Navigation />
+            <main className="flex-1">{children}</main>
+            <Footer />
+          </ScrollRevealProvider>
         </ModalProvider>
       </body>
     </html>

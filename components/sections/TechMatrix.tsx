@@ -1,80 +1,204 @@
 "use client";
 
 import React from "react";
-import { TECH_STACK_DOMAINS } from "@/lib/constants";
-import { Code2, Layers, Cpu, Database, Globe, Cloud } from "lucide-react";
+import Image from "next/image";
+import styles from "./TechMatrix.module.css";
+
+interface TechCardItem {
+  id: string;
+  idx: string;
+  title: string;
+  stackline: string;
+  tags: string[];
+  code: string;
+  frameworksCount: string;
+  icon: React.ReactNode;
+}
+
+const TECH_CARDS: TechCardItem[] = [
+  {
+    id: "frontend",
+    idx: "01 / Presentation Layer",
+    title: "Frontend Web",
+    stackline: "React.js, Next.js, Tailwind CSS, TypeScript",
+    tags: [
+      "Next.js 15 App Router",
+      "React 19 Server Actions",
+      "Strict TypeScript",
+      "Tailwind Design Tokens",
+    ],
+    code: "WEB_UI",
+    frameworksCount: "4 frameworks",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M8 5 L3 12 L8 19" />
+        <path d="M16 5 L21 12 L16 19" />
+      </svg>
+    ),
+  },
+  {
+    id: "backend",
+    idx: "02 / Service Layer",
+    title: "Backend & APIs",
+    stackline: "Node.js (Express/Nest), Python (Django/FastAPI), Laravel",
+    tags: [
+      "High-Concurrency REST & GraphQL",
+      "FastAPI Async Pipelines",
+      "NestJS Microservices",
+      "Laravel APIs",
+    ],
+    code: "API_SYS",
+    frameworksCount: "3 frameworks",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="4" y="4" width="16" height="5" rx="1.2" />
+        <rect x="4" y="10.5" width="16" height="5" rx="1.2" />
+        <rect x="4" y="17" width="16" height="3.5" rx="1" />
+      </svg>
+    ),
+  },
+  {
+    id: "mobile",
+    idx: "03 / Client Devices",
+    title: "Mobile Platforms",
+    stackline: "Flutter, React Native, Native iOS (Swift), Android (Kotlin)",
+    tags: [
+      "Flutter Cross-Platform",
+      "React Native",
+      "Swift & CoreLocation",
+      "Kotlin Foreground Services",
+    ],
+    code: "MOB_OS",
+    frameworksCount: "4 frameworks",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="7" y="2.5" width="10" height="19" rx="2" />
+        <line x1="10.5" y1="18" x2="13.5" y2="18" />
+      </svg>
+    ),
+  },
+  {
+    id: "databases",
+    idx: "04 / Persistence Layer",
+    title: "Databases & Caching",
+    stackline: "MySQL, PostgreSQL, MongoDB, Redis",
+    tags: [
+      "PostgreSQL ACID Schemas",
+      "Redis Sub-Millisecond Cache",
+      "MySQL High Availability",
+      "MongoDB Aggregations",
+    ],
+    code: "DATA_STORE",
+    frameworksCount: "4 frameworks",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <ellipse cx="12" cy="5.5" rx="8" ry="3" />
+        <path d="M4 5.5v13c0 1.66 3.58 3 8 3s8-1.34 8-3v-13" />
+        <path d="M4 12c0 1.66 3.58 3 8 3s8-1.34 8-3" />
+      </svg>
+    ),
+  },
+  {
+    id: "cms",
+    idx: "05 / Content Layer",
+    title: "CMS & Quick Engines",
+    stackline: "WordPress (Custom Theme & Headless), PHP",
+    tags: [
+      "Headless WordPress GraphQL",
+      "Custom PHP Enterprise Modules",
+      "Zero-Bloat Custom Themes",
+      "Edge Caching",
+    ],
+    code: "CMS_ENG",
+    frameworksCount: "2 frameworks",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="12" cy="12" r="9" />
+        <path d="M3 12h18" />
+        <path d="M12 3c2.4 2.6 3.6 6 3.6 9s-1.2 6.4-3.6 9c-2.4-2.6-3.6-6-3.6-9s1.2-6.4 3.6-9z" />
+      </svg>
+    ),
+  },
+  {
+    id: "cloud",
+    idx: "06 / Infrastructure Layer",
+    title: "Cloud & DevOps",
+    stackline: "AWS, Google Cloud, DigitalOcean, Docker, CI/CD Pipelines",
+    tags: [
+      "Multi-Region Edge Routing",
+      "Docker & Kubernetes",
+      "GitHub Actions CI/CD",
+      "Terraform IaC",
+    ],
+    code: "CLOUD_OPS",
+    frameworksCount: "5 frameworks",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M7 18h10a4 4 0 0 0 0.6-7.96A5.5 5.5 0 0 0 7.1 8.05 4.5 4.5 0 0 0 7 18z" />
+      </svg>
+    ),
+  },
+];
 
 export function TechMatrix() {
-  const domainIcons: Record<string, React.ReactNode> = {
-    "Frontend Web": <Code2 className="w-5 h-5 text-blue-400" />,
-    "Backend & APIs": <Layers className="w-5 h-5 text-indigo-400" />,
-    "Mobile Platforms": <Cpu className="w-5 h-5 text-cyan-400" />,
-    "Databases & Caching": <Database className="w-5 h-5 text-emerald-400" />,
-    "CMS & Quick Engines": <Globe className="w-5 h-5 text-amber-400" />,
-    "Cloud & DevOps": <Cloud className="w-5 h-5 text-blue-400" />,
-  };
-
   return (
-    <section id="tech-stack" className="py-20 md:py-24 relative" style={{ background: "linear-gradient(180deg, #0E1623 0%, #090D16 100%)", borderTop: "1px solid rgba(255,255,255,0.07)" }}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-4 mb-14">
-          <div className="flex items-center justify-center">
-            <span className="section-label-blue section-label">Modern Technology Ecosystem</span>
-          </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-[1.1]">
-            Technology <span className="text-gradient-blue-violet">Stack</span>
-          </h2>
-          <p className="text-[#A3A2B0] text-base leading-relaxed">
-            Battle-tested, enterprise-grade frameworks and cloud infrastructure. Zero obsolete legacy frameworks.
+    <div className={styles.sectionWrapper}>
+      {/* Aesthetic architectural wireframe background image */}
+      <div className={styles.bgImageContainer}>
+        <Image
+          src="/images/tech-stack/tech-stack-bg.jpg"
+          alt="Tech Stack Architectural Infrastructure"
+          fill
+          priority={false}
+          className="object-cover object-center opacity-60"
+        />
+        <div className={styles.bgOverlay} />
+      </div>
+
+      <section id="tech-stack" className={styles.stackSection}>
+        {/* ── Section Header ── */}
+        <div className={styles.sectionHead}>
+          <h2 className={styles.headTitle}>The stack behind every build</h2>
+          <p className={styles.headDesc}>
+            Six disciplines, sixteen frameworks, one delivery team — production-hardened on live client work.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {TECH_STACK_DOMAINS.map((item) => {
-            const techList = item.supported.split(", ");
-            return (
-              <div
-                key={item.domain}
-                className="card-raised rounded-2xl p-6 sm:p-7 flex flex-col justify-between space-y-5 hover-glow-blue"
-              >
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between">
-                    <div className="icon-box" style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)" }}>
-                      {domainIcons[item.domain]}
-                    </div>
-                    <span className="text-[11px] font-semibold" style={{ color: "#22D3EE" }}>
-                      {techList.length} Frameworks
-                    </span>
-                  </div>
+        {/* ── Connected Node Directory Grid ── */}
+        <div className={styles.directory}>
+          {TECH_CARDS.map((card) => (
+            <div key={card.id} className={styles.card}>
+              {/* Horizontal Spine Connector */}
+              <div className={styles.connector} />
 
-                  <div>
-                    <h3 className="text-base font-bold text-white tracking-tight">
-                      {item.domain}
-                    </h3>
-                    <p className="text-xs text-[#6B6A78] mt-1 leading-relaxed">
-                      {item.supported}
-                    </p>
-                  </div>
-
-                  {/* Technology Highlights */}
-                  <div className="flex flex-wrap gap-1.5">
-                    {item.highlights.map((tech) => (
-                      <span key={tech} className="tech-pill">{tech}</span>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Category Code */}
-                <div className="pt-4 flex items-center justify-between text-xs" style={{ borderTop: "1px solid rgba(255,255,255,0.07)" }}>
-                  <span className="text-[#6B6A78]">Standard Architecture:</span>
-                  <span className="font-mono font-semibold" style={{ color: "#22D3EE" }}>{item.categoryCode}</span>
-                </div>
+              {/* Icon Node */}
+              <div className={styles.nodeWrap}>
+                <div className={styles.node}>{card.icon}</div>
               </div>
-            );
-          })}
+
+              {/* Content */}
+              <span className={styles.idx}>{card.idx}</span>
+              <h3 className={styles.cardTitle}>{card.title}</h3>
+              <div className={styles.stackline}>{card.stackline}</div>
+
+              {/* Tag Pills */}
+              <div className={styles.tags}>
+                {card.tags.map((tag) => (
+                  <span key={tag} className={styles.tag}>
+                    {tag}
+                  </span>
+                ))}
+              </div>
+
+              {/* Standard & Framework Count */}
+              <div className={styles.standard}>
+                Standard <span className={styles.code}>{card.code}</span>{" "}
+                <span className={styles.frameworksCount}>· {card.frameworksCount}</span>
+              </div>
+            </div>
+          ))}
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
   );
 }

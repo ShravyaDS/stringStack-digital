@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import {
   Code2,
   X,
+  Menu,
   ArrowRight,
   Search,
   Layers,
@@ -22,9 +23,10 @@ export function Navigation() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      setScrolled(window.scrollY > 80);
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -53,12 +55,12 @@ export function Navigation() {
 
   return (
     <>
-      {/* ── TOP NAVIGATION BAR ── */}
+      {/* ── TOP NAVIGATION BAR (Scroll-Shrink: 76px -> 60px) ── */}
       <header
-        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
+        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-200 ease-out ${
           scrolled || drawerOpen
-            ? "glass-nav-scrolled py-2.5 sm:py-3"
-            : "glass-nav py-3 sm:py-4"
+            ? "bg-white/95 backdrop-blur-md border-b border-[#E5E8ED] py-2.5 shadow-[0_1px_3px_rgba(0,0,0,0.06)]"
+            : "bg-white/80 backdrop-blur-sm border-b border-[#F1F5F9] py-4"
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -66,13 +68,11 @@ export function Navigation() {
 
             {/* ── Logo ── */}
             <Link href="/" className="flex items-center gap-2.5 select-none shrink-0 group">
-              <div className="relative w-8 h-8 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center shadow-lg shadow-blue-500/30 group-hover:shadow-blue-500/50 transition-all duration-300">
+              <div className="w-8 h-8 rounded-lg bg-[#2563EB] flex items-center justify-center transition-all duration-200 group-hover:bg-[#1D4ED8]">
                 <Code2 className="w-4 h-4 text-white" />
-                <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-white/20 to-transparent" />
               </div>
-              <div className="font-bold text-base sm:text-lg text-white tracking-tight whitespace-nowrap">
-                SprintStack
-                <span className="text-gradient-brand" style={{ fontStyle: "normal" }}>.digital</span>
+              <div className="font-bold text-base sm:text-lg text-[#0F172A] tracking-tight whitespace-nowrap">
+                SprintStack<span className="text-[#2563EB]">.digital</span>
               </div>
             </Link>
 
@@ -80,52 +80,32 @@ export function Navigation() {
             <nav className="hidden lg:flex items-center gap-1 xl:gap-1.5 shrink-0">
               {[
                 { href: "/#solutions", label: "Solutions" },
-                { href: "/#enterprise-solutions", label: "Enterprise", fullLabel: "Enterprise Software" },
+                { href: "/#enterprise-solutions", label: "Enterprise Software" },
                 { href: "/#tech-stack", label: "Tech Stack" },
-                { href: "/partners/white-label", label: "Partners", fullLabel: "White-Label & Partners" },
+                { href: "/partners/white-label", label: "White-Label & Partners" },
                 { href: "/#process", label: "Process" },
               ].map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="nav-link px-3 py-2 rounded-lg hover:bg-white/5 whitespace-nowrap transition-colors"
+                  className="px-3 py-1.5 rounded-md text-sm font-medium text-[#475569] hover:text-[#0F172A] hover:bg-[#F8FAFC] transition-colors whitespace-nowrap"
                 >
-                  <span className="hidden xl:inline">{item.fullLabel || item.label}</span>
-                  <span className="xl:hidden">{item.label}</span>
+                  {item.label}
                 </Link>
               ))}
             </nav>
 
             {/* ── Right Actions ── */}
             <div className="flex items-center gap-2 sm:gap-2.5 shrink-0">
-              {/* Search */}
-              <button
-                onClick={triggerSearch}
-                className="hidden 2xl:flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/5 border border-white/8 hover:bg-white/8 hover:border-white/12 text-sm text-[#A3A2B0] hover:text-white transition-all duration-200 cursor-pointer"
-                title="Search (⌘K)"
-              >
-                <Search className="w-3.5 h-3.5" />
-                <span className="text-xs">Search</span>
-                <kbd className="px-1.5 py-0.5 rounded-md bg-white/8 text-[10px] font-mono text-[#6B6A78]">⌘K</kbd>
-              </button>
 
-              {/* Live Demos */}
-              <button
-                onClick={openDemoModal}
-                className="hidden md:inline-flex items-center gap-1.5 text-sm font-medium text-[#A3A2B0] hover:text-white px-3 py-1.5 rounded-lg hover:bg-white/5 transition-all duration-200 cursor-pointer whitespace-nowrap"
-              >
-                <span className="hidden xl:inline">Live Product Demos</span>
-                <span className="xl:hidden">Live Demos</span>
-              </button>
-
-              {/* Primary CTA */}
+              {/* Primary CTA: 1 of 2 true primary CTAs with arrow */}
               <button
                 onClick={openBookingModal}
-                className="btn-primary inline-flex items-center gap-1.5 px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl text-xs sm:text-sm font-semibold text-white cursor-pointer whitespace-nowrap"
+                className="btn-primary inline-flex items-center gap-1.5 px-4 sm:px-5 py-2 sm:py-2.5 text-xs sm:text-sm font-semibold cursor-pointer whitespace-nowrap"
               >
-                <span className="hidden xl:inline">Schedule Discovery</span>
-                <span className="hidden sm:inline xl:hidden">Schedule</span>
-                <span className="sm:hidden">Call</span>
+                <span className="hidden sm:inline">Schedule Discovery</span>
+                <span className="sm:hidden">Book</span>
+                <ArrowRight className="w-3.5 h-3.5" />
               </button>
 
               {/* Mobile Hamburger */}
@@ -136,19 +116,11 @@ export function Navigation() {
                   e.stopPropagation();
                   setDrawerOpen((prev) => !prev);
                 }}
-                className={`flex items-center justify-center w-9 h-9 rounded-xl border cursor-pointer shrink-0 lg:hidden transition-all duration-200 ${
-                  drawerOpen
-                    ? "bg-blue-600/20 border-blue-500/50 text-blue-300"
-                    : "bg-white/5 border-white/10 hover:border-white/18 text-[#94A3B8] hover:text-white"
-                }`}
+                className="flex items-center justify-center w-9 h-9 rounded-lg border border-[#E2E8F0] text-[#334155] hover:bg-[#F8FAFC] cursor-pointer shrink-0 lg:hidden transition-all duration-200"
                 aria-label={drawerOpen ? "Close menu" : "Open menu"}
                 aria-expanded={drawerOpen}
               >
-                <div className="w-4 h-3 relative flex flex-col justify-between pointer-events-none">
-                  <span className={`block h-[1.5px] rounded bg-current transition-all duration-200 ${drawerOpen ? "rotate-45 translate-y-[5.5px] w-4" : "w-4"}`} />
-                  <span className={`block h-[1.5px] rounded bg-current transition-all duration-200 ${drawerOpen ? "opacity-0 w-4" : "w-3"}`} />
-                  <span className={`block h-[1.5px] rounded bg-current transition-all duration-200 ${drawerOpen ? "-rotate-45 -translate-y-[5.5px] w-4" : "w-4"}`} />
-                </div>
+                {drawerOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
               </button>
             </div>
           </div>
@@ -163,36 +135,30 @@ export function Navigation() {
         {/* Backdrop */}
         <div
           onClick={() => setDrawerOpen(false)}
-          className={`fixed inset-0 bg-black/75 backdrop-blur-md transition-opacity duration-300 ${
+          className={`fixed inset-0 bg-slate-900/40 backdrop-blur-xs transition-opacity duration-300 ${
             drawerOpen ? "opacity-100" : "opacity-0"
           }`}
         />
 
         {/* Drawer Panel */}
         <div
-          className={`fixed top-0 left-0 bottom-0 w-full sm:w-[380px] max-w-[92vw] flex flex-col overflow-y-auto transition-transform duration-300 ease-out z-10 ${
-            drawerOpen ? "translate-x-0" : "-translate-x-full"
+          className={`fixed top-0 right-0 bottom-0 w-full sm:w-[380px] max-w-[92vw] flex flex-col overflow-y-auto transition-transform duration-300 ease-out z-10 bg-white border-l border-[#E5E7EB] shadow-2xl ${
+            drawerOpen ? "translate-x-0" : "translate-x-full"
           }`}
-          style={{
-            background: "linear-gradient(180deg, #0C1220 0%, #090D16 100%)",
-            borderRight: "1px solid rgba(255,255,255,0.08)",
-            boxShadow: "16px 0 64px rgba(0,0,0,0.7)",
-          }}
         >
           {/* Drawer Header */}
-          <div className="p-5 flex items-center justify-between sticky top-0 z-20"
-            style={{ background: "rgba(9, 13, 22, 0.97)", borderBottom: "1px solid rgba(255,255,255,0.07)", backdropFilter: "blur(16px)" }}>
+          <div className="p-5 flex items-center justify-between border-b border-[#E5E7EB] sticky top-0 z-20 bg-white">
             <div className="flex items-center gap-2.5">
-              <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center">
+              <div className="w-7 h-7 rounded-lg bg-[#2563EB] flex items-center justify-center">
                 <Code2 className="w-3.5 h-3.5 text-white" />
               </div>
-              <span className="font-bold text-base text-white tracking-tight">
-                SprintStack<span className="text-gradient-brand">.digital</span>
+              <span className="font-bold text-base text-[#0F172A] tracking-tight">
+                SprintStack<span className="text-[#2563EB]">.digital</span>
               </span>
             </div>
             <button
               onClick={() => setDrawerOpen(false)}
-              className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 text-[#A3A2B0] hover:text-white flex items-center justify-center transition-all cursor-pointer"
+              className="w-8 h-8 rounded-lg bg-slate-100 hover:bg-slate-200 text-[#475569] flex items-center justify-center transition-all cursor-pointer"
               aria-label="Close menu"
             >
               <X className="w-4 h-4" />
@@ -214,18 +180,18 @@ export function Navigation() {
                   key={link.label}
                   href={link.href}
                   onClick={() => setDrawerOpen(false)}
-                  className="block px-3 py-2.5 rounded-xl text-sm text-[#A3A2B0] hover:text-white hover:bg-white/5 transition-all duration-200"
+                  className="block px-3 py-2 rounded-lg text-sm text-[#475569] hover:text-[#0F172A] hover:bg-[#F8FAFC] transition-colors"
                 >
                   {link.label}
                 </Link>
               ))}
             </div>
 
-            <div className="h-px bg-white/6" />
+            <div className="h-px bg-[#E5E7EB]" />
 
             {/* Enterprise */}
-            <div className="space-y-1.5">
-              <span className="text-[11px] font-semibold uppercase tracking-widest text-indigo-400/80 px-1 block">Enterprise Software</span>
+            <div className="space-y-1">
+              <span className="text-[11px] font-semibold uppercase tracking-widest text-[#2563EB] px-1 block">Enterprise Software</span>
               {[
                 { href: "/products/attendance-erp", label: "Attendance & Workforce ERP" },
                 { href: "/#enterprise-solutions", label: "Project & Resource Governance" },
@@ -236,18 +202,18 @@ export function Navigation() {
                   key={link.label}
                   href={link.href}
                   onClick={() => setDrawerOpen(false)}
-                  className="block px-3 py-2.5 rounded-xl text-sm text-[#A3A2B0] hover:text-white hover:bg-white/5 transition-all duration-200"
+                  className="block px-3 py-2 rounded-lg text-sm text-[#475569] hover:text-[#0F172A] hover:bg-[#F8FAFC] transition-colors"
                 >
                   {link.label}
                 </Link>
               ))}
             </div>
 
-            <div className="h-px bg-white/6" />
+            <div className="h-px bg-[#E5E7EB]" />
 
             {/* Company */}
-            <div className="space-y-1.5">
-              <span className="text-[11px] font-semibold uppercase tracking-widest text-[#6B6A78] px-1 block">Company</span>
+            <div className="space-y-1">
+              <span className="text-[11px] font-semibold uppercase tracking-widest text-[#64748B] px-1 block">Company</span>
               {[
                 { href: "/#tech-stack", label: "Technology Stack" },
                 { href: "/partners/white-label", label: "White-Label & Partners" },
@@ -259,7 +225,7 @@ export function Navigation() {
                   key={link.label}
                   href={link.href}
                   onClick={() => setDrawerOpen(false)}
-                  className="block px-3 py-2.5 rounded-xl text-sm text-[#A3A2B0] hover:text-white hover:bg-white/5 transition-all duration-200"
+                  className="block px-3 py-2 rounded-lg text-sm text-[#475569] hover:text-[#0F172A] hover:bg-[#F8FAFC] transition-colors"
                 >
                   {link.label}
                 </Link>
@@ -268,19 +234,13 @@ export function Navigation() {
           </div>
 
           {/* Drawer Footer */}
-          <div className="p-5 space-y-3" style={{ borderTop: "1px solid rgba(255,255,255,0.07)" }}>
+          <div className="p-5 space-y-3 border-t border-[#E5E7EB] bg-[#F8FAFC]">
             <button
               onClick={() => { setDrawerOpen(false); openBookingModal(); }}
-              className="btn-primary w-full inline-flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-semibold text-white cursor-pointer"
+              className="btn-primary w-full inline-flex items-center justify-center gap-2 py-3 text-sm font-semibold cursor-pointer"
             >
               <span>Schedule a Technical Discovery</span>
               <ArrowRight className="w-4 h-4" />
-            </button>
-            <button
-              onClick={() => { setDrawerOpen(false); openDemoModal(); }}
-              className="btn-secondary w-full inline-flex items-center justify-center gap-2 py-2.5 rounded-xl text-sm font-medium cursor-pointer"
-            >
-              Live Product Demos
             </button>
           </div>
         </div>

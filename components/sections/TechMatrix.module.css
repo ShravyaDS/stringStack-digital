@@ -1,0 +1,339 @@
+.sectionWrapper {
+  width: 100%;
+  background-color: #FAFAF8;
+  border-top: 1px solid #E4E6EA;
+  border-bottom: 1px solid #E4E6EA;
+  position: relative;
+  overflow: hidden;
+}
+
+.bgImageContainer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.bgOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(250, 250, 248, 0.45) 0%, rgba(250, 250, 248, 0.2) 50%, rgba(250, 250, 248, 0.65) 100%);
+  pointer-events: none;
+}
+
+/* Layer 1: Ambient soft luminous light orbs */
+.sectionWrapper::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(ellipse 70% 45% at 50% 0%, rgba(47, 93, 224, 0.07) 0%, transparent 70%),
+    radial-gradient(circle 500px at 90% 70%, rgba(99, 102, 241, 0.04) 0%, transparent 60%),
+    radial-gradient(circle 500px at 10% 70%, rgba(16, 185, 129, 0.035) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Layer 2: Precision architectural micro-grid with smooth elliptical vignette */
+.sectionWrapper::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(to right, rgba(228, 230, 234, 0.6) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(228, 230, 234, 0.6) 1px, transparent 1px);
+  background-size: 36px 36px;
+  -webkit-mask-image: radial-gradient(ellipse 75% 65% at 50% 45%, black 20%, transparent 80%);
+  mask-image: radial-gradient(ellipse 75% 65% at 50% 45%, black 20%, transparent 80%);
+  opacity: 0.65;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.stackSection {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 100px 32px 130px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Layer 3: Subtle intersection micro-dots */
+.stackSection::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(#CBD5E1 1.2px, transparent 1.2px);
+  background-size: 36px 36px;
+  background-position: -0.6px -0.6px;
+  -webkit-mask-image: radial-gradient(ellipse 65% 55% at 50% 50%, black 10%, transparent 75%);
+  mask-image: radial-gradient(ellipse 65% 55% at 50% 50%, black 10%, transparent 75%);
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.sectionHead,
+.directory {
+  position: relative;
+  z-index: 1;
+}
+
+.sectionHead {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 72px;
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: #2F5DE0;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.eyebrowDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #2F5DE0;
+  animation: dotPulse 2.2s ease-in-out infinite;
+}
+
+@keyframes dotPulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(1.4);
+  }
+}
+
+.headTitle {
+  font-size: 42px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  margin-bottom: 14px;
+  color: #0B1220;
+}
+
+.headDesc {
+  color: #5B6472;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.directory {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  row-gap: 64px;
+}
+
+.card {
+  position: relative;
+  padding: 0 28px 0 0;
+  border-right: 1px solid #E4E6EA;
+}
+
+.card:nth-child(3n) {
+  border-right: none;
+  padding-right: 0;
+}
+
+.card:not(:nth-child(3n)) {
+  padding-left: 28px;
+}
+
+.card:nth-child(3n + 1) {
+  padding-left: 0;
+}
+
+.nodeWrap {
+  position: relative;
+  margin-bottom: 22px;
+}
+
+.connector {
+  position: absolute;
+  top: 22px;
+  left: -28px;
+  right: -28px;
+  height: 2px;
+  background: #E4E6EA;
+  z-index: 0;
+}
+
+.card:nth-child(3n + 1) .connector {
+  left: 50%;
+}
+
+.card:nth-child(3n) .connector {
+  right: 50%;
+}
+
+.node {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: #FAFAF8;
+  border: 1.5px solid #E4E6EA;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.node svg {
+  width: 20px;
+  height: 20px;
+  stroke: #5B6472;
+  transition: stroke 0.3s ease;
+}
+
+.card:hover .node {
+  border-color: #2F5DE0;
+  box-shadow: 0 0 0 6px rgba(47, 93, 224, 0.18);
+  transform: scale(1.06);
+}
+
+.card:hover .node svg {
+  stroke: #2F5DE0;
+}
+
+.idx {
+  font-family: var(--font-jetbrains), 'JetBrains Mono', 'SF Mono', monospace;
+  font-size: 11.5px;
+  color: #9AA2B1;
+  letter-spacing: 0.04em;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.cardTitle {
+  font-size: 21px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin-bottom: 8px;
+  color: #0B1220;
+  transition: color 0.25s ease;
+}
+
+.card:hover .cardTitle {
+  color: #2F5DE0;
+}
+
+.stackline {
+  color: #5B6472;
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 18px;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-bottom: 16px;
+}
+
+.tag {
+  font-size: 12px;
+  color: #0B1220;
+  background: #EEF2FD;
+  border: 1px solid transparent;
+  padding: 5px 10px;
+  border-radius: 5px;
+  line-height: 1.3;
+  white-space: nowrap;
+  transition: border-color 0.25s ease;
+}
+
+.card:hover .tag {
+  border-color: rgba(47, 93, 224, 0.25);
+}
+
+.standard {
+  font-family: var(--font-jetbrains), 'JetBrains Mono', 'SF Mono', monospace;
+  font-size: 11.5px;
+  color: #5B6472;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  flex-wrap: wrap;
+}
+
+.code {
+  color: #0B1220;
+  font-weight: 600;
+  background: #FAFAF8;
+  border: 1px solid #E4E6EA;
+  padding: 3px 8px;
+  border-radius: 4px;
+  transition: border-color 0.25s ease, color 0.25s ease;
+}
+
+.card:hover .code {
+  border-color: #2F5DE0;
+  color: #2F5DE0;
+}
+
+.frameworksCount {
+  color: #9AA2B1;
+}
+
+@media (max-width: 900px) {
+  .directory {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .card:nth-child(3n) {
+    border-right: 1px solid #E4E6EA;
+    padding-right: 28px;
+  }
+  .card:nth-child(2n) {
+    border-right: none;
+    padding-right: 0;
+  }
+  .card:nth-child(odd) {
+    padding-left: 0;
+  }
+  .card:nth-child(even) {
+    padding-left: 28px;
+  }
+  .connector {
+    left: -28px;
+    right: -28px;
+  }
+  .card:nth-child(2n + 1) .connector {
+    left: 50%;
+  }
+  .card:nth-child(2n) .connector {
+    right: 50%;
+  }
+}
+
+@media (max-width: 600px) {
+  .directory {
+    grid-template-columns: 1fr;
+    row-gap: 44px;
+  }
+  .card {
+    border-right: none !important;
+    padding: 0 !important;
+  }
+  .connector {
+    display: none;
+  }
+  .headTitle {
+    font-size: 32px;
+  }
+}
