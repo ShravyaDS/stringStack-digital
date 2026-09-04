@@ -121,8 +121,8 @@ export function DeliveryFramework() {
                   onClick={() => handleSelectPhase(idx)}
                   className={`text-left p-5 rounded-xl border transition-all cursor-pointer flex flex-col justify-between group active:scale-[0.98] ${
                     isSelected
-                      ? "bg-[#0E1626] border-blue-500/60 shadow-[0_0_24px_rgba(59,130,246,0.15)] ring-1 ring-blue-500/20"
-                      : "bg-[#0E1626] border-white/[0.08] hover:border-white/[0.16] hover:-translate-y-0.5"
+                      ? "bg-[#111827] border-blue-500/60 shadow-[0_0_24px_rgba(59,130,246,0.15)] ring-1 ring-blue-500/20"
+                      : "bg-[#111827] border-[#1F2937] hover:border-blue-500/30 hover:-translate-y-0.5"
                   }`}
                 >
                   <div>
@@ -172,7 +172,7 @@ export function DeliveryFramework() {
         </div>
 
         {/* ── Active Phase Detail Panel (Animated Transition) ── */}
-        <div className="p-6 sm:p-8 lg:p-10 rounded-2xl bg-[#0E1626] border border-white/[0.08] shadow-[0_8px_32px_rgba(0,0,0,0.3)]">
+        <div className="p-6 sm:p-8 lg:p-10 rounded-2xl bg-[#111827] border border-[#1F2937] shadow-[0_8px_32px_rgba(0,0,0,0.3)]">
           <div
             key={selectedPhaseIndex}
             style={{

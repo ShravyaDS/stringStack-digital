@@ -27,7 +27,7 @@ export function FAQSection() {
   };
 
   return (
-    <section id="faq" className="py-28 lg:py-36 bg-[#090D16] border-t border-white/[0.08] relative overflow-hidden scroll-mt-24">
+    <section id="faq" className="py-28 lg:py-36 bg-[#090D16] border-t border-[#1F2937] relative overflow-hidden scroll-mt-24">
       {/* Soft brand blue ambient glow */}
       <div className="absolute -bottom-20 -right-20 w-[600px] h-[600px] bg-blue-600/[0.04] rounded-full blur-[110px] pointer-events-none" />
 
@@ -48,7 +48,7 @@ export function FAQSection() {
           {/* Quick Toggle: Expand All / Collapse All */}
           <button
             onClick={toggleAll}
-            className="self-start sm:self-end flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-white/[0.08] bg-[#0E1626] hover:bg-[#131D31] hover:border-white/[0.16] text-xs font-semibold text-slate-300 shadow-2xs transition-all cursor-pointer"
+            className="self-start sm:self-end flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-[#1F2937] bg-[#111827] hover:bg-[#162238] hover:border-blue-500/40 text-xs font-semibold text-slate-300 shadow-2xs transition-all cursor-pointer"
           >
             {isAllOpen ? <EyeOff className="w-3.5 h-3.5 text-slate-400" /> : <Eye className="w-3.5 h-3.5 text-blue-400" />}
             <span>{isAllOpen ? "Collapse All" : "Expand All"}</span>
@@ -62,10 +62,10 @@ export function FAQSection() {
             return (
               <div
                 key={faq.question}
-                className={`rounded-xl bg-[#0E1626] border transition-all duration-200 p-5 sm:p-6 ${
+                className={`rounded-xl bg-[#111827] border transition-all duration-200 p-5 sm:p-6 ${
                   isOpen
                     ? "border-blue-500/40 shadow-[0_4px_24px_rgba(59,130,246,0.1)] ring-1 ring-blue-500/15"
-                    : "border-white/[0.08] shadow-[0_4px_20px_rgba(0,0,0,0.25)] hover:border-white/[0.16]"
+                    : "border-[#1F2937] shadow-[0_4px_20px_rgba(0,0,0,0.25)] hover:border-white/[0.16]"
                 }`}
               >
                 {/* Question Trigger Row */}

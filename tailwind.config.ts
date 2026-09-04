@@ -11,13 +11,13 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        /* ── Original spec palette ── */
+        /* ── Design tokens: Linear / Stripe / Apple spec ── */
         obsidian: {
           DEFAULT: "#090D16",
-          50:  "#1A2540",
+          50:  "#1F2937",
           100: "#162032",
           200: "#111827",
-          300: "#0E1623",
+          300: "#0E1726",
           400: "#0B1020",
           500: "#090D16",
           600: "#070B12",
@@ -27,9 +27,11 @@ const config: Config = {
         },
         surface: {
           DEFAULT: "#111827",
-          hover:   "#162032",
-          elevated:"#1A2540",
-          subtle:  "#0E1623",
+          card:    "#111827",
+          hover:   "#162238",
+          elevated:"#1F2937",
+          subtle:  "#0D1527",
+          border:  "#1F2937",
         },
         /* Spec accent colors */
         brand: {
@@ -40,6 +42,7 @@ const config: Config = {
           amber:  "#F59E0B",
           "blue-light":   "#60A5FA",
           "indigo-light": "#818CF8",
+          "emerald-light":"#34D399",
         },
         /* Legacy compat */
         accent: {
@@ -47,13 +50,14 @@ const config: Config = {
           indigo: "#6366F1",
           cyan:   "#06B6D4",
           emerald:"#10B981",
-          violet: "#6366F1",  /* alias → indigo */
+          violet: "#6366F1",
         },
         border: {
-          DEFAULT: "rgba(255,255,255,0.09)",
-          subtle:  "rgba(255,255,255,0.06)",
-          strong:  "rgba(255,255,255,0.15)",
-          glow:    "rgba(59, 130, 246, 0.35)",
+          DEFAULT: "#1F2937",
+          subtle:  "rgba(255,255,255,0.08)",
+          strong:  "#374151",
+          glow:    "rgba(59, 130, 246, 0.4)",
+          emerald: "rgba(16, 185, 129, 0.4)",
         },
       },
       fontFamily: {

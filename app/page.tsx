@@ -1,5 +1,6 @@
 import { EpamHero } from "@/components/sections/EpamHero";
 import { TrustBanner } from "@/components/sections/TrustBanner";
+import { SocialProofBanner } from "@/components/sections/SocialProofBanner";
 import { ServiceBento } from "@/components/sections/ServiceBento";
 import { ProductShowcase } from "@/components/sections/ProductShowcase";
 import { TechMatrix } from "@/components/sections/TechMatrix";
@@ -18,10 +19,13 @@ export default function Home() {
       {/* 2. Enterprise Trust Guarantees: 100% IP, Agile Sprints, Global Compliance */}
       <TrustBanner />
 
-      {/* 3. Core Engineering Capabilities: Web, Mobile, E-commerce, Middleware */}
+      {/* 3. Social Proof & Engineering Guild: Authentic Studio Collaboration & Partner Tier */}
+      <SocialProofBanner />
+
+      {/* 4. Core Engineering Capabilities: Bento Grid (Web, Mobile, E-commerce, Middleware) */}
       <ServiceBento />
 
-      {/* 4. Enterprise Solutions: Attendance ERP, Resource Governance, CRM, Telemetry */}
+      {/* 5. Enterprise Solutions: Bento Grid (Attendance ERP Flagship, Governance, CRM, Telemetry) */}
       <ProductShowcase />
 
       {/* 5. Technology Stack: Modern Enterprise Ecosystem */}

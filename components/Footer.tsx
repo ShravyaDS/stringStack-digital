@@ -31,11 +31,11 @@ export function Footer() {
   const { openBookingModal } = useBookingModal();
 
   return (
-    <footer className="bg-[#070B12] text-white pt-20 pb-16 pb-safe border-t border-white/[0.08]">
+    <footer className="bg-[#070B12] text-white pt-20 pb-16 pb-safe border-t border-[#1F2937]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* ── Main footer grid ── */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-14 border-b border-white/[0.08]">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-14 border-b border-[#1F2937]">
 
           {/* Brand column (2 cols) */}
           <div className="lg:col-span-2 space-y-5">
@@ -54,15 +54,22 @@ export function Footer() {
 
             {/* Trust badges */}
             <div className="flex flex-wrap gap-2">
-              {TRUST_BADGES.map((badge) => (
-                <span
-                  key={badge.label}
-                  className="inline-flex items-center gap-1.5 text-[11px] font-medium px-2.5 py-1 rounded-md bg-[#0E1626] border border-white/[0.08] text-slate-300"
-                >
-                  <span className="text-blue-400">{badge.icon}</span>
-                  {badge.label}
-                </span>
-              ))}
+              {TRUST_BADGES.map((badge) => {
+                const isProof = badge.label.includes("100% IP");
+                return (
+                  <span
+                    key={badge.label}
+                    className={`inline-flex items-center gap-1.5 text-[11px] font-medium px-2.5 py-1 rounded-md border ${
+                      isProof
+                        ? "bg-emerald-500/10 border-emerald-500/30 text-emerald-300"
+                        : "bg-[#111827] border-[#1F2937] text-slate-300"
+                    }`}
+                  >
+                    <span className={isProof ? "text-emerald-400" : "text-blue-400"}>{badge.icon}</span>
+                    {badge.label}
+                  </span>
+                );
+              })}
             </div>
 
             {/* Markets */}

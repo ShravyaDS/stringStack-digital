@@ -343,14 +343,31 @@ export function EpamHero() {
                   ? `${statSla}%`
                   : stat.value;
 
+              const isProof = stat.id === "ip" || stat.id === "sla";
+
               return (
-                <div key={stat.id} className="flex items-center gap-2.5 p-2 rounded-lg bg-white/[0.02] border border-white/[0.05]">
-                  <span className="text-blue-400 shrink-0">{stat.icon}</span>
+                <div
+                  key={stat.id}
+                  className={`flex items-center gap-2.5 p-2.5 rounded-xl border transition-all duration-200 ${
+                    isProof
+                      ? "bg-emerald-500/[0.06] border-emerald-500/25"
+                      : "bg-[#111827] border-[#1F2937]"
+                  }`}
+                >
+                  <span className={isProof ? "text-emerald-400 shrink-0" : "text-blue-400 shrink-0"}>
+                    {stat.icon}
+                  </span>
                   <div className="min-w-0">
-                    <div className="text-sm sm:text-base font-bold text-white leading-none font-mono">
+                    <div
+                      className={`text-sm sm:text-base font-bold leading-none font-mono ${
+                        isProof ? "text-emerald-400" : "text-white"
+                      }`}
+                    >
                       {displayVal}
                     </div>
-                    <div className="text-[10px] text-slate-400 mt-1 truncate">{stat.label}</div>
+                    <div className="text-[10px] text-slate-400 mt-1 truncate font-normal">
+                      {stat.label}
+                    </div>
                   </div>
                 </div>
               );

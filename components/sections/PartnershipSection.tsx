@@ -14,6 +14,12 @@ import {
 } from "lucide-react";
 import { useBookingModal } from "../ModalProvider";
 
+const PARTNERSHIP_STEPS = [
+  { step: "01", title: "Agency Lands Client", desc: "You scope and price under your agency brand." },
+  { step: "02", title: "SprintStack Builds", desc: "We engineer behind the scenes under strict NDA." },
+  { step: "03", title: "Agency Delivers", desc: "You deliver production code with 100% IP ownership." },
+];
+
 export function PartnershipSection() {
   const { openBookingModal } = useBookingModal();
   // Multi-open state: any number of pillars can be open simultaneously
@@ -119,15 +125,11 @@ export function PartnershipSection() {
           </p>
         </div>
 
-        {/* ── 3-Step Visual Delivery Model ── */}
-        <div className="flex flex-col sm:flex-row items-stretch gap-3 mb-16 max-w-3xl mx-auto">
-          {[
-            { step: "01", title: "Agency Lands Client", desc: "You scope and price under your agency brand." },
-            { step: "02", title: "SprintStack Builds", desc: "We engineer behind the scenes under strict NDA." },
-            { step: "03", title: "Agency Delivers", desc: "You deliver production code with 100% IP ownership." },
-          ].map((s, i) => (
+        {/* ── 3-Step Agency Revenue Model Cards ── */}
+        <div className="flex flex-col sm:flex-row items-stretch gap-3 mb-10 max-w-4xl mx-auto">
+          {PARTNERSHIP_STEPS.map((s, i) => (
             <React.Fragment key={s.step}>
-              <div className="flex-1 p-5 rounded-xl bg-[#0E1626] border border-white/[0.08] shadow-[0_4px_20px_rgba(0,0,0,0.25)] text-center space-y-1.5 transition-all duration-300 hover:border-white/[0.16] hover:-translate-y-0.5">
+              <div className="flex-1 p-5 rounded-xl bg-[#111827] border border-[#1F2937] shadow-[0_4px_20px_rgba(0,0,0,0.25)] text-center space-y-1.5 transition-all duration-300 hover:border-blue-500/40 hover:-translate-y-0.5">
                 <span className="text-[10px] font-bold uppercase tracking-wider block text-blue-400">
                   Step {s.step}
                 </span>
@@ -151,7 +153,7 @@ export function PartnershipSection() {
           <button
             type="button"
             onClick={toggleAll}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-white/[0.08] bg-[#0E1626] hover:bg-[#131D31] hover:border-white/[0.16] text-xs font-semibold text-slate-300 shadow-2xs transition-all cursor-pointer"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-[#1F2937] bg-[#111827] hover:bg-[#162238] hover:border-blue-500/40 text-xs font-semibold text-slate-300 shadow-2xs transition-all cursor-pointer"
           >
             {isAllOpen ? (
               <>
@@ -179,10 +181,10 @@ export function PartnershipSection() {
                 ref={(el) => {
                   cardRefs.current[idx] = el;
                 }}
-                className={`rounded-2xl border bg-[#0E1626] transition-all duration-300 scroll-mt-28 overflow-hidden ${
+                className={`rounded-2xl border bg-[#111827] transition-all duration-300 scroll-mt-28 overflow-hidden ${
                   isOpen
                     ? "border-blue-500/50 shadow-[0_12px_36px_rgba(59,130,246,0.12)] ring-1 ring-blue-500/20"
-                    : "border-white/[0.08] shadow-[0_4px_20px_rgba(0,0,0,0.25)] hover:border-white/[0.16]"
+                    : "border-[#1F2937] shadow-[0_4px_20px_rgba(0,0,0,0.25)] hover:border-white/[0.16]"
                 }`}
               >
                 {/* ── Card Header Row (Clickable) ── */}

@@ -150,7 +150,7 @@ export function SprintCalculator() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
           {/* Left: Interactive Step Configurator (7 cols) */}
-          <div className="lg:col-span-7 space-y-7 bg-[#0E1626]/70 border border-white/[0.08] p-5 sm:p-8 rounded-2xl shadow-xl">
+          <div className="lg:col-span-7 space-y-7 bg-[#111827] border border-[#1F2937] p-5 sm:p-8 rounded-2xl shadow-xl">
             
             {/* Step 1: Software Category */}
             <div className="space-y-3.5">
@@ -305,7 +305,7 @@ export function SprintCalculator() {
 
           {/* Right: Calculated Output Card (5 cols) */}
           <div className="lg:col-span-5 lg:sticky lg:top-24 space-y-6">
-            <div className="p-6 sm:p-8 rounded-2xl bg-[#0E1626] border border-white/[0.10] text-white space-y-5 shadow-2xl">
+            <div className="p-6 sm:p-8 rounded-2xl bg-[#111827] border border-[#1F2937] text-white space-y-5 shadow-2xl">
               <div className="flex items-center justify-between pb-3 border-b border-white/[0.08]">
                 <span className="text-xs font-mono font-bold uppercase tracking-wider text-white">
                   Computed Scope Output
@@ -360,17 +360,17 @@ export function SprintCalculator() {
               </div>
 
               {/* Guarantees */}
-              <div className="p-3.5 rounded-xl bg-[#090D16] border border-white/[0.08] space-y-2 text-xs">
+              <div className="p-3.5 rounded-xl bg-[#090D16] border border-[#1F2937] space-y-2 text-xs">
                 <div className="flex items-center gap-2 text-slate-200">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-blue-400 shrink-0" />
-                  <span>100% Unencumbered IP Transfer on Day 1</span>
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                  <span className="font-medium text-emerald-300">100% Unencumbered IP Transfer on Day 1</span>
                 </div>
                 <div className="flex items-center gap-2 text-slate-200">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-blue-400 shrink-0" />
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
                   <span>Direct senior engineer access (Slack &amp; GitHub)</span>
                 </div>
                 <div className="flex items-center gap-2 text-slate-200">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-blue-400 shrink-0" />
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
                   <span>Weekly live milestone preview builds</span>
                 </div>
               </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import {
@@ -8,10 +8,10 @@ import {
   Smartphone,
   ShoppingBag,
   Workflow,
-  ChevronDown,
   ArrowRight,
-  Eye,
-  EyeOff,
+  CheckCircle2,
+  Sparkles,
+  ExternalLink,
 } from "lucide-react";
 import { CORE_CAPABILITIES } from "@/lib/constants";
 import { useBookingModal } from "../ModalProvider";
@@ -23,6 +23,8 @@ const CARD_CONFIG = [
     ctaLabel: "Architecture & Sprints",
     scopeLabel: "Scope Web Build",
     imgSrc: "/images/services/web-apps.jpg",
+    metricHighlight: "< 0.4s Sub-Second Paint",
+    bentoSpan: "lg:col-span-7",
   },
   {
     Icon: Smartphone,
@@ -30,6 +32,8 @@ const CARD_CONFIG = [
     ctaLabel: "Explore Mobile Systems",
     scopeLabel: "Scope Mobile Build",
     imgSrc: "/images/services/mobile-apps.jpg",
+    metricHighlight: "60 FPS Native Performance",
+    bentoSpan: "lg:col-span-5",
   },
   {
     Icon: ShoppingBag,
@@ -37,6 +41,8 @@ const CARD_CONFIG = [
     ctaLabel: "Commerce Architecture",
     scopeLabel: "Scope Commerce Engine",
     imgSrc: "/images/services/ecommerce.jpg",
+    metricHighlight: "99.99% Checkout Resilience",
+    bentoSpan: "lg:col-span-5",
   },
   {
     Icon: Workflow,
@@ -44,13 +50,14 @@ const CARD_CONFIG = [
     ctaLabel: "Middleware Pipeline",
     scopeLabel: "Scope Integration Build",
     imgSrc: "/images/services/integrations.jpg",
+    metricHighlight: "< 25ms Webhook Ingestion",
+    bentoSpan: "lg:col-span-7",
   },
 ];
 
 export function ServiceBento() {
   const { openBookingModal } = useBookingModal();
-  const [openIndices, setOpenIndices] = useState<number[]>([0]);
-  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const [activeCard, setActiveCard] = useState<number | null>(null);
 
   const capabilities = [
     CORE_CAPABILITIES[0],
@@ -59,49 +66,27 @@ export function ServiceBento() {
     CORE_CAPABILITIES[3],
   ];
 
-  const isAllOpen = openIndices.length === capabilities.length;
-
-  const toggleAll = () => {
-    if (isAllOpen) {
-      setOpenIndices([]);
-    } else {
-      setOpenIndices(capabilities.map((_, i) => i));
-    }
-  };
-
-  const handleToggle = (idx: number) => {
-    const isCurrentlyOpen = openIndices.includes(idx);
-    if (!isCurrentlyOpen) {
-      setOpenIndices((prev) => [...prev, idx]);
-      setTimeout(() => {
-        const el = cardRefs.current[idx];
-        if (el) {
-          const rect = el.getBoundingClientRect();
-          const navHeight = 90;
-          const targetY = window.scrollY + rect.top - navHeight - 12;
-          window.scrollTo({ top: Math.max(0, targetY), behavior: "smooth" });
-        }
-      }, 50);
-    } else {
-      setOpenIndices((prev) => prev.filter((i) => i !== idx));
-    }
-  };
-
   return (
     <section
       id="solutions"
-      className="py-28 lg:py-36 bg-[#090D16] border-t border-white/[0.08] relative overflow-hidden scroll-mt-24"
+      className="py-28 lg:py-36 bg-[#090D16] border-t border-[#1F2937] relative overflow-hidden scroll-mt-24"
     >
-      {/* Soft ambient background glow */}
-      <div className="absolute inset-0 section-radial-glow pointer-events-none" />
+      {/* Subtle radial spotlight glow behind bento section */}
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[720px] h-[720px] bg-blue-600/[0.06] rounded-full blur-[140px] pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-12">
         
         {/* ── Section Header ── */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-5">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div className="space-y-3 max-w-2xl">
-            <span className="section-label">What We Build</span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-[-0.03em]">
+            <div className="inline-flex items-center gap-2">
+              <span className="section-label">What We Build</span>
+              <span className="badge-emerald-proof">
+                <CheckCircle2 className="w-3 h-3 text-emerald-400" />
+                Senior Squads
+              </span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-[-0.035em]">
               Core Engineering Capabilities
             </h2>
             <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
@@ -109,172 +94,125 @@ export function ServiceBento() {
             </p>
           </div>
 
-          {/* Master Expand / Collapse All Control */}
           <div className="flex items-center gap-3 shrink-0">
             <button
-              type="button"
-              onClick={toggleAll}
-              className="btn-secondary px-3.5 py-2 text-xs font-semibold cursor-pointer"
+              onClick={openBookingModal}
+              className="btn-primary px-5 py-2.5 text-xs sm:text-sm font-semibold flex items-center gap-2 cursor-pointer active:scale-95"
             >
-              {isAllOpen ? (
-                <>
-                  <EyeOff className="w-4 h-4 text-slate-400 mr-1.5" />
-                  <span>Collapse All</span>
-                </>
-              ) : (
-                <>
-                  <Eye className="w-4 h-4 text-blue-400 mr-1.5" />
-                  <span>Expand All</span>
-                </>
-              )}
+              <span>Scope Your Project</span>
+              <ArrowRight className="w-4 h-4" />
             </button>
           </div>
         </div>
 
-        {/* ── Expandable Capability Cards ── */}
-        <div className="space-y-4">
+        {/* ── Bento Grid Structure (7-col & 5-col Asymmetry) ── */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+          
           {capabilities.map((cap, idx) => {
             const config = CARD_CONFIG[idx];
             const Icon = config.Icon;
-            const isOpen = openIndices.includes(idx);
 
             return (
               <div
                 key={cap.headline}
-                ref={(el) => {
-                  cardRefs.current[idx] = el;
-                }}
-                className={`rounded-2xl border transition-all duration-200 overflow-hidden ${
-                  isOpen
-                    ? "bg-[#0E1626] border-blue-500/40 shadow-[0_8px_32px_rgba(0,0,0,0.5),0_0_24px_rgba(37,99,235,0.12)] ring-1 ring-blue-500/20"
-                    : "bg-[#0E1626]/70 border-white/[0.08] shadow-[0_4px_20px_rgba(0,0,0,0.35)] hover:border-white/[0.18]"
-                }`}
+                onMouseEnter={() => setActiveCard(idx)}
+                onMouseLeave={() => setActiveCard(null)}
+                className={`${config.bentoSpan} bg-[#111827] border border-[#1F2937] rounded-2xl p-6 sm:p-8 flex flex-col justify-between shadow-xl relative overflow-hidden group hover:border-blue-500/50 hover:-translate-y-1 transition-all duration-300`}
               >
-                {/* ── Card Header Row ── */}
-                <div
-                  onClick={() => handleToggle(idx)}
-                  className={`w-full flex items-center justify-between gap-4 p-5 sm:p-6 text-left cursor-pointer select-none transition-colors border-l-4 ${
-                    isOpen
-                      ? "border-l-blue-500 bg-white/[0.02]"
-                      : "border-l-transparent hover:bg-white/[0.02]"
-                  }`}
-                >
-                  {/* Left: Icon + Title info */}
-                  <div className="flex items-center gap-3.5 sm:gap-4 min-w-0">
-                    <div
-                      className={`w-11 h-11 rounded-xl flex items-center justify-center shrink-0 border transition-all duration-200 ${
-                        isOpen
-                          ? "bg-blue-600 text-white border-blue-500 shadow-[0_0_16px_rgba(37,99,235,0.4)]"
-                          : "bg-blue-500/10 text-blue-400 border-blue-500/20"
-                      }`}
-                    >
-                      <Icon className="w-5 h-5" />
+                {/* Subtle top edge highlight */}
+                <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-white/[0.12] to-transparent pointer-events-none" />
+
+                <div className="space-y-6">
+                  {/* Top Row: Category, Icon & Emerald Metric Tag */}
+                  <div className="flex items-center justify-between gap-3">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 shrink-0 group-hover:bg-blue-600 group-hover:text-white transition-all duration-200">
+                        <Icon className="w-5 h-5" />
+                      </div>
+                      <div>
+                        <div className="text-[11px] font-mono font-semibold uppercase tracking-wider text-slate-400">
+                          {cap.category}
+                        </div>
+                      </div>
                     </div>
 
-                    <div className="min-w-0">
-                      <div className="text-xs font-mono font-semibold uppercase tracking-wider text-slate-400 mb-0.5">
-                        {cap.category}
-                      </div>
-                      <h3 className="text-base sm:text-xl font-bold tracking-tight text-white truncate sm:whitespace-normal">
-                        {cap.headline}
-                      </h3>
+                    <span className="badge-emerald-proof text-[11px]">
+                      {config.metricHighlight}
+                    </span>
+                  </div>
+
+                  {/* Headline & Description */}
+                  <div className="space-y-2.5">
+                    <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-white group-hover:text-blue-300 transition-colors">
+                      {cap.headline}
+                    </h3>
+                    <p className="text-sm text-slate-300/80 leading-relaxed">
+                      {cap.description}
+                    </p>
+                  </div>
+
+                  {/* Image Graphic Preview */}
+                  <div className="relative aspect-[16/9] w-full rounded-xl overflow-hidden border border-[#1F2937] bg-[#070B12] shadow-inner">
+                    <Image
+                      src={config.imgSrc}
+                      alt={cap.headline}
+                      fill
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                      sizes="(max-width: 1024px) 100vw, 50vw"
+                    />
+                    {/* Dark gradient overlay for text protection */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#090D16]/80 via-transparent to-transparent pointer-events-none" />
+                    
+                    <div className="absolute bottom-2.5 left-3 right-3 flex items-center justify-between">
+                      <span className="studio-pill font-mono text-[10px] text-blue-300 bg-[#090D16]/80 backdrop-blur-sm border-[#1F2937]">
+                        {cap.badge}
+                      </span>
+                      <span className="text-[10px] font-mono text-slate-400">
+                        Module #{idx + 1}
+                      </span>
                     </div>
                   </div>
 
-                  {/* Right: Badge + Expand Button */}
-                  <div className="flex items-center gap-3 shrink-0">
-                    <span className="hidden sm:inline-flex studio-pill font-mono text-[11px] text-blue-300 border-blue-500/20 bg-blue-500/10">
-                      {cap.badge}
-                    </span>
-
-                    {/* Expand / Collapse Icon Button */}
-                    <button
-                      type="button"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        handleToggle(idx);
-                      }}
-                      className={`w-8 h-8 sm:w-9 sm:h-9 rounded-xl flex items-center justify-center border transition-all duration-200 cursor-pointer ${
-                        isOpen
-                          ? "bg-blue-500/20 text-blue-400 border-blue-500/30"
-                          : "bg-white/[0.05] text-slate-400 border-white/[0.08] hover:text-white hover:border-white/[0.16]"
-                      }`}
-                      aria-expanded={isOpen}
-                      aria-label={isOpen ? "Collapse details" : "Expand details"}
-                    >
-                      <ChevronDown
-                        className={`w-4 h-4 transition-transform duration-300 ${
-                          isOpen ? "rotate-180 text-blue-400" : "rotate-0 text-slate-400"
-                        }`}
-                      />
-                    </button>
+                  {/* Architecture & Tech Stack Pill Strip */}
+                  <div className="space-y-2">
+                    <div className="text-[11px] font-mono font-semibold uppercase tracking-wider text-slate-400">
+                      Architecture &amp; Frameworks
+                    </div>
+                    <div className="flex flex-wrap gap-1.5">
+                      {cap.techStack.map((tech) => (
+                        <span
+                          key={tech}
+                          className="studio-pill font-mono text-xs cursor-default hover:border-blue-500/40"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 </div>
 
-                {/* ── Expanded Content ── */}
-                {isOpen && (
-                  <div className="p-5 sm:p-6 pt-3 sm:pt-4 border-t border-white/[0.08] animate-in fade-in duration-200">
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-center">
-                      
-                      {/* Left: Description + Tech Stack + CTAs */}
-                      <div className="space-y-5">
-                        <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
-                          {cap.description}
-                        </p>
+                {/* Bottom Action Row */}
+                <div className="pt-6 mt-6 border-t border-[#1F2937] flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+                  <button
+                    onClick={openBookingModal}
+                    className="btn-primary px-4 py-2.5 text-xs font-semibold flex items-center justify-center gap-1.5 cursor-pointer active:scale-95"
+                  >
+                    <span>{config.scopeLabel}</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </button>
 
-                        {/* Tech Stack */}
-                        <div>
-                          <div className="text-xs font-mono font-semibold uppercase tracking-wider text-slate-400 mb-2">
-                            Architecture &amp; Frameworks
-                          </div>
-                          <div className="flex flex-wrap gap-1.5">
-                            {cap.techStack.map((tech) => (
-                              <span
-                                key={tech}
-                                className="studio-pill font-mono text-xs cursor-default"
-                              >
-                                {tech}
-                              </span>
-                            ))}
-                          </div>
-                        </div>
-
-                        {/* CTAs */}
-                        <div className="pt-2 flex flex-col sm:flex-row sm:items-center gap-3">
-                          <button
-                            onClick={openBookingModal}
-                            className="btn-primary inline-flex items-center justify-center gap-2 px-5 py-2.5 text-sm font-semibold cursor-pointer active:scale-95 transition-transform"
-                          >
-                            <span>{config.scopeLabel}</span>
-                            <ArrowRight className="w-4 h-4" />
-                          </button>
-                          <Link
-                            href={config.ctaLink}
-                            className="btn-secondary inline-flex items-center justify-center gap-1.5 px-4 py-2.5 text-sm font-semibold cursor-pointer active:scale-95 transition-transform"
-                          >
-                            <span>{config.ctaLabel}</span>
-                            <ArrowRight className="w-4 h-4" />
-                          </Link>
-                        </div>
-                      </div>
-
-                      {/* Right: Graphic Preview */}
-                      <div className="relative aspect-[16/9] w-full rounded-xl overflow-hidden border border-white/[0.10] bg-[#070B12] shadow-2xl">
-                        <Image
-                          src={config.imgSrc}
-                          alt={cap.headline}
-                          fill
-                          className="object-cover"
-                          sizes="(max-width: 1024px) 100vw, 50vw"
-                        />
-                      </div>
-
-                    </div>
-                  </div>
-                )}
+                  <Link
+                    href={config.ctaLink}
+                    className="btn-secondary px-3.5 py-2.5 text-xs font-semibold flex items-center justify-center gap-1.5 cursor-pointer active:scale-95"
+                  >
+                    <span>{config.ctaLabel}</span>
+                    <ExternalLink className="w-3.5 h-3.5 text-slate-400" />
+                  </Link>
+                </div>
               </div>
             );
           })}
+
         </div>
 
       </div>
