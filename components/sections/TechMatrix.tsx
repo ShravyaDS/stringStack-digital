@@ -193,11 +193,8 @@ export function TechMatrix() {
                 ))}
               </div>
 
-              {/* Simplified Tag/Pill Components */}
+              {/* Framework Count Pill */}
               <div className="flex items-center gap-2 pt-2">
-                <span className="studio-pill font-mono text-[11px] text-blue-300 border-blue-500/20 bg-blue-500/10">
-                  {card.code}
-                </span>
                 <span className="studio-pill font-mono text-[11px] text-slate-400">
                   {card.frameworksCount}
                 </span>
