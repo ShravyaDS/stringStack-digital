@@ -110,7 +110,7 @@ export default function RootLayout({
   const softwareAppSchema = generateSoftwareApplicationSchema();
 
   return (
-    <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`}>
+    <html lang="en" className={`dark ${inter.variable} ${jetbrainsMono.variable}`}>
       <head>
         {/* Structured Schema Markup */}
         <script
@@ -126,7 +126,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareAppSchema) }}
         />
       </head>
-      <body className="min-h-screen font-sans flex flex-col antialiased bg-[#FAFAF8] text-[#0F172A]">
+      <body className="min-h-screen font-sans flex flex-col antialiased bg-[#090D16] text-[#F8FAFC] selection:bg-blue-600/30 selection:text-blue-200">
         <ModalProvider>
           <ScrollRevealProvider>
             <Navigation />

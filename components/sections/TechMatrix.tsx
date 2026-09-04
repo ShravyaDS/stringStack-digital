@@ -158,6 +158,9 @@ export function TechMatrix() {
       <section id="tech-stack" className={styles.stackSection}>
         {/* ── Section Header ── */}
         <div className={styles.sectionHead}>
+          <div className="flex justify-center mb-4">
+            <span className="section-label">Enterprise Technology Matrix</span>
+          </div>
           <h2 className={styles.headTitle}>The stack behind every build</h2>
           <p className={styles.headDesc}>
             Six disciplines, sixteen frameworks, one delivery team — production-hardened on live client work.
@@ -190,10 +193,14 @@ export function TechMatrix() {
                 ))}
               </div>
 
-              {/* Standard & Framework Count */}
-              <div className={styles.standard}>
-                Standard <span className={styles.code}>{card.code}</span>{" "}
-                <span className={styles.frameworksCount}>· {card.frameworksCount}</span>
+              {/* Simplified Tag/Pill Components */}
+              <div className="flex items-center gap-2 pt-2">
+                <span className="studio-pill font-mono text-[11px] text-blue-300 border-blue-500/20 bg-blue-500/10">
+                  {card.code}
+                </span>
+                <span className="studio-pill font-mono text-[11px] text-slate-400">
+                  {card.frameworksCount}
+                </span>
               </div>
             </div>
           ))}

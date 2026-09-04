@@ -9,7 +9,6 @@ import {
   ArrowRight,
   CheckCircle2,
   ChevronDown,
-  ChevronUp,
   Eye,
   EyeOff,
 } from "lucide-react";
@@ -98,45 +97,46 @@ export function PartnershipSection() {
   return (
     <section
       id="partnerships"
-      className="py-16 lg:py-24 bg-[#F8FAFC] border-t border-[#E2E8F0] relative overflow-hidden scroll-mt-24"
+      className="py-28 lg:py-36 bg-[#090D16] border-t border-white/[0.08] relative overflow-hidden scroll-mt-24"
     >
-      {/* Background pattern */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(228,230,234,0.35)_1px,transparent_1px),linear-gradient(to_bottom,rgba(228,230,234,0.35)_1px,transparent_1px)] [background-size:36px_36px] [mask-image:radial-gradient(ellipse_80%_70%_at_50%_50%,black_20%,transparent_80%)] opacity-50 pointer-events-none" />
+      {/* Background radial glow & grid */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-blue-600/[0.04] rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.02)_1px,transparent_1px)] [background-size:40px_40px] [mask-image:radial-gradient(ellipse_80%_70%_at_50%_50%,black_20%,transparent_80%)] opacity-60 pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
         {/* ── Section Header ── */}
-        <div className="max-w-3xl mx-auto text-center space-y-3 mb-10">
+        <div className="max-w-3xl mx-auto text-center space-y-3 mb-16">
           <span className="section-label">White-Label &amp; Partners</span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0F172A] tracking-tight">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-[-0.03em] leading-tight">
             Your Silent Engineering Backbone
           </h2>
-          <p className="text-[#475569] text-sm sm:text-base leading-relaxed">
+          <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
             SprintStack provides 100% white-label software engineering capacity for{" "}
-            <strong className="text-[#0F172A]">Digital consultancies</strong>,{" "}
-            <strong className="text-[#0F172A]">Marketing agencies</strong>, and{" "}
-            <strong className="text-[#0F172A]">IT service providers</strong>.
+            <strong className="text-white font-semibold">Digital consultancies</strong>,{" "}
+            <strong className="text-white font-semibold">Marketing agencies</strong>, and{" "}
+            <strong className="text-white font-semibold">IT service providers</strong>.
           </p>
         </div>
 
         {/* ── 3-Step Visual Delivery Model ── */}
-        <div className="flex flex-col sm:flex-row items-stretch gap-3 mb-12 max-w-2xl mx-auto">
+        <div className="flex flex-col sm:flex-row items-stretch gap-3 mb-16 max-w-3xl mx-auto">
           {[
             { step: "01", title: "Agency Lands Client", desc: "You scope and price under your agency brand." },
             { step: "02", title: "SprintStack Builds", desc: "We engineer behind the scenes under strict NDA." },
             { step: "03", title: "Agency Delivers", desc: "You deliver production code with 100% IP ownership." },
           ].map((s, i) => (
             <React.Fragment key={s.step}>
-              <div className="flex-1 p-4 rounded-xl bg-white border border-[#E2E8F0] shadow-[0_1px_4px_rgba(15,23,42,0.04)] text-center space-y-1">
-                <span className="text-[10px] font-bold uppercase tracking-wider block text-[#2563EB]">
+              <div className="flex-1 p-5 rounded-xl bg-[#0E1626] border border-white/[0.08] shadow-[0_4px_20px_rgba(0,0,0,0.25)] text-center space-y-1.5 transition-all duration-300 hover:border-white/[0.16] hover:-translate-y-0.5">
+                <span className="text-[10px] font-bold uppercase tracking-wider block text-blue-400">
                   Step {s.step}
                 </span>
-                <div className="text-[#0F172A] font-semibold text-sm">{s.title}</div>
-                <p className="text-xs text-[#64748B]">{s.desc}</p>
+                <div className="text-white font-semibold text-sm">{s.title}</div>
+                <p className="text-xs text-slate-400 leading-normal">{s.desc}</p>
               </div>
               {i < 2 && (
                 <div className="hidden sm:flex items-center justify-center shrink-0">
-                  <ArrowRight className="w-4 h-4 text-[#94A3B8]" />
+                  <ArrowRight className="w-4 h-4 text-slate-600" />
                 </div>
               )}
             </React.Fragment>
@@ -144,23 +144,23 @@ export function PartnershipSection() {
         </div>
 
         {/* ── Section Controls ── */}
-        <div className="flex items-center justify-between max-w-4xl mx-auto mb-4 px-1">
-          <span className="text-xs font-semibold text-[#64748B] uppercase tracking-wider">
+        <div className="flex items-center justify-between max-w-4xl mx-auto mb-5 px-1">
+          <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
             Partnership Models
           </span>
           <button
             type="button"
             onClick={toggleAll}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-[#E2E8F0] bg-white hover:bg-slate-50 text-xs font-semibold text-[#334155] shadow-2xs transition-colors cursor-pointer"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-white/[0.08] bg-[#0E1626] hover:bg-[#131D31] hover:border-white/[0.16] text-xs font-semibold text-slate-300 shadow-2xs transition-all cursor-pointer"
           >
             {isAllOpen ? (
               <>
-                <EyeOff className="w-3.5 h-3.5 text-[#64748B]" />
+                <EyeOff className="w-3.5 h-3.5 text-slate-400" />
                 <span>Collapse All</span>
               </>
             ) : (
               <>
-                <Eye className="w-3.5 h-3.5 text-[#2563EB]" />
+                <Eye className="w-3.5 h-3.5 text-blue-400" />
                 <span>Expand All</span>
               </>
             )}
@@ -179,10 +179,10 @@ export function PartnershipSection() {
                 ref={(el) => {
                   cardRefs.current[idx] = el;
                 }}
-                className={`rounded-2xl border bg-white transition-all duration-300 scroll-mt-28 overflow-hidden ${
+                className={`rounded-2xl border bg-[#0E1626] transition-all duration-300 scroll-mt-28 overflow-hidden ${
                   isOpen
-                    ? "border-blue-400 shadow-[0_12px_36px_rgba(37,99,235,0.12)] ring-1 ring-blue-500/15"
-                    : "border-[#E2E8F0] shadow-[0_2px_8px_rgba(15,23,42,0.04)] hover:border-blue-200"
+                    ? "border-blue-500/50 shadow-[0_12px_36px_rgba(59,130,246,0.12)] ring-1 ring-blue-500/20"
+                    : "border-white/[0.08] shadow-[0_4px_20px_rgba(0,0,0,0.25)] hover:border-white/[0.16]"
                 }`}
               >
                 {/* ── Card Header Row (Clickable) ── */}
@@ -190,8 +190,8 @@ export function PartnershipSection() {
                   onClick={() => handleToggle(idx)}
                   className={`w-full flex items-center justify-between gap-4 p-5 sm:p-6 text-left cursor-pointer select-none transition-colors border-l-4 ${
                     isOpen
-                      ? "border-l-[#2563EB] bg-blue-50/25"
-                      : "border-l-transparent hover:bg-slate-50/70"
+                      ? "border-l-blue-500 bg-blue-500/[0.04]"
+                      : "border-l-transparent hover:bg-white/[0.02]"
                   }`}
                 >
                   {/* Left: Icon + Title info */}
@@ -199,20 +199,20 @@ export function PartnershipSection() {
                     <div
                       className={`w-11 h-11 rounded-xl flex items-center justify-center shrink-0 border transition-transform duration-200 ${
                         isOpen
-                          ? "bg-blue-600 text-white border-blue-600 shadow-sm scale-105"
-                          : "bg-blue-50 text-blue-600 border-blue-100"
+                          ? "bg-blue-600 text-white border-blue-500 shadow-sm scale-105"
+                          : "bg-blue-500/10 text-blue-400 border-blue-500/20"
                       }`}
                     >
                       <Icon className="w-5 h-5" />
                     </div>
 
                     <div className="min-w-0">
-                      <div className="text-xs font-semibold uppercase tracking-wider text-[#64748B] mb-0.5">
+                      <div className="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-0.5">
                         {pillar.subtitle}
                       </div>
                       <h3
                         className={`text-base sm:text-xl font-bold tracking-tight transition-colors truncate sm:whitespace-normal ${
-                          isOpen ? "text-blue-600" : "text-[#0F172A]"
+                          isOpen ? "text-blue-400" : "text-white"
                         }`}
                       >
                         {pillar.title}
@@ -222,7 +222,7 @@ export function PartnershipSection() {
 
                   {/* Right: Badge + Explicit Expand/Collapse Button */}
                   <div className="flex items-center gap-3 shrink-0">
-                    <span className="hidden sm:inline-flex text-[11px] font-semibold px-2.5 py-0.5 rounded-full border bg-blue-50 text-blue-700 border-blue-200/70">
+                    <span className="hidden sm:inline-flex text-[11px] font-semibold px-2.5 py-0.5 rounded-full border bg-blue-500/10 text-blue-400 border-blue-500/30">
                       {pillar.badge}
                     </span>
 
@@ -235,15 +235,15 @@ export function PartnershipSection() {
                       }}
                       className={`w-8 h-8 sm:w-9 sm:h-9 rounded-xl flex items-center justify-center border transition-all duration-200 cursor-pointer ${
                         isOpen
-                          ? "bg-blue-50 text-[#2563EB] border-blue-200 shadow-2xs scale-105"
-                          : "bg-[#F8FAFC] text-[#64748B] border-[#E2E8F0] hover:bg-blue-50 hover:text-[#2563EB] hover:border-blue-200"
+                          ? "bg-blue-500/20 text-blue-400 border-blue-500/40 shadow-2xs scale-105"
+                          : "bg-[#090D16] text-slate-400 border-white/[0.08] hover:bg-blue-500/10 hover:text-blue-400 hover:border-blue-500/30"
                       }`}
                       aria-expanded={isOpen}
                       aria-label={isOpen ? "Collapse details" : "Expand details"}
                     >
                       <ChevronDown
                         className={`w-4 h-4 transition-transform duration-300 ${
-                          isOpen ? "rotate-180 text-[#2563EB]" : "rotate-0 text-[#64748B]"
+                          isOpen ? "rotate-180 text-blue-400" : "rotate-0 text-slate-400"
                         }`}
                       />
                     </button>
@@ -252,22 +252,22 @@ export function PartnershipSection() {
 
                 {/* ── Expanded Content ── */}
                 {isOpen && (
-                  <div className="p-5 sm:p-6 pt-3 sm:pt-4 border-t border-slate-100 animate-in fade-in duration-200">
+                  <div className="p-5 sm:p-6 pt-3 sm:pt-4 border-t border-white/[0.08] animate-in fade-in duration-200">
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 items-start">
                       
                       {/* Left: Description + Guarantees */}
                       <div className="space-y-4">
-                        <p className="text-[#475569] text-sm sm:text-base leading-relaxed">
+                        <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
                           {pillar.description}
                         </p>
                         
                         <div className="space-y-2 pt-1">
-                          <div className="text-xs font-semibold uppercase tracking-wider text-[#64748B] mb-2">
+                          <div className="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">
                             Pillar Guarantees
                           </div>
                           {pillar.guarantees.map((g) => (
-                            <div key={g} className="flex items-start gap-2.5 text-xs sm:text-sm text-[#334155]">
-                              <CheckCircle2 className="w-4 h-4 shrink-0 mt-0.5 text-emerald-600" />
+                            <div key={g} className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-300">
+                              <CheckCircle2 className="w-4 h-4 shrink-0 mt-0.5 text-emerald-400" />
                               <span>{g}</span>
                             </div>
                           ))}
@@ -285,7 +285,7 @@ export function PartnershipSection() {
                         </button>
                         <Link
                           href="/partners/white-label"
-                          className="btn-secondary w-full flex items-center justify-center gap-2 py-2.5 text-sm font-semibold active:scale-95 transition-transform text-[#334155] hover:text-[#2563EB]"
+                          className="btn-secondary w-full flex items-center justify-center gap-2 py-2.5 text-sm font-semibold active:scale-95 transition-transform text-slate-300 hover:text-white"
                         >
                           View Full Partner Program
                         </Link>

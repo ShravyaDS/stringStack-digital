@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, ArrowLeft, Sparkles, Globe, Zap, Shield } from "lucide-react";
+import { ArrowRight, ArrowLeft, Sparkles, Globe, Zap, Shield, Gauge, CheckCircle2 } from "lucide-react";
 import { useBookingModal } from "../ModalProvider";
 
 interface HeroSlide {
@@ -50,13 +50,13 @@ const HERO_SLIDES: HeroSlide[] = [
     accentColor: "blue",
   },
   {
-    id: "enterprise-erp",
-    eyebrow: "Enterprise Operations OS",
-    title: "Next-Generation Attendance ERP &",
-    titleHighlight: "Autonomous Workforce Governance.",
+    id: "attendance-erp",
+    eyebrow: "Flagship Enterprise Product",
+    title: "Attendance & Workforce ERP.",
+    titleHighlight: "Engineered for 5,000+ Concurrent Staff.",
     subtitle:
-      "Eliminate manual logs and shift-planning friction with sub-second biometric sync (ZKTeco, Suprema), geofenced mobile check-ins, and automated multi-country payroll compliance.",
-    primaryCtaText: "Book a Technical Discovery",
+      "Biometric hardware sync, automated shift scheduling, geofenced mobile check-in, and instant multi-country payroll export. Production-ready.",
+    primaryCtaText: "Schedule Technical Discovery",
     primaryCtaAction: "booking",
     secondaryCtaText: "Explore Attendance ERP",
     secondaryCtaLink: "/products/attendance-erp",
@@ -75,9 +75,11 @@ const WHAT_WE_BUILD = [
 ];
 
 const TRUST_STATS = [
-  { icon: <Globe className="w-4 h-4" />, value: "6+", label: "Global Markets" },
-  { icon: <Zap className="w-4 h-4" />, value: "1–2 Wk", label: "Sprint Cadence" },
-  { icon: <Shield className="w-4 h-4" />, value: "100%", label: "IP Ownership" },
+  { id: "markets", icon: <Globe className="w-4 h-4" />, value: "6+", label: "Global Markets" },
+  { id: "cadence", icon: <Zap className="w-4 h-4" />, value: "1–2 Wk", label: "Sprint Cadence" },
+  { id: "ip", icon: <Shield className="w-4 h-4" />, value: "100%", label: "IP Ownership" },
+  { id: "speed", icon: <Gauge className="w-4 h-4" />, value: "<0.4s", label: "Core Web Vitals" },
+  { id: "sla", icon: <CheckCircle2 className="w-4 h-4" />, value: "99.99%", label: "SLA Guarantee" },
 ];
 
 export function EpamHero() {
@@ -89,6 +91,7 @@ export function EpamHero() {
   const [isMounted, setIsMounted] = useState(false);
   const [statMarkets, setStatMarkets] = useState(0);
   const [statIp, setStatIp] = useState(0);
+  const [statSla, setStatSla] = useState(90);
   const touchStartXRef = useRef<number | null>(null);
 
   const handleTouchStart = (e: React.TouchEvent) => {
@@ -111,9 +114,10 @@ export function EpamHero() {
     if (typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       setStatMarkets(6);
       setStatIp(100);
+      setStatSla(99.99);
       return;
     }
-    const duration = 800;
+    const duration = 1000;
     const startTime = performance.now();
     let animId: number;
 
@@ -123,6 +127,7 @@ export function EpamHero() {
       const ease = 1 - Math.pow(1 - progress, 3);
       setStatMarkets(Math.round(6 * ease));
       setStatIp(Math.round(100 * ease));
+      setStatSla(Number((90 + 9.99 * ease).toFixed(2)));
       if (progress < 1) {
         animId = requestAnimationFrame(step);
       }
@@ -230,62 +235,62 @@ export function EpamHero() {
       <div className="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex-1 flex flex-col justify-center py-8 sm:py-12">
         <div className="max-w-[54rem] space-y-5 sm:space-y-7">
 
-          {/* Eyebrow badge (Single, Clean) */}
+          {/* Eyebrow badge */}
           <div
             className={`inline-flex items-center gap-2.5 transition-all duration-300 ${
               isTransitioning ? "opacity-0 translate-y-2" : "opacity-100 translate-y-0"
             }`}
           >
-            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-xs font-semibold uppercase tracking-wider">
+            <span className="section-label">
               <Sparkles className="w-3.5 h-3.5 text-blue-400" />
               {activeSlide.eyebrow}
             </span>
-            <span className="hidden sm:flex items-center gap-2 text-xs text-slate-400">
+            <span className="hidden sm:flex items-center gap-2 text-xs text-slate-400 font-mono">
               <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500" />
               </span>
               US · UK · UAE · Singapore · Global
             </span>
           </div>
 
-          {/* Dynamic Headline with fade transition */}
+          {/* Dynamic Headline with Linear/Vercel tight scale (56-72px) */}
           <div
             className={`transition-all duration-300 ${
               isTransitioning ? "opacity-0 -translate-y-2" : "opacity-100 translate-y-0"
             }`}
           >
-            <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.12] sm:leading-[1.08] text-white">
+            <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-[4.25rem] font-extrabold tracking-[-0.035em] leading-[1.06] text-white">
               {activeSlide.title}{" "}
-              <span className="text-blue-400 block sm:inline">
+              <span className="text-blue-500 block sm:inline">
                 {activeSlide.titleHighlight}
               </span>
             </h1>
           </div>
 
-          {/* Subtitle / positioning copy */}
+          {/* Subtitle / positioning copy (muted secondary text 65% opacity) */}
           <div
             className={`transition-all duration-300 delay-75 ${
               isTransitioning ? "opacity-0" : "opacity-100"
             }`}
           >
-            <p className="text-slate-300 text-sm sm:text-base md:text-lg leading-relaxed max-w-2xl">
+            <p className="text-slate-300/85 text-base sm:text-lg md:text-xl leading-relaxed max-w-2xl font-normal">
               {activeSlide.subtitle}
             </p>
           </div>
 
-          {/* What We Build — Swipeable Category Pills on Mobile */}
+          {/* What We Build — Clean Tag / Pill Components */}
           <div
             className={`transition-all duration-300 delay-100 ${
               isTransitioning ? "opacity-0" : "opacity-100"
             }`}
           >
             <div className="flex items-center gap-1.5 pt-1 overflow-x-auto no-scrollbar max-w-full pb-1 -mx-4 px-4 sm:mx-0 sm:px-0 sm:flex-wrap">
-              <span className="text-xs text-slate-400 mr-1 hidden sm:inline shrink-0">Scope:</span>
+              <span className="text-xs text-slate-400 mr-1 hidden sm:inline shrink-0 font-mono">Scope:</span>
               {WHAT_WE_BUILD.map((item) => (
                 <span
                   key={item}
-                  className="text-xs px-2.5 py-1 rounded-md bg-white/10 text-slate-200 border border-white/15 hover:border-white/30 transition-colors whitespace-nowrap shrink-0"
+                  className="studio-pill whitespace-nowrap shrink-0 cursor-default"
                 >
                   {item}
                 </span>
@@ -295,7 +300,7 @@ export function EpamHero() {
 
           {/* Action CTAs */}
           <div
-            className={`flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-1 sm:pt-2 transition-all duration-300 delay-150 ${
+            className={`flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 pt-2 transition-all duration-300 delay-150 ${
               isTransitioning ? "opacity-0 translate-y-2" : "opacity-100 translate-y-0"
             }`}
           >
@@ -305,7 +310,7 @@ export function EpamHero() {
                 if (activeSlide.primaryCtaAction === "demo") openDemoModal();
                 else openBookingModal();
               }}
-              className="btn-primary w-full sm:w-auto px-6 sm:px-7 py-3.5 text-sm font-semibold cursor-pointer active:scale-95 transition-transform flex items-center justify-center gap-2"
+              className="btn-primary w-full sm:w-auto px-6 sm:px-8 py-3.5 text-sm font-semibold cursor-pointer active:scale-95 transition-transform flex items-center justify-center gap-2"
             >
               <span>{activeSlide.primaryCtaText}</span>
               <ArrowRight className="w-4 h-4" />
@@ -315,35 +320,37 @@ export function EpamHero() {
             <Link href={activeSlide.secondaryCtaLink} className="w-full sm:w-auto">
               <button
                 type="button"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl border border-white/20 bg-white/5 hover:bg-white/10 text-white text-sm font-medium transition-colors cursor-pointer"
+                className="btn-secondary w-full sm:w-auto px-6 py-3.5 text-sm font-semibold cursor-pointer active:scale-95 transition-transform flex items-center justify-center gap-2"
               >
                 {activeSlide.secondaryCtaText}
               </button>
             </Link>
           </div>
 
-          {/* Trust stats strip with Count-Up (Responsive Grid for Mobile) */}
+          {/* Trust stats strip with Count-Up (5 metrics: 6+, 1-2 Wk, 100%, <0.4s, 99.99%) */}
           <div
-            className={`grid grid-cols-3 gap-2 sm:gap-6 pt-2 max-w-lg sm:max-w-none transition-all duration-300 delay-200 ${
+            className={`grid grid-cols-2 sm:grid-cols-5 gap-3 sm:gap-4 pt-3 max-w-3xl transition-all duration-300 delay-200 ${
               isTransitioning ? "opacity-0" : "opacity-100"
             }`}
           >
-            {TRUST_STATS.map((stat, idx) => {
+            {TRUST_STATS.map((stat) => {
               const displayVal =
-                stat.label === "Global Markets"
+                stat.id === "markets"
                   ? `${statMarkets}+`
-                  : stat.label === "IP Ownership"
+                  : stat.id === "ip"
                   ? `${statIp}%`
+                  : stat.id === "sla"
+                  ? `${statSla}%`
                   : stat.value;
 
               return (
-                <div key={stat.label} className="flex items-center gap-2 sm:gap-2.5">
-                  <span className="text-[#3B82F6] shrink-0">{stat.icon}</span>
-                  <div>
-                    <div className="text-xs sm:text-sm font-bold text-white leading-none font-mono">
+                <div key={stat.id} className="flex items-center gap-2.5 p-2 rounded-lg bg-white/[0.02] border border-white/[0.05]">
+                  <span className="text-blue-400 shrink-0">{stat.icon}</span>
+                  <div className="min-w-0">
+                    <div className="text-sm sm:text-base font-bold text-white leading-none font-mono">
                       {displayVal}
                     </div>
-                    <div className="text-[10px] sm:text-[11px] text-slate-400 mt-0.5 truncate">{stat.label}</div>
+                    <div className="text-[10px] text-slate-400 mt-1 truncate">{stat.label}</div>
                   </div>
                 </div>
               );

@@ -9,7 +9,6 @@ import {
   ShoppingBag,
   Workflow,
   ChevronDown,
-  ChevronUp,
   ArrowRight,
   Eye,
   EyeOff,
@@ -50,7 +49,6 @@ const CARD_CONFIG = [
 
 export function ServiceBento() {
   const { openBookingModal } = useBookingModal();
-  // Multi-open state: any number of cards can be open simultaneously
   const [openIndices, setOpenIndices] = useState<number[]>([0]);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
 
@@ -75,7 +73,6 @@ export function ServiceBento() {
     const isCurrentlyOpen = openIndices.includes(idx);
     if (!isCurrentlyOpen) {
       setOpenIndices((prev) => [...prev, idx]);
-      // When opening, smoothly bring this card into comfortable view below navbar
       setTimeout(() => {
         const el = cardRefs.current[idx];
         if (el) {
@@ -93,23 +90,21 @@ export function ServiceBento() {
   return (
     <section
       id="solutions"
-      className="py-16 lg:py-24 bg-[#F8FAFC] border-t border-[#E2E8F0] relative overflow-hidden scroll-mt-24"
+      className="py-28 lg:py-36 bg-[#090D16] border-t border-white/[0.08] relative overflow-hidden scroll-mt-24"
     >
-      {/* Subtle background grid pattern */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(228,230,234,0.45)_1px,transparent_1px),linear-gradient(to_bottom,rgba(228,230,234,0.45)_1px,transparent_1px)] [background-size:36px_36px] [mask-image:radial-gradient(ellipse_80%_70%_at_50%_50%,black_20%,transparent_80%)] opacity-60 pointer-events-none" />
-      {/* Soft brand ambient glow */}
-      <div className="absolute -top-24 -left-20 w-[500px] h-[500px] bg-[radial-gradient(circle,rgba(37,99,235,0.08)_0%,transparent_70%)] blur-[80px] pointer-events-none z-0" />
+      {/* Soft ambient background glow */}
+      <div className="absolute inset-0 section-radial-glow pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* ── Section Header ── */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-5">
-          <div className="space-y-2.5 max-w-2xl">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-5">
+          <div className="space-y-3 max-w-2xl">
             <span className="section-label">What We Build</span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0F172A] tracking-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-[-0.03em]">
               Core Engineering Capabilities
             </h2>
-            <p className="text-[#475569] text-sm sm:text-base leading-relaxed">
+            <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
               From high-concurrency web platforms to native mobile apps and enterprise middleware — engineered by senior squads on fixed weekly sprints.
             </p>
           </div>
@@ -119,16 +114,16 @@ export function ServiceBento() {
             <button
               type="button"
               onClick={toggleAll}
-              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg border border-[#E2E8F0] bg-white hover:bg-slate-50 text-xs font-semibold text-[#334155] shadow-2xs transition-colors cursor-pointer"
+              className="btn-secondary px-3.5 py-2 text-xs font-semibold cursor-pointer"
             >
               {isAllOpen ? (
                 <>
-                  <EyeOff className="w-4 h-4 text-[#64748B]" />
+                  <EyeOff className="w-4 h-4 text-slate-400 mr-1.5" />
                   <span>Collapse All</span>
                 </>
               ) : (
                 <>
-                  <Eye className="w-4 h-4 text-[#2563EB]" />
+                  <Eye className="w-4 h-4 text-blue-400 mr-1.5" />
                   <span>Expand All</span>
                 </>
               )}
@@ -136,7 +131,7 @@ export function ServiceBento() {
           </div>
         </div>
 
-        {/* ── Expandable Capability Cards (Guaranteed 100% visible, smoothly scrolls into view) ── */}
+        {/* ── Expandable Capability Cards ── */}
         <div className="space-y-4">
           {capabilities.map((cap, idx) => {
             const config = CARD_CONFIG[idx];
@@ -149,50 +144,46 @@ export function ServiceBento() {
                 ref={(el) => {
                   cardRefs.current[idx] = el;
                 }}
-                className={`rounded-2xl border bg-white transition-all duration-300 scroll-mt-28 overflow-hidden ${
+                className={`rounded-2xl border transition-all duration-200 overflow-hidden ${
                   isOpen
-                    ? "border-blue-400 shadow-[0_12px_36px_rgba(37,99,235,0.12)] ring-1 ring-blue-500/15"
-                    : "border-[#E2E8F0] shadow-[0_2px_8px_rgba(15,23,42,0.04)] hover:border-blue-200"
+                    ? "bg-[#0E1626] border-blue-500/40 shadow-[0_8px_32px_rgba(0,0,0,0.5),0_0_24px_rgba(37,99,235,0.12)] ring-1 ring-blue-500/20"
+                    : "bg-[#0E1626]/70 border-white/[0.08] shadow-[0_4px_20px_rgba(0,0,0,0.35)] hover:border-white/[0.18]"
                 }`}
               >
-                {/* ── Card Header (Always visible, triggers expansion) ── */}
+                {/* ── Card Header Row ── */}
                 <div
                   onClick={() => handleToggle(idx)}
                   className={`w-full flex items-center justify-between gap-4 p-5 sm:p-6 text-left cursor-pointer select-none transition-colors border-l-4 ${
                     isOpen
-                      ? "border-l-[#2563EB] bg-blue-50/25"
-                      : "border-l-transparent hover:bg-slate-50/70"
+                      ? "border-l-blue-500 bg-white/[0.02]"
+                      : "border-l-transparent hover:bg-white/[0.02]"
                   }`}
                 >
                   {/* Left: Icon + Title info */}
                   <div className="flex items-center gap-3.5 sm:gap-4 min-w-0">
                     <div
-                      className={`w-11 h-11 rounded-xl flex items-center justify-center shrink-0 border transition-transform duration-200 ${
+                      className={`w-11 h-11 rounded-xl flex items-center justify-center shrink-0 border transition-all duration-200 ${
                         isOpen
-                          ? "bg-blue-600 text-white border-blue-600 shadow-sm scale-105"
-                          : "bg-blue-50 text-blue-600 border-blue-100"
+                          ? "bg-blue-600 text-white border-blue-500 shadow-[0_0_16px_rgba(37,99,235,0.4)]"
+                          : "bg-blue-500/10 text-blue-400 border-blue-500/20"
                       }`}
                     >
                       <Icon className="w-5 h-5" />
                     </div>
 
                     <div className="min-w-0">
-                      <div className="text-xs font-semibold uppercase tracking-wider text-[#64748B] mb-0.5">
+                      <div className="text-xs font-mono font-semibold uppercase tracking-wider text-slate-400 mb-0.5">
                         {cap.category}
                       </div>
-                      <h3
-                        className={`text-base sm:text-xl font-bold tracking-tight transition-colors truncate sm:whitespace-normal ${
-                          isOpen ? "text-blue-600" : "text-[#0F172A]"
-                        }`}
-                      >
+                      <h3 className="text-base sm:text-xl font-bold tracking-tight text-white truncate sm:whitespace-normal">
                         {cap.headline}
                       </h3>
                     </div>
                   </div>
 
-                  {/* Right: Badge + Explicit Expand/Collapse Button */}
+                  {/* Right: Badge + Expand Button */}
                   <div className="flex items-center gap-3 shrink-0">
-                    <span className="hidden sm:inline-flex text-[11px] font-semibold px-2.5 py-0.5 rounded-full border bg-blue-50 text-blue-700 border-blue-200/70">
+                    <span className="hidden sm:inline-flex studio-pill font-mono text-[11px] text-blue-300 border-blue-500/20 bg-blue-500/10">
                       {cap.badge}
                     </span>
 
@@ -205,42 +196,42 @@ export function ServiceBento() {
                       }}
                       className={`w-8 h-8 sm:w-9 sm:h-9 rounded-xl flex items-center justify-center border transition-all duration-200 cursor-pointer ${
                         isOpen
-                          ? "bg-blue-50 text-[#2563EB] border-blue-200 shadow-2xs scale-105"
-                          : "bg-[#F8FAFC] text-[#64748B] border-[#E2E8F0] hover:bg-blue-50 hover:text-[#2563EB] hover:border-blue-200"
+                          ? "bg-blue-500/20 text-blue-400 border-blue-500/30"
+                          : "bg-white/[0.05] text-slate-400 border-white/[0.08] hover:text-white hover:border-white/[0.16]"
                       }`}
                       aria-expanded={isOpen}
                       aria-label={isOpen ? "Collapse details" : "Expand details"}
                     >
                       <ChevronDown
                         className={`w-4 h-4 transition-transform duration-300 ${
-                          isOpen ? "rotate-180 text-[#2563EB]" : "rotate-0 text-[#64748B]"
+                          isOpen ? "rotate-180 text-blue-400" : "rotate-0 text-slate-400"
                         }`}
                       />
                     </button>
                   </div>
                 </div>
 
-                {/* ── Expanded Content (Rendered directly, always fully visible) ── */}
+                {/* ── Expanded Content ── */}
                 {isOpen && (
-                  <div className="p-5 sm:p-6 pt-3 sm:pt-4 border-t border-slate-100 animate-in fade-in duration-200">
+                  <div className="p-5 sm:p-6 pt-3 sm:pt-4 border-t border-white/[0.08] animate-in fade-in duration-200">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-center">
                       
                       {/* Left: Description + Tech Stack + CTAs */}
                       <div className="space-y-5">
-                        <p className="text-[#475569] text-sm sm:text-base leading-relaxed">
+                        <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
                           {cap.description}
                         </p>
 
                         {/* Tech Stack */}
                         <div>
-                          <div className="text-xs font-semibold uppercase tracking-wider text-[#64748B] mb-2">
+                          <div className="text-xs font-mono font-semibold uppercase tracking-wider text-slate-400 mb-2">
                             Architecture &amp; Frameworks
                           </div>
                           <div className="flex flex-wrap gap-1.5">
                             {cap.techStack.map((tech) => (
                               <span
                                 key={tech}
-                                className="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium bg-[#F1F5F9] text-[#334155] border border-[#E2E8F0] hover:bg-blue-50 hover:text-[#2563EB] hover:border-blue-200 transition-colors cursor-default"
+                                className="studio-pill font-mono text-xs cursor-default"
                               >
                                 {tech}
                               </span>
@@ -259,7 +250,7 @@ export function ServiceBento() {
                           </button>
                           <Link
                             href={config.ctaLink}
-                            className="inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-lg border border-[#E2E8F0] bg-white hover:bg-blue-50 hover:border-blue-200 text-sm font-semibold text-[#334155] hover:text-[#2563EB] transition-all hover:translate-x-0.5"
+                            className="btn-secondary inline-flex items-center justify-center gap-1.5 px-4 py-2.5 text-sm font-semibold cursor-pointer active:scale-95 transition-transform"
                           >
                             <span>{config.ctaLabel}</span>
                             <ArrowRight className="w-4 h-4" />
@@ -268,7 +259,7 @@ export function ServiceBento() {
                       </div>
 
                       {/* Right: Graphic Preview */}
-                      <div className="relative aspect-[16/9] w-full rounded-xl overflow-hidden border border-[#E2E8F0] bg-slate-100 shadow-sm">
+                      <div className="relative aspect-[16/9] w-full rounded-xl overflow-hidden border border-white/[0.10] bg-[#070B12] shadow-2xl">
                         <Image
                           src={config.imgSrc}
                           alt={cap.headline}

@@ -31,20 +31,20 @@ export function Footer() {
   const { openBookingModal } = useBookingModal();
 
   return (
-    <footer className="bg-[#0B1120] text-white pt-16 pb-16 pb-safe border-t border-slate-800">
+    <footer className="bg-[#070B12] text-white pt-20 pb-16 pb-safe border-t border-white/[0.08]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* ── Main footer grid ── */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-slate-800">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-14 border-b border-white/[0.08]">
 
           {/* Brand column (2 cols) */}
           <div className="lg:col-span-2 space-y-5">
             <Link href="/" className="inline-flex items-center gap-2.5 group select-none">
-              <div className="w-8 h-8 rounded-lg bg-[#2563EB] flex items-center justify-center text-white font-bold text-sm shadow-sm">
+              <div className="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center text-white font-bold text-sm shadow-xs transition-transform group-hover:scale-105">
                 <Code2 className="w-4 h-4 text-white" />
               </div>
               <span className="font-bold text-base text-white tracking-tight">
-                SprintStack<span className="text-[#2563EB]">.digital</span>
+                SprintStack<span className="text-blue-500">.digital</span>
               </span>
             </Link>
 
@@ -57,9 +57,9 @@ export function Footer() {
               {TRUST_BADGES.map((badge) => (
                 <span
                   key={badge.label}
-                  className="inline-flex items-center gap-1.5 text-[11px] font-medium px-2.5 py-1 rounded-md bg-slate-900 border border-slate-800 text-slate-300"
+                  className="inline-flex items-center gap-1.5 text-[11px] font-medium px-2.5 py-1 rounded-md bg-[#0E1626] border border-white/[0.08] text-slate-300"
                 >
-                  {badge.icon}
+                  <span className="text-blue-400">{badge.icon}</span>
                   {badge.label}
                 </span>
               ))}
@@ -117,7 +117,7 @@ export function Footer() {
               {/* Flat CTA button, NO arrow per user rule */}
               <button
                 onClick={openBookingModal}
-                className="btn-primary w-full py-2.5 text-xs sm:text-sm font-semibold cursor-pointer"
+                className="btn-primary w-full py-2.5 text-xs sm:text-sm font-semibold cursor-pointer active:scale-95 transition-transform"
               >
                 Book Discovery Call
               </button>
@@ -127,7 +127,7 @@ export function Footer() {
                 href={`mailto:${SITE_CONFIG.links.email}`}
                 className="flex items-center gap-2 text-xs sm:text-sm text-slate-400 hover:text-white transition-colors"
               >
-                <Mail className="w-4 h-4 text-[#2563EB] shrink-0" />
+                <Mail className="w-4 h-4 text-blue-400 shrink-0" />
                 <span className="truncate">{SITE_CONFIG.links.email}</span>
               </a>
             </div>
@@ -149,7 +149,7 @@ export function Footer() {
           <div className="flex items-center gap-6">
             <Link href="/privacy" className="hover:text-slate-300 transition-colors">Privacy Policy</Link>
             <Link href="/terms" className="hover:text-slate-300 transition-colors">Terms of Service</Link>
-            <span className="text-slate-800">|</span>
+            <span className="text-white/[0.10]">|</span>
             <span className="text-slate-400">High-Performance Engineering</span>
           </div>
         </div>

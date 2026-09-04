@@ -64,7 +64,7 @@ export function DeliveryFramework() {
   };
 
   return (
-    <section id="process" ref={sectionRef} className="py-20 lg:py-28 bg-[#FFFFFF] border-t border-[#E2E8F0] relative overflow-hidden">
+    <section id="process" ref={sectionRef} className="py-28 lg:py-36 bg-[#090D16] border-t border-white/[0.08] relative overflow-hidden scroll-mt-24">
       {/* ── Aesthetic Architectural Blueprint Background ── */}
       <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden select-none">
         <Image
@@ -72,25 +72,25 @@ export function DeliveryFramework() {
           alt="Delivery Workflow Architectural Blueprint"
           fill
           priority={false}
-          className="object-cover object-center opacity-45"
+          className="object-cover object-center opacity-15"
         />
-        {/* Architectural drafting gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-white/95 via-white/80 to-white/95" />
+        {/* Dark blueprint gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#090D16]/95 via-[#090D16]/80 to-[#090D16]" />
         {/* Precision drafting micro-grid */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(228,230,234,0.45)_1px,transparent_1px),linear-gradient(to_bottom,rgba(228,230,234,0.45)_1px,transparent_1px)] [background-size:36px_36px] [mask-image:radial-gradient(ellipse_80%_70%_at_50%_50%,black_30%,transparent_85%)] opacity-65" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.02)_1px,transparent_1px)] [background-size:40px_40px] [mask-image:radial-gradient(ellipse_80%_70%_at_50%_50%,black_30%,transparent_85%)] opacity-50" />
         {/* Ambient soft blue lighting orb */}
-        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-[radial-gradient(circle,rgba(37,99,235,0.06)_0%,transparent_70%)] blur-3xl" />
+        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-blue-600/[0.05] rounded-full blur-3xl" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* ── Section Header ── */}
-        <div className="text-center max-w-3xl mx-auto mb-12 space-y-3">
+        <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
           <span className="section-label">Delivery Process</span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0F172A] tracking-tight">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-[-0.03em] leading-tight">
             How We Deliver Excellence
           </h2>
-          <p className="text-[#475569] text-sm sm:text-base leading-relaxed">
+          <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
             A structured 4-stage engineering methodology: 48-hour scope lock, 1–2 week sprint deployments, rigorous QA audits, and complete IP &amp; code handover.
           </p>
         </div>
@@ -99,14 +99,14 @@ export function DeliveryFramework() {
         <div className="relative mb-8">
           
           {/* Horizontal Connecting Timeline Rail (Desktop) */}
-          <div className="hidden lg:block absolute top-[38px] left-[12.5%] right-[12.5%] h-[2px] bg-[#E2E8F0] z-0">
+          <div className="hidden lg:block absolute top-[38px] left-[12.5%] right-[12.5%] h-[2px] bg-white/[0.08] z-0">
             {/* Dynamic Scroll & Selection Progress Fill Track */}
             <div
               style={{
                 width: `${displayRailWidth}%`,
                 transition: prefersReducedMotion ? "none" : "width 250ms ease-out",
               }}
-              className="h-full bg-[#2563EB]"
+              className="h-full bg-blue-500 shadow-[0_0_12px_rgba(59,130,246,0.6)]"
             />
           </div>
 
@@ -121,45 +121,45 @@ export function DeliveryFramework() {
                   onClick={() => handleSelectPhase(idx)}
                   className={`text-left p-5 rounded-xl border transition-all cursor-pointer flex flex-col justify-between group active:scale-[0.98] ${
                     isSelected
-                      ? "bg-blue-50/70 border-[#2563EB] shadow-xs"
-                      : "bg-[#F8FAFC] border-[#E2E8F0] hover:border-[#CBD5E1]"
+                      ? "bg-[#0E1626] border-blue-500/60 shadow-[0_0_24px_rgba(59,130,246,0.15)] ring-1 ring-blue-500/20"
+                      : "bg-[#0E1626] border-white/[0.08] hover:border-white/[0.16] hover:-translate-y-0.5"
                   }`}
                 >
                   <div>
                     <div className="flex items-center justify-between mb-3">
-                      {/* Consistent Icon Tint: Filled blue when selected, soft blue tint when unselected */}
+                      {/* Consistent Icon Tint */}
                       <div
                         className={`w-8 h-8 rounded-lg flex items-center justify-center transition-all ${
                           isSelected
-                            ? "bg-[#2563EB] text-white shadow-xs"
-                            : "bg-blue-50 text-[#2563EB] border border-blue-100 group-hover:border-blue-200"
+                            ? "bg-blue-600 text-white shadow-xs"
+                            : "bg-blue-500/10 text-blue-400 border border-blue-500/20 group-hover:border-blue-500/40"
                         }`}
                       >
                         <Icon className="w-4 h-4" />
                       </div>
 
-                      {/* Phase Badge: Filled blue with white text when selected, plain gray when unselected */}
+                      {/* Phase Badge */}
                       <span
                         className={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded transition-colors ${
                           isSelected
-                            ? "bg-[#2563EB] text-white"
-                            : "bg-slate-100 text-[#475569] border border-[#E2E8F0] group-hover:text-[#0F172A]"
+                            ? "bg-blue-600 text-white"
+                            : "bg-white/[0.05] text-slate-400 border border-white/[0.08] group-hover:text-slate-300"
                         }`}
                       >
                         {item.phase}
                       </span>
                     </div>
 
-                    <h3 className="text-sm font-bold text-[#0F172A] mb-1">
+                    <h3 className="text-sm font-bold text-white mb-1">
                       {item.name}
                     </h3>
-                    <span className="text-xs text-[#64748B]">{item.duration}</span>
+                    <span className="text-xs text-slate-400">{item.duration}</span>
                   </div>
 
-                  <div className="pt-3 mt-3 border-t border-[#E2E8F0]">
+                  <div className="pt-3 mt-3 border-t border-white/[0.08]">
                     <span
                       className={`text-xs font-semibold ${
-                        isSelected ? "text-[#2563EB]" : "text-[#94A3B8] group-hover:text-[#64748B]"
+                        isSelected ? "text-blue-400" : "text-slate-500 group-hover:text-slate-300"
                       }`}
                     >
                       {isSelected ? "● Selected Stage" : "View Deliverables"}
@@ -172,7 +172,7 @@ export function DeliveryFramework() {
         </div>
 
         {/* ── Active Phase Detail Panel (Animated Transition) ── */}
-        <div className="p-6 sm:p-8 lg:p-10 rounded-2xl bg-[#F8FAFC] border border-[#E2E8F0] shadow-sm">
+        <div className="p-6 sm:p-8 lg:p-10 rounded-2xl bg-[#0E1626] border border-white/[0.08] shadow-[0_8px_32px_rgba(0,0,0,0.3)]">
           <div
             key={selectedPhaseIndex}
             style={{
@@ -185,20 +185,20 @@ export function DeliveryFramework() {
             {/* Left: Highlights (7 cols) */}
             <div className="lg:col-span-7 space-y-6">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-[#2563EB] text-white shadow-xs">
+                <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-blue-600 text-white shadow-xs">
                   <ActiveIcon className="w-5 h-5" />
                 </div>
                 <div>
-                  <span className="text-xs font-mono font-semibold text-[#2563EB] uppercase block">
+                  <span className="text-xs font-mono font-semibold text-blue-400 uppercase block">
                     {activePhase.phase} · {activePhase.duration}
                   </span>
-                  <h3 className="text-xl font-bold text-[#0F172A]">{activePhase.name}</h3>
+                  <h3 className="text-xl font-bold text-white">{activePhase.name}</h3>
                 </div>
               </div>
 
               {/* Sprint Milestones with subtle staggered slide-in */}
               <div className="space-y-3">
-                <span className="text-xs font-semibold uppercase tracking-wider text-[#64748B] block">
+                <span className="text-xs font-semibold uppercase tracking-wider text-slate-400 block">
                   Sprint Milestones:
                 </span>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
@@ -210,9 +210,9 @@ export function DeliveryFramework() {
                           ? "none"
                           : `milestoneSlide 150ms ease-out ${mIdx * 40}ms both`,
                       }}
-                      className="flex items-start gap-2.5 text-sm text-[#334155]"
+                      className="flex items-start gap-2.5 text-sm text-slate-300"
                     >
-                      <CheckCircle2 className="w-4 h-4 shrink-0 mt-0.5 text-emerald-600" />
+                      <CheckCircle2 className="w-4 h-4 shrink-0 mt-0.5 text-emerald-400" />
                       <span>{it}</span>
                     </div>
                   ))}
@@ -220,19 +220,19 @@ export function DeliveryFramework() {
               </div>
 
               {/* Distinct Formal Handover Callout Box */}
-              <div className="p-4 rounded-xl text-sm bg-blue-50/70 border border-blue-100">
-                <span className="text-[#2563EB] text-xs uppercase tracking-wider font-bold">
+              <div className="p-4 rounded-xl text-sm bg-blue-500/[0.08] border border-blue-500/20">
+                <span className="text-blue-400 text-xs uppercase tracking-wider font-bold">
                   Formal Handover:{" "}
                 </span>
-                <strong className="text-[#0F172A]">{activePhase.deliverable}</strong>
+                <strong className="text-white">{activePhase.deliverable}</strong>
               </div>
             </div>
 
             {/* Right: Guarantee & Anchored CTA (5 cols) */}
-            <div className="lg:col-span-5 p-6 rounded-xl bg-[#F8FAFC] border border-[#E2E8F0] space-y-3.5 flex flex-col justify-between">
+            <div className="lg:col-span-5 p-6 rounded-xl bg-[#090D16] border border-white/[0.08] space-y-4 flex flex-col justify-between">
               <div className="space-y-1.5">
-                <h4 className="text-sm font-bold text-[#0F172A]">Sprint Transparency Guarantee</h4>
-                <p className="text-xs text-[#64748B] leading-relaxed">
+                <h4 className="text-sm font-bold text-white">Sprint Transparency Guarantee</h4>
+                <p className="text-xs text-slate-400 leading-relaxed">
                   Every line of code is committed directly to your repository with automated CI/CD staging links. Zero black boxes.
                 </p>
               </div>
@@ -252,9 +252,9 @@ export function DeliveryFramework() {
                         ? "none"
                         : `milestoneSlide 150ms ease-out ${(gIdx + 2) * 40}ms both`,
                     }}
-                    className="flex items-center gap-2 text-xs text-[#475569]"
+                    className="flex items-center gap-2 text-xs text-slate-300"
                   >
-                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
                     <span>{item}</span>
                   </div>
                 ))}

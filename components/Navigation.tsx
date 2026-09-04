@@ -55,17 +55,12 @@ export function Navigation() {
 
   return (
     <>
-      {/* ── TOP NAVIGATION BAR (Guaranteed 100% Solid Pure White: No blur, no transparency) ── */}
+      {/* ── TOP NAVIGATION BAR (Linear / Vercel Dark Glass Header) ── */}
       <header
-        style={{
-          backgroundColor: "#ffffff",
-          backdropFilter: "none",
-          WebkitBackdropFilter: "none",
-        }}
-        className={`fixed top-0 left-0 right-0 z-50 bg-white border-b border-[#E2E8F0] transition-all duration-200 ease-out ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 ease-out bg-[#090D16]/85 backdrop-blur-md border-b border-white/[0.08] ${
           scrolled || drawerOpen
-            ? "py-2.5 shadow-[0_2px_12px_rgba(0,0,0,0.06)]"
-            : "py-4 shadow-[0_1px_4px_rgba(0,0,0,0.03)]"
+            ? "py-3 shadow-[0_8px_32px_rgba(0,0,0,0.6)]"
+            : "py-4.5 shadow-[0_4px_16px_rgba(0,0,0,0.3)]"
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -73,11 +68,11 @@ export function Navigation() {
 
             {/* ── Logo ── */}
             <Link href="/" className="flex items-center gap-2.5 select-none shrink-0 group">
-              <div className="w-8 h-8 rounded-lg bg-[#2563EB] flex items-center justify-center transition-all duration-200 group-hover:bg-[#1D4ED8]">
+              <div className="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center transition-all duration-200 group-hover:bg-blue-500 shadow-[0_0_16px_rgba(37,99,235,0.45)]">
                 <Code2 className="w-4 h-4 text-white" />
               </div>
-              <div className="font-bold text-base sm:text-lg text-[#0F172A] tracking-tight whitespace-nowrap">
-                SprintStack<span className="text-[#2563EB]">.digital</span>
+              <div className="font-bold text-base sm:text-lg text-white tracking-tight whitespace-nowrap">
+                SprintStack<span className="text-blue-500">.digital</span>
               </div>
             </Link>
 
@@ -95,15 +90,15 @@ export function Navigation() {
                   <Link
                     key={item.href}
                     href={item.href}
-                    className={`relative px-3 py-1.5 rounded-md text-sm font-medium transition-colors whitespace-nowrap group ${
+                    className={`relative px-3 py-1.5 rounded-lg text-sm font-medium transition-all whitespace-nowrap group ${
                       isActive
-                        ? "text-[#2563EB] bg-blue-50"
-                        : "text-[#475569] hover:text-[#0F172A] hover:bg-[#F8FAFC]"
+                        ? "text-white bg-white/[0.08]"
+                        : "text-slate-300 hover:text-white hover:bg-white/[0.05]"
                     }`}
                   >
                     {item.label}
                     {isActive && (
-                      <span className="absolute bottom-0 left-3 right-3 h-[2px] rounded-full bg-[#2563EB]" />
+                      <span className="absolute bottom-0 left-3 right-3 h-[2px] rounded-full bg-blue-500" />
                     )}
                   </Link>
                 );
@@ -113,7 +108,7 @@ export function Navigation() {
             {/* ── Right Actions ── */}
             <div className="flex items-center gap-2 sm:gap-2.5 shrink-0">
 
-              {/* Primary CTA: 1 of 2 true primary CTAs with arrow */}
+              {/* Primary CTA */}
               <button
                 onClick={openBookingModal}
                 className="btn-primary inline-flex items-center gap-1.5 px-4 sm:px-5 py-2 sm:py-2.5 text-xs sm:text-sm font-semibold cursor-pointer whitespace-nowrap"
@@ -131,7 +126,7 @@ export function Navigation() {
                   e.stopPropagation();
                   setDrawerOpen((prev) => !prev);
                 }}
-                className="flex items-center justify-center w-10 h-10 rounded-lg border border-[#E2E8F0] text-[#1E293B] hover:bg-[#F8FAFC] active:bg-[#F1F5F9] cursor-pointer shrink-0 lg:hidden transition-all duration-150"
+                className="flex items-center justify-center w-10 h-10 rounded-lg border border-white/[0.12] text-slate-300 hover:text-white hover:bg-white/[0.06] active:bg-white/[0.10] cursor-pointer shrink-0 lg:hidden transition-all duration-150"
                 aria-label={drawerOpen ? "Close menu" : "Open menu"}
                 aria-expanded={drawerOpen}
               >
@@ -150,30 +145,30 @@ export function Navigation() {
         {/* Backdrop */}
         <div
           onClick={() => setDrawerOpen(false)}
-          className={`fixed inset-0 bg-slate-900/50 backdrop-blur-xs transition-opacity duration-300 ${
+          className={`fixed inset-0 bg-black/75 backdrop-blur-sm transition-opacity duration-300 ${
             drawerOpen ? "opacity-100" : "opacity-0"
           }`}
         />
 
         {/* Drawer Panel */}
         <div
-          className={`fixed top-0 right-0 bottom-0 w-full sm:w-[380px] max-w-[92vw] flex flex-col overflow-y-auto transition-transform duration-300 ease-out z-10 bg-white border-l border-[#E5E7EB] shadow-2xl ${
+          className={`fixed top-0 right-0 bottom-0 w-full sm:w-[380px] max-w-[92vw] flex flex-col overflow-y-auto transition-transform duration-300 ease-out z-10 bg-[#090D16] border-l border-white/[0.10] shadow-2xl ${
             drawerOpen ? "translate-x-0" : "translate-x-full"
           }`}
         >
           {/* Drawer Header */}
-          <div className="p-4 sm:p-5 flex items-center justify-between border-b border-[#E5E7EB] sticky top-0 z-20 bg-white">
+          <div className="p-4 sm:p-5 flex items-center justify-between border-b border-white/[0.08] sticky top-0 z-20 bg-[#090D16]">
             <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-lg bg-[#2563EB] flex items-center justify-center">
+              <div className="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center shadow-[0_0_12px_rgba(37,99,235,0.4)]">
                 <Code2 className="w-4 h-4 text-white" />
               </div>
-              <span className="font-bold text-base text-[#0F172A] tracking-tight">
-                SprintStack<span className="text-[#2563EB]">.digital</span>
+              <span className="font-bold text-base text-white tracking-tight">
+                SprintStack<span className="text-blue-500">.digital</span>
               </span>
             </div>
             <button
               onClick={() => setDrawerOpen(false)}
-              className="w-9 h-9 rounded-lg bg-slate-100 hover:bg-slate-200 active:bg-slate-300 text-[#475569] flex items-center justify-center transition-all cursor-pointer"
+              className="w-9 h-9 rounded-lg bg-white/[0.06] hover:bg-white/[0.12] active:bg-white/[0.16] text-slate-300 flex items-center justify-center transition-all cursor-pointer"
               aria-label="Close menu"
             >
               <X className="w-4 h-4" />
@@ -184,7 +179,7 @@ export function Navigation() {
           <div className="p-4 sm:p-5 space-y-5 flex-1">
             {/* Solutions */}
             <div className="space-y-1">
-              <span className="text-[11px] font-bold uppercase tracking-widest text-[#2563EB] px-2 block mb-1">Solutions</span>
+              <span className="text-[11px] font-bold uppercase tracking-widest text-blue-400 px-2 block mb-1">Solutions</span>
               {[
                 { href: "/services/web-development", label: "Web Applications & Platforms" },
                 { href: "/services/mobile-apps", label: "Native & Cross-Platform Mobile" },
@@ -195,18 +190,18 @@ export function Navigation() {
                   key={link.label}
                   href={link.href}
                   onClick={() => setDrawerOpen(false)}
-                  className="block px-3 py-2.5 rounded-lg text-sm font-medium text-[#334155] hover:text-[#0F172A] hover:bg-[#F8FAFC] active:bg-[#F1F5F9] transition-colors"
+                  className="block px-3 py-2.5 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-white/[0.06] active:bg-white/[0.10] transition-colors"
                 >
                   {link.label}
                 </Link>
               ))}
             </div>
 
-            <div className="h-px bg-[#E5E7EB]" />
+            <div className="h-px bg-white/[0.08]" />
 
             {/* Enterprise */}
             <div className="space-y-1">
-              <span className="text-[11px] font-bold uppercase tracking-widest text-[#2563EB] px-2 block mb-1">Enterprise Software</span>
+              <span className="text-[11px] font-bold uppercase tracking-widest text-blue-400 px-2 block mb-1">Enterprise Software</span>
               {[
                 { href: "/products/attendance-erp", label: "Attendance & Workforce ERP" },
                 { href: "/#enterprise-solutions", label: "Project & Resource Governance" },
@@ -217,18 +212,18 @@ export function Navigation() {
                   key={link.label}
                   href={link.href}
                   onClick={() => setDrawerOpen(false)}
-                  className="block px-3 py-2.5 rounded-lg text-sm font-medium text-[#334155] hover:text-[#0F172A] hover:bg-[#F8FAFC] active:bg-[#F1F5F9] transition-colors"
+                  className="block px-3 py-2.5 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-white/[0.06] active:bg-white/[0.10] transition-colors"
                 >
                   {link.label}
                 </Link>
               ))}
             </div>
 
-            <div className="h-px bg-[#E5E7EB]" />
+            <div className="h-px bg-white/[0.08]" />
 
             {/* Company */}
             <div className="space-y-1">
-              <span className="text-[11px] font-bold uppercase tracking-widest text-[#64748B] px-2 block mb-1">Company & Process</span>
+              <span className="text-[11px] font-bold uppercase tracking-widest text-slate-400 px-2 block mb-1">Company & Process</span>
               {[
                 { href: "/#tech-stack", label: "Technology Stack" },
                 { href: "/partners/white-label", label: "White-Label & Partners" },
@@ -240,7 +235,7 @@ export function Navigation() {
                   key={link.label}
                   href={link.href}
                   onClick={() => setDrawerOpen(false)}
-                  className="block px-3 py-2.5 rounded-lg text-sm font-medium text-[#334155] hover:text-[#0F172A] hover:bg-[#F8FAFC] active:bg-[#F1F5F9] transition-colors"
+                  className="block px-3 py-2.5 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-white/[0.06] active:bg-white/[0.10] transition-colors"
                 >
                   {link.label}
                 </Link>
@@ -249,7 +244,7 @@ export function Navigation() {
           </div>
 
           {/* Drawer Footer with Safe Area */}
-          <div className="p-4 sm:p-5 space-y-3 border-t border-[#E5E7EB] bg-[#F8FAFC] pb-safe">
+          <div className="p-4 sm:p-5 space-y-3 border-t border-white/[0.08] bg-[#0B1120] pb-safe">
             <button
               onClick={() => { setDrawerOpen(false); openBookingModal(); }}
               className="btn-primary w-full inline-flex items-center justify-center gap-2 py-3 text-sm font-semibold cursor-pointer active:scale-95 transition-transform"
@@ -259,7 +254,7 @@ export function Navigation() {
             </button>
             <button
               onClick={() => { setDrawerOpen(false); openDemoModal(); }}
-              className="btn-secondary w-full inline-flex items-center justify-center gap-2 py-2.5 text-xs font-semibold cursor-pointer active:scale-95 transition-transform text-[#334155]"
+              className="btn-secondary w-full inline-flex items-center justify-center gap-2 py-2.5 text-xs font-semibold cursor-pointer active:scale-95 transition-transform"
             >
               <span>Launch Live Product Demos</span>
             </button>

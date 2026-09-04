@@ -28,29 +28,32 @@ const TRUST_METRICS = [
 
 export function TrustBanner() {
   return (
-    <section className="py-7 sm:py-8 bg-[#0B1120] border-b border-[#1E293B] text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="relative py-8 sm:py-10 bg-[#090D16] border-y border-white/[0.08] text-white overflow-hidden">
+      {/* Soft ambient background glow */}
+      <div className="absolute inset-0 section-radial-glow pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {TRUST_METRICS.map((metric) => {
             const Icon = metric.Icon;
             return (
               <div
                 key={metric.title}
-                className="bg-[#111827]/90 rounded-xl p-4 sm:p-5 border border-[#1E293B] hover:border-blue-500/40 shadow-sm transition-all duration-200 flex flex-col justify-between group"
+                className="studio-card p-5 flex items-start gap-3.5 group cursor-default"
               >
-                <div>
-                  {/* Vibrant blue icon chip */}
-                  <div className="w-8 h-8 rounded-lg bg-blue-500/10 border border-blue-500/25 flex items-center justify-center text-[#60A5FA] mb-3 group-hover:scale-105 transition-transform">
-                    <Icon className="w-4 h-4" />
-                  </div>
+                {/* Electric blue icon container */}
+                <div className="w-9 h-9 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 shrink-0 group-hover:bg-blue-500/15 group-hover:border-blue-500/35 transition-all duration-200">
+                  <Icon className="w-4 h-4" />
+                </div>
 
-                  {/* Title: Confident, white */}
-                  <h3 className="text-[15px] font-bold text-white tracking-tight mb-1 group-hover:text-[#60A5FA] transition-colors">
+                <div>
+                  {/* Title */}
+                  <h3 className="text-sm font-semibold text-white tracking-tight mb-1 group-hover:text-blue-400 transition-colors">
                     {metric.title}
                   </h3>
 
-                  {/* Description: Light slate */}
-                  <p className="text-[13px] text-slate-400 leading-relaxed line-clamp-2">
+                  {/* Description: 65% opacity */}
+                  <p className="text-xs text-slate-400/80 leading-relaxed">
                     {metric.desc}
                   </p>
                 </div>
