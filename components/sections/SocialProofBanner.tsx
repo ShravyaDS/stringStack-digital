@@ -10,13 +10,13 @@ import { useBookingModal } from "../ModalProvider";
 
 /* ─── Partner data with icon + accent ─────────────── */
 const PARTNERS = [
-  { name: "AWS Partner Network",   sub: "Cloud & DevOps Tier",      Icon: Cloud,       accent: "245,158,11"   },
-  { name: "Stripe Verified",        sub: "Enterprise Payments",       Icon: CreditCard,  accent: "99,102,241"   },
-  { name: "Vercel Enterprise",      sub: "Edge Architecture",         Icon: Zap,         accent: "255,255,255"  },
-  { name: "Google Cloud",           sub: "Data & ML Pipelines",       Icon: Globe,       accent: "59,130,246"   },
-  { name: "PostgreSQL",             sub: "Enterprise Databases",      Icon: Database,    accent: "59,130,246"   },
-  { name: "Supabase",               sub: "Auth & Realtime Mesh",      Icon: Layers,      accent: "16,185,129"   },
-  { name: "Docker",                 sub: "Containerized Sprints",     Icon: Box,         accent: "6,182,212"    },
+  { name: "AWS Partner Network", sub: "Cloud & DevOps Tier", Icon: Cloud, accentColor: "text-amber-600 dark:text-amber-400", bgAccent: "bg-amber-500/10 border-amber-500/25 text-amber-600 dark:text-amber-400", dotColor: "bg-amber-500" },
+  { name: "Stripe Verified", sub: "Enterprise Payments", Icon: CreditCard, accentColor: "text-indigo-600 dark:text-indigo-400", bgAccent: "bg-indigo-500/10 border-indigo-500/25 text-indigo-600 dark:text-indigo-400", dotColor: "bg-indigo-500" },
+  { name: "Vercel Enterprise", sub: "Edge Architecture", Icon: Zap, accentColor: "text-slate-900 dark:text-white", bgAccent: "bg-slate-900/10 dark:bg-white/10 border-slate-300 dark:border-white/20 text-slate-900 dark:text-white", dotColor: "bg-slate-900 dark:bg-white" },
+  { name: "Google Cloud", sub: "Data & ML Pipelines", Icon: Globe, accentColor: "text-blue-600 dark:text-blue-400", bgAccent: "bg-blue-500/10 border-blue-500/25 text-blue-600 dark:text-blue-400", dotColor: "bg-blue-500" },
+  { name: "PostgreSQL", sub: "Enterprise Databases", Icon: Database, accentColor: "text-sky-600 dark:text-sky-400", bgAccent: "bg-sky-500/10 border-sky-500/25 text-sky-600 dark:text-sky-400", dotColor: "bg-sky-500" },
+  { name: "Supabase", sub: "Auth & Realtime Mesh", Icon: Layers, accentColor: "text-emerald-600 dark:text-emerald-400", bgAccent: "bg-emerald-500/10 border-emerald-500/25 text-emerald-600 dark:text-emerald-400", dotColor: "bg-emerald-500" },
+  { name: "Docker", sub: "Containerized Sprints", Icon: Box, accentColor: "text-cyan-600 dark:text-cyan-400", bgAccent: "bg-cyan-500/10 border-cyan-500/25 text-cyan-600 dark:text-cyan-400", dotColor: "bg-cyan-500" },
 ];
 
 /* Double the list for seamless loop */
@@ -41,17 +41,16 @@ function useReveal() {
 
 export function SocialProofBanner() {
   const { openBookingModal } = useBookingModal();
-  const { ref: headRef, v: headV }   = useReveal();
-  const { ref: leftRef, v: leftV }   = useReveal();
-  const { ref: rightRef, v: rightV } = useReveal();
+  const { ref: headRef, v: headV } = useReveal();
+  const { ref: contentRef, v: contentV } = useReveal();
 
   return (
-    <section className="bg-[#090D16] border-b border-[#1F2937]" style={{ position: "relative" }}>
+    <section className="bg-slate-50 dark:bg-[#090D16] border-b border-slate-200 dark:border-[#1F2937] transition-colors duration-200 relative">
 
       {/* ═══════════════════════════════════════════
           PARTNER LOGOS — Premium Marquee Strip
           ═══════════════════════════════════════════ */}
-      <div className="py-14 lg:py-16 border-b border-[#1F2937] relative overflow-hidden">
+      <div className="py-12 lg:py-14 border-b border-slate-200 dark:border-[#1F2937] relative overflow-hidden">
         {/* Section label */}
         <div
           ref={headRef}
@@ -63,16 +62,14 @@ export function SocialProofBanner() {
           }}
         >
           <span className="section-label">Enterprise Technology Standards</span>
-          <p className="text-xs sm:text-sm text-slate-400 max-w-lg mx-auto mt-2">
+          <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 max-w-lg mx-auto mt-2">
             Production architectures certified across global cloud, security, and payment compliance standards.
           </p>
         </div>
 
         {/* Left + right edge fade masks */}
-        <div className="absolute left-0 top-0 bottom-0 w-24 z-10 pointer-events-none"
-          style={{ background: "linear-gradient(to right, #090D16, transparent)" }} />
-        <div className="absolute right-0 top-0 bottom-0 w-24 z-10 pointer-events-none"
-          style={{ background: "linear-gradient(to left, #090D16, transparent)" }} />
+        <div className="marquee-mask-left absolute left-0 top-0 bottom-0 w-24 z-10 pointer-events-none" />
+        <div className="marquee-mask-right absolute right-0 top-0 bottom-0 w-24 z-10 pointer-events-none" />
 
         {/* Marquee track — doubled items for seamless loop */}
         <div className="overflow-hidden">
@@ -82,37 +79,23 @@ export function SocialProofBanner() {
               return (
                 <div
                   key={i}
-                  className="flex-none flex items-center gap-3 bg-[#111827] border border-[#1F2937] rounded-xl px-4 py-3 group hover:border-[rgba(var(--a),0.4)] transition-all duration-300 cursor-default"
-                  style={{ "--a": p.accent } as React.CSSProperties}
+                  className="flex-none flex items-center gap-3 bg-white dark:bg-[#111827] border border-slate-200 dark:border-[#1F2937] rounded-xl px-4 py-3 hover:border-blue-500/40 transition-all duration-300 cursor-default shadow-xs dark:shadow-none"
                 >
                   {/* Icon chip */}
-                  <div
-                    className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0 transition-all duration-300"
-                    style={{
-                      background: `rgba(${p.accent},0.12)`,
-                      border: `1px solid rgba(${p.accent},0.2)`,
-                      color: `rgb(${p.accent})`,
-                    }}
-                  >
+                  <div className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 transition-all duration-300 border ${p.bgAccent}`}>
                     <Icon className="w-3.5 h-3.5" />
                   </div>
 
                   {/* Text */}
                   <div>
-                    <div
-                      className="text-xs font-semibold text-slate-200 whitespace-nowrap transition-colors duration-300"
-                      style={{ color: `rgb(${p.accent})` }}
-                    >
+                    <div className={`text-xs font-bold whitespace-nowrap ${p.accentColor}`}>
                       {p.name}
                     </div>
-                    <div className="text-[10px] font-mono text-slate-500 whitespace-nowrap">{p.sub}</div>
+                    <div className="text-[10px] font-mono text-slate-600 dark:text-slate-400 whitespace-nowrap">{p.sub}</div>
                   </div>
 
                   {/* Verified dot */}
-                  <div
-                    className="w-1.5 h-1.5 rounded-full shrink-0 ml-1 opacity-60"
-                    style={{ background: `rgb(${p.accent})` }}
-                  />
+                  <div className={`w-1.5 h-1.5 rounded-full shrink-0 ml-1 ${p.dotColor}`} />
                 </div>
               );
             })}
@@ -121,153 +104,120 @@ export function SocialProofBanner() {
       </div>
 
       {/* ═══════════════════════════════════════════
-          FULL-BLEED SPLIT — Image left / Guarantees right
+          ENGINEERING GUILD & ENTERPRISE ASSURANCE
           ═══════════════════════════════════════════ */}
-      <div className="flex flex-col lg:flex-row" style={{ minHeight: "540px" }}>
-
-        {/* ── LEFT: Engineers image — bleeds from viewport left edge ── */}
+      <div className="py-12 lg:py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div
-          ref={leftRef}
-          className="relative w-full lg:w-1/2 overflow-hidden"
+          ref={contentRef}
+          className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch"
           style={{
-            minHeight: "360px",
-            opacity: leftV ? 1 : 0,
-            transition: "opacity 0.8s ease 80ms",
+            opacity: contentV ? 1 : 0,
+            transform: contentV ? "none" : "translateY(20px)",
+            transition: "opacity 0.65s ease, transform 0.65s cubic-bezier(0.22,1,0.36,1)",
           }}
         >
-          <Image
-            src="/images/team/engineering-studio.jpg"
-            alt="SprintStack Senior Engineering Team Collaborating in Studio"
-            fill
-            priority
-            className="object-cover object-center"
-            style={{
-              transform: leftV ? "scale(1)" : "scale(1.05)",
-              transition: "transform 1.2s cubic-bezier(0.22,1,0.36,1) 80ms",
-            }}
-            sizes="(max-width: 1024px) 100vw, 50vw"
-          />
+          {/* ── LEFT: Engineers Studio Card (7 cols) ── */}
+          <div className="lg:col-span-7 relative rounded-2xl overflow-hidden min-h-[420px] lg:min-h-[500px] border border-slate-200 dark:border-white/[0.1] shadow-xl flex flex-col justify-end">
+            <Image
+              src="/images/team/engineering-studio.jpg"
+              alt="SprintStack Senior Engineering Team Collaborating in Studio"
+              fill
+              priority
+              className="object-cover object-center"
+              sizes="(max-width: 1024px) 100vw, 58vw"
+            />
 
-          {/*
-            MULTI-LAYER gradient for strong text readability:
-            1. Full overlay darkener (15% opacity black over entire image)
-            2. Strong bottom gradient for text area
-            3. Desktop right-edge fade into dark panel
-          */}
-          <div className="absolute inset-0" style={{ background: "rgba(0,0,0,0.35)" }} />
-          <div
-            className="absolute inset-0"
-            style={{
-              background: "linear-gradient(to top, rgba(9,13,22,0.98) 0%, rgba(9,13,22,0.85) 25%, rgba(9,13,22,0.4) 55%, rgba(9,13,22,0) 100%)",
-            }}
-          />
-          <div
-            className="absolute inset-0 hidden lg:block"
-            style={{ background: "linear-gradient(to right, transparent 60%, #090D16 100%)" }}
-          />
+            {/* Dark vignette protection layers for 100% crisp white text readability */}
+            <div className="absolute inset-0 bg-slate-950/40" />
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/75 to-transparent" />
 
-          {/* Content overlay */}
-          <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8 lg:p-10 z-10">
-            {/* Badges */}
-            <div className="flex flex-wrap items-center gap-2 mb-4">
-              <span className="badge-emerald-proof">
-                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />Senior Engineering Guild
-              </span>
-              <span className="studio-pill font-mono text-[11px] text-blue-300">
-                Zero Outsourcing · Dedicated Squads
-              </span>
+            {/* Content overlay */}
+            <div className="relative z-10 p-6 sm:p-8 lg:p-10 space-y-4">
+              {/* Badges */}
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 backdrop-blur-md">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
+                  <span>Senior Engineering Guild</span>
+                </span>
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full font-mono text-[11px] font-semibold bg-slate-900/80 border border-white/20 text-slate-200 backdrop-blur-md">
+                  Zero Outsourcing · Dedicated Squads
+                </span>
+              </div>
+
+              {/* Headline */}
+              <h3 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight leading-tight">
+                Built by Seasoned Architects.<br className="hidden sm:inline" />
+                No Junior Relay. No Agency Fluff.
+              </h3>
+
+              {/* Description */}
+              <p className="text-sm text-slate-200 leading-relaxed max-w-xl">
+                Every project is owned end-to-end by principal engineers with decades of combined experience shipping high-throughput systems across fintech, logistics, healthcare, and enterprise commerce.
+              </p>
+            </div>
+          </div>
+
+          {/* ── RIGHT: Guarantees Card (5 cols) ── */}
+          <div className="lg:col-span-5 flex flex-col justify-between p-6 sm:p-8 lg:p-10 rounded-2xl bg-white dark:bg-[#111827] border border-slate-200 dark:border-[#1F2937] shadow-xl relative overflow-hidden">
+            {/* Emerald glow */}
+            <div className="absolute -top-16 -right-16 w-40 h-40 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-emerald-500/50 to-transparent" />
+
+            <div className="space-y-6 relative z-10">
+              <div className="flex items-center justify-between flex-wrap gap-2">
+                <span className="section-label-emerald flex items-center gap-1.5">
+                  <Award className="w-3.5 h-3.5" />
+                  <span>Engineering Guarantees</span>
+                </span>
+                <span className="text-xs font-mono text-emerald-600 dark:text-emerald-400 font-bold bg-emerald-500/10 border border-emerald-500/25 px-2.5 py-0.5 rounded-full">
+                  100% Verified
+                </span>
+              </div>
+
+              <h3 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white tracking-tight">
+                Enterprise Assurance on Every Sprint
+              </h3>
+
+              <ul className="space-y-4">
+                {[
+                  {
+                    title: "Full Intellectual Property Rights",
+                    desc: "Complete source code, CI/CD pipelines, and credentials transferred from Day 1.",
+                  },
+                  {
+                    title: "Fixed-Price Sprints with Staging Deploys",
+                    desc: "Guaranteed delivery windows every 7–14 days. Zero billing surprises or scope creep.",
+                  },
+                  {
+                    title: "Clean Architecture & Zero Technical Debt",
+                    desc: "100% typed TypeScript/Go codebases, comprehensive tests, and automated linting.",
+                  },
+                ].map((item) => (
+                  <li key={item.title} className="flex items-start gap-3">
+                    <div className="w-5 h-5 rounded-full bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center shrink-0 mt-0.5">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
+                    </div>
+                    <div>
+                      <div className="text-sm font-bold text-slate-900 dark:text-white">{item.title}</div>
+                      <div className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed mt-0.5">{item.desc}</div>
+                    </div>
+                  </li>
+                ))}
+              </ul>
             </div>
 
-            {/* Headline — strong text shadow for readability */}
-            <h3
-              className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight leading-snug"
-              style={{ textShadow: "0 2px 20px rgba(0,0,0,0.9), 0 1px 4px rgba(0,0,0,1)" }}
-            >
-              Built by Seasoned Architects.<br className="hidden sm:inline" />
-              No Junior Relay. No Agency Fluff.
-            </h3>
-
-            {/* Description */}
-            <p
-              className="mt-3 text-sm text-white/80 leading-relaxed max-w-lg"
-              style={{ textShadow: "0 1px 10px rgba(0,0,0,0.95)" }}
-            >
-              Every project is owned end-to-end by principal engineers with decades of combined experience shipping high-throughput systems across fintech, logistics, healthcare, and enterprise commerce.
-            </p>
-          </div>
-        </div>
-
-        {/* ── RIGHT: Guarantees panel ── */}
-        <div
-          ref={rightRef}
-          className="w-full lg:w-1/2 flex items-center bg-[#090D16]"
-          style={{
-            opacity: rightV ? 1 : 0,
-            transform: rightV ? "none" : "translateX(24px)",
-            transition: "opacity 0.65s ease 200ms, transform 0.65s cubic-bezier(0.22,1,0.36,1) 200ms",
-          }}
-        >
-          <div className="w-full p-6 sm:p-10 lg:p-12 xl:pl-14 xl:pr-20">
-            <div className="bg-[#111827] border border-[#1F2937] rounded-2xl p-6 sm:p-8 shadow-2xl relative overflow-hidden">
-              {/* Emerald glow top-right */}
-              <div className="absolute -top-20 -right-20 w-48 h-48 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
-              {/* Top accent line */}
-              <div className="absolute top-0 inset-x-0 h-px"
-                style={{ background: "linear-gradient(90deg, transparent, rgba(16,185,129,0.5), transparent)" }} />
-
-              <div className="space-y-5 relative z-10">
-                <div className="flex items-center justify-between flex-wrap gap-2">
-                  <span className="section-label-emerald flex items-center gap-1.5">
-                    <Award className="w-3.5 h-3.5" />Engineering Guarantees
-                  </span>
-                  <span className="text-xs font-mono text-emerald-400 font-bold">100% Verified</span>
-                </div>
-
-                <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
-                  Enterprise Assurance on Every Sprint
-                </h3>
-
-                <ul className="space-y-4">
-                  {[
-                    {
-                      title: "Full Intellectual Property Rights",
-                      desc: "Complete source code, CI/CD pipelines, and credentials transferred from Day 1.",
-                    },
-                    {
-                      title: "Fixed-Price Sprints with Staging Deploys",
-                      desc: "Guaranteed delivery windows every 7–14 days. Zero billing surprises or scope creep.",
-                    },
-                    {
-                      title: "Clean Architecture & Zero Technical Debt",
-                      desc: "100% typed TypeScript/Go codebases, comprehensive tests, and automated linting.",
-                    },
-                  ].map((item) => (
-                    <li key={item.title} className="flex items-start gap-3">
-                      <div className="w-5 h-5 rounded-full bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center shrink-0 mt-0.5">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
-                      </div>
-                      <div>
-                        <div className="text-sm font-semibold text-white">{item.title}</div>
-                        <div className="text-xs text-slate-400/80 leading-relaxed mt-0.5">{item.desc}</div>
-                      </div>
-                    </li>
-                  ))}
-                </ul>
-
-                <div className="pt-4 border-t border-[#1F2937] flex items-center justify-between gap-4">
-                  <div>
-                    <div className="text-xs font-mono text-slate-400">Ready to scope?</div>
-                    <div className="text-sm font-bold text-white">Direct Engineer Call</div>
-                  </div>
-                  <button
-                    onClick={openBookingModal}
-                    className="btn-primary px-4 sm:px-5 py-2.5 text-xs font-semibold flex items-center gap-2 cursor-pointer active:scale-95 shrink-0"
-                  >
-                    <span>Schedule Call</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </button>
-                </div>
+            <div className="pt-6 mt-6 border-t border-slate-200 dark:border-[#1F2937] flex items-center justify-between gap-4 relative z-10">
+              <div>
+                <div className="text-xs font-mono font-semibold text-slate-500 dark:text-slate-400">Ready to scope?</div>
+                <div className="text-sm font-bold text-slate-900 dark:text-white">Direct Engineer Call</div>
               </div>
+              <button
+                onClick={openBookingModal}
+                className="btn-primary px-5 py-2.5 text-xs sm:text-sm font-semibold flex items-center gap-2 cursor-pointer active:scale-95 shrink-0 text-white"
+              >
+                <span>Schedule Call</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </button>
             </div>
           </div>
         </div>

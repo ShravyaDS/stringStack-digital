@@ -127,22 +127,22 @@ export function SprintCalculator() {
   };
 
   return (
-    <section id="estimator" ref={sectionRef} className="py-28 lg:py-36 bg-[#090D16] border-t border-white/[0.08] relative overflow-hidden">
+    <section id="estimator" ref={sectionRef} className="py-28 lg:py-36 bg-slate-50 dark:bg-[#090D16] border-t border-slate-200 dark:border-white/[0.08] relative overflow-hidden transition-colors duration-200">
       {/* Subtle background ambient radial glow */}
       <div className="absolute inset-0 section-radial-glow pointer-events-none" />
 
       {/* Subtle grid pattern */}
-      <div className="absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.04)_1px,transparent_1px)] [background-size:32px_32px] opacity-40 pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(rgba(0,0,0,0.04)_1px,transparent_1px)] dark:bg-[radial-gradient(rgba(255,255,255,0.04)_1px,transparent_1px)] [background-size:32px_32px] opacity-40 pointer-events-none" />
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-3 mb-12 scroll-reveal">
           <span className="section-label">Live Scope Simulator</span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-[-0.03em]">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-[-0.03em]">
             Sprint Scope &amp; Timeline Estimator
           </h2>
-          <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
+          <p className="text-slate-600 dark:text-slate-400 text-sm sm:text-base leading-relaxed">
             Configure your project parameters to compute sprint milestones, architecture recommendations, and dedicated squad composition in real time.
           </p>
         </div>
@@ -150,7 +150,7 @@ export function SprintCalculator() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
           {/* Left: Interactive Step Configurator (7 cols) */}
-          <div className="lg:col-span-7 space-y-7 bg-[#111827] border border-[#1F2937] p-5 sm:p-8 rounded-2xl shadow-xl">
+          <div className="lg:col-span-7 space-y-7 bg-white dark:bg-[#111827] border border-slate-200 dark:border-[#1F2937] p-5 sm:p-8 rounded-2xl shadow-md dark:shadow-xl">
             
             {/* Step 1: Software Category */}
             <div className="space-y-3.5">
@@ -159,11 +159,11 @@ export function SprintCalculator() {
                   <span className="w-5 h-5 rounded-full bg-blue-600 text-white text-[11px] font-bold flex items-center justify-center shrink-0">
                     1
                   </span>
-                  <span className="text-sm font-bold text-white">
+                  <span className="text-sm font-bold text-slate-900 dark:text-white">
                     Select target software category
                   </span>
                 </div>
-                <p className="text-xs text-slate-400 mt-1 ml-7">
+                <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 ml-7">
                   Choose the primary system you&apos;re building
                 </p>
               </div>
@@ -177,12 +177,12 @@ export function SprintCalculator() {
                       onClick={() => setProjectType(p.id as any)}
                       className={`p-3 rounded-xl text-left flex items-center justify-between gap-3 transition-all duration-200 cursor-pointer ${
                         isSelected
-                          ? "bg-[#131D31] border-2 border-blue-500 text-white shadow-[0_0_16px_rgba(37,99,235,0.25)]"
-                          : "bg-[#090D16] border border-white/[0.08] text-slate-300 hover:border-white/[0.18] hover:text-white"
+                          ? "bg-blue-50 dark:bg-[#131D31] border-2 border-blue-600 dark:border-blue-500 text-slate-900 dark:text-white shadow-[0_0_16px_rgba(37,99,235,0.15)]"
+                          : "bg-slate-50 dark:bg-[#090D16] border border-slate-200 dark:border-white/[0.08] text-slate-700 dark:text-slate-300 hover:border-slate-300 dark:hover:border-white/[0.18] hover:text-slate-900 dark:hover:text-white"
                       }`}
                     >
                       <div className="flex items-center gap-2.5 truncate">
-                        <div className={`p-1.5 rounded-md shrink-0 ${isSelected ? "bg-blue-600 text-white" : "bg-white/[0.05] border border-white/[0.08] text-slate-400"}`}>
+                        <div className={`p-1.5 rounded-md shrink-0 ${isSelected ? "bg-blue-600 text-white" : "bg-slate-200/70 dark:bg-white/[0.05] border border-slate-300 dark:border-white/[0.08] text-slate-600 dark:text-slate-400"}`}>
                           {p.icon}
                         </div>
                         <span className="text-xs sm:text-sm font-semibold truncate">{p.name}</span>
@@ -190,7 +190,7 @@ export function SprintCalculator() {
 
                       {/* Top-right unified checkmark */}
                       <div className={`w-4 h-4 rounded-full flex items-center justify-center shrink-0 transition-all ${
-                        isSelected ? "bg-blue-600 text-white" : "border border-white/[0.15] bg-transparent"
+                        isSelected ? "bg-blue-600 text-white" : "border border-slate-300 dark:border-white/[0.15] bg-transparent"
                       }`}>
                         {isSelected && <Check className="w-2.5 h-2.5 stroke-[3]" />}
                       </div>
@@ -207,11 +207,11 @@ export function SprintCalculator() {
                   <span className="w-5 h-5 rounded-full bg-blue-600 text-white text-[11px] font-bold flex items-center justify-center shrink-0">
                     2
                   </span>
-                  <span className="text-sm font-bold text-white">
+                  <span className="text-sm font-bold text-slate-900 dark:text-white">
                     Select infrastructure scale
                   </span>
                 </div>
-                <p className="text-xs text-slate-400 mt-1 ml-7">
+                <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 ml-7">
                   Pick expected scale to size the SLA
                 </p>
               </div>
@@ -225,23 +225,23 @@ export function SprintCalculator() {
                       onClick={() => setScale(s.id as any)}
                       className={`p-3.5 rounded-xl text-left transition-all duration-200 cursor-pointer flex flex-col justify-between ${
                         isSelected
-                          ? "bg-[#131D31] border-2 border-blue-500 shadow-[0_0_16px_rgba(37,99,235,0.25)]"
-                          : "bg-[#090D16] border border-white/[0.08] hover:border-white/[0.18]"
+                          ? "bg-blue-50 dark:bg-[#131D31] border-2 border-blue-600 dark:border-blue-500 shadow-[0_0_16px_rgba(37,99,235,0.15)]"
+                          : "bg-slate-50 dark:bg-[#090D16] border border-slate-200 dark:border-white/[0.08] hover:border-slate-300 dark:hover:border-white/[0.18]"
                       }`}
                     >
                       <div>
                         <div className="flex items-center justify-between gap-1 mb-1">
-                          <div className="text-xs font-bold text-white">{s.name}</div>
+                          <div className="text-xs font-bold text-slate-900 dark:text-white">{s.name}</div>
                           <div className={`w-4 h-4 rounded-full flex items-center justify-center shrink-0 transition-all ${
-                            isSelected ? "bg-blue-600 text-white" : "border border-white/[0.15] bg-transparent"
+                            isSelected ? "bg-blue-600 text-white" : "border border-slate-300 dark:border-white/[0.15] bg-transparent"
                           }`}>
                             {isSelected && <Check className="w-2.5 h-2.5 stroke-[3]" />}
                           </div>
                         </div>
-                        <div className="text-[11px] text-slate-400">{s.users}</div>
+                        <div className="text-[11px] text-slate-500 dark:text-slate-400">{s.users}</div>
                       </div>
 
-                      <div className="text-[11px] text-slate-400 font-mono font-medium pt-2 mt-2 border-t border-white/[0.08]">
+                      <div className="text-[11px] text-slate-500 dark:text-slate-400 font-mono font-medium pt-2 mt-2 border-t border-slate-200 dark:border-white/[0.08]">
                         {s.sla}
                       </div>
                     </button>
@@ -258,15 +258,15 @@ export function SprintCalculator() {
                     <span className="w-5 h-5 rounded-full bg-blue-600 text-white text-[11px] font-bold flex items-center justify-center shrink-0">
                       3
                     </span>
-                    <span className="text-sm font-bold text-white">
+                    <span className="text-sm font-bold text-slate-900 dark:text-white">
                       Select enterprise integrations
                     </span>
                   </div>
-                  <p className="text-xs text-slate-400 mt-1 ml-7">
+                  <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 ml-7">
                     Select the integrations this build needs
                   </p>
                 </div>
-                <span className="studio-pill font-mono text-[11px] text-blue-300 border-blue-500/20 bg-blue-500/10">
+                <span className="studio-pill font-mono text-[11px] text-blue-700 dark:text-blue-300 border-blue-500/20 bg-blue-500/10">
                   {selectedIntegrations.length} Selected
                 </span>
               </div>
@@ -280,18 +280,18 @@ export function SprintCalculator() {
                       onClick={() => toggleIntegration(item.id)}
                       className={`p-3 rounded-xl text-left flex items-start justify-between gap-2.5 transition-all duration-200 cursor-pointer ${
                         isSelected
-                          ? "bg-[#131D31] border-2 border-blue-500 shadow-[0_0_16px_rgba(37,99,235,0.25)]"
-                          : "bg-[#090D16] border border-white/[0.08] hover:border-white/[0.18]"
+                          ? "bg-blue-50 dark:bg-[#131D31] border-2 border-blue-600 dark:border-blue-500 shadow-[0_0_16px_rgba(37,99,235,0.15)]"
+                          : "bg-slate-50 dark:bg-[#090D16] border border-slate-200 dark:border-white/[0.08] hover:border-slate-300 dark:hover:border-white/[0.18]"
                       }`}
                     >
                       <div>
-                        <div className="text-xs font-semibold text-white">{item.name}</div>
-                        <div className="text-[11px] text-slate-400 mt-0.5">{item.desc}</div>
+                        <div className="text-xs font-semibold text-slate-900 dark:text-white">{item.name}</div>
+                        <div className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">{item.desc}</div>
                       </div>
 
                       {/* Top-right unified checkmark */}
                       <div className={`w-4 h-4 rounded-full flex items-center justify-center shrink-0 mt-0.5 transition-all ${
-                        isSelected ? "bg-blue-600 text-white" : "border border-white/[0.15] bg-transparent"
+                        isSelected ? "bg-blue-600 text-white" : "border border-slate-300 dark:border-white/[0.15] bg-transparent"
                       }`}>
                         {isSelected && <Check className="w-2.5 h-2.5 stroke-[3]" />}
                       </div>
@@ -305,12 +305,12 @@ export function SprintCalculator() {
 
           {/* Right: Calculated Output Card (5 cols) */}
           <div className="lg:col-span-5 lg:sticky lg:top-24 space-y-6">
-            <div className="p-6 sm:p-8 rounded-2xl bg-[#111827] border border-[#1F2937] text-white space-y-5 shadow-2xl">
-              <div className="flex items-center justify-between pb-3 border-b border-white/[0.08]">
-                <span className="text-xs font-mono font-bold uppercase tracking-wider text-white">
+            <div className="p-6 sm:p-8 rounded-2xl bg-white dark:bg-[#111827] border border-slate-200 dark:border-[#1F2937] text-slate-900 dark:text-white space-y-5 shadow-xl dark:shadow-2xl">
+              <div className="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-white/[0.08]">
+                <span className="text-xs font-mono font-bold uppercase tracking-wider text-slate-900 dark:text-white">
                   Computed Scope Output
                 </span>
-                <span className="studio-pill font-mono text-[11px] text-blue-300 border-blue-500/20 bg-blue-500/10">
+                <span className="studio-pill font-mono text-[11px] text-blue-700 dark:text-blue-300 border-blue-500/20 bg-blue-500/10">
                   Guaranteed SLA
                 </span>
               </div>
@@ -321,20 +321,20 @@ export function SprintCalculator() {
                   isUpdating ? "opacity-60 scale-[0.99]" : "opacity-100 scale-100"
                 }`}
               >
-                <div className="p-4 rounded-xl bg-[#090D16] border border-white/[0.08] space-y-1">
-                  <span className="text-xs text-slate-400">Estimated Cadence</span>
-                  <div className="text-2xl sm:text-3xl font-bold text-blue-400 flex items-baseline gap-1 font-mono">
-                    {hasEnteredView ? displaySprints : estimatedSprints} <span className="text-xs font-normal text-slate-400 font-sans">Sprints</span>
+                <div className="p-4 rounded-xl bg-slate-50 dark:bg-[#090D16] border border-slate-200 dark:border-white/[0.08] space-y-1">
+                  <span className="text-xs text-slate-500 dark:text-slate-400">Estimated Cadence</span>
+                  <div className="text-2xl sm:text-3xl font-bold text-blue-600 dark:text-blue-400 flex items-baseline gap-1 font-mono">
+                    {hasEnteredView ? displaySprints : estimatedSprints} <span className="text-xs font-normal text-slate-500 dark:text-slate-400 font-sans">Sprints</span>
                   </div>
-                  <div className="text-[11px] text-slate-400 font-medium">1–2 week cycles</div>
+                  <div className="text-[11px] text-slate-500 dark:text-slate-400 font-medium">1–2 week cycles</div>
                 </div>
 
-                <div className="p-4 rounded-xl bg-[#090D16] border border-white/[0.08] space-y-1">
-                  <span className="text-xs text-slate-400">Target Delivery</span>
-                  <div className="text-2xl sm:text-3xl font-bold text-white flex items-baseline gap-1 font-mono">
-                    ~{hasEnteredView ? displayDays : estimatedDays} <span className="text-xs font-normal text-slate-400 font-sans">Days</span>
+                <div className="p-4 rounded-xl bg-slate-50 dark:bg-[#090D16] border border-slate-200 dark:border-white/[0.08] space-y-1">
+                  <span className="text-xs text-slate-500 dark:text-slate-400">Target Delivery</span>
+                  <div className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white flex items-baseline gap-1 font-mono">
+                    ~{hasEnteredView ? displayDays : estimatedDays} <span className="text-xs font-normal text-slate-500 dark:text-slate-400 font-sans">Days</span>
                   </div>
-                  <div className="text-[11px] text-blue-400 font-medium font-mono">Production Ready</div>
+                  <div className="text-[11px] text-blue-600 dark:text-blue-400 font-medium font-mono">Production Ready</div>
                 </div>
               </div>
 
@@ -344,7 +344,7 @@ export function SprintCalculator() {
                   isUpdating ? "opacity-60" : "opacity-100"
                 }`}
               >
-                <span className="text-xs font-mono font-semibold uppercase text-slate-400 block">
+                <span className="text-xs font-mono font-semibold uppercase text-slate-500 dark:text-slate-400 block">
                   Recommended Architecture:
                 </span>
                 <div className="flex flex-wrap gap-1.5">
@@ -360,17 +360,17 @@ export function SprintCalculator() {
               </div>
 
               {/* Guarantees */}
-              <div className="p-3.5 rounded-xl bg-[#090D16] border border-[#1F2937] space-y-2 text-xs">
-                <div className="flex items-center gap-2 text-slate-200">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                  <span className="font-medium text-emerald-300">100% Unencumbered IP Transfer on Day 1</span>
+              <div className="p-3.5 rounded-xl bg-slate-50 dark:bg-[#090D16] border border-slate-200 dark:border-[#1F2937] space-y-2 text-xs">
+                <div className="flex items-center gap-2 text-slate-700 dark:text-slate-200">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 shrink-0" />
+                  <span className="font-medium text-emerald-700 dark:text-emerald-300">100% Unencumbered IP Transfer on Day 1</span>
                 </div>
-                <div className="flex items-center gap-2 text-slate-200">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                <div className="flex items-center gap-2 text-slate-700 dark:text-slate-200">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 shrink-0" />
                   <span>Direct senior engineer access (Slack &amp; GitHub)</span>
                 </div>
-                <div className="flex items-center gap-2 text-slate-200">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                <div className="flex items-center gap-2 text-slate-700 dark:text-slate-200">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 shrink-0" />
                   <span>Weekly live milestone preview builds</span>
                 </div>
               </div>
@@ -383,7 +383,7 @@ export function SprintCalculator() {
                 Lock In This Sprint Plan &amp; Scope
               </button>
 
-              <div className="text-center text-[11px] text-slate-400 font-mono">
+              <div className="text-center text-[11px] text-slate-500 dark:text-slate-400 font-mono">
                 Formal SOW &amp; Architectural Blueprint provided within 24h.
               </div>
             </div>
@@ -395,19 +395,19 @@ export function SprintCalculator() {
 
       {/* ── Mobile Sticky Summary Bar ── */}
       <div
-        className={`lg:hidden fixed bottom-0 left-0 right-0 z-30 bg-[#090D16]/95 backdrop-blur-md border-t border-white/[0.08] px-4 py-3 shadow-2xl flex items-center justify-between gap-3 pb-safe transition-all duration-300 ${
+        className={`lg:hidden fixed bottom-0 left-0 right-0 z-30 bg-white/95 dark:bg-[#090D16]/95 backdrop-blur-md border-t border-slate-200 dark:border-white/[0.08] px-4 py-3 shadow-2xl flex items-center justify-between gap-3 pb-safe transition-all duration-300 ${
           isSectionInView
             ? "translate-y-0 opacity-100 pointer-events-auto"
             : "translate-y-full opacity-0 pointer-events-none"
         }`}
       >
         <div>
-          <div className="text-[10px] font-mono font-semibold uppercase tracking-wider text-slate-400">
+          <div className="text-[10px] font-mono font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
             Estimated Scope
           </div>
-          <div className="text-sm font-bold text-white flex items-baseline gap-1.5 font-mono">
+          <div className="text-sm font-bold text-slate-900 dark:text-white flex items-baseline gap-1.5 font-mono">
             <span>{estimatedSprints} Sprints</span>
-            <span className="text-xs font-semibold text-blue-400">(~{estimatedDays} Days)</span>
+            <span className="text-xs font-semibold text-blue-600 dark:text-blue-400">(~{estimatedDays} Days)</span>
           </div>
         </div>
 

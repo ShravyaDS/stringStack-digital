@@ -162,7 +162,7 @@ export function ProductShowcase() {
   return (
     <section
       id="enterprise-solutions"
-      className="py-24 lg:py-32 bg-[#050811] border-t border-[#1F2937] scroll-mt-24 relative overflow-hidden text-white"
+      className="py-24 lg:py-32 bg-slate-50 dark:bg-[#050811] border-t border-slate-200 dark:border-[#1F2937] scroll-mt-24 relative overflow-hidden text-slate-900 dark:text-white transition-colors duration-200"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
@@ -180,18 +180,18 @@ export function ProductShowcase() {
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div className="space-y-3.5 max-w-2xl">
               <div className="inline-flex items-center gap-2 flex-wrap">
-                <span className="font-mono text-xs font-semibold px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 flex items-center gap-1.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                <span className="font-mono text-xs font-semibold px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-600 dark:text-emerald-400 flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
                   PROPRIETARY SYSTEMS ARCHITECTURE
                 </span>
                 <span className="badge-emerald-proof">
-                  <CheckCircle2 className="w-3 h-3 text-emerald-400" />Full IP Ownership Included
+                  <CheckCircle2 className="w-3 h-3 text-emerald-600 dark:text-emerald-400" />Full IP Ownership Included
                 </span>
               </div>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-[-0.035em]">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-[-0.035em]">
                 Enterprise Solutions &amp; Proprietary OS
               </h2>
-              <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
+              <p className="text-slate-600 dark:text-slate-400 text-sm sm:text-base leading-relaxed">
                 Pre-engineered, production-ready enterprise operating systems. Deployed on your private cloud or on-premise infrastructure with 100% source code ownership.
               </p>
             </div>
@@ -199,9 +199,9 @@ export function ProductShowcase() {
             <div className="flex items-center gap-3 shrink-0">
               <button
                 onClick={() => setDemoOpen(true)}
-                className="px-5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold bg-white/5 hover:bg-white/10 text-white border border-white/10 flex items-center gap-2 cursor-pointer transition-all active:scale-95 shadow-md shadow-black/40"
+                className="px-5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold bg-white dark:bg-white/5 hover:bg-slate-100 dark:hover:bg-white/10 text-slate-900 dark:text-white border border-slate-300 dark:border-white/10 flex items-center gap-2 cursor-pointer transition-all active:scale-95 shadow-xs dark:shadow-md dark:shadow-black/40"
               >
-                <Play className="w-3.5 h-3.5 text-blue-400 fill-blue-400" />
+                <Play className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400 fill-blue-600 dark:fill-blue-400" />
                 <span>Launch Interactive Sandbox</span>
               </button>
             </div>
@@ -221,8 +221,8 @@ export function ProductShowcase() {
                 onClick={() => setActiveIdx(idx)}
                 className={`text-left p-4 sm:p-5 rounded-2xl border transition-all duration-300 relative overflow-hidden group cursor-pointer flex flex-col justify-between ${
                   isActive
-                    ? "bg-[#0D1424] border-blue-500/50 shadow-xl shadow-black/60 scale-[1.02]"
-                    : "bg-[#090E1A]/80 border-[#1F2937] hover:bg-[#0D1424]/60 hover:border-slate-700"
+                    ? "bg-white dark:bg-[#0D1424] border-blue-500/80 dark:border-blue-500/50 shadow-lg dark:shadow-xl dark:shadow-black/60 scale-[1.02]"
+                    : "bg-white/80 dark:bg-[#090E1A]/80 border-slate-200 dark:border-[#1F2937] hover:bg-white dark:hover:bg-[#0D1424]/60 hover:border-slate-300 dark:hover:border-slate-700 shadow-xs dark:shadow-none"
                 }`}
               >
                 {/* Active bottom glow line */}
@@ -235,15 +235,15 @@ export function ProductShowcase() {
 
                 <div>
                   <div className="flex items-center justify-between gap-2 mb-2">
-                    <span className="text-[10px] font-mono font-bold text-slate-400 tracking-wider">
+                    <span className="text-[10px] font-mono font-bold text-slate-500 dark:text-slate-400 tracking-wider">
                       {sys.moduleNo}
                     </span>
                     <span
                       className="text-[10px] font-mono px-2 py-0.5 rounded-full border font-semibold"
                       style={{
-                        background: isActive ? `rgba(${sys.accent}, 0.15)` : "rgba(255,255,255,0.03)",
-                        borderColor: isActive ? `rgba(${sys.accent}, 0.35)` : "rgba(255,255,255,0.08)",
-                        color: isActive ? `rgb(${sys.accent})` : "#94a3b8",
+                        background: isActive ? `rgba(${sys.accent}, 0.15)` : "rgba(0,0,0,0.03)",
+                        borderColor: isActive ? `rgba(${sys.accent}, 0.35)` : "rgba(0,0,0,0.08)",
+                        color: isActive ? `rgb(${sys.accent})` : "#64748b",
                       }}
                     >
                       {sys.kpi}
@@ -252,15 +252,15 @@ export function ProductShowcase() {
 
                   <h3
                     className={`text-sm sm:text-base font-bold tracking-tight transition-colors line-clamp-1 ${
-                      isActive ? "text-white" : "text-slate-300 group-hover:text-white"
+                      isActive ? "text-blue-600 dark:text-white" : "text-slate-800 dark:text-slate-300 group-hover:text-blue-600 dark:group-hover:text-white"
                     }`}
                   >
                     {sys.shortTitle}
                   </h3>
                 </div>
 
-                <div className="mt-3 pt-2.5 border-t border-[#1F2937]/60 flex items-center justify-between text-[11px] font-mono">
-                  <span className="text-slate-500 group-hover:text-slate-400 transition-colors">
+                <div className="mt-3 pt-2.5 border-t border-slate-100 dark:border-[#1F2937]/60 flex items-center justify-between text-[11px] font-mono">
+                  <span className="text-slate-500 dark:text-slate-500 group-hover:text-slate-700 dark:group-hover:text-slate-400 transition-colors">
                     {sys.badge}
                   </span>
                   <span
@@ -280,10 +280,10 @@ export function ProductShowcase() {
         {/* ═══════════════════════════════════════════════════════════════
             TIER 2: IMMERSIVE LIVE OS CONSOLE WORKSTATION
             ═══════════════════════════════════════════════════════════════ */}
-        <div className="bg-[#0C1220] border border-[#1F2937] rounded-3xl shadow-2xl shadow-black/80 overflow-hidden relative">
+        <div className="bg-white dark:bg-[#0C1220] border border-slate-200 dark:border-[#1F2937] rounded-3xl shadow-xl dark:shadow-2xl dark:shadow-black/80 overflow-hidden relative">
 
           {/* Console Top Chrome Bar */}
-          <div className="bg-[#070B14] px-4 sm:px-6 py-3.5 border-b border-[#1F2937] flex items-center justify-between gap-4 flex-wrap">
+          <div className="bg-slate-100 dark:bg-[#070B14] px-4 sm:px-6 py-3.5 border-b border-slate-200 dark:border-[#1F2937] flex items-center justify-between gap-4 flex-wrap">
             <div className="flex items-center gap-3">
               {/* Window traffic light buttons */}
               <div className="flex items-center gap-1.5">
@@ -293,20 +293,20 @@ export function ProductShowcase() {
               </div>
 
               {/* Endpoint URL */}
-              <div className="bg-[#0D1424] px-3 py-1 rounded-lg border border-[#1F2937] font-mono text-[11px] text-slate-300 flex items-center gap-2">
-                <Terminal className="w-3.5 h-3.5 text-blue-400 shrink-0" />
+              <div className="bg-white dark:bg-[#0D1424] px-3 py-1 rounded-lg border border-slate-200 dark:border-[#1F2937] font-mono text-[11px] text-slate-700 dark:text-slate-300 flex items-center gap-2">
+                <Terminal className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400 shrink-0" />
                 <span className="truncate">{currentSystem.endpoint}</span>
               </div>
             </div>
 
             <div className="flex items-center gap-4 text-xs font-mono">
-              <div className="hidden sm:flex items-center gap-2 text-slate-400">
-                <Server className="w-3.5 h-3.5 text-emerald-400" />
+              <div className="hidden sm:flex items-center gap-2 text-slate-600 dark:text-slate-400">
+                <Server className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
                 <span>Multi-Region High Availability</span>
               </div>
 
-              <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-emerald-400 font-bold text-[10px]">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+              <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-emerald-600 dark:text-emerald-400 font-bold text-[10px]">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
                 <span>READY FOR DEPLOYMENT</span>
               </div>
             </div>
@@ -316,7 +316,7 @@ export function ProductShowcase() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-0">
 
             {/* ── LEFT: High-Res Interactive Image Stage (7 cols) ── */}
-            <div className="lg:col-span-7 p-6 sm:p-8 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-[#1F2937] relative">
+            <div className="lg:col-span-7 p-6 sm:p-8 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-slate-200 dark:border-[#1F2937] relative">
               <div>
                 <div className="flex items-center justify-between gap-3 mb-4">
                   <div>
@@ -326,14 +326,14 @@ export function ProductShowcase() {
                     >
                       {currentSystem.moduleNo} · {currentSystem.badge}
                     </span>
-                    <h3 className="text-xl sm:text-2xl font-extrabold text-white tracking-tight">
+                    <h3 className="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white tracking-tight">
                       {currentSystem.title}
                     </h3>
                   </div>
                 </div>
 
                 {/* Main Product Screen Mockup with Floating Badges */}
-                <div className="relative h-64 sm:h-80 md:h-96 rounded-2xl overflow-hidden border border-[#1F2937] group shadow-2xl bg-[#070A12]">
+                <div className="relative h-64 sm:h-80 md:h-96 rounded-2xl overflow-hidden border border-slate-200 dark:border-[#1F2937] group shadow-2xl bg-[#070A12]">
                   <Image
                     src={currentSystem.imgSrc}
                     alt={currentSystem.title}
@@ -363,7 +363,7 @@ export function ProductShowcase() {
                   </div>
 
                   {/* Bottom Subtitle / Tagline */}
-                  <div className="absolute bottom-3 left-3 right-3 bg-[#090D18]/90 backdrop-blur-md border border-white/10 rounded-xl p-3 flex items-center justify-between gap-3 shadow-xl">
+                  <div className="photo-overlay-text absolute bottom-3 left-3 right-3 bg-[#090D18]/90 backdrop-blur-md border border-white/10 rounded-xl p-3 flex items-center justify-between gap-3 shadow-xl">
                     <span className="text-xs font-mono text-slate-300 truncate">
                       {currentSystem.subtitle}
                     </span>
@@ -379,22 +379,22 @@ export function ProductShowcase() {
               </div>
 
               {/* Deployment Architecture Callout */}
-              <div className="mt-6 pt-4 border-t border-[#1F2937] flex items-center justify-between flex-wrap gap-3 text-xs font-mono text-slate-400">
+              <div className="mt-6 pt-4 border-t border-slate-200 dark:border-[#1F2937] flex items-center justify-between flex-wrap gap-3 text-xs font-mono text-slate-600 dark:text-slate-400">
                 <span className="flex items-center gap-2">
-                  <Globe className="w-4 h-4 text-emerald-400" />
+                  <Globe className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
                   <span>On-Premise (Bare-Metal / Docker) or Cloud (AWS / GCP / Azure)</span>
                 </span>
-                <span className="text-emerald-400 font-bold">100% IP Transfer</span>
+                <span className="text-emerald-600 dark:text-emerald-400 font-bold">100% IP Transfer</span>
               </div>
             </div>
 
             {/* ── RIGHT: Live Specifications & Feature Deck (5 cols) ── */}
-            <div className="lg:col-span-5 p-6 sm:p-8 flex flex-col justify-between bg-[#0B101D]/70 space-y-6">
+            <div className="lg:col-span-5 p-6 sm:p-8 flex flex-col justify-between bg-slate-50/70 dark:bg-[#0B101D]/70 space-y-6">
 
               {/* 4 Technical Metrics Matrix */}
               <div>
-                <div className="text-xs font-mono uppercase tracking-wider text-slate-400 mb-3 flex items-center gap-2">
-                  <Cpu className="w-3.5 h-3.5 text-blue-400" />
+                <div className="text-xs font-mono uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-3 flex items-center gap-2">
+                  <Cpu className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />
                   <span>Production Technical Specifications</span>
                 </div>
 
@@ -402,16 +402,16 @@ export function ProductShowcase() {
                   {currentSystem.metrics.map((m, i) => (
                     <div
                       key={i}
-                      className="bg-[#070B14] border border-[#1F2937] rounded-xl p-3.5 flex flex-col justify-between hover:border-slate-600 transition-colors shadow-sm"
+                      className="bg-white dark:bg-[#070B14] border border-slate-200 dark:border-[#1F2937] rounded-xl p-3.5 flex flex-col justify-between hover:border-blue-400 dark:hover:border-slate-600 transition-colors shadow-xs dark:shadow-sm"
                     >
-                      <span className="text-[10px] font-mono text-slate-400 uppercase tracking-tight line-clamp-1 mb-1">
+                      <span className="text-[10px] font-mono text-slate-500 dark:text-slate-400 uppercase tracking-tight line-clamp-1 mb-1">
                         {m.label}
                       </span>
                       <div>
-                        <span className="text-sm sm:text-base font-extrabold text-white tracking-tight font-mono block">
+                        <span className="text-sm sm:text-base font-extrabold text-slate-900 dark:text-white tracking-tight font-mono block">
                           {m.val}
                         </span>
-                        <span className="text-[10px] font-mono text-emerald-400 font-medium mt-0.5 block">
+                        <span className="text-[10px] font-mono text-emerald-600 dark:text-emerald-400 font-medium mt-0.5 block">
                           {m.sub}
                         </span>
                       </div>
@@ -422,16 +422,16 @@ export function ProductShowcase() {
 
               {/* Key Architectural Features */}
               <div>
-                <div className="text-xs font-mono uppercase tracking-wider text-slate-400 mb-3 flex items-center gap-2">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
+                <div className="text-xs font-mono uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-3 flex items-center gap-2">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
                   <span>Core Architectural Capabilities</span>
                 </div>
 
                 <div className="space-y-2.5">
                   {currentSystem.features.map((f, i) => (
-                    <div key={i} className="flex items-start gap-2.5 text-xs text-slate-300 leading-relaxed">
+                    <div key={i} className="flex items-start gap-2.5 text-xs text-slate-700 dark:text-slate-300 leading-relaxed">
                       <div className="w-4 h-4 rounded-full bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center shrink-0 mt-0.5">
-                        <Check className="w-2.5 h-2.5 text-emerald-400" />
+                        <Check className="w-2.5 h-2.5 text-emerald-600 dark:text-emerald-400" />
                       </div>
                       <span>{f}</span>
                     </div>
@@ -440,12 +440,12 @@ export function ProductShowcase() {
               </div>
 
               {/* Compliance & Security Guarantee */}
-              <div className="pt-4 border-t border-[#1F2937] space-y-4">
+              <div className="pt-4 border-t border-slate-200 dark:border-[#1F2937] space-y-4">
                 <div className="flex flex-wrap gap-2 text-[10px] font-mono">
                   {["SOC2 Type II Ready", "GDPR / HIPAA Ready", "Clean Architecture", "Zero Lock-In"].map((badge) => (
                     <span
                       key={badge}
-                      className="px-2 py-0.5 rounded bg-white/[0.04] text-slate-400 border border-white/[0.08]"
+                      className="px-2 py-0.5 rounded bg-slate-200/70 dark:bg-white/[0.04] text-slate-700 dark:text-slate-400 border border-slate-300 dark:border-white/[0.08]"
                     >
                       {badge}
                     </span>
@@ -464,7 +464,7 @@ export function ProductShowcase() {
 
                   <button
                     onClick={openBookingModal}
-                    className="px-4 py-2.5 rounded-xl text-xs font-semibold bg-white/5 hover:bg-white/10 text-white border border-white/10 flex items-center justify-center gap-1.5 cursor-pointer transition-all active:scale-95"
+                    className="px-4 py-2.5 rounded-xl text-xs font-semibold bg-white dark:bg-white/5 hover:bg-slate-100 dark:hover:bg-white/10 text-slate-900 dark:text-white border border-slate-300 dark:border-white/10 flex items-center justify-center gap-1.5 cursor-pointer transition-all active:scale-95"
                   >
                     <span>Deploy Solution</span>
                     <ArrowRight className="w-3.5 h-3.5" />

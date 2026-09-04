@@ -328,3 +328,71 @@
     gap: 6px;
   }
 }
+
+/* ============================================================
+   LIGHT THEME OVERRIDES FOR TECH MATRIX
+   ============================================================ */
+:global(html.light) .sectionWrapper {
+  background-color: #F8FAFC !important;
+  border-top-color: #E2E8F0 !important;
+  border-bottom-color: #E2E8F0 !important;
+}
+
+:global(html.light) .bgOverlay {
+  background: linear-gradient(180deg, rgba(248, 250, 252, 0.88) 0%, rgba(248, 250, 252, 0.96) 100%) !important;
+}
+
+:global(html.light) .headTitle {
+  color: #0F172A !important;
+}
+
+:global(html.light) .headDesc {
+  color: #475569 !important;
+}
+
+:global(html.light) .card {
+  border-right-color: #E2E8F0 !important;
+}
+
+:global(html.light) .connector {
+  background: #E2E8F0 !important;
+}
+
+:global(html.light) .node {
+  background: #FFFFFF !important;
+  border-color: #CBD5E1 !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+:global(html.light) .node svg {
+  stroke: #475569 !important;
+}
+
+:global(html.light) .idx {
+  color: #64748B !important;
+}
+
+:global(html.light) .cardTitle {
+  color: #0F172A !important;
+}
+
+:global(html.light) .card:hover .cardTitle {
+  color: #2563EB !important;
+}
+
+:global(html.light) .stackline {
+  color: #475569 !important;
+}
+
+:global(html.light) .tag {
+  background: #F1F5F9 !important;
+  border-color: #E2E8F0 !important;
+  color: #334155 !important;
+}
+
+:global(html.light) .card:hover .tag {
+  background: #E2E8F0 !important;
+  border-color: #93C5FD !important;
+  color: #1E3A8A !important;
+}
+

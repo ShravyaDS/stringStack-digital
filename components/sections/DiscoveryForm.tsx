@@ -73,10 +73,10 @@ export function DiscoveryForm() {
   return (
     <section
       id="contact"
-      className="py-28 lg:py-36 bg-[#090D16] border-t border-[#1F2937] relative overflow-hidden text-white scroll-mt-24"
+      className="py-28 lg:py-36 bg-slate-50 dark:bg-[#090D16] border-t border-slate-200 dark:border-[#1F2937] relative overflow-hidden text-slate-900 dark:text-white scroll-mt-24 transition-colors duration-200"
     >
-      {/* ── Atmospheric Landscape Background ── */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden select-none z-0">
+      {/* ── Atmospheric Landscape Background (Dark mode subtle atmosphere) ── */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden select-none z-0 hidden dark:block">
         {/* Full-bleed Landscape Image */}
         <Image
           src="/images/contact-landscape.jpg"
@@ -104,47 +104,47 @@ export function DiscoveryForm() {
           <div className="lg:col-span-5 space-y-8">
             <div className="space-y-4">
               <span className="section-label">Technical Discovery Funnel</span>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-[-0.03em] leading-tight">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-[-0.03em] leading-tight">
                 Let&apos;s Scope Your Software Build.
               </h2>
-              <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
+              <p className="text-slate-600 dark:text-slate-400 text-sm sm:text-base leading-relaxed">
                 Connect directly with our Principal Solutions Architects. Receive an actionable technical architecture proposal, sprint breakdown, and fixed pricing model within 24 hours.
               </p>
             </div>
 
             {/* Direct Guarantees */}
             <div className="space-y-3.5">
-              <div className="p-4 rounded-xl bg-[#111827] border border-[#1F2937] shadow-[0_4px_20px_rgba(0,0,0,0.25)] flex items-start gap-4 hover:border-blue-500/40 transition-all">
-                <div className="p-2.5 rounded-lg bg-blue-500/10 border border-blue-500/20 text-blue-400 shrink-0">
+              <div className="p-4 rounded-xl bg-white dark:bg-[#111827] border border-slate-200 dark:border-[#1F2937] shadow-sm dark:shadow-[0_4px_20px_rgba(0,0,0,0.25)] flex items-start gap-4 hover:border-blue-500/40 transition-all">
+                <div className="p-2.5 rounded-lg bg-blue-500/10 border border-blue-500/20 text-blue-600 dark:text-blue-400 shrink-0">
                   <Clock className="w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="text-sm font-bold text-white">24-Hour Scope Turnaround</h3>
-                  <p className="text-xs text-slate-400 mt-0.5 leading-relaxed">
+                  <h3 className="text-sm font-bold text-slate-900 dark:text-white">24-Hour Scope Turnaround</h3>
+                  <p className="text-xs text-slate-600 dark:text-slate-400 mt-0.5 leading-relaxed">
                     Complete milestone breakdown, tech stack audit, and delivery schedule delivered within 1 business day.
                   </p>
                 </div>
               </div>
 
-              <div className="p-4 rounded-xl bg-[#111827] border border-[#1F2937] shadow-[0_4px_20px_rgba(0,0,0,0.25)] flex items-start gap-4 hover:border-blue-500/40 transition-all">
-                <div className="p-2.5 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 shrink-0">
+              <div className="p-4 rounded-xl bg-white dark:bg-[#111827] border border-slate-200 dark:border-[#1F2937] shadow-sm dark:shadow-[0_4px_20px_rgba(0,0,0,0.25)] flex items-start gap-4 hover:border-blue-500/40 transition-all">
+                <div className="p-2.5 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 shrink-0">
                   <ShieldCheck className="w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="text-sm font-bold text-white">Mutual NDA on Day 1</h3>
-                  <p className="text-xs text-slate-400 mt-0.5 leading-relaxed">
+                  <h3 className="text-sm font-bold text-slate-900 dark:text-white">Mutual NDA on Day 1</h3>
+                  <p className="text-xs text-slate-600 dark:text-slate-400 mt-0.5 leading-relaxed">
                     Enterprise non-disclosure agreements executed prior to any proprietary code, database, or API discussion.
                   </p>
                 </div>
               </div>
 
-              <div className="p-4 rounded-xl bg-[#111827] border border-[#1F2937] shadow-[0_4px_20px_rgba(0,0,0,0.25)] flex items-start gap-4 hover:border-blue-500/40 transition-all">
-                <div className="p-2.5 rounded-lg bg-blue-500/10 border border-blue-500/20 text-blue-400 shrink-0">
+              <div className="p-4 rounded-xl bg-white dark:bg-[#111827] border border-slate-200 dark:border-[#1F2937] shadow-sm dark:shadow-[0_4px_20px_rgba(0,0,0,0.25)] flex items-start gap-4 hover:border-blue-500/40 transition-all">
+                <div className="p-2.5 rounded-lg bg-blue-500/10 border border-blue-500/20 text-blue-600 dark:text-blue-400 shrink-0">
                   <Zap className="w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="text-sm font-bold text-white">Zero Junior Pass-Through</h3>
-                  <p className="text-xs text-slate-400 mt-0.5 leading-relaxed">
+                  <h3 className="text-sm font-bold text-slate-900 dark:text-white">Zero Junior Pass-Through</h3>
+                  <p className="text-xs text-slate-600 dark:text-slate-400 mt-0.5 leading-relaxed">
                     You interface solely with senior full-stack architects with 6+ years shipping high-concurrency systems.
                   </p>
                 </div>
@@ -152,20 +152,20 @@ export function DiscoveryForm() {
             </div>
           </div>
 
-          {/* Right Column: Elevated Dark Form Card (7 cols) */}
+          {/* Right Column: Elevated Form Card (7 cols) */}
           <div className="lg:col-span-7">
-            <div className="p-6 sm:p-8 lg:p-10 rounded-2xl bg-[#111827] border border-[#1F2937] shadow-[0_12px_40px_rgba(0,0,0,0.4)] text-white">
+            <div className="p-6 sm:p-8 lg:p-10 rounded-2xl bg-white dark:bg-[#111827] border border-slate-200 dark:border-[#1F2937] shadow-xl dark:shadow-[0_12px_40px_rgba(0,0,0,0.4)] text-slate-900 dark:text-white">
               {isSubmitted ? (
                 <div className="py-12 text-center space-y-4">
-                  <div className="w-16 h-16 rounded-full bg-emerald-500/10 text-emerald-400 flex items-center justify-center mx-auto border border-emerald-500/30">
+                  <div className="w-16 h-16 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center mx-auto border border-emerald-500/30">
                     <CheckCircle2 className="w-8 h-8" />
                   </div>
-                  <h3 className="text-2xl font-bold text-white">Discovery Brief Received</h3>
-                  <p className="text-sm text-slate-300 max-w-md mx-auto">
+                  <h3 className="text-2xl font-bold text-slate-900 dark:text-white">Discovery Brief Received</h3>
+                  <p className="text-sm text-slate-600 dark:text-slate-300 max-w-md mx-auto">
                     A Senior Technical Lead is reviewing your requirements. We will deliver your initial Sprint Plan and architecture breakdown within 24 business hours.
                   </p>
                   {wantsNda && (
-                    <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-xs font-semibold text-emerald-400">
+                    <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-xs font-semibold text-emerald-600 dark:text-emerald-400">
                       <ShieldCheck className="w-4 h-4" />
                       <span>Mutual NDA Confirmation Dispatched</span>
                     </div>
@@ -173,17 +173,17 @@ export function DiscoveryForm() {
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-4">
-                  <div className="border-b border-white/[0.08] pb-3 mb-2">
-                    <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
+                  <div className="border-b border-slate-200 dark:border-white/[0.08] pb-3 mb-2">
+                    <h3 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white tracking-tight">
                       Technical Discovery Brief
                     </h3>
-                    <p className="text-xs text-slate-400 mt-0.5">
+                    <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
                       Fill out your project parameters to initiate the technical discovery sprint.
                     </p>
                   </div>
 
                   {errorMsg && (
-                    <div className="p-3 rounded-md bg-rose-500/10 border border-rose-500/30 text-rose-400 text-xs flex items-center gap-2">
+                    <div className="p-3 rounded-md bg-rose-500/10 border border-rose-500/30 text-rose-600 dark:text-rose-400 text-xs flex items-center gap-2">
                       <AlertCircle className="w-4 h-4 shrink-0" />
                       <span>{errorMsg}</span>
                     </div>
@@ -191,8 +191,8 @@ export function DiscoveryForm() {
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="space-y-1.5">
-                      <label className="text-xs font-semibold text-slate-300">
-                        Your Name <span className="text-rose-400">*</span>
+                      <label className="text-xs font-semibold text-slate-700 dark:text-slate-300">
+                        Your Name <span className="text-rose-500 dark:text-rose-400">*</span>
                       </label>
                       <input
                         type="text"
@@ -200,13 +200,13 @@ export function DiscoveryForm() {
                         value={formData.fullName}
                         onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
                         placeholder="Alex Mercer"
-                        className="w-full px-3.5 py-2.5 rounded-xl border border-white/[0.12] text-base sm:text-sm text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 bg-[#090D16] transition-all"
+                        className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-white/[0.12] text-base sm:text-sm text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 bg-slate-50 dark:bg-[#090D16] transition-all"
                       />
                     </div>
 
                     <div className="space-y-1.5">
-                      <label className="text-xs font-semibold text-slate-300">
-                        Work Email <span className="text-rose-400">*</span>
+                      <label className="text-xs font-semibold text-slate-700 dark:text-slate-300">
+                        Work Email <span className="text-rose-500 dark:text-rose-400">*</span>
                       </label>
                       <input
                         type="email"
@@ -214,58 +214,58 @@ export function DiscoveryForm() {
                         value={formData.workEmail}
                         onChange={(e) => setFormData({ ...formData, workEmail: e.target.value })}
                         placeholder="alex@enterprise.com"
-                        className="w-full px-3.5 py-2.5 rounded-xl border border-white/[0.12] text-base sm:text-sm text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 bg-[#090D16] transition-all"
+                        className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-white/[0.12] text-base sm:text-sm text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 bg-slate-50 dark:bg-[#090D16] transition-all"
                       />
                     </div>
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="space-y-1.5">
-                      <label className="text-xs font-semibold text-slate-300">
+                      <label className="text-xs font-semibold text-slate-700 dark:text-slate-300">
                         Phone Number (Optional)
                       </label>
                       <div className="flex gap-2">
                         <select
                           value={formData.countryCode}
                           onChange={(e) => setFormData({ ...formData, countryCode: e.target.value })}
-                          className="px-2.5 py-2.5 rounded-xl border border-white/[0.12] text-base sm:text-xs text-white bg-[#090D16] focus:outline-none focus:border-blue-500"
+                          className="px-2.5 py-2.5 rounded-xl border border-slate-300 dark:border-white/[0.12] text-base sm:text-xs text-slate-900 dark:text-white bg-slate-50 dark:bg-[#090D16] focus:outline-none focus:border-blue-500"
                         >
-                          <option value="+1" className="bg-[#090D16] text-white">🇺🇸 +1</option>
-                          <option value="+44" className="bg-[#090D16] text-white">🇬🇧 +44</option>
-                          <option value="+971" className="bg-[#090D16] text-white">🇦🇪 +971</option>
-                          <option value="+65" className="bg-[#090D16] text-white">🇸🇬 +65</option>
-                          <option value="+91" className="bg-[#090D16] text-white">🇮🇳 +91</option>
+                          <option value="+1">🇺🇸 +1</option>
+                          <option value="+44">🇬🇧 +44</option>
+                          <option value="+971">🇦🇪 +971</option>
+                          <option value="+65">🇸🇬 +65</option>
+                          <option value="+91">🇮🇳 +91</option>
                         </select>
                         <input
                           type="tel"
                           value={formData.phone}
                           onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                           placeholder="(555) 000-0000"
-                          className="w-full px-3.5 py-2.5 rounded-xl border border-white/[0.12] text-base sm:text-sm text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 bg-[#090D16] transition-all"
+                          className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-white/[0.12] text-base sm:text-sm text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 bg-slate-50 dark:bg-[#090D16] transition-all"
                         />
                       </div>
                     </div>
 
                     <div className="space-y-1.5">
-                      <label className="text-xs font-semibold text-slate-300">
+                      <label className="text-xs font-semibold text-slate-700 dark:text-slate-300">
                         Primary Project Focus
                       </label>
                       <select
                         value={formData.primaryProjectFocus}
                         onChange={(e) => setFormData({ ...formData, primaryProjectFocus: e.target.value })}
-                        className="w-full px-3.5 py-2.5 rounded-xl border border-white/[0.12] text-base sm:text-sm text-white bg-[#090D16] focus:outline-none focus:border-blue-500"
+                        className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-white/[0.12] text-base sm:text-sm text-slate-900 dark:text-white bg-slate-50 dark:bg-[#090D16] focus:outline-none focus:border-blue-500"
                       >
-                        <option value="Custom Web / SaaS" className="bg-[#090D16] text-white">Custom Web Applications &amp; SaaS</option>
-                        <option value="Mobile App" className="bg-[#090D16] text-white">Native &amp; Cross-Platform Mobile</option>
-                        <option value="Attendance ERP" className="bg-[#090D16] text-white">Attendance &amp; Workforce ERP</option>
-                        <option value="Custom CRM" className="bg-[#090D16] text-white">Custom CRM &amp; Lead Engine</option>
-                        <option value="White-Label Squad" className="bg-[#090D16] text-white">White-Label Engineering Squad</option>
+                        <option value="Custom Web / SaaS">Custom Web Applications &amp; SaaS</option>
+                        <option value="Mobile App">Native &amp; Cross-Platform Mobile</option>
+                        <option value="Attendance ERP">Attendance &amp; Workforce ERP</option>
+                        <option value="Custom CRM">Custom CRM &amp; Lead Engine</option>
+                        <option value="White-Label Squad">White-Label Engineering Squad</option>
                       </select>
                     </div>
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="text-xs font-semibold text-slate-300">
+                    <label className="text-xs font-semibold text-slate-700 dark:text-slate-300">
                       Estimated Target Launch Timeline
                     </label>
                     <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
@@ -276,8 +276,8 @@ export function DiscoveryForm() {
                           onClick={() => setFormData({ ...formData, estimatedTimeline: opt })}
                           className={`py-2.5 px-3 min-h-[42px] rounded-lg text-xs font-semibold border transition-all cursor-pointer ${
                             formData.estimatedTimeline === opt
-                              ? "bg-blue-600 text-white border-blue-500 shadow-sm"
-                              : "bg-[#090D16] text-slate-300 border-white/[0.10] hover:border-white/[0.20] hover:text-white"
+                              ? "bg-blue-600 text-white border-blue-600 shadow-sm"
+                              : "bg-slate-50 dark:bg-[#090D16] text-slate-700 dark:text-slate-300 border-slate-300 dark:border-white/[0.10] hover:border-slate-400 dark:hover:border-white/[0.20] hover:text-slate-900 dark:hover:text-white"
                           }`}
                         >
                           {opt}
@@ -287,7 +287,7 @@ export function DiscoveryForm() {
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="text-xs font-semibold text-slate-300">
+                    <label className="text-xs font-semibold text-slate-700 dark:text-slate-300">
                       Project Overview / Requirements
                     </label>
                     <textarea
@@ -295,19 +295,19 @@ export function DiscoveryForm() {
                       value={formData.projectOverview}
                       onChange={(e) => setFormData({ ...formData, projectOverview: e.target.value })}
                       placeholder="Describe your system requirements, target users, or current technical bottlenecks..."
-                      className="w-full px-3.5 py-2.5 rounded-xl border border-white/[0.12] text-base sm:text-sm text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 bg-[#090D16] transition-all"
+                      className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-white/[0.12] text-base sm:text-sm text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 bg-slate-50 dark:bg-[#090D16] transition-all"
                     />
                   </div>
 
                   {/* ── "I'd like to sign an NDA" Toggle ── */}
-                  <div className="p-3.5 rounded-xl bg-[#090D16] border border-white/[0.08] flex items-center justify-between gap-3">
+                  <div className="p-3.5 rounded-xl bg-slate-50 dark:bg-[#090D16] border border-slate-200 dark:border-white/[0.08] flex items-center justify-between gap-3">
                     <div className="flex items-center gap-2.5">
-                      <div className="w-8 h-8 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 shrink-0">
+                      <div className="w-8 h-8 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-600 dark:text-blue-400 shrink-0">
                         <FileText className="w-4 h-4" />
                       </div>
                       <div>
-                        <span className="text-xs font-bold text-white">I&apos;d like to sign an NDA</span>
-                        <p className="text-[11px] text-slate-400">
+                        <span className="text-xs font-bold text-slate-900 dark:text-white">I&apos;d like to sign an NDA</span>
+                        <p className="text-[11px] text-slate-500 dark:text-slate-400">
                           Mutual non-disclosure agreement sent before technical review
                         </p>
                       </div>
@@ -318,7 +318,7 @@ export function DiscoveryForm() {
                       type="button"
                       onClick={() => setWantsNda(!wantsNda)}
                       className={`relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none ${
-                        wantsNda ? "bg-blue-600" : "bg-white/[0.15]"
+                        wantsNda ? "bg-blue-600" : "bg-slate-300 dark:bg-white/[0.15]"
                       }`}
                     >
                       <span
@@ -334,13 +334,13 @@ export function DiscoveryForm() {
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="btn-primary w-full py-3.5 text-sm font-bold cursor-pointer disabled:opacity-50"
+                      className="btn-primary w-full py-3.5 text-sm font-bold cursor-pointer disabled:opacity-50 text-white"
                     >
                       {isSubmitting ? "Analyzing Scope..." : "Submit Technical Discovery Brief"}
                     </button>
                   </div>
 
-                  <div className="flex items-center justify-center gap-2 text-xs text-slate-400 pt-1">
+                  <div className="flex items-center justify-center gap-2 text-xs text-slate-500 dark:text-slate-400 pt-1">
                     <Lock className="w-3.5 h-3.5" />
                     <span>Strict NDA Protected. Zero Spam Guaranteed.</span>
                   </div>

@@ -39,7 +39,7 @@ export function ServiceBento() {
   return (
     <section
       id="solutions"
-      className="py-24 lg:py-32 bg-[#070B14] border-t border-[#1F2937] scroll-mt-24 relative overflow-hidden text-white"
+      className="py-24 lg:py-32 bg-slate-50 dark:bg-[#070B14] border-t border-slate-200 dark:border-[#1F2937] scroll-mt-24 relative overflow-hidden text-slate-900 dark:text-white transition-colors duration-200"
     >
       {/* Background ambient lighting effects */}
       <div className="absolute top-1/4 left-10 w-[650px] h-[450px] bg-blue-600/10 rounded-full blur-[160px] pointer-events-none" />
@@ -70,24 +70,24 @@ export function ServiceBento() {
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div className="space-y-3.5 max-w-2xl">
               <div className="inline-flex items-center gap-2 flex-wrap">
-                <span className="font-mono text-xs font-semibold px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 flex items-center gap-1.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" />
+                <span className="font-mono text-xs font-semibold px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-600 dark:text-blue-400 flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
                   ENGINEERING DISCIPLINES
                 </span>
                 <span className="badge-emerald-proof">
-                  <CheckCircle2 className="w-3 h-3 text-emerald-400" />Fixed Sprints · Zero Tech Debt
+                  <CheckCircle2 className="w-3 h-3 text-emerald-600 dark:text-emerald-400" />Fixed Sprints · Zero Tech Debt
                 </span>
               </div>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-[-0.035em]">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-[-0.035em]">
                 Core Engineering Capabilities
               </h2>
-              <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
+              <p className="text-slate-600 dark:text-slate-400 text-sm sm:text-base leading-relaxed">
                 Production architectures built with typed codebases, automated CI/CD pipelines, and enterprise security standards.
               </p>
             </div>
 
             {/* Quick Filter Pill Controls */}
-            <div className="flex items-center flex-wrap gap-1.5 bg-[#0D1424]/90 p-1.5 rounded-2xl border border-[#1F2937] backdrop-blur-md">
+            <div className="flex items-center flex-wrap gap-1.5 bg-slate-200/80 dark:bg-[#0D1424]/90 p-1.5 rounded-2xl border border-slate-300 dark:border-[#1F2937] backdrop-blur-md">
               {[
                 { id: "all", label: "All Disciplines" },
                 { id: "web", label: "Web & SaaS" },
@@ -101,7 +101,7 @@ export function ServiceBento() {
                   className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all cursor-pointer ${
                     activeFilter === f.id
                       ? "bg-blue-600 text-white shadow-md shadow-blue-600/30"
-                      : "text-slate-400 hover:text-slate-200 hover:bg-white/5"
+                      : "text-slate-700 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 hover:bg-white/80 dark:hover:bg-white/5"
                   }`}
                 >
                   {f.label}
@@ -126,7 +126,7 @@ export function ServiceBento() {
               CARD 1: Web Applications & Enterprise SaaS (Wide - 7 cols)
               ═══════════════════════════════════════════════════════════════ */}
           <div
-            className={`col-span-12 lg:col-span-7 group relative bg-[#0D1424] border border-[#1F2937] hover:border-blue-500/50 rounded-3xl p-6 sm:p-8 transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/10 flex flex-col justify-between overflow-hidden ${
+            className={`col-span-12 lg:col-span-7 group relative bg-white dark:bg-[#0D1424] border border-slate-200 dark:border-[#1F2937] hover:border-blue-500/50 rounded-3xl p-6 sm:p-8 transition-all duration-300 shadow-md hover:shadow-xl dark:shadow-none dark:hover:shadow-2xl dark:hover:shadow-blue-500/10 flex flex-col justify-between overflow-hidden ${
               activeFilter !== "all" && activeFilter !== "web" ? "opacity-35 scale-[0.98]" : "opacity-100"
             }`}
           >
@@ -137,21 +137,21 @@ export function ServiceBento() {
               {/* Card Header */}
               <div className="flex items-center justify-between flex-wrap gap-2 mb-6">
                 <div className="flex items-center gap-3">
-                  <div className="w-11 h-11 rounded-2xl bg-blue-500/15 border border-blue-500/30 text-blue-400 flex items-center justify-center shrink-0 shadow-inner">
+                  <div className="w-11 h-11 rounded-2xl bg-blue-500/15 border border-blue-500/30 text-blue-600 dark:text-blue-400 flex items-center justify-center shrink-0 shadow-inner">
                     <Code2 className="w-5 h-5" />
                   </div>
                   <div>
-                    <span className="text-xs font-mono text-blue-400 font-semibold tracking-wider uppercase">
+                    <span className="text-xs font-mono text-blue-600 dark:text-blue-400 font-semibold tracking-wider uppercase">
                       Architecture &amp; Web Systems
                     </span>
-                    <h3 className="text-xl sm:text-2xl font-extrabold text-white tracking-tight">
+                    <h3 className="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white tracking-tight">
                       High-Concurrency Web Platforms
                     </h3>
                   </div>
                 </div>
 
-                <span className="px-3 py-1 rounded-full text-xs font-mono font-bold bg-blue-500/10 text-blue-300 border border-blue-500/25 flex items-center gap-1.5 shadow-sm">
-                  <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" />
+                <span className="px-3 py-1 rounded-full text-xs font-mono font-bold bg-blue-500/10 text-blue-700 dark:text-blue-300 border border-blue-500/25 flex items-center gap-1.5 shadow-sm">
+                  <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
                   &lt; 0.4s Sub-Second Paint
                 </span>
               </div>
@@ -159,27 +159,27 @@ export function ServiceBento() {
               {/* Main Content: Left details + Right interactive preview */}
               <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center mb-6">
                 <div className="md:col-span-6 space-y-3.5">
-                  <p className="text-sm text-slate-300 leading-relaxed">
+                  <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                     Scalable, fault-tolerant business platforms and multi-tenant SaaS built across Next.js 15, TypeScript, Node.js, and PostgreSQL. Strict zero-lock-in architectures with automated testing.
                   </p>
 
-                  <div className="space-y-2 pt-1 text-xs text-slate-400 font-medium">
+                  <div className="space-y-2 pt-1 text-xs text-slate-600 dark:text-slate-400 font-medium">
                     <div className="flex items-center gap-2">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-blue-400 shrink-0" />
+                      <CheckCircle2 className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400 shrink-0" />
                       <span>Next.js App Router &amp; Server Actions</span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-blue-400 shrink-0" />
+                      <CheckCircle2 className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400 shrink-0" />
                       <span>Multi-tenant RBAC &amp; SSO Auth Mesh</span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-blue-400 shrink-0" />
+                      <CheckCircle2 className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400 shrink-0" />
                       <span>100/100 Lighthouse Core Web Vitals</span>
                     </div>
                   </div>
                 </div>
 
-                {/* Interactive Code / Architecture Preview Box */}
+                {/* Interactive Code / Architecture Preview Box (Sleek Dark Console) */}
                 <div className="md:col-span-6 bg-[#070B14] border border-[#1F2937] group-hover:border-blue-500/40 rounded-2xl p-3.5 shadow-xl transition-all duration-300 relative overflow-hidden">
                   <div className="flex items-center justify-between pb-2.5 mb-2.5 border-b border-[#1F2937] text-[11px] font-mono text-slate-500">
                     <div className="flex items-center gap-1.5">
@@ -212,17 +212,17 @@ export function ServiceBento() {
             </div>
 
             {/* Footer */}
-            <div className="pt-4 border-t border-[#1F2937] flex flex-wrap items-center justify-between gap-3">
+            <div className="pt-4 border-t border-slate-200 dark:border-[#1F2937] flex flex-wrap items-center justify-between gap-3">
               <div className="flex flex-wrap gap-1.5">
                 {["Next.js 15", "TypeScript", "Tailwind CSS", "Node.js", "PostgreSQL", "Redis"].map((t) => (
-                  <span key={t} className="text-[11px] font-mono px-2.5 py-1 rounded-lg bg-white/[0.04] text-slate-300 border border-white/[0.08]">
+                  <span key={t} className="text-[11px] font-mono px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-white/[0.04] text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-white/[0.08]">
                     {t}
                   </span>
                 ))}
               </div>
               <button
                 onClick={openBookingModal}
-                className="text-xs font-bold text-blue-400 hover:text-blue-300 flex items-center gap-1.5 group-hover:translate-x-0.5 transition-transform cursor-pointer"
+                className="text-xs font-bold text-blue-600 dark:text-blue-400 hover:text-blue-500 dark:hover:text-blue-300 flex items-center gap-1.5 group-hover:translate-x-0.5 transition-transform cursor-pointer"
               >
                 <span>Scope Web Build</span>
                 <ArrowRight className="w-3.5 h-3.5" />
@@ -234,7 +234,7 @@ export function ServiceBento() {
               CARD 2: Mobile Apps (Native & Flutter) (Compact - 5 cols)
               ═══════════════════════════════════════════════════════════════ */}
           <div
-            className={`col-span-12 lg:col-span-5 group relative bg-[#0D1424] border border-[#1F2937] hover:border-indigo-500/50 rounded-3xl p-6 sm:p-8 transition-all duration-300 hover:shadow-2xl hover:shadow-indigo-500/10 flex flex-col justify-between overflow-hidden ${
+            className={`col-span-12 lg:col-span-5 group relative bg-white dark:bg-[#0D1424] border border-slate-200 dark:border-[#1F2937] hover:border-indigo-500/50 rounded-3xl p-6 sm:p-8 transition-all duration-300 shadow-md hover:shadow-xl dark:shadow-none dark:hover:shadow-2xl dark:hover:shadow-indigo-500/10 flex flex-col justify-between overflow-hidden ${
               activeFilter !== "all" && activeFilter !== "mobile" ? "opacity-35 scale-[0.98]" : "opacity-100"
             }`}
           >
@@ -245,21 +245,21 @@ export function ServiceBento() {
               {/* Card Header */}
               <div className="flex items-center justify-between flex-wrap gap-2 mb-6">
                 <div className="flex items-center gap-3">
-                  <div className="w-11 h-11 rounded-2xl bg-indigo-500/15 border border-indigo-500/30 text-indigo-400 flex items-center justify-center shrink-0 shadow-inner">
+                  <div className="w-11 h-11 rounded-2xl bg-indigo-500/15 border border-indigo-500/30 text-indigo-600 dark:text-indigo-400 flex items-center justify-center shrink-0 shadow-inner">
                     <Smartphone className="w-5 h-5" />
                   </div>
                   <div>
-                    <span className="text-xs font-mono text-indigo-400 font-semibold tracking-wider uppercase">
+                    <span className="text-xs font-mono text-indigo-600 dark:text-indigo-400 font-semibold tracking-wider uppercase">
                       Mobile Ecosystems
                     </span>
-                    <h3 className="text-xl sm:text-2xl font-extrabold text-white tracking-tight">
+                    <h3 className="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white tracking-tight">
                       Native &amp; Cross-Platform
                     </h3>
                   </div>
                 </div>
 
-                <span className="px-3 py-1 rounded-full text-xs font-mono font-bold bg-indigo-500/10 text-indigo-300 border border-indigo-500/25 flex items-center gap-1.5 shadow-sm">
-                  <span className="w-1.5 h-1.5 rounded-full bg-indigo-400 animate-pulse" />
+                <span className="px-3 py-1 rounded-full text-xs font-mono font-bold bg-indigo-500/10 text-indigo-700 dark:text-indigo-300 border border-indigo-500/25 flex items-center gap-1.5 shadow-sm">
+                  <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-pulse" />
                   60 FPS Native
                 </span>
               </div>
@@ -285,23 +285,23 @@ export function ServiceBento() {
                 </div>
               </div>
 
-              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed mb-4">
+              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
                 Production-grade mobile apps engineered with offline-first SQLite synchronization, hardware biometric security, and fluid 60 FPS gesture rendering.
               </p>
             </div>
 
             {/* Footer */}
-            <div className="pt-4 border-t border-[#1F2937] flex flex-wrap items-center justify-between gap-3">
+            <div className="pt-4 border-t border-slate-200 dark:border-[#1F2937] flex flex-wrap items-center justify-between gap-3">
               <div className="flex flex-wrap gap-1.5">
                 {["Flutter", "React Native", "Swift", "Kotlin", "SQLite"].map((t) => (
-                  <span key={t} className="text-[11px] font-mono px-2.5 py-1 rounded-lg bg-white/[0.04] text-slate-300 border border-white/[0.08]">
+                  <span key={t} className="text-[11px] font-mono px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-white/[0.04] text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-white/[0.08]">
                     {t}
                   </span>
                 ))}
               </div>
               <button
                 onClick={openBookingModal}
-                className="text-xs font-bold text-indigo-400 hover:text-indigo-300 flex items-center gap-1.5 group-hover:translate-x-0.5 transition-transform cursor-pointer"
+                className="text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 dark:hover:text-indigo-300 flex items-center gap-1.5 group-hover:translate-x-0.5 transition-transform cursor-pointer"
               >
                 <span>Scope Mobile</span>
                 <ArrowRight className="w-3.5 h-3.5" />
@@ -313,7 +313,7 @@ export function ServiceBento() {
               CARD 3: Commerce & Headless Checkout (Compact - 5 cols)
               ═══════════════════════════════════════════════════════════════ */}
           <div
-            className={`col-span-12 lg:col-span-5 group relative bg-[#0D1424] border border-[#1F2937] hover:border-purple-500/50 rounded-3xl p-6 sm:p-8 transition-all duration-300 hover:shadow-2xl hover:shadow-purple-500/10 flex flex-col justify-between overflow-hidden ${
+            className={`col-span-12 lg:col-span-5 group relative bg-white dark:bg-[#0D1424] border border-slate-200 dark:border-[#1F2937] hover:border-purple-500/50 rounded-3xl p-6 sm:p-8 transition-all duration-300 shadow-md hover:shadow-xl dark:shadow-none dark:hover:shadow-2xl dark:hover:shadow-purple-500/10 flex flex-col justify-between overflow-hidden ${
               activeFilter !== "all" && activeFilter !== "commerce" ? "opacity-35 scale-[0.98]" : "opacity-100"
             }`}
           >
@@ -324,21 +324,21 @@ export function ServiceBento() {
               {/* Card Header */}
               <div className="flex items-center justify-between flex-wrap gap-2 mb-6">
                 <div className="flex items-center gap-3">
-                  <div className="w-11 h-11 rounded-2xl bg-purple-500/15 border border-purple-500/30 text-purple-400 flex items-center justify-center shrink-0 shadow-inner">
+                  <div className="w-11 h-11 rounded-2xl bg-purple-500/15 border border-purple-500/30 text-purple-600 dark:text-purple-400 flex items-center justify-center shrink-0 shadow-inner">
                     <ShoppingBag className="w-5 h-5" />
                   </div>
                   <div>
-                    <span className="text-xs font-mono text-purple-400 font-semibold tracking-wider uppercase">
+                    <span className="text-xs font-mono text-purple-600 dark:text-purple-400 font-semibold tracking-wider uppercase">
                       Commerce Engines
                     </span>
-                    <h3 className="text-xl sm:text-2xl font-extrabold text-white tracking-tight">
+                    <h3 className="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white tracking-tight">
                       Omnichannel &amp; Headless
                     </h3>
                   </div>
                 </div>
 
-                <span className="px-3 py-1 rounded-full text-xs font-mono font-bold bg-purple-500/10 text-purple-300 border border-purple-500/25 flex items-center gap-1.5 shadow-sm">
-                  <span className="w-1.5 h-1.5 rounded-full bg-purple-400 animate-pulse" />
+                <span className="px-3 py-1 rounded-full text-xs font-mono font-bold bg-purple-500/10 text-purple-700 dark:text-purple-300 border border-purple-500/25 flex items-center gap-1.5 shadow-sm">
+                  <span className="w-1.5 h-1.5 rounded-full bg-purple-500 animate-pulse" />
                   99.99% Resilience
                 </span>
               </div>
@@ -368,23 +368,23 @@ export function ServiceBento() {
                 </div>
               </div>
 
-              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed mb-4">
+              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
                 Ultra-fast headless digital storefronts, multi-region catalog synchronization, and resilient global payment gateways engineered for zero drop-off.
               </p>
             </div>
 
             {/* Footer */}
-            <div className="pt-4 border-t border-[#1F2937] flex flex-wrap items-center justify-between gap-3">
+            <div className="pt-4 border-t border-slate-200 dark:border-[#1F2937] flex flex-wrap items-center justify-between gap-3">
               <div className="flex flex-wrap gap-1.5">
                 {["Headless Shopify", "Medusa", "Stripe", "Adyen", "Redis"].map((t) => (
-                  <span key={t} className="text-[11px] font-mono px-2.5 py-1 rounded-lg bg-white/[0.04] text-slate-300 border border-white/[0.08]">
+                  <span key={t} className="text-[11px] font-mono px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-white/[0.04] text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-white/[0.08]">
                     {t}
                   </span>
                 ))}
               </div>
               <button
                 onClick={openBookingModal}
-                className="text-xs font-bold text-purple-400 hover:text-purple-300 flex items-center gap-1.5 group-hover:translate-x-0.5 transition-transform cursor-pointer"
+                className="text-xs font-bold text-purple-600 dark:text-purple-400 hover:text-purple-500 dark:hover:text-purple-300 flex items-center gap-1.5 group-hover:translate-x-0.5 transition-transform cursor-pointer"
               >
                 <span>Scope Commerce</span>
                 <ArrowRight className="w-3.5 h-3.5" />
@@ -396,7 +396,7 @@ export function ServiceBento() {
               CARD 4: Enterprise Middleware & Cloud APIs (Wide - 7 cols)
               ═══════════════════════════════════════════════════════════════ */}
           <div
-            className={`col-span-12 lg:col-span-7 group relative bg-[#0D1424] border border-[#1F2937] hover:border-cyan-500/50 rounded-3xl p-6 sm:p-8 transition-all duration-300 hover:shadow-2xl hover:shadow-cyan-500/10 flex flex-col justify-between overflow-hidden ${
+            className={`col-span-12 lg:col-span-7 group relative bg-white dark:bg-[#0D1424] border border-slate-200 dark:border-[#1F2937] hover:border-cyan-500/50 rounded-3xl p-6 sm:p-8 transition-all duration-300 shadow-md hover:shadow-xl dark:shadow-none dark:hover:shadow-2xl dark:hover:shadow-cyan-500/10 flex flex-col justify-between overflow-hidden ${
               activeFilter !== "all" && activeFilter !== "cloud" ? "opacity-35 scale-[0.98]" : "opacity-100"
             }`}
           >
@@ -407,21 +407,21 @@ export function ServiceBento() {
               {/* Card Header */}
               <div className="flex items-center justify-between flex-wrap gap-2 mb-6">
                 <div className="flex items-center gap-3">
-                  <div className="w-11 h-11 rounded-2xl bg-cyan-500/15 border border-cyan-500/30 text-cyan-400 flex items-center justify-center shrink-0 shadow-inner">
+                  <div className="w-11 h-11 rounded-2xl bg-cyan-500/15 border border-cyan-500/30 text-cyan-600 dark:text-cyan-400 flex items-center justify-center shrink-0 shadow-inner">
                     <Workflow className="w-5 h-5" />
                   </div>
                   <div>
-                    <span className="text-xs font-mono text-cyan-400 font-semibold tracking-wider uppercase">
+                    <span className="text-xs font-mono text-cyan-600 dark:text-cyan-400 font-semibold tracking-wider uppercase">
                       Distributed Middleware
                     </span>
-                    <h3 className="text-xl sm:text-2xl font-extrabold text-white tracking-tight">
+                    <h3 className="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white tracking-tight">
                       API Pipelines &amp; Automation Mesh
                     </h3>
                   </div>
                 </div>
 
-                <span className="px-3 py-1 rounded-full text-xs font-mono font-bold bg-cyan-500/10 text-cyan-300 border border-cyan-500/25 flex items-center gap-1.5 shadow-sm">
-                  <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
+                <span className="px-3 py-1 rounded-full text-xs font-mono font-bold bg-cyan-500/10 text-cyan-700 dark:text-cyan-300 border border-cyan-500/25 flex items-center gap-1.5 shadow-sm">
+                  <span className="w-1.5 h-1.5 rounded-full bg-cyan-500 animate-pulse" />
                   &lt; 25ms Webhooks
                 </span>
               </div>
@@ -429,21 +429,21 @@ export function ServiceBento() {
               {/* Main Content: Left details + Right pipeline diagram */}
               <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center mb-6">
                 <div className="md:col-span-6 space-y-3.5">
-                  <p className="text-sm text-slate-300 leading-relaxed">
+                  <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                     Connect fragmented enterprise ERPs, CRMs, and third-party systems into unified event-driven pipelines. High-throughput webhooks, Kafka streaming, and robust automated ETL flows.
                   </p>
 
-                  <div className="space-y-2 pt-1 text-xs text-slate-400 font-medium">
+                  <div className="space-y-2 pt-1 text-xs text-slate-600 dark:text-slate-400 font-medium">
                     <div className="flex items-center gap-2">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
+                      <CheckCircle2 className="w-3.5 h-3.5 text-cyan-600 dark:text-cyan-400 shrink-0" />
                       <span>Event-driven Kafka queues &amp; retry mesh</span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
+                      <CheckCircle2 className="w-3.5 h-3.5 text-cyan-600 dark:text-cyan-400 shrink-0" />
                       <span>Tamper-proof SHA-256 audit trails</span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
+                      <CheckCircle2 className="w-3.5 h-3.5 text-cyan-600 dark:text-cyan-400 shrink-0" />
                       <span>FastAPI, Python &amp; Go microservices</span>
                     </div>
                   </div>
@@ -477,17 +477,17 @@ export function ServiceBento() {
             </div>
 
             {/* Footer */}
-            <div className="pt-4 border-t border-[#1F2937] flex flex-wrap items-center justify-between gap-3">
+            <div className="pt-4 border-t border-slate-200 dark:border-[#1F2937] flex flex-wrap items-center justify-between gap-3">
               <div className="flex flex-wrap gap-1.5">
                 {["REST APIs", "GraphQL", "FastAPI", "Python", "Go", "Docker", "AWS"].map((t) => (
-                  <span key={t} className="text-[11px] font-mono px-2.5 py-1 rounded-lg bg-white/[0.04] text-slate-300 border border-white/[0.08]">
+                  <span key={t} className="text-[11px] font-mono px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-white/[0.04] text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-white/[0.08]">
                     {t}
                   </span>
                 ))}
               </div>
               <button
                 onClick={openBookingModal}
-                className="text-xs font-bold text-cyan-400 hover:text-cyan-300 flex items-center gap-1.5 group-hover:translate-x-0.5 transition-transform cursor-pointer"
+                className="text-xs font-bold text-cyan-600 dark:text-cyan-400 hover:text-cyan-500 dark:hover:text-cyan-300 flex items-center gap-1.5 group-hover:translate-x-0.5 transition-transform cursor-pointer"
               >
                 <span>Scope Integration</span>
                 <ArrowRight className="w-3.5 h-3.5" />

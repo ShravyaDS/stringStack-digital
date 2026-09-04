@@ -27,7 +27,7 @@ export function FAQSection() {
   };
 
   return (
-    <section id="faq" className="py-28 lg:py-36 bg-[#090D16] border-t border-[#1F2937] relative overflow-hidden scroll-mt-24">
+    <section id="faq" className="py-28 lg:py-36 bg-slate-50 dark:bg-[#090D16] border-t border-slate-200 dark:border-[#1F2937] relative overflow-hidden scroll-mt-24 transition-colors duration-200">
       {/* Soft brand blue ambient glow */}
       <div className="absolute -bottom-20 -right-20 w-[600px] h-[600px] bg-blue-600/[0.04] rounded-full blur-[110px] pointer-events-none" />
 
@@ -37,10 +37,10 @@ export function FAQSection() {
         <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-16 gap-6">
           <div className="space-y-3">
             <span className="section-label">Engineering Engagement FAQ</span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-[-0.03em] leading-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-[-0.03em] leading-tight">
               Frequently Asked Questions
             </h2>
-            <p className="text-slate-400 text-sm sm:text-base leading-relaxed max-w-xl">
+            <p className="text-slate-600 dark:text-slate-400 text-sm sm:text-base leading-relaxed max-w-xl">
               Direct answers on team onboarding, IP assignment, sprint cadences, and custom hardware/ERP integrations.
             </p>
           </div>
@@ -48,9 +48,9 @@ export function FAQSection() {
           {/* Quick Toggle: Expand All / Collapse All */}
           <button
             onClick={toggleAll}
-            className="self-start sm:self-end flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-[#1F2937] bg-[#111827] hover:bg-[#162238] hover:border-blue-500/40 text-xs font-semibold text-slate-300 shadow-2xs transition-all cursor-pointer"
+            className="self-start sm:self-end flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-[#1F2937] bg-white dark:bg-[#111827] hover:bg-slate-100 dark:hover:bg-[#162238] hover:border-blue-500/40 text-xs font-semibold text-slate-700 dark:text-slate-300 shadow-2xs transition-all cursor-pointer"
           >
-            {isAllOpen ? <EyeOff className="w-3.5 h-3.5 text-slate-400" /> : <Eye className="w-3.5 h-3.5 text-blue-400" />}
+            {isAllOpen ? <EyeOff className="w-3.5 h-3.5 text-slate-500 dark:text-slate-400" /> : <Eye className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />}
             <span>{isAllOpen ? "Collapse All" : "Expand All"}</span>
           </button>
         </div>
@@ -62,10 +62,10 @@ export function FAQSection() {
             return (
               <div
                 key={faq.question}
-                className={`rounded-xl bg-[#111827] border transition-all duration-200 p-5 sm:p-6 ${
+                className={`rounded-xl bg-white dark:bg-[#111827] border transition-all duration-200 p-5 sm:p-6 shadow-sm ${
                   isOpen
-                    ? "border-blue-500/40 shadow-[0_4px_24px_rgba(59,130,246,0.1)] ring-1 ring-blue-500/15"
-                    : "border-[#1F2937] shadow-[0_4px_20px_rgba(0,0,0,0.25)] hover:border-white/[0.16]"
+                    ? "border-blue-500/60 shadow-[0_4px_24px_rgba(59,130,246,0.1)] ring-1 ring-blue-500/15"
+                    : "border-slate-200 dark:border-[#1F2937] dark:shadow-[0_4px_20px_rgba(0,0,0,0.25)] hover:border-blue-400 dark:hover:border-white/[0.16]"
                 }`}
               >
                 {/* Question Trigger Row */}
@@ -74,10 +74,10 @@ export function FAQSection() {
                   className="w-full text-left flex items-center justify-between gap-4 cursor-pointer group"
                 >
                   <div className="flex items-center gap-3.5">
-                    <span className="text-[11px] font-mono font-bold text-blue-400 bg-blue-500/10 border border-blue-500/20 px-2 py-0.5 rounded-md shrink-0">
+                    <span className="text-[11px] font-mono font-bold text-blue-600 dark:text-blue-400 bg-blue-500/10 border border-blue-500/20 px-2 py-0.5 rounded-md shrink-0">
                       0{index + 1}
                     </span>
-                    <span className="font-bold text-sm sm:text-base text-white group-hover:text-blue-400 transition-colors">
+                    <span className="font-bold text-sm sm:text-base text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                       {faq.question}
                     </span>
                   </div>
@@ -87,25 +87,25 @@ export function FAQSection() {
                     className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full border flex items-center justify-center shrink-0 transition-all duration-300 ${
                       isOpen
                         ? "border-blue-500 bg-blue-600 text-white shadow-xs"
-                        : "border-white/[0.12] text-slate-400 bg-[#090D16] group-hover:border-blue-500 group-hover:text-blue-400"
+                        : "border-slate-300 dark:border-white/[0.12] text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-[#090D16] group-hover:border-blue-500 group-hover:text-blue-600 dark:group-hover:text-blue-400"
                     }`}
                   >
                     <Plus
                       className={`w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[2] transition-transform duration-300 ${
-                        isOpen ? "rotate-45 text-white" : "rotate-0"
+                        isOpen ? "rotate-45 text-white" : "rotate-0 text-slate-500 dark:text-slate-400"
                       }`}
                     />
                   </div>
                 </button>
 
-                {/* Dark Explanation Card (Shows ONLY when expanded, stays open so it doesn't get hidden) */}
+                {/* Explanation Card (Shows ONLY when expanded, stays open so it doesn't get hidden) */}
                 {isOpen && (
-                  <div className="mt-4 p-5 sm:p-6 rounded-xl bg-[#090D16] border border-white/[0.08] shadow-inner text-slate-200 animate-in fade-in duration-200">
-                    <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-blue-400 mb-2">
-                      <span className="w-1.5 h-1.5 rounded-full bg-blue-400" />
+                  <div className="mt-4 p-5 sm:p-6 rounded-xl bg-slate-50 dark:bg-[#090D16] border border-slate-200 dark:border-white/[0.08] shadow-inner text-slate-700 dark:text-slate-200 animate-in fade-in duration-200">
+                    <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400 mb-2">
+                      <span className="w-1.5 h-1.5 rounded-full bg-blue-600 dark:bg-blue-400" />
                       <span>SprintStack Engagement Protocol</span>
                     </div>
-                    <p className="text-slate-300 text-xs sm:text-sm leading-relaxed">
+                    <p className="text-slate-600 dark:text-slate-300 text-xs sm:text-sm leading-relaxed">
                       {faq.answer}
                     </p>
                   </div>
@@ -115,15 +115,15 @@ export function FAQSection() {
           })}
         </div>
 
-        {/* Bottom Architect Callout (Executive Dark Card) */}
-        <div className="mt-14 p-6 sm:p-8 rounded-2xl bg-[#0E1626] border border-white/[0.08] shadow-[0_8px_32px_rgba(0,0,0,0.3)] flex flex-col sm:flex-row items-center justify-between gap-6 text-white">
+        {/* Bottom Architect Callout (Executive Card) */}
+        <div className="mt-14 p-6 sm:p-8 rounded-2xl bg-white dark:bg-[#0E1626] border border-slate-200 dark:border-white/[0.08] shadow-md dark:shadow-[0_8px_32px_rgba(0,0,0,0.3)] flex flex-col sm:flex-row items-center justify-between gap-6 text-slate-900 dark:text-white">
           <div className="flex items-center gap-4 text-center sm:text-left">
-            <div className="w-11 h-11 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 shrink-0">
+            <div className="w-11 h-11 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-600 dark:text-blue-400 shrink-0">
               <HelpCircle className="w-5 h-5" />
             </div>
             <div>
-              <div className="text-sm sm:text-base font-bold text-white">Have a custom compliance or architecture requirement?</div>
-              <p className="text-xs sm:text-sm text-slate-400 mt-0.5">Speak directly with senior engineers who design and ship production systems.</p>
+              <div className="text-sm sm:text-base font-bold text-slate-900 dark:text-white">Have a custom compliance or architecture requirement?</div>
+              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 mt-0.5">Speak directly with senior engineers who design and ship production systems.</p>
             </div>
           </div>
 

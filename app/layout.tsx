@@ -100,6 +100,8 @@ export const metadata: Metadata = {
   },
 };
 
+import { ThemeProvider } from "@/components/ThemeProvider";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -110,8 +112,27 @@ export default function RootLayout({
   const softwareAppSchema = generateSoftwareApplicationSchema();
 
   return (
-    <html lang="en" className={`dark ${inter.variable} ${jetbrainsMono.variable}`}>
+    <html lang="en" suppressHydrationWarning className={`dark ${inter.variable} ${jetbrainsMono.variable}`}>
       <head>
+        {/* Anti-flicker theme initialization script */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              try {
+                const saved = localStorage.getItem('sprintstack_theme');
+                if (saved === 'light') {
+                  document.documentElement.classList.add('light');
+                  document.documentElement.classList.remove('dark');
+                  document.documentElement.setAttribute('data-theme', 'light');
+                } else {
+                  document.documentElement.classList.add('dark');
+                  document.documentElement.classList.remove('light');
+                  document.documentElement.setAttribute('data-theme', 'dark');
+                }
+              } catch (e) {}
+            `,
+          }}
+        />
         {/* Structured Schema Markup */}
         <script
           type="application/ld+json"
@@ -127,13 +148,15 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-screen font-sans flex flex-col antialiased bg-[#090D16] text-[#F8FAFC] selection:bg-blue-600/30 selection:text-blue-200">
-        <ModalProvider>
-          <ScrollRevealProvider>
-            <Navigation />
-            <main className="flex-1">{children}</main>
-            <Footer />
-          </ScrollRevealProvider>
-        </ModalProvider>
+        <ThemeProvider>
+          <ModalProvider>
+            <ScrollRevealProvider>
+              <Navigation />
+              <main className="flex-1">{children}</main>
+              <Footer />
+            </ScrollRevealProvider>
+          </ModalProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

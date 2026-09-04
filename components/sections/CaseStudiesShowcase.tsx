@@ -102,44 +102,39 @@ export function CaseStudiesShowcase() {
   return (
     <section
       id="case-studies"
-      className="dark-section py-20 md:py-28 relative overflow-hidden"
-      style={{ background: "linear-gradient(180deg, #0E1623 0%, #090D16 100%)" }}
+      className="py-20 md:py-28 bg-slate-50 dark:bg-[#090D16] text-slate-900 dark:text-white relative overflow-hidden border-t border-slate-200 dark:border-[#1F2937] transition-colors duration-200"
     >
       {/* Ambient glows */}
-      <div className="absolute top-1/3 left-0 w-[600px] h-[500px] pointer-events-none blur-[140px]"
+      <div className="absolute top-1/3 left-0 w-[600px] h-[500px] pointer-events-none blur-[140px] opacity-40 dark:opacity-100"
         style={{ background: "radial-gradient(circle, rgba(59,130,246,0.10) 0%, transparent 70%)" }} />
-      <div className="absolute bottom-10 right-0 w-[500px] h-[400px] pointer-events-none blur-[120px]"
+      <div className="absolute bottom-10 right-0 w-[500px] h-[400px] pointer-events-none blur-[120px] opacity-40 dark:opacity-100"
         style={{ background: "radial-gradient(circle, rgba(59,130,246,0.08) 0%, transparent 70%)" }} />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
         {/* ── Section Header ── */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6 pb-8"
-          style={{ borderBottom: "1px solid rgba(255,255,255,0.07)" }}>
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6 pb-8 border-b border-slate-200 dark:border-white/[0.08]">
           <div className="space-y-4">
             <div>
               <span className="section-label">Featured Case Studies</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-[1.1]">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 dark:text-white tracking-tight leading-[1.1]">
               Engineering{" "}
-              <span className="text-gradient-hero">Excellence in Action</span>
+              <span className="text-blue-600 dark:text-gradient-hero">Excellence in Action</span>
             </h2>
           </div>
 
           {/* Story selector tabs */}
-          <div className="flex items-center gap-1.5 p-1 rounded-2xl" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.08)" }}>
+          <div className="flex items-center gap-1.5 p-1 rounded-2xl bg-white dark:bg-white/[0.05] border border-slate-200 dark:border-white/[0.08] shadow-xs">
             {CASE_STUDIES.map((study, idx) => (
               <button
                 key={study.id}
                 onClick={() => setActiveStudyIndex(idx)}
-                className="px-4 py-2 rounded-xl text-xs font-semibold cursor-pointer transition-all duration-200"
-                style={{
-                  background: idx === activeStudyIndex
-                    ? "linear-gradient(135deg, #6366F1, #5B21B6)"
-                    : "transparent",
-                  color: idx === activeStudyIndex ? "#fff" : "#6B6A78",
-                  boxShadow: idx === activeStudyIndex ? "0 4px 16px rgba(99,102,241,0.28)" : "none",
-                }}
+                className={`px-4 py-2 rounded-xl text-xs font-semibold cursor-pointer transition-all duration-200 ${
+                  idx === activeStudyIndex
+                    ? "bg-blue-600 text-white shadow-md shadow-blue-500/25"
+                    : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/[0.04]"
+                }`}
               >
                 Story {String(idx + 1).padStart(2, "0")}
               </button>
@@ -148,14 +143,7 @@ export function CaseStudiesShowcase() {
         </div>
 
         {/* ── Main Case Study Card ── */}
-        <div
-          className="rounded-2xl overflow-hidden"
-          style={{
-            background: "linear-gradient(135deg, rgba(22,32,50,0.7) 0%, rgba(14,20,36,0.9) 100%)",
-            border: "1px solid rgba(255,255,255,0.1)",
-            boxShadow: "0 16px 64px rgba(0,0,0,0.5)",
-          }}
-        >
+        <div className="rounded-2xl overflow-hidden bg-white dark:bg-[#0D1424] border border-slate-200 dark:border-white/[0.1] shadow-xl dark:shadow-[0_16px_64px_rgba(0,0,0,0.5)]">
           <div className="grid grid-cols-1 lg:grid-cols-12">
 
             {/* Left: Story Content (7 cols) */}
@@ -163,52 +151,52 @@ export function CaseStudiesShowcase() {
               <div className="space-y-6">
                 {/* Eyebrow */}
                 <div className="flex items-center justify-between flex-wrap gap-2">
-                  <span className="text-[11px] font-semibold uppercase tracking-widest" style={{ color: "#818CF8" }}>
+                  <span className="text-[11px] font-semibold uppercase tracking-widest text-blue-600 dark:text-[#818CF8]">
                     Case Study • {activeStudy.eyebrow}
                   </span>
-                  <span className="text-xs text-[#6B6A78]">
+                  <span className="text-xs text-slate-500 dark:text-slate-400">
                     {activeStudy.clientRegion} · {activeStudy.clientIndustry}
                   </span>
                 </div>
 
                 {/* Headline */}
-                <h3 className="text-3xl sm:text-4xl font-bold text-white tracking-tight leading-[1.15]">
-                  <span className="text-gradient-blue-violet">{activeStudy.gradientVerb}</span>
+                <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 dark:text-white tracking-tight leading-[1.15]">
+                  <span className="text-blue-600 dark:text-indigo-400">{activeStudy.gradientVerb}</span>
                   {activeStudy.titleSuffix}
                 </h3>
 
                 {/* Summary */}
-                <p className="text-[#A3A2B0] text-base leading-relaxed">{activeStudy.summary}</p>
+                <p className="text-slate-600 dark:text-slate-300 text-base leading-relaxed">{activeStudy.summary}</p>
 
                 {/* Challenge vs Solution */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div className="p-4 rounded-xl space-y-2" style={{ background: "rgba(245,158,11,0.06)", border: "1px solid rgba(245,158,11,0.15)" }}>
-                    <span className="text-[11px] font-semibold uppercase tracking-wider block" style={{ color: "#FBBF24" }}>The Challenge</span>
-                    <p className="text-xs text-[#A3A2B0] leading-relaxed">{activeStudy.challenge}</p>
+                  <div className="p-4 rounded-xl space-y-2 bg-amber-500/[0.08] border border-amber-500/20 dark:bg-amber-500/[0.06] dark:border-amber-500/15">
+                    <span className="text-[11px] font-semibold uppercase tracking-wider block text-amber-700 dark:text-[#FBBF24]">The Challenge</span>
+                    <p className="text-xs text-slate-700 dark:text-slate-300 leading-relaxed">{activeStudy.challenge}</p>
                   </div>
-                  <div className="p-4 rounded-xl space-y-2" style={{ background: "rgba(16,185,129,0.06)", border: "1px solid rgba(16,185,129,0.15)" }}>
-                    <span className="text-[11px] font-semibold uppercase tracking-wider block" style={{ color: "#34D399" }}>The Architecture</span>
-                    <p className="text-xs text-[#A3A2B0] leading-relaxed">{activeStudy.solution}</p>
+                  <div className="p-4 rounded-xl space-y-2 bg-emerald-500/[0.08] border border-emerald-500/20 dark:bg-emerald-500/[0.06] dark:border-emerald-500/15">
+                    <span className="text-[11px] font-semibold uppercase tracking-wider block text-emerald-700 dark:text-[#34D399]">The Architecture</span>
+                    <p className="text-xs text-slate-700 dark:text-slate-300 leading-relaxed">{activeStudy.solution}</p>
                   </div>
                 </div>
 
                 {/* Metrics */}
-                <div className="grid grid-cols-3 gap-4 pt-4" style={{ borderTop: "1px solid rgba(255,255,255,0.07)" }}>
+                <div className="grid grid-cols-3 gap-4 pt-4 border-t border-slate-200 dark:border-white/[0.08]">
                   {activeStudy.metrics.map((metric, idx) => (
                     <div key={idx}>
-                      <div className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">{metric.value}</div>
-                      <div className="text-xs text-[#6B6A78] mt-0.5">{metric.label}</div>
+                      <div className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">{metric.value}</div>
+                      <div className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">{metric.label}</div>
                     </div>
                   ))}
                 </div>
               </div>
 
               {/* Footer: Tech stack + CTAs */}
-              <div className="space-y-5 pt-2" style={{ borderTop: "1px solid rgba(255,255,255,0.07)" }}>
+              <div className="space-y-5 pt-2 border-t border-slate-200 dark:border-white/[0.08]">
                 <div className="flex flex-wrap items-center gap-1.5">
-                  <span className="text-[10px] font-semibold uppercase tracking-widest text-[#6B6A78] mr-1">Stack:</span>
+                  <span className="text-[10px] font-semibold uppercase tracking-widest text-slate-500 dark:text-slate-400 mr-1">Stack:</span>
                   {activeStudy.techStack.map((tech) => (
-                    <span key={tech} className="tech-pill">{tech}</span>
+                    <span key={tech} className="px-2.5 py-1 rounded-md text-xs font-mono bg-slate-100 dark:bg-white/[0.06] text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-white/[0.08]">{tech}</span>
                   ))}
                 </div>
 
@@ -222,12 +210,7 @@ export function CaseStudiesShowcase() {
                   </button>
                   <button
                     onClick={openDemoModal}
-                    className="inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-sm font-medium cursor-pointer transition-all"
-                    style={{
-                      background: "rgba(16,185,129,0.08)",
-                      border: "1px solid rgba(16,185,129,0.2)",
-                      color: "#34D399",
-                    }}
+                    className="inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-sm font-medium cursor-pointer transition-all bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 text-emerald-700 dark:text-emerald-400"
                   >
                     <Play className="w-3.5 h-3.5 fill-current" />
                     Launch Live Interactive Sandbox
@@ -237,7 +220,7 @@ export function CaseStudiesShowcase() {
             </div>
 
             {/* Right: Image (5 cols) */}
-            <div className="lg:col-span-5 relative min-h-[300px] lg:min-h-auto" style={{ borderLeft: "1px solid rgba(255,255,255,0.07)" }}>
+            <div className="lg:col-span-5 relative min-h-[300px] lg:min-h-auto border-t lg:border-t-0 lg:border-l border-slate-200 dark:border-white/[0.08]">
               <Image
                 src={activeStudy.imageSrc}
                 alt={activeStudy.tagline}
@@ -246,23 +229,16 @@ export function CaseStudiesShowcase() {
                 sizes="(max-width: 1024px) 100vw, 42vw"
                 priority
               />
-              <div className="absolute inset-0"
-                style={{ background: "linear-gradient(to top, rgba(14,20,36,0.7) 0%, transparent 40%), linear-gradient(to right, rgba(14,20,36,0.5), transparent 50%)" }} />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 lg:from-slate-900/40 to-transparent" />
 
               {/* Verified stamp */}
               <div
-                className="absolute bottom-5 right-5 p-3.5 rounded-2xl flex items-center gap-3"
-                style={{
-                  background: "rgba(14,20,36,0.92)",
-                  border: "1px solid rgba(255,255,255,0.1)",
-                  backdropFilter: "blur(16px)",
-                  boxShadow: "0 8px 32px rgba(0,0,0,0.5)",
-                }}
+                className="absolute bottom-5 right-5 p-3.5 rounded-2xl flex items-center gap-3 bg-white/95 dark:bg-[#0E1424]/95 border border-slate-200 dark:border-white/[0.1] backdrop-blur-md shadow-xl"
               >
-                <ShieldCheck className="w-5 h-5 text-emerald-400 shrink-0" />
+                <ShieldCheck className="w-5 h-5 text-emerald-600 dark:text-emerald-400 shrink-0" />
                 <div>
-                  <span className="text-white text-xs font-bold block">Production Deployed</span>
-                  <span className="text-[10px] text-[#6B6A78]">100% IP Transferred</span>
+                  <span className="text-slate-900 dark:text-white text-xs font-bold block">Production Deployed</span>
+                  <span className="text-[10px] text-slate-500 dark:text-slate-400">100% IP Transferred</span>
                 </div>
               </div>
             </div>

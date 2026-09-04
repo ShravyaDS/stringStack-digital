@@ -40,7 +40,7 @@ const TRUST_METRICS = [
 
 export function TrustBanner() {
   return (
-    <section className="relative py-12 sm:py-16 bg-[#090D16] border-y border-[#1F2937] text-white overflow-hidden">
+    <section className="relative py-12 sm:py-16 bg-slate-50 dark:bg-[#090D16] border-y border-slate-200 dark:border-[#1F2937] text-slate-900 dark:text-white overflow-hidden transition-colors duration-200">
       {/* Background ambient lighting */}
       <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-96 h-96 bg-blue-600/5 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-96 h-96 bg-emerald-600/5 rounded-full blur-3xl pointer-events-none" />
@@ -53,10 +53,7 @@ export function TrustBanner() {
             return (
               <div
                 key={metric.title}
-                className="group relative bg-[#0D1322]/80 backdrop-blur-sm border border-[#1F2937] hover:border-slate-600/60 rounded-2xl p-5 sm:p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/50 flex flex-col justify-between"
-                style={{
-                  boxShadow: "0 4px 20px -2px rgba(0,0,0,0.4)",
-                }}
+                className="group relative bg-white dark:bg-[#0D1322]/80 backdrop-blur-sm border border-slate-200 dark:border-[#1F2937] hover:border-blue-400 dark:hover:border-slate-600/60 rounded-2xl p-5 sm:p-6 transition-all duration-300 hover:-translate-y-1 shadow-sm hover:shadow-md dark:shadow-none dark:hover:shadow-xl dark:hover:shadow-black/50 flex flex-col justify-between"
               >
                 {/* Subtle top card glow line on hover */}
                 <div
@@ -93,19 +90,19 @@ export function TrustBanner() {
                   </div>
 
                   {/* Title */}
-                  <h3 className="text-base font-bold text-white tracking-tight group-hover:text-slate-100 transition-colors mb-2">
+                  <h3 className="text-base font-bold text-slate-900 dark:text-white tracking-tight group-hover:text-blue-600 dark:group-hover:text-slate-100 transition-colors mb-2">
                     {metric.title}
                   </h3>
 
                   {/* Description */}
-                  <p className="text-xs text-slate-400 leading-relaxed font-normal">
+                  <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed font-normal">
                     {metric.desc}
                   </p>
                 </div>
 
                 {/* Bottom subtle checkmark indicator */}
-                <div className="mt-4 pt-3 border-t border-[#1F2937]/70 flex items-center gap-1.5 text-[11px] font-mono text-slate-500 group-hover:text-slate-400 transition-colors">
-                  <CheckCircle className="w-3.5 h-3.5 text-emerald-400/80" />
+                <div className="mt-4 pt-3 border-t border-slate-100 dark:border-[#1F2937]/70 flex items-center gap-1.5 text-[11px] font-mono text-slate-500 dark:text-slate-500 group-hover:text-slate-700 dark:group-hover:text-slate-400 transition-colors">
+                  <CheckCircle className="w-3.5 h-3.5 text-emerald-500 dark:text-emerald-400/80" />
                   <span>Verified Standard</span>
                 </div>
               </div>

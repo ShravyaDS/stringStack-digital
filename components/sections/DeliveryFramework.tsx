@@ -64,7 +64,7 @@ export function DeliveryFramework() {
   };
 
   return (
-    <section id="process" ref={sectionRef} className="py-28 lg:py-36 bg-[#090D16] border-t border-white/[0.08] relative overflow-hidden scroll-mt-24">
+    <section id="process" ref={sectionRef} className="py-28 lg:py-36 bg-slate-50 dark:bg-[#090D16] border-t border-slate-200 dark:border-white/[0.08] relative overflow-hidden scroll-mt-24 transition-colors duration-200">
       {/* ── Aesthetic Architectural Blueprint Background ── */}
       <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden select-none">
         <Image
@@ -75,9 +75,9 @@ export function DeliveryFramework() {
           className="object-cover object-center opacity-15"
         />
         {/* Dark blueprint gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#090D16]/95 via-[#090D16]/80 to-[#090D16]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-50/95 dark:from-[#090D16]/95 via-slate-50/80 dark:via-[#090D16]/80 to-slate-50 dark:to-[#090D16]" />
         {/* Precision drafting micro-grid */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.02)_1px,transparent_1px)] [background-size:40px_40px] [mask-image:radial-gradient(ellipse_80%_70%_at_50%_50%,black_30%,transparent_85%)] opacity-50" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(0,0,0,0.02)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,0,0,0.02)_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.02)_1px,transparent_1px)] [background-size:40px_40px] [mask-image:radial-gradient(ellipse_80%_70%_at_50%_50%,black_30%,transparent_85%)] opacity-50" />
         {/* Ambient soft blue lighting orb */}
         <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-blue-600/[0.05] rounded-full blur-3xl" />
       </div>
@@ -87,10 +87,10 @@ export function DeliveryFramework() {
         {/* ── Section Header ── */}
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
           <span className="section-label">Delivery Process</span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-[-0.03em] leading-tight">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-[-0.03em] leading-tight">
             How We Deliver Excellence
           </h2>
-          <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
+          <p className="text-slate-600 dark:text-slate-400 text-sm sm:text-base leading-relaxed">
             A structured 4-stage engineering methodology: 48-hour scope lock, 1–2 week sprint deployments, rigorous QA audits, and complete IP &amp; code handover.
           </p>
         </div>
@@ -99,14 +99,14 @@ export function DeliveryFramework() {
         <div className="relative mb-8">
           
           {/* Horizontal Connecting Timeline Rail (Desktop) */}
-          <div className="hidden lg:block absolute top-[38px] left-[12.5%] right-[12.5%] h-[2px] bg-white/[0.08] z-0">
+          <div className="hidden lg:block absolute top-[38px] left-[12.5%] right-[12.5%] h-[2px] bg-slate-200 dark:bg-white/[0.08] z-0">
             {/* Dynamic Scroll & Selection Progress Fill Track */}
             <div
               style={{
                 width: `${displayRailWidth}%`,
                 transition: prefersReducedMotion ? "none" : "width 250ms ease-out",
               }}
-              className="h-full bg-blue-500 shadow-[0_0_12px_rgba(59,130,246,0.6)]"
+              className="h-full bg-blue-600 dark:bg-blue-500 shadow-[0_0_12px_rgba(59,130,246,0.6)]"
             />
           </div>
 
@@ -121,8 +121,8 @@ export function DeliveryFramework() {
                   onClick={() => handleSelectPhase(idx)}
                   className={`text-left p-5 rounded-xl border transition-all cursor-pointer flex flex-col justify-between group active:scale-[0.98] ${
                     isSelected
-                      ? "bg-[#111827] border-blue-500/60 shadow-[0_0_24px_rgba(59,130,246,0.15)] ring-1 ring-blue-500/20"
-                      : "bg-[#111827] border-[#1F2937] hover:border-blue-500/30 hover:-translate-y-0.5"
+                      ? "bg-white dark:bg-[#111827] border-blue-500/80 dark:border-blue-500/60 shadow-md dark:shadow-[0_0_24px_rgba(59,130,246,0.15)] ring-1 ring-blue-500/20"
+                      : "bg-white dark:bg-[#111827] border-slate-200 dark:border-[#1F2937] hover:border-blue-400 dark:hover:border-blue-500/30 hover:-translate-y-0.5 shadow-xs dark:shadow-none"
                   }`}
                 >
                   <div>
@@ -132,7 +132,7 @@ export function DeliveryFramework() {
                         className={`w-8 h-8 rounded-lg flex items-center justify-center transition-all ${
                           isSelected
                             ? "bg-blue-600 text-white shadow-xs"
-                            : "bg-blue-500/10 text-blue-400 border border-blue-500/20 group-hover:border-blue-500/40"
+                            : "bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20 group-hover:border-blue-500/40"
                         }`}
                       >
                         <Icon className="w-4 h-4" />
@@ -143,23 +143,23 @@ export function DeliveryFramework() {
                         className={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded transition-colors ${
                           isSelected
                             ? "bg-blue-600 text-white"
-                            : "bg-white/[0.05] text-slate-400 border border-white/[0.08] group-hover:text-slate-300"
+                            : "bg-slate-100 dark:bg-white/[0.05] text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-white/[0.08] group-hover:text-slate-900 dark:group-hover:text-slate-300"
                         }`}
                       >
                         {item.phase}
                       </span>
                     </div>
 
-                    <h3 className="text-sm font-bold text-white mb-1">
+                    <h3 className="text-sm font-bold text-slate-900 dark:text-white mb-1">
                       {item.name}
                     </h3>
-                    <span className="text-xs text-slate-400">{item.duration}</span>
+                    <span className="text-xs text-slate-500 dark:text-slate-400">{item.duration}</span>
                   </div>
 
-                  <div className="pt-3 mt-3 border-t border-white/[0.08]">
+                  <div className="pt-3 mt-3 border-t border-slate-100 dark:border-white/[0.08]">
                     <span
                       className={`text-xs font-semibold ${
-                        isSelected ? "text-blue-400" : "text-slate-500 group-hover:text-slate-300"
+                        isSelected ? "text-blue-600 dark:text-blue-400" : "text-slate-500 dark:text-slate-500 group-hover:text-slate-700 dark:group-hover:text-slate-300"
                       }`}
                     >
                       {isSelected ? "● Selected Stage" : "View Deliverables"}
@@ -172,7 +172,7 @@ export function DeliveryFramework() {
         </div>
 
         {/* ── Active Phase Detail Panel (Animated Transition) ── */}
-        <div className="p-6 sm:p-8 lg:p-10 rounded-2xl bg-[#111827] border border-[#1F2937] shadow-[0_8px_32px_rgba(0,0,0,0.3)]">
+        <div className="p-6 sm:p-8 lg:p-10 rounded-2xl bg-white dark:bg-[#111827] border border-slate-200 dark:border-[#1F2937] shadow-lg dark:shadow-[0_8px_32px_rgba(0,0,0,0.3)]">
           <div
             key={selectedPhaseIndex}
             style={{
@@ -189,16 +189,16 @@ export function DeliveryFramework() {
                   <ActiveIcon className="w-5 h-5" />
                 </div>
                 <div>
-                  <span className="text-xs font-mono font-semibold text-blue-400 uppercase block">
+                  <span className="text-xs font-mono font-semibold text-blue-600 dark:text-blue-400 uppercase block">
                     {activePhase.phase} · {activePhase.duration}
                   </span>
-                  <h3 className="text-xl font-bold text-white">{activePhase.name}</h3>
+                  <h3 className="text-xl font-bold text-slate-900 dark:text-white">{activePhase.name}</h3>
                 </div>
               </div>
 
               {/* Sprint Milestones with subtle staggered slide-in */}
               <div className="space-y-3">
-                <span className="text-xs font-semibold uppercase tracking-wider text-slate-400 block">
+                <span className="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 block">
                   Sprint Milestones:
                 </span>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
@@ -210,9 +210,9 @@ export function DeliveryFramework() {
                           ? "none"
                           : `milestoneSlide 150ms ease-out ${mIdx * 40}ms both`,
                       }}
-                      className="flex items-start gap-2.5 text-sm text-slate-300"
+                      className="flex items-start gap-2.5 text-sm text-slate-700 dark:text-slate-300"
                     >
-                      <CheckCircle2 className="w-4 h-4 shrink-0 mt-0.5 text-emerald-400" />
+                      <CheckCircle2 className="w-4 h-4 shrink-0 mt-0.5 text-emerald-600 dark:text-emerald-400" />
                       <span>{it}</span>
                     </div>
                   ))}
@@ -220,19 +220,19 @@ export function DeliveryFramework() {
               </div>
 
               {/* Distinct Formal Handover Callout Box */}
-              <div className="p-4 rounded-xl text-sm bg-blue-500/[0.08] border border-blue-500/20">
-                <span className="text-blue-400 text-xs uppercase tracking-wider font-bold">
+              <div className="p-4 rounded-xl text-sm bg-blue-50 dark:bg-blue-500/[0.08] border border-blue-200 dark:border-blue-500/20">
+                <span className="text-blue-600 dark:text-blue-400 text-xs uppercase tracking-wider font-bold">
                   Formal Handover:{" "}
                 </span>
-                <strong className="text-white">{activePhase.deliverable}</strong>
+                <strong className="text-slate-900 dark:text-white">{activePhase.deliverable}</strong>
               </div>
             </div>
 
             {/* Right: Guarantee & Anchored CTA (5 cols) */}
-            <div className="lg:col-span-5 p-6 rounded-xl bg-[#090D16] border border-white/[0.08] space-y-4 flex flex-col justify-between">
+            <div className="lg:col-span-5 p-6 rounded-xl bg-slate-50 dark:bg-[#090D16] border border-slate-200 dark:border-white/[0.08] space-y-4 flex flex-col justify-between">
               <div className="space-y-1.5">
-                <h4 className="text-sm font-bold text-white">Sprint Transparency Guarantee</h4>
-                <p className="text-xs text-slate-400 leading-relaxed">
+                <h4 className="text-sm font-bold text-slate-900 dark:text-white">Sprint Transparency Guarantee</h4>
+                <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
                   Every line of code is committed directly to your repository with automated CI/CD staging links. Zero black boxes.
                 </p>
               </div>
@@ -252,9 +252,9 @@ export function DeliveryFramework() {
                         ? "none"
                         : `milestoneSlide 150ms ease-out ${(gIdx + 2) * 40}ms both`,
                     }}
-                    className="flex items-center gap-2 text-xs text-slate-300"
+                    className="flex items-center gap-2 text-xs text-slate-700 dark:text-slate-300"
                   >
-                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 shrink-0" />
                     <span>{item}</span>
                   </div>
                 ))}

@@ -9,26 +9,26 @@ export const metadata = {
 
 export default function TermsPage() {
   return (
-    <div className="pt-32 pb-24 bg-[#090D16] min-h-screen text-slate-300">
+    <div className="pt-32 pb-24 bg-slate-50 dark:bg-[#090D16] min-h-screen text-slate-700 dark:text-slate-300 transition-colors duration-200">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         <BackButton fallbackHref="/" label="Back to Homepage" />
 
-        <div className="space-y-4 border-b border-slate-800 pb-8">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-mono">
+        <div className="space-y-4 border-b border-slate-200 dark:border-slate-800 pb-8">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-blue-500/10 border border-blue-500/20 text-blue-600 dark:text-blue-400 text-xs font-mono">
             <FileText className="w-3.5 h-3.5" />
             <span>Enterprise Service Terms</span>
           </div>
-          <h1 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
+          <h1 className="text-3xl sm:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">
             Terms of Service
           </h1>
-          <p className="text-sm text-slate-400 font-mono">
+          <p className="text-sm text-slate-500 dark:text-slate-400 font-mono">
             Last Updated: January 2026 • SprintStack.digital
           </p>
         </div>
 
         <div className="space-y-8 text-sm leading-relaxed">
           <section className="space-y-3">
-            <h2 className="text-lg font-bold text-white tracking-tight">
+            <h2 className="text-lg font-bold text-slate-900 dark:text-white tracking-tight">
               1. Engagement Framework
             </h2>
             <p>
@@ -37,7 +37,7 @@ export default function TermsPage() {
           </section>
 
           <section className="space-y-3">
-            <h2 className="text-lg font-bold text-white tracking-tight">
+            <h2 className="text-lg font-bold text-slate-900 dark:text-white tracking-tight">
               2. Intellectual Property Transfer
             </h2>
             <p>
@@ -46,7 +46,7 @@ export default function TermsPage() {
           </section>
 
           <section className="space-y-3">
-            <h2 className="text-lg font-bold text-white tracking-tight">
+            <h2 className="text-lg font-bold text-slate-900 dark:text-white tracking-tight">
               3. White-Label &amp; Non-Disclosure (NDA)
             </h2>
             <p>
@@ -55,7 +55,7 @@ export default function TermsPage() {
           </section>
 
           <section className="space-y-3">
-            <h2 className="text-lg font-bold text-white tracking-tight">
+            <h2 className="text-lg font-bold text-slate-900 dark:text-white tracking-tight">
               4. Service Level Agreements (SLA) &amp; Warranties
             </h2>
             <p>
@@ -64,7 +64,7 @@ export default function TermsPage() {
           </section>
 
           <section className="space-y-3">
-            <h2 className="text-lg font-bold text-white tracking-tight">
+            <h2 className="text-lg font-bold text-slate-900 dark:text-white tracking-tight">
               5. Governing Law
             </h2>
             <p>

@@ -103,25 +103,25 @@ export function PartnershipSection() {
   return (
     <section
       id="partnerships"
-      className="py-28 lg:py-36 bg-[#090D16] border-t border-white/[0.08] relative overflow-hidden scroll-mt-24"
+      className="py-28 lg:py-36 bg-slate-50 dark:bg-[#090D16] border-t border-slate-200 dark:border-white/[0.08] relative overflow-hidden scroll-mt-24 transition-colors duration-200"
     >
       {/* Background radial glow & grid */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-blue-600/[0.04] rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.02)_1px,transparent_1px)] [background-size:40px_40px] [mask-image:radial-gradient(ellipse_80%_70%_at_50%_50%,black_20%,transparent_80%)] opacity-60 pointer-events-none" />
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(0,0,0,0.02)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,0,0,0.02)_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.02)_1px,transparent_1px)] [background-size:40px_40px] [mask-image:radial-gradient(ellipse_80%_70%_at_50%_50%,black_20%,transparent_80%)] opacity-60 pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
         {/* ── Section Header ── */}
         <div className="max-w-3xl mx-auto text-center space-y-3 mb-16">
           <span className="section-label">White-Label &amp; Partners</span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-[-0.03em] leading-tight">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-[-0.03em] leading-tight">
             Your Silent Engineering Backbone
           </h2>
-          <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
+          <p className="text-slate-600 dark:text-slate-400 text-sm sm:text-base leading-relaxed">
             SprintStack provides 100% white-label software engineering capacity for{" "}
-            <strong className="text-white font-semibold">Digital consultancies</strong>,{" "}
-            <strong className="text-white font-semibold">Marketing agencies</strong>, and{" "}
-            <strong className="text-white font-semibold">IT service providers</strong>.
+            <strong className="text-slate-900 dark:text-white font-semibold">Digital consultancies</strong>,{" "}
+            <strong className="text-slate-900 dark:text-white font-semibold">Marketing agencies</strong>, and{" "}
+            <strong className="text-slate-900 dark:text-white font-semibold">IT service providers</strong>.
           </p>
         </div>
 
@@ -129,16 +129,16 @@ export function PartnershipSection() {
         <div className="flex flex-col sm:flex-row items-stretch gap-3 mb-10 max-w-4xl mx-auto">
           {PARTNERSHIP_STEPS.map((s, i) => (
             <React.Fragment key={s.step}>
-              <div className="flex-1 p-5 rounded-xl bg-[#111827] border border-[#1F2937] shadow-[0_4px_20px_rgba(0,0,0,0.25)] text-center space-y-1.5 transition-all duration-300 hover:border-blue-500/40 hover:-translate-y-0.5">
-                <span className="text-[10px] font-bold uppercase tracking-wider block text-blue-400">
+              <div className="flex-1 p-5 rounded-xl bg-white dark:bg-[#111827] border border-slate-200 dark:border-[#1F2937] shadow-sm dark:shadow-[0_4px_20px_rgba(0,0,0,0.25)] text-center space-y-1.5 transition-all duration-300 hover:border-blue-500/40 hover:-translate-y-0.5">
+                <span className="text-[10px] font-bold uppercase tracking-wider block text-blue-600 dark:text-blue-400">
                   Step {s.step}
                 </span>
-                <div className="text-white font-semibold text-sm">{s.title}</div>
-                <p className="text-xs text-slate-400 leading-normal">{s.desc}</p>
+                <div className="text-slate-900 dark:text-white font-semibold text-sm">{s.title}</div>
+                <p className="text-xs text-slate-600 dark:text-slate-400 leading-normal">{s.desc}</p>
               </div>
               {i < 2 && (
                 <div className="hidden sm:flex items-center justify-center shrink-0">
-                  <ArrowRight className="w-4 h-4 text-slate-600" />
+                  <ArrowRight className="w-4 h-4 text-slate-400 dark:text-slate-600" />
                 </div>
               )}
             </React.Fragment>
@@ -147,22 +147,22 @@ export function PartnershipSection() {
 
         {/* ── Section Controls ── */}
         <div className="flex items-center justify-between max-w-4xl mx-auto mb-5 px-1">
-          <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
+          <span className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
             Partnership Models
           </span>
           <button
             type="button"
             onClick={toggleAll}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-[#1F2937] bg-[#111827] hover:bg-[#162238] hover:border-blue-500/40 text-xs font-semibold text-slate-300 shadow-2xs transition-all cursor-pointer"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-[#1F2937] bg-white dark:bg-[#111827] hover:bg-slate-100 dark:hover:bg-[#162238] hover:border-blue-500/40 text-xs font-semibold text-slate-700 dark:text-slate-300 shadow-2xs transition-all cursor-pointer"
           >
             {isAllOpen ? (
               <>
-                <EyeOff className="w-3.5 h-3.5 text-slate-400" />
+                <EyeOff className="w-3.5 h-3.5 text-slate-500 dark:text-slate-400" />
                 <span>Collapse All</span>
               </>
             ) : (
               <>
-                <Eye className="w-3.5 h-3.5 text-blue-400" />
+                <Eye className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />
                 <span>Expand All</span>
               </>
             )}
@@ -181,10 +181,10 @@ export function PartnershipSection() {
                 ref={(el) => {
                   cardRefs.current[idx] = el;
                 }}
-                className={`rounded-2xl border bg-[#111827] transition-all duration-300 scroll-mt-28 overflow-hidden ${
+                className={`rounded-2xl border bg-white dark:bg-[#111827] transition-all duration-300 scroll-mt-28 overflow-hidden shadow-sm ${
                   isOpen
                     ? "border-blue-500/50 shadow-[0_12px_36px_rgba(59,130,246,0.12)] ring-1 ring-blue-500/20"
-                    : "border-[#1F2937] shadow-[0_4px_20px_rgba(0,0,0,0.25)] hover:border-white/[0.16]"
+                    : "border-slate-200 dark:border-[#1F2937] dark:shadow-[0_4px_20px_rgba(0,0,0,0.25)] hover:border-blue-400 dark:hover:border-white/[0.16]"
                 }`}
               >
                 {/* ── Card Header Row (Clickable) ── */}
@@ -192,8 +192,8 @@ export function PartnershipSection() {
                   onClick={() => handleToggle(idx)}
                   className={`w-full flex items-center justify-between gap-4 p-5 sm:p-6 text-left cursor-pointer select-none transition-colors border-l-4 ${
                     isOpen
-                      ? "border-l-blue-500 bg-blue-500/[0.04]"
-                      : "border-l-transparent hover:bg-white/[0.02]"
+                      ? "border-l-blue-600 dark:border-l-blue-500 bg-blue-50/50 dark:bg-blue-500/[0.04]"
+                      : "border-l-transparent hover:bg-slate-50/60 dark:hover:bg-white/[0.02]"
                   }`}
                 >
                   {/* Left: Icon + Title info */}
@@ -202,19 +202,19 @@ export function PartnershipSection() {
                       className={`w-11 h-11 rounded-xl flex items-center justify-center shrink-0 border transition-transform duration-200 ${
                         isOpen
                           ? "bg-blue-600 text-white border-blue-500 shadow-sm scale-105"
-                          : "bg-blue-500/10 text-blue-400 border-blue-500/20"
+                          : "bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/20"
                       }`}
                     >
                       <Icon className="w-5 h-5" />
                     </div>
 
                     <div className="min-w-0">
-                      <div className="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-0.5">
+                      <div className="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-0.5">
                         {pillar.subtitle}
                       </div>
                       <h3
                         className={`text-base sm:text-xl font-bold tracking-tight transition-colors truncate sm:whitespace-normal ${
-                          isOpen ? "text-blue-400" : "text-white"
+                          isOpen ? "text-blue-600 dark:text-blue-400" : "text-slate-900 dark:text-white"
                         }`}
                       >
                         {pillar.title}
@@ -224,7 +224,7 @@ export function PartnershipSection() {
 
                   {/* Right: Badge + Explicit Expand/Collapse Button */}
                   <div className="flex items-center gap-3 shrink-0">
-                    <span className="hidden sm:inline-flex text-[11px] font-semibold px-2.5 py-0.5 rounded-full border bg-blue-500/10 text-blue-400 border-blue-500/30">
+                    <span className="hidden sm:inline-flex text-[11px] font-semibold px-2.5 py-0.5 rounded-full border bg-blue-500/10 text-blue-700 dark:text-blue-400 border-blue-500/30">
                       {pillar.badge}
                     </span>
 
@@ -237,15 +237,15 @@ export function PartnershipSection() {
                       }}
                       className={`w-8 h-8 sm:w-9 sm:h-9 rounded-xl flex items-center justify-center border transition-all duration-200 cursor-pointer ${
                         isOpen
-                          ? "bg-blue-500/20 text-blue-400 border-blue-500/40 shadow-2xs scale-105"
-                          : "bg-[#090D16] text-slate-400 border-white/[0.08] hover:bg-blue-500/10 hover:text-blue-400 hover:border-blue-500/30"
+                          ? "bg-blue-500/20 text-blue-600 dark:text-blue-400 border-blue-500/40 shadow-2xs scale-105"
+                          : "bg-slate-100 dark:bg-[#090D16] text-slate-600 dark:text-slate-400 border-slate-200 dark:border-white/[0.08] hover:bg-blue-500/10 hover:text-blue-600 dark:hover:text-blue-400 hover:border-blue-500/30"
                       }`}
                       aria-expanded={isOpen}
                       aria-label={isOpen ? "Collapse details" : "Expand details"}
                     >
                       <ChevronDown
                         className={`w-4 h-4 transition-transform duration-300 ${
-                          isOpen ? "rotate-180 text-blue-400" : "rotate-0 text-slate-400"
+                          isOpen ? "rotate-180 text-blue-600 dark:text-blue-400" : "rotate-0 text-slate-500 dark:text-slate-400"
                         }`}
                       />
                     </button>
@@ -254,22 +254,22 @@ export function PartnershipSection() {
 
                 {/* ── Expanded Content ── */}
                 {isOpen && (
-                  <div className="p-5 sm:p-6 pt-3 sm:pt-4 border-t border-white/[0.08] animate-in fade-in duration-200">
+                  <div className="p-5 sm:p-6 pt-3 sm:pt-4 border-t border-slate-200 dark:border-white/[0.08] animate-in fade-in duration-200">
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 items-start">
                       
                       {/* Left: Description + Guarantees */}
                       <div className="space-y-4">
-                        <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
+                        <p className="text-slate-700 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
                           {pillar.description}
                         </p>
                         
                         <div className="space-y-2 pt-1">
-                          <div className="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">
+                          <div className="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2">
                             Pillar Guarantees
                           </div>
                           {pillar.guarantees.map((g) => (
-                            <div key={g} className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-300">
-                              <CheckCircle2 className="w-4 h-4 shrink-0 mt-0.5 text-emerald-400" />
+                            <div key={g} className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700 dark:text-slate-300">
+                              <CheckCircle2 className="w-4 h-4 shrink-0 mt-0.5 text-emerald-600 dark:text-emerald-400" />
                               <span>{g}</span>
                             </div>
                           ))}
@@ -287,7 +287,7 @@ export function PartnershipSection() {
                         </button>
                         <Link
                           href="/partners/white-label"
-                          className="btn-secondary w-full flex items-center justify-center gap-2 py-2.5 text-sm font-semibold active:scale-95 transition-transform text-slate-300 hover:text-white"
+                          className="btn-secondary w-full flex items-center justify-center gap-2 py-2.5 text-sm font-semibold active:scale-95 transition-transform"
                         >
                           View Full Partner Program
                         </Link>

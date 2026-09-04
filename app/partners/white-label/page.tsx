@@ -63,13 +63,13 @@ export default function WhiteLabelPage() {
   ];
 
   return (
-    <div className="pt-28 pb-20 bg-[#090D16] text-white min-h-screen">
+    <div className="pt-28 pb-20 bg-slate-50 dark:bg-[#090D16] text-slate-900 dark:text-white min-h-screen transition-colors duration-200">
       
       {/* ── Hero Section ── */}
-      <section className="py-12 md:py-20 relative overflow-hidden border-b border-[#1F2937]">
+      <section className="py-12 md:py-20 relative overflow-hidden border-b border-slate-200 dark:border-[#1F2937]">
         {/* Ambient Subtle Studio Glow */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-blue-600/10 rounded-full blur-3xl pointer-events-none -z-0" />
-        <div className="absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.06)_1px,transparent_1px)] [background-size:32px_32px] opacity-40 pointer-events-none -z-0" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-blue-600/10 rounded-full blur-3xl pointer-events-none -z-0 opacity-40 dark:opacity-100" />
+        <div className="absolute inset-0 bg-[radial-gradient(rgba(0,0,0,0.04)_1px,transparent_1px)] dark:bg-[radial-gradient(rgba(255,255,255,0.06)_1px,transparent_1px)] [background-size:32px_32px] opacity-40 pointer-events-none -z-0" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="mb-6">
@@ -79,26 +79,26 @@ export default function WhiteLabelPage() {
           <div className="max-w-3xl space-y-5">
             <div className="flex items-center gap-2">
               <span className="section-label">Agency &amp; Venture Partnerships</span>
-              <span className="text-[11px] font-mono font-semibold px-2.5 py-0.5 rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/25">
+              <span className="text-[11px] font-mono font-semibold px-2.5 py-0.5 rounded-full bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/25">
                 100% Stealth &amp; NDA
               </span>
             </div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.1]">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-[1.1]">
               White-Label Engineering &amp; <br />
-              <span className="text-blue-500">
+              <span className="text-blue-600 dark:text-blue-500">
                 Dedicated Software Squads.
               </span>
             </h1>
 
-            <p className="text-base sm:text-lg text-slate-300 leading-relaxed font-normal">
+            <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed font-normal">
               Scale your agency capacity or venture roadmap overnight. We deliver battle-tested web apps, mobile systems, and enterprise ERPs under your brand with zero hiring lag and zero agency fluff.
             </p>
 
             <div className="flex flex-wrap items-center gap-3 pt-3">
               <button
                 onClick={openBookingModal}
-                className="btn-primary px-6 py-3 text-sm font-semibold cursor-pointer active:scale-95 transition-transform flex items-center gap-2"
+                className="btn-primary px-6 py-3 text-sm font-semibold cursor-pointer active:scale-95 transition-transform flex items-center gap-2 text-white"
               >
                 <span>Book Partner Discovery Session</span>
                 <ArrowRight className="w-4 h-4" />
@@ -109,14 +109,14 @@ export default function WhiteLabelPage() {
       </section>
 
       {/* ── 4 Partner Guarantees ── */}
-      <section className="py-16 sm:py-20 bg-[#070B14] border-b border-[#1F2937]">
+      <section className="py-16 sm:py-20 bg-slate-100/60 dark:bg-[#070B14] border-b border-slate-200 dark:border-[#1F2937]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-12 space-y-2.5">
             <span className="section-label">Partnership Standards</span>
-            <h2 className="text-3xl font-extrabold text-white tracking-tight">
+            <h2 className="text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
               The Agency Partner Guarantee
             </h2>
-            <p className="text-sm text-slate-400">
+            <p className="text-sm text-slate-600 dark:text-slate-400">
               Strict institutional protocols protecting your agency reputation and client relationships.
             </p>
           </div>
@@ -127,13 +127,13 @@ export default function WhiteLabelPage() {
               return (
                 <div
                   key={g.title}
-                  className="p-5 sm:p-6 rounded-2xl bg-[#0E1528] border border-[#1F2937] space-y-3 hover:border-blue-500/40 transition-all duration-300 hover:-translate-y-1 shadow-lg"
+                  className="p-5 sm:p-6 rounded-2xl bg-white dark:bg-[#0E1528] border border-slate-200 dark:border-[#1F2937] space-y-3 hover:border-blue-500/40 transition-all duration-300 hover:-translate-y-1 shadow-sm dark:shadow-lg"
                 >
-                  <div className="w-10 h-10 rounded-xl bg-blue-500/15 border border-blue-500/30 text-blue-400 flex items-center justify-center">
+                  <div className="w-10 h-10 rounded-xl bg-blue-500/15 border border-blue-500/30 text-blue-600 dark:text-blue-400 flex items-center justify-center">
                     <Icon className="w-5 h-5" />
                   </div>
-                  <h3 className="text-base font-bold text-white">{g.title}</h3>
-                  <p className="text-xs text-slate-400 leading-relaxed font-normal">{g.desc}</p>
+                  <h3 className="text-base font-bold text-slate-900 dark:text-white">{g.title}</h3>
+                  <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed font-normal">{g.desc}</p>
                 </div>
               );
             })}
@@ -146,11 +146,11 @@ export default function WhiteLabelPage() {
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
           <div className="space-y-2.5">
             <span className="section-label">Turnkey Delivery</span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
               Anatomy of a Dedicated Squad
             </h2>
           </div>
-          <p className="text-slate-400 max-w-md text-sm leading-relaxed font-normal">
+          <p className="text-slate-600 dark:text-slate-400 max-w-md text-sm leading-relaxed font-normal">
             Every squad is fully integrated and managed with automated daily async reports, weekly sprint demos, and direct code commits.
           </p>
         </div>
@@ -159,28 +159,28 @@ export default function WhiteLabelPage() {
           {squads.map((s, idx) => (
             <div
               key={s.role}
-              className="p-5 sm:p-6 rounded-2xl bg-[#0E1528] border border-[#1F2937] flex items-start gap-4 shadow-lg hover:border-blue-500/40 transition-all duration-300"
+              className="p-5 sm:p-6 rounded-2xl bg-white dark:bg-[#0E1528] border border-slate-200 dark:border-[#1F2937] flex items-start gap-4 shadow-sm dark:shadow-lg hover:border-blue-500/40 transition-all duration-300"
             >
-              <div className="w-10 h-10 rounded-xl bg-[#070B14] border border-[#1F2937] flex items-center justify-center font-mono font-bold text-xs text-blue-400 shrink-0">
+              <div className="w-10 h-10 rounded-xl bg-slate-100 dark:bg-[#070B14] border border-slate-200 dark:border-[#1F2937] flex items-center justify-center font-mono font-bold text-xs text-blue-600 dark:text-blue-400 shrink-0">
                 0{idx + 1}
               </div>
               <div className="space-y-1">
-                <h3 className="text-sm sm:text-base font-bold text-white">{s.role}</h3>
-                <p className="text-xs text-slate-400 leading-relaxed font-normal">{s.focus}</p>
+                <h3 className="text-sm sm:text-base font-bold text-slate-900 dark:text-white">{s.role}</h3>
+                <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed font-normal">{s.focus}</p>
               </div>
             </div>
           ))}
         </div>
 
         {/* ── Partner Discovery Callout ── */}
-        <div className="mt-14 p-8 sm:p-12 rounded-3xl bg-[#0E1528] border border-[#1F2937] shadow-2xl text-center space-y-6 relative overflow-hidden">
+        <div className="mt-14 p-8 sm:p-12 rounded-3xl bg-white dark:bg-[#0E1528] border border-slate-200 dark:border-[#1F2937] shadow-xl dark:shadow-2xl text-center space-y-6 relative overflow-hidden">
           <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-blue-500/50 to-transparent" />
           
           <div className="max-w-2xl mx-auto space-y-2">
-            <h3 className="text-2xl sm:text-3xl font-extrabold text-white">
+            <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">
               Ready to expand your agency capacity?
             </h3>
-            <p className="text-sm text-slate-400">
+            <p className="text-sm text-slate-600 dark:text-slate-400">
               Schedule a 15-minute partner call to discuss white-label rate cards, squad availability, and mutual NDA execution.
             </p>
           </div>
@@ -188,7 +188,7 @@ export default function WhiteLabelPage() {
           <div>
             <button
               onClick={openBookingModal}
-              className="btn-primary px-7 py-3.5 text-sm font-semibold cursor-pointer active:scale-95 transition-transform flex items-center gap-2 mx-auto"
+              className="btn-primary px-7 py-3.5 text-sm font-semibold cursor-pointer active:scale-95 transition-transform flex items-center gap-2 mx-auto text-white"
             >
               <span>Book 15-Min Partner Discovery</span>
               <ArrowRight className="w-4 h-4" />
