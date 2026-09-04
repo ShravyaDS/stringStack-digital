@@ -3,21 +3,22 @@
 @tailwind utilities;
 
 /* ============================================================
-   SPRINTSTACK.DIGITAL — CLEAN HIGH-VELOCITY DESIGN SYSTEM
+   SPRINTSTACK.DIGITAL — PREMIUM HIGH-VELOCITY DESIGN SYSTEM
    Base: Clean White / Off-White (#FFFFFF, #F8FAFC)
    Buttons: Solid flat colors (no glow, no gradients)
    Accent: Blue #2563EB used selectively
-   Single dark section reserved for Footer
+   Dark sections: Hero, CaseStudies, TrustMetrics, Footer
    ============================================================ */
 
 @layer base {
   :root {
     /* ── Core surfaces (White / Off-White base) ── */
     --bg-base: #FFFFFF;
-    --bg-surface: #F8FAFC;
+    --bg-surface: #111827;
     --bg-elevated: #FFFFFF;
     --bg-card: #FFFFFF;
     --bg-dark: #0B1120;
+    --bg-obsidian: #0A0E17;
 
     /* ── Brand palette ── */
     --color-blue: #2563EB;       /* Solid Blue */
@@ -25,6 +26,12 @@
     --color-cyan: #0284C7;
     --color-emerald: #059669;
     --color-amber: #D97706;
+
+    /* ── Accent utilities (used in dark-section components) ── */
+    --accent-blue: #60A5FA;
+    --accent-cyan: #22D3EE;
+    --accent-emerald: #34D399;
+    --accent-violet: #818CF8;
 
     /* ── Text hierarchy ── */
     --text-primary: #0F172A;
@@ -63,10 +70,15 @@
   * {
     @apply border-border;
     box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
   }
 
   html {
     scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
   }
 
   body {
@@ -75,9 +87,22 @@
     font-family: var(--font-inter), "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     font-size: 16px;
     line-height: 1.6;
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
+  }
+
+  /* Prevent text size adjustment after orientation change on iOS */
+  html, body {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  /* Touch scrolling smoothness on mobile devices */
+  .touch-pan-x {
+    -webkit-overflow-scrolling: touch;
   }
 
   /* Technical / Metrics / Code Typography: JetBrains Mono */
@@ -223,14 +248,39 @@
 }
 
 /* ============================================================
-   TYPOGRAPHY & ACCENT (Single accent color rule)
+   TYPOGRAPHY & ACCENT
    ============================================================ */
 
-.text-accent-blue {
-  color: #2563EB;
+/* Light section accent colors */
+.text-accent-blue  { color: #2563EB; }
+.text-accent-cyan  { color: #0284C7; }
+.text-accent-emerald { color: #059669; }
+
+/* Dark section accent utilities (used in dark bg sections) */
+.accent-blue   { color: var(--accent-blue);    }
+.accent-cyan   { color: var(--accent-cyan);    }
+.accent-emerald{ color: var(--accent-emerald); }
+.accent-violet { color: var(--accent-violet);  }
+
+/* Gradient text — ONLY inside dark-section context */
+.dark-section .text-gradient-hero,
+.dark-section .text-gradient-brand,
+.dark-section .text-gradient-blue-violet,
+.dark-section .text-gradient-violet {
+  background: linear-gradient(135deg, #60A5FA 0%, #818CF8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-/* Standard aliases without rainbow gradients */
+.dark-section .text-gradient-emerald {
+  background: linear-gradient(135deg, #34D399 0%, #22D3EE 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Fallback: In light sections, gradient text aliases remain flat blue */
 .text-gradient-brand,
 .text-gradient-hero,
 .text-gradient-blue-violet,
@@ -240,8 +290,8 @@
 .text-gradient-emerald,
 .text-shimmer {
   color: #2563EB;
-  background: none !important;
-  -webkit-text-fill-color: initial !important;
+  background: none;
+  -webkit-text-fill-color: initial;
 }
 
 /* Base Light Card */
@@ -253,6 +303,92 @@
 }
 .light-card:hover {
   border-color: #CBD5E1;
+}
+
+/* ── DARK SECTION CARD SYSTEM (TrustMetrics, Industries, CaseStudies) ── */
+
+/* Dark surface colors */
+.bg-surface {
+  background-color: #111827;
+}
+.bg-obsidian {
+  background-color: #0A0E17;
+}
+
+/* Raised dark card (used in TrustMetrics) */
+.card-raised {
+  background: linear-gradient(135deg, rgba(22,32,50,0.9) 0%, rgba(11,17,32,0.95) 100%);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 1rem;
+  transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+.card-raised:hover {
+  border-color: rgba(99,102,241,0.28);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.35);
+}
+
+/* Glow card (used in IndustriesSection) */
+.glow-card {
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+}
+.glow-card:hover {
+  box-shadow: 0 0 0 1px rgba(99,102,241,0.15), 0 8px 32px rgba(99,102,241,0.08);
+}
+
+/* Tech stack pill (used in CaseStudiesShowcase) */
+.tech-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.6rem;
+  border-radius: 0.375rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: #A3A2B0;
+  white-space: nowrap;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+.tech-pill:hover {
+  background: rgba(99,102,241,0.12);
+  border-color: rgba(99,102,241,0.28);
+  color: #818CF8;
+}
+
+/* Icon boxes for dark cards (TrustMetrics) */
+.icon-box {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 0.625rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+}
+.icon-box-emerald {
+  background: rgba(16,185,129,0.12);
+  border: 1px solid rgba(16,185,129,0.25);
+  color: #34D399;
+}
+.icon-box-blue {
+  background: rgba(59,130,246,0.12);
+  border: 1px solid rgba(59,130,246,0.25);
+  color: #60A5FA;
+}
+.icon-box-violet {
+  background: rgba(99,102,241,0.12);
+  border: 1px solid rgba(99,102,241,0.25);
+  color: #818CF8;
+}
+.icon-box-cyan {
+  background: rgba(6,182,212,0.12);
+  border: 1px solid rgba(6,182,212,0.25);
+  color: #22D3EE;
+}
+.card-raised:hover .icon-box,
+.icon-box:hover {
+  transform: scale(1.08);
 }
 
 /* Mac Chrome / Window frame */
@@ -331,29 +467,14 @@
 }
 
 /* ============================================================
-   SITE-WIDE SCROLL REVEAL MOTION SYSTEM
-   12–16px upward translate + opacity 0→1, 450ms ease-out
+   SITE-WIDE MOTION & VISIBILITY
    ============================================================ */
 .scroll-reveal {
-  opacity: 0;
-  transform: translateY(16px);
-  transition: opacity 450ms cubic-bezier(0.16, 1, 0.3, 1), transform 450ms cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, transform;
-}
-
-.scroll-reveal.revealed {
   opacity: 1;
   transform: translateY(0);
 }
 
 .scroll-stagger > * {
-  opacity: 0;
-  transform: translateY(16px);
-  transition: opacity 450ms cubic-bezier(0.16, 1, 0.3, 1), transform 450ms cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, transform;
-}
-
-.scroll-stagger > *.revealed {
   opacity: 1;
   transform: translateY(0);
 }
@@ -372,4 +493,26 @@ section {
   }
 }
 
+/* ============================================================
+   MOBILE ERGONOMICS & UTILITIES
+   ============================================================ */
 
+/* Hide scrollbar for Chrome, Safari and Opera */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+/* Safe area padding for mobile notches and home indicators */
+.pb-safe {
+  padding-bottom: max(1rem, env(safe-area-inset-bottom, 1rem));
+}
+
+.pt-safe {
+  padding-top: max(1rem, env(safe-area-inset-top, 1rem));
+}

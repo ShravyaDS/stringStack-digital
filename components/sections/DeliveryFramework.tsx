@@ -64,8 +64,8 @@ export function DeliveryFramework() {
   };
 
   return (
-    <section id="process" ref={sectionRef} className="py-20 lg:py-28 bg-[#FAF9F6] border-t border-[#E2E8F0] relative overflow-hidden">
-      {/* ── Aesthetic Architectural Blueprint Background (like TechMatrix) ── */}
+    <section id="process" ref={sectionRef} className="py-20 lg:py-28 bg-[#FFFFFF] border-t border-[#E2E8F0] relative overflow-hidden">
+      {/* ── Aesthetic Architectural Blueprint Background ── */}
       <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden select-none">
         <Image
           src="/images/delivery-blueprint-bg.jpg"
@@ -75,7 +75,7 @@ export function DeliveryFramework() {
           className="object-cover object-center opacity-45"
         />
         {/* Architectural drafting gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#FAF9F6]/90 via-[#FAF9F6]/60 to-[#FAF9F6]/90" />
+        <div className="absolute inset-0 bg-gradient-to-b from-white/95 via-white/80 to-white/95" />
         {/* Precision drafting micro-grid */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(228,230,234,0.45)_1px,transparent_1px),linear-gradient(to_bottom,rgba(228,230,234,0.45)_1px,transparent_1px)] [background-size:36px_36px] [mask-image:radial-gradient(ellipse_80%_70%_at_50%_50%,black_30%,transparent_85%)] opacity-65" />
         {/* Ambient soft blue lighting orb */}
@@ -106,7 +106,7 @@ export function DeliveryFramework() {
                 width: `${displayRailWidth}%`,
                 transition: prefersReducedMotion ? "none" : "width 250ms ease-out",
               }}
-              className="h-full bg-[#2554EB]"
+              className="h-full bg-[#2563EB]"
             />
           </div>
 
@@ -121,7 +121,7 @@ export function DeliveryFramework() {
                   onClick={() => handleSelectPhase(idx)}
                   className={`text-left p-5 rounded-xl border transition-all cursor-pointer flex flex-col justify-between group active:scale-[0.98] ${
                     isSelected
-                      ? "bg-[#F5F7FF] border-[#2554EB] shadow-xs"
+                      ? "bg-blue-50/70 border-[#2563EB] shadow-xs"
                       : "bg-[#F8FAFC] border-[#E2E8F0] hover:border-[#CBD5E1]"
                   }`}
                 >
@@ -131,8 +131,8 @@ export function DeliveryFramework() {
                       <div
                         className={`w-8 h-8 rounded-lg flex items-center justify-center transition-all ${
                           isSelected
-                            ? "bg-[#2554EB] text-white shadow-xs"
-                            : "bg-[#EEF2FF] text-[#2554EB] border border-blue-100 group-hover:border-blue-200"
+                            ? "bg-[#2563EB] text-white shadow-xs"
+                            : "bg-blue-50 text-[#2563EB] border border-blue-100 group-hover:border-blue-200"
                         }`}
                       >
                         <Icon className="w-4 h-4" />
@@ -142,7 +142,7 @@ export function DeliveryFramework() {
                       <span
                         className={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded transition-colors ${
                           isSelected
-                            ? "bg-[#2554EB] text-white"
+                            ? "bg-[#2563EB] text-white"
                             : "bg-slate-100 text-[#475569] border border-[#E2E8F0] group-hover:text-[#0F172A]"
                         }`}
                       >
@@ -156,10 +156,10 @@ export function DeliveryFramework() {
                     <span className="text-xs text-[#64748B]">{item.duration}</span>
                   </div>
 
-                  <div className="pt-3 mt-3 border-t border-[#E5E8ED]/70">
+                  <div className="pt-3 mt-3 border-t border-[#E2E8F0]">
                     <span
                       className={`text-xs font-semibold ${
-                        isSelected ? "text-[#2554EB]" : "text-[#94A3B8] group-hover:text-[#64748B]"
+                        isSelected ? "text-[#2563EB]" : "text-[#94A3B8] group-hover:text-[#64748B]"
                       }`}
                     >
                       {isSelected ? "● Selected Stage" : "View Deliverables"}
@@ -185,11 +185,11 @@ export function DeliveryFramework() {
             {/* Left: Highlights (7 cols) */}
             <div className="lg:col-span-7 space-y-6">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-[#2554EB] text-white shadow-xs">
+                <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-[#2563EB] text-white shadow-xs">
                   <ActiveIcon className="w-5 h-5" />
                 </div>
                 <div>
-                  <span className="text-xs font-mono font-semibold text-[#2554EB] uppercase block">
+                  <span className="text-xs font-mono font-semibold text-[#2563EB] uppercase block">
                     {activePhase.phase} · {activePhase.duration}
                   </span>
                   <h3 className="text-xl font-bold text-[#0F172A]">{activePhase.name}</h3>
@@ -220,8 +220,8 @@ export function DeliveryFramework() {
               </div>
 
               {/* Distinct Formal Handover Callout Box */}
-              <div className="p-4 rounded-xl text-sm bg-[#F0F4FF] border border-[#D9E2FC]">
-                <span className="text-[#2554EB] text-xs uppercase tracking-wider font-bold">
+              <div className="p-4 rounded-xl text-sm bg-blue-50/70 border border-blue-100">
+                <span className="text-[#2563EB] text-xs uppercase tracking-wider font-bold">
                   Formal Handover:{" "}
                 </span>
                 <strong className="text-[#0F172A]">{activePhase.deliverable}</strong>

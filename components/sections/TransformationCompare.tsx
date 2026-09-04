@@ -99,7 +99,7 @@ export function TransformationCompare() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
           
           {/* Left: Legacy Approach (Light Card, small red icons & text) */}
-          <div className="p-6 sm:p-8 rounded-xl bg-white border border-[#E2E8F0] shadow-xs flex flex-col justify-between space-y-6 card-interactive">
+          <div className="p-6 sm:p-8 rounded-xl bg-white border border-[#E2E8F0] shadow-xs flex flex-col justify-between space-y-6">
             <div className="space-y-4">
               <div className="flex items-center justify-between pb-3 border-b border-[#F1F5F9]">
                 <span className="text-xs font-bold uppercase tracking-wider text-rose-600 flex items-center gap-1.5">
@@ -131,7 +131,7 @@ export function TransformationCompare() {
           </div>
 
           {/* Right: SprintStack Modern Approach (Light Card, small green icons & text) */}
-          <div className="p-6 sm:p-8 rounded-xl bg-white border border-[#CBD5E1] shadow-xs flex flex-col justify-between space-y-6 card-interactive hover:border-emerald-400">
+          <div className="p-6 sm:p-8 rounded-xl bg-white border border-[#CBD5E1] shadow-xs flex flex-col justify-between space-y-6 hover:border-emerald-400 transition-colors">
             <div className="space-y-4">
               <div className="flex items-center justify-between pb-3 border-b border-[#F1F5F9]">
                 <span className="text-xs font-bold uppercase tracking-wider text-emerald-600 flex items-center gap-1.5">

@@ -94,8 +94,8 @@ export function DiscoveryForm() {
         {/* Dot Matrix Pattern */}
         <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(255,255,255,0.12)_1.5px,transparent_1.5px)] [background-size:28px_28px] opacity-35 [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_85%)]" />
 
-        {/* Ambient Cyan/Blue Light Bloom */}
-        <div className="absolute top-1/3 left-1/4 -translate-x-1/2 w-[650px] h-[500px] rounded-full bg-[radial-gradient(circle,rgba(6,182,212,0.15)_0%,rgba(37,99,235,0.1)_45%,transparent_75%)] blur-[95px]" />
+        {/* Ambient Sapphire Blue Light Bloom */}
+        <div className="absolute top-1/3 left-1/4 -translate-x-1/2 w-[650px] h-[500px] rounded-full bg-[radial-gradient(circle,rgba(37,99,235,0.16)_0%,rgba(29,78,216,0.08)_45%,transparent_75%)] blur-[95px]" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -164,7 +164,7 @@ export function DiscoveryForm() {
 
           {/* Right Column: Generous White Form Card (7 cols, styled like saigontechnology.com) */}
           <div className="lg:col-span-7 scroll-reveal">
-            <div className="p-6 sm:p-8 lg:p-10 rounded-3xl bg-white border border-slate-200/90 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.35)] text-[#0F172A]">
+            <div className="p-4 sm:p-8 lg:p-10 rounded-2xl sm:rounded-3xl bg-white border border-slate-200/90 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.35)] text-[#0F172A]">
               {isSubmitted ? (
                 <div className="py-12 text-center space-y-4">
                   <div className="w-16 h-16 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center mx-auto border border-emerald-200">
@@ -210,7 +210,7 @@ export function DiscoveryForm() {
                         value={formData.fullName}
                         onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
                         placeholder="Alex Mercer"
-                        className="w-full px-3.5 py-2.5 rounded-xl border border-[#E2E8F0] text-sm text-[#0F172A] focus:outline-none focus:border-[#2563EB] bg-[#F8FAFC]"
+                        className="w-full px-3.5 py-2.5 rounded-xl border border-[#E2E8F0] text-base sm:text-sm text-[#0F172A] focus:outline-none focus:border-[#2563EB] bg-[#F8FAFC]"
                       />
                     </div>
 
@@ -224,7 +224,7 @@ export function DiscoveryForm() {
                         value={formData.workEmail}
                         onChange={(e) => setFormData({ ...formData, workEmail: e.target.value })}
                         placeholder="alex@enterprise.com"
-                        className="w-full px-3.5 py-2.5 rounded-xl border border-[#E2E8F0] text-sm text-[#0F172A] focus:outline-none focus:border-[#2563EB] bg-[#F8FAFC]"
+                        className="w-full px-3.5 py-2.5 rounded-xl border border-[#E2E8F0] text-base sm:text-sm text-[#0F172A] focus:outline-none focus:border-[#2563EB] bg-[#F8FAFC]"
                       />
                     </div>
                   </div>
@@ -238,7 +238,7 @@ export function DiscoveryForm() {
                         <select
                           value={formData.countryCode}
                           onChange={(e) => setFormData({ ...formData, countryCode: e.target.value })}
-                          className="px-2 py-2.5 rounded-xl border border-[#E2E8F0] text-xs text-[#0F172A] bg-[#F8FAFC]"
+                          className="px-2 py-2.5 rounded-xl border border-[#E2E8F0] text-base sm:text-xs text-[#0F172A] bg-[#F8FAFC]"
                         >
                           <option value="+1">🇺🇸 +1</option>
                           <option value="+44">🇬🇧 +44</option>
@@ -251,7 +251,7 @@ export function DiscoveryForm() {
                           value={formData.phone}
                           onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                           placeholder="(555) 000-0000"
-                          className="w-full px-3.5 py-2.5 rounded-xl border border-[#E2E8F0] text-sm text-[#0F172A] focus:outline-none focus:border-[#2563EB] bg-[#F8FAFC]"
+                          className="w-full px-3.5 py-2.5 rounded-xl border border-[#E2E8F0] text-base sm:text-sm text-[#0F172A] focus:outline-none focus:border-[#2563EB] bg-[#F8FAFC]"
                         />
                       </div>
                     </div>
@@ -263,7 +263,7 @@ export function DiscoveryForm() {
                       <select
                         value={formData.primaryProjectFocus}
                         onChange={(e) => setFormData({ ...formData, primaryProjectFocus: e.target.value })}
-                        className="w-full px-3.5 py-2.5 rounded-xl border border-[#E2E8F0] text-sm text-[#0F172A] bg-[#F8FAFC] focus:outline-none focus:border-[#2563EB]"
+                        className="w-full px-3.5 py-2.5 rounded-xl border border-[#E2E8F0] text-base sm:text-sm text-[#0F172A] bg-[#F8FAFC] focus:outline-none focus:border-[#2563EB]"
                       >
                         <option value="Custom Web / SaaS">Custom Web Applications &amp; SaaS</option>
                         <option value="Mobile App">Native &amp; Cross-Platform Mobile</option>
@@ -284,10 +284,10 @@ export function DiscoveryForm() {
                           key={opt}
                           type="button"
                           onClick={() => setFormData({ ...formData, estimatedTimeline: opt })}
-                          className={`py-2 px-3 rounded-lg text-xs font-semibold border transition-all cursor-pointer ${
+                          className={`py-2.5 px-3 min-h-[42px] rounded-lg text-xs font-semibold border transition-all cursor-pointer ${
                             formData.estimatedTimeline === opt
                               ? "bg-[#2563EB] text-white border-[#2563EB] shadow-xs"
-                              : "bg-[#F8FAFC] text-[#475569] border-[#E2E8F0] hover:border-[#CBD5E1]"
+                              : "bg-[#F8FAFC] text-[#475569] border-[#E2E8F0] hover:border-[#CBD5E1] active:bg-[#EEF2FF]"
                           }`}
                         >
                           {opt}
@@ -305,7 +305,7 @@ export function DiscoveryForm() {
                       value={formData.projectOverview}
                       onChange={(e) => setFormData({ ...formData, projectOverview: e.target.value })}
                       placeholder="Describe your system requirements, target users, or current technical bottlenecks..."
-                      className="w-full px-3.5 py-2.5 rounded-xl border border-[#E2E8F0] text-sm text-[#0F172A] focus:outline-none focus:border-[#2563EB] bg-[#F8FAFC]"
+                      className="w-full px-3.5 py-2.5 rounded-xl border border-[#E2E8F0] text-base sm:text-sm text-[#0F172A] focus:outline-none focus:border-[#2563EB] bg-[#F8FAFC]"
                     />
                   </div>
 

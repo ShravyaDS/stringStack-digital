@@ -30,7 +30,7 @@ export function TrustBanner() {
   return (
     <section className="py-7 sm:py-8 bg-[#0B1120] border-b border-[#1E293B] text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 scroll-stagger">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {TRUST_METRICS.map((metric) => {
             const Icon = metric.Icon;
             return (

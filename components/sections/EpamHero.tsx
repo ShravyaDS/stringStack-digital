@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ArrowLeft, Sparkles, Globe, Zap, Shield } from "lucide-react";
@@ -89,6 +89,22 @@ export function EpamHero() {
   const [isMounted, setIsMounted] = useState(false);
   const [statMarkets, setStatMarkets] = useState(0);
   const [statIp, setStatIp] = useState(0);
+  const touchStartXRef = useRef<number | null>(null);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartXRef.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartXRef.current === null) return;
+    const diff = touchStartXRef.current - e.changedTouches[0].clientX;
+    if (diff > 40) {
+      handleNext();
+    } else if (diff < -40) {
+      handlePrev();
+    }
+    touchStartXRef.current = null;
+  };
 
   useEffect(() => {
     setIsMounted(true);
@@ -160,9 +176,11 @@ export function EpamHero() {
 
   return (
     <section
-      className="relative min-h-[90vh] md:min-h-[92vh] pt-28 pb-0 overflow-hidden flex flex-col bg-[#090D16] text-white"
+      className="relative min-h-[85vh] sm:min-h-[90vh] md:min-h-[92vh] pt-24 sm:pt-28 pb-0 overflow-hidden flex flex-col bg-[#090D16] text-white select-none sm:select-auto"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
     >
       {/* ── Background layers (Enhanced Visibility & Balanced Contrast) ── */}
       <div className="absolute inset-0 pointer-events-none z-0">
@@ -209,10 +227,10 @@ export function EpamHero() {
       </div>
 
       {/* ── Main Content ── */}
-      <div className="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex-1 flex flex-col justify-center py-12">
-        <div className="max-w-[54rem] space-y-7">
+      <div className="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex-1 flex flex-col justify-center py-8 sm:py-12">
+        <div className="max-w-[54rem] space-y-5 sm:space-y-7">
 
-          {/* Eyebrow badge */}
+          {/* Eyebrow badge (Single, Clean) */}
           <div
             className={`inline-flex items-center gap-2.5 transition-all duration-300 ${
               isTransitioning ? "opacity-0 translate-y-2" : "opacity-100 translate-y-0"
@@ -230,10 +248,6 @@ export function EpamHero() {
               US · UK · UAE · Singapore · Global
             </span>
           </div>
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-xs font-semibold uppercase tracking-wider">
-            <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" />
-            <span>{activeSlide.eyebrow}</span>
-          </div>
 
           {/* Dynamic Headline with fade transition */}
           <div
@@ -241,7 +255,7 @@ export function EpamHero() {
               isTransitioning ? "opacity-0 -translate-y-2" : "opacity-100 translate-y-0"
             }`}
           >
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.08] text-white">
+            <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.12] sm:leading-[1.08] text-white">
               {activeSlide.title}{" "}
               <span className="text-blue-400 block sm:inline">
                 {activeSlide.titleHighlight}
@@ -255,23 +269,23 @@ export function EpamHero() {
               isTransitioning ? "opacity-0" : "opacity-100"
             }`}
           >
-            <p className="text-slate-300 text-base sm:text-lg leading-relaxed max-w-2xl">
+            <p className="text-slate-300 text-sm sm:text-base md:text-lg leading-relaxed max-w-2xl">
               {activeSlide.subtitle}
             </p>
           </div>
 
-          {/* What We Build — Clean Category Pills */}
+          {/* What We Build — Swipeable Category Pills on Mobile */}
           <div
             className={`transition-all duration-300 delay-100 ${
               isTransitioning ? "opacity-0" : "opacity-100"
             }`}
           >
-            <div className="flex flex-wrap items-center gap-1.5 pt-1">
-              <span className="text-xs text-slate-400 mr-1 hidden sm:inline">Scope:</span>
+            <div className="flex items-center gap-1.5 pt-1 overflow-x-auto no-scrollbar max-w-full pb-1 -mx-4 px-4 sm:mx-0 sm:px-0 sm:flex-wrap">
+              <span className="text-xs text-slate-400 mr-1 hidden sm:inline shrink-0">Scope:</span>
               {WHAT_WE_BUILD.map((item) => (
                 <span
                   key={item}
-                  className="text-xs px-2.5 py-1 rounded-md bg-white/10 text-slate-200 border border-white/15 hover:border-white/30 transition-colors"
+                  className="text-xs px-2.5 py-1 rounded-md bg-white/10 text-slate-200 border border-white/15 hover:border-white/30 transition-colors whitespace-nowrap shrink-0"
                 >
                   {item}
                 </span>
@@ -281,7 +295,7 @@ export function EpamHero() {
 
           {/* Action CTAs */}
           <div
-            className={`flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-2 transition-all duration-300 delay-150 ${
+            className={`flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-1 sm:pt-2 transition-all duration-300 delay-150 ${
               isTransitioning ? "opacity-0 translate-y-2" : "opacity-100 translate-y-0"
             }`}
           >
@@ -291,7 +305,7 @@ export function EpamHero() {
                 if (activeSlide.primaryCtaAction === "demo") openDemoModal();
                 else openBookingModal();
               }}
-              className="btn-primary w-full sm:w-auto px-7 py-3.5 text-sm font-semibold cursor-pointer active:scale-95 transition-transform flex items-center justify-center gap-2"
+              className="btn-primary w-full sm:w-auto px-6 sm:px-7 py-3.5 text-sm font-semibold cursor-pointer active:scale-95 transition-transform flex items-center justify-center gap-2"
             >
               <span>{activeSlide.primaryCtaText}</span>
               <ArrowRight className="w-4 h-4" />
@@ -308,9 +322,9 @@ export function EpamHero() {
             </Link>
           </div>
 
-          {/* Trust stats strip with Count-Up */}
+          {/* Trust stats strip with Count-Up (Responsive Grid for Mobile) */}
           <div
-            className={`flex items-center gap-6 pt-2 transition-all duration-300 delay-200 ${
+            className={`grid grid-cols-3 gap-2 sm:gap-6 pt-2 max-w-lg sm:max-w-none transition-all duration-300 delay-200 ${
               isTransitioning ? "opacity-0" : "opacity-100"
             }`}
           >
@@ -323,18 +337,15 @@ export function EpamHero() {
                   : stat.value;
 
               return (
-                <React.Fragment key={stat.label}>
-                  {idx > 0 && <div className="w-px h-8 bg-white/10" />}
-                  <div className="flex items-center gap-2.5">
-                    <span className="text-[#3B82F6]">{stat.icon}</span>
-                    <div>
-                      <div className="text-sm font-bold text-white leading-none font-mono">
-                        {displayVal}
-                      </div>
-                      <div className="text-[11px] text-slate-400 mt-0.5">{stat.label}</div>
+                <div key={stat.label} className="flex items-center gap-2 sm:gap-2.5">
+                  <span className="text-[#3B82F6] shrink-0">{stat.icon}</span>
+                  <div>
+                    <div className="text-xs sm:text-sm font-bold text-white leading-none font-mono">
+                      {displayVal}
                     </div>
+                    <div className="text-[10px] sm:text-[11px] text-slate-400 mt-0.5 truncate">{stat.label}</div>
                   </div>
-                </React.Fragment>
+                </div>
               );
             })}
           </div>

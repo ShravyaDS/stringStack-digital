@@ -31,7 +31,7 @@ export function Footer() {
   const { openBookingModal } = useBookingModal();
 
   return (
-    <footer className="bg-[#0B1120] text-white pt-16 pb-12 border-t border-slate-800">
+    <footer className="bg-[#0B1120] text-white pt-16 pb-16 pb-safe border-t border-slate-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* ── Main footer grid ── */}

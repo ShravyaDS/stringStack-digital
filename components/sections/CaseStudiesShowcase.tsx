@@ -102,7 +102,7 @@ export function CaseStudiesShowcase() {
   return (
     <section
       id="case-studies"
-      className="py-20 md:py-28 relative overflow-hidden"
+      className="dark-section py-20 md:py-28 relative overflow-hidden"
       style={{ background: "linear-gradient(180deg, #0E1623 0%, #090D16 100%)" }}
     >
       {/* Ambient glows */}

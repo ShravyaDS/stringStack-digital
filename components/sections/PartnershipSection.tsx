@@ -1,13 +1,25 @@
 "use client";
 
-import React from "react";
+import React, { useState, useRef } from "react";
 import Link from "next/link";
-import Image from "next/image";
-import { Lock, Layers, Zap, ArrowRight } from "lucide-react";
+import {
+  Lock,
+  Layers,
+  Zap,
+  ArrowRight,
+  CheckCircle2,
+  ChevronDown,
+  ChevronUp,
+  Eye,
+  EyeOff,
+} from "lucide-react";
 import { useBookingModal } from "../ModalProvider";
 
 export function PartnershipSection() {
   const { openBookingModal } = useBookingModal();
+  // Multi-open state: any number of pillars can be open simultaneously
+  const [openIndices, setOpenIndices] = useState<number[]>([0]);
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   const partnershipPillars = [
     {
@@ -17,6 +29,12 @@ export function PartnershipSection() {
         "We act as your dedicated engineering arm. All code, PRs, communications, and commits belong to you under strict mutual NDA. Zero attribution, 100% your brand.",
       badge: "Silent Partner",
       Icon: Lock,
+      guarantees: [
+        "Strict mutual NDA on all deliverables",
+        "No SprintStack attribution on code or commits",
+        "Full GitHub repository access under your org",
+        "All communication under your agency brand",
+      ],
     },
     {
       title: "Fixed-Price Sprint Retainers",
@@ -25,6 +43,12 @@ export function PartnershipSection() {
         "Guaranteed 1-to-2 week sprint cadences with predefined deliverables. Protect your project margins with transparent, fixed pricing and zero surprise invoices.",
       badge: "Margin Protection",
       Icon: Layers,
+      guarantees: [
+        "Fixed sprint price agreed upfront",
+        "Zero surprise invoices or scope creep",
+        "Predefined milestone delivery checklist",
+        "Weekly staging preview for client reviews",
+      ],
     },
     {
       title: "Rapid Pod Deployment",
@@ -33,101 +57,243 @@ export function PartnershipSection() {
         "Scale cross-functional engineering pods up or down based on your active client pipeline. Principal Architect, Full-Stack, Mobile, and QA ready in 7 days.",
       badge: "Elastic Squads",
       Icon: Zap,
+      guarantees: [
+        "Full pod ready in 7 days — no hiring lag",
+        "Principal Architect included in every pod",
+        "Scale up/down per your active pipeline",
+        "No permanent payroll or benefits overhead",
+      ],
     },
   ];
 
+  const isAllOpen = openIndices.length === partnershipPillars.length;
+
+  const toggleAll = () => {
+    if (isAllOpen) {
+      setOpenIndices([]);
+    } else {
+      setOpenIndices(partnershipPillars.map((_, i) => i));
+    }
+  };
+
+  const handleToggle = (idx: number) => {
+    const isCurrentlyOpen = openIndices.includes(idx);
+    if (!isCurrentlyOpen) {
+      setOpenIndices((prev) => [...prev, idx]);
+      // When opening, smoothly bring this pillar into comfortable view below navbar
+      setTimeout(() => {
+        const el = cardRefs.current[idx];
+        if (el) {
+          const rect = el.getBoundingClientRect();
+          const navHeight = 90;
+          const targetY = window.scrollY + rect.top - navHeight - 12;
+          window.scrollTo({ top: Math.max(0, targetY), behavior: "smooth" });
+        }
+      }, 50);
+    } else {
+      setOpenIndices((prev) => prev.filter((i) => i !== idx));
+    }
+  };
+
   return (
-    <section id="partnerships" className="py-20 lg:py-28 bg-[#F8FAFC] border-t border-[#E2E8F0] relative overflow-hidden">
-      {/* ── Architectural Building Background Layer ── */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden select-none z-0">
-        <Image
-          src="/images/partners-bg.jpg"
-          alt="SprintStack Enterprise Architecture"
-          fill
-          priority={false}
-          className="object-cover object-center opacity-20"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#F8FAFC] via-[#F8FAFC]/85 to-[#F8FAFC]" />
-      </div>
+    <section
+      id="partnerships"
+      className="py-16 lg:py-24 bg-[#F8FAFC] border-t border-[#E2E8F0] relative overflow-hidden scroll-mt-24"
+    >
+      {/* Background pattern */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(228,230,234,0.35)_1px,transparent_1px),linear-gradient(to_bottom,rgba(228,230,234,0.35)_1px,transparent_1px)] [background-size:36px_36px] [mask-image:radial-gradient(ellipse_80%_70%_at_50%_50%,black_20%,transparent_80%)] opacity-50 pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
-        {/* Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-3 mb-12 md:mb-14 scroll-reveal">
+
+        {/* ── Section Header ── */}
+        <div className="max-w-3xl mx-auto text-center space-y-3 mb-10">
           <span className="section-label">White-Label &amp; Partners</span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0F172A] tracking-tight">
-            White-Label &amp; Partners
+            Your Silent Engineering Backbone
           </h2>
           <p className="text-[#475569] text-sm sm:text-base leading-relaxed">
-            SprintStack provides 100% white-label software engineering capacity for <strong className="text-[#0F172A]">Digital consultancies</strong>, <strong className="text-[#0F172A]">Marketing agencies</strong>, and <strong className="text-[#0F172A]">IT service providers</strong>.
+            SprintStack provides 100% white-label software engineering capacity for{" "}
+            <strong className="text-[#0F172A]">Digital consultancies</strong>,{" "}
+            <strong className="text-[#0F172A]">Marketing agencies</strong>, and{" "}
+            <strong className="text-[#0F172A]">IT service providers</strong>.
           </p>
-
-          {/* 3-Step Model (White cards on #F8FAFC) */}
-          <div className="pt-4 grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-2xl mx-auto text-xs text-left">
-            <div className="p-4 rounded-xl bg-white border border-[#E5E8ED] space-y-1 shadow-2xs">
-              <span className="text-[10px] font-bold uppercase tracking-wider text-[#2554EB]">Step 01</span>
-              <div className="text-[#0F172A] font-semibold text-sm">Agency Lands Client</div>
-              <p className="text-xs text-[#64748B]">You scope and price under your agency brand.</p>
-            </div>
-            <div className="p-4 rounded-xl bg-white border border-[#E5E8ED] space-y-1 shadow-2xs">
-              <span className="text-[10px] font-bold uppercase tracking-wider text-[#2554EB]">Step 02</span>
-              <div className="text-[#0F172A] font-semibold text-sm">SprintStack Builds</div>
-              <p className="text-xs text-[#64748B]">We engineer behind the scenes under strict NDA.</p>
-            </div>
-            <div className="p-4 rounded-xl bg-white border border-[#E5E8ED] space-y-1 shadow-2xs">
-              <span className="text-[10px] font-bold uppercase tracking-wider text-[#0E9F6E]">Step 03</span>
-              <div className="text-[#0F172A] font-semibold text-sm">Agency Delivers</div>
-              <p className="text-xs text-[#64748B]">You deliver production code with 100% IP ownership.</p>
-            </div>
-          </div>
         </div>
 
-        {/* 3 Core Pillars (Clean White Cards, Unified Monochrome Blue Icons) */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 scroll-stagger">
-          {partnershipPillars.map((pillar) => {
+        {/* ── 3-Step Visual Delivery Model ── */}
+        <div className="flex flex-col sm:flex-row items-stretch gap-3 mb-12 max-w-2xl mx-auto">
+          {[
+            { step: "01", title: "Agency Lands Client", desc: "You scope and price under your agency brand." },
+            { step: "02", title: "SprintStack Builds", desc: "We engineer behind the scenes under strict NDA." },
+            { step: "03", title: "Agency Delivers", desc: "You deliver production code with 100% IP ownership." },
+          ].map((s, i) => (
+            <React.Fragment key={s.step}>
+              <div className="flex-1 p-4 rounded-xl bg-white border border-[#E2E8F0] shadow-[0_1px_4px_rgba(15,23,42,0.04)] text-center space-y-1">
+                <span className="text-[10px] font-bold uppercase tracking-wider block text-[#2563EB]">
+                  Step {s.step}
+                </span>
+                <div className="text-[#0F172A] font-semibold text-sm">{s.title}</div>
+                <p className="text-xs text-[#64748B]">{s.desc}</p>
+              </div>
+              {i < 2 && (
+                <div className="hidden sm:flex items-center justify-center shrink-0">
+                  <ArrowRight className="w-4 h-4 text-[#94A3B8]" />
+                </div>
+              )}
+            </React.Fragment>
+          ))}
+        </div>
+
+        {/* ── Section Controls ── */}
+        <div className="flex items-center justify-between max-w-4xl mx-auto mb-4 px-1">
+          <span className="text-xs font-semibold text-[#64748B] uppercase tracking-wider">
+            Partnership Models
+          </span>
+          <button
+            type="button"
+            onClick={toggleAll}
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-[#E2E8F0] bg-white hover:bg-slate-50 text-xs font-semibold text-[#334155] shadow-2xs transition-colors cursor-pointer"
+          >
+            {isAllOpen ? (
+              <>
+                <EyeOff className="w-3.5 h-3.5 text-[#64748B]" />
+                <span>Collapse All</span>
+              </>
+            ) : (
+              <>
+                <Eye className="w-3.5 h-3.5 text-[#2563EB]" />
+                <span>Expand All</span>
+              </>
+            )}
+          </button>
+        </div>
+
+        {/* ── Expandable Partnership Pillars (Guaranteed visible, smooth view positioning) ── */}
+        <div className="space-y-4 max-w-4xl mx-auto">
+          {partnershipPillars.map((pillar, idx) => {
             const Icon = pillar.Icon;
+            const isOpen = openIndices.includes(idx);
+
             return (
               <div
                 key={pillar.title}
-                className="bg-white rounded-xl border border-[#E5E8ED] p-6 sm:p-7 shadow-xs card-interactive group flex flex-col justify-between space-y-5"
+                ref={(el) => {
+                  cardRefs.current[idx] = el;
+                }}
+                className={`rounded-2xl border bg-white transition-all duration-300 scroll-mt-28 overflow-hidden ${
+                  isOpen
+                    ? "border-blue-400 shadow-[0_12px_36px_rgba(37,99,235,0.12)] ring-1 ring-blue-500/15"
+                    : "border-[#E2E8F0] shadow-[0_2px_8px_rgba(15,23,42,0.04)] hover:border-blue-200"
+                }`}
               >
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between">
-                    <div className="w-10 h-10 rounded-lg bg-[#F3F4F6] border border-[#E5E8ED] flex items-center justify-center text-[#111827] transition-all duration-200 group-hover:bg-[#111827] group-hover:text-white">
+                {/* ── Card Header Row (Clickable) ── */}
+                <div
+                  onClick={() => handleToggle(idx)}
+                  className={`w-full flex items-center justify-between gap-4 p-5 sm:p-6 text-left cursor-pointer select-none transition-colors border-l-4 ${
+                    isOpen
+                      ? "border-l-[#2563EB] bg-blue-50/25"
+                      : "border-l-transparent hover:bg-slate-50/70"
+                  }`}
+                >
+                  {/* Left: Icon + Title info */}
+                  <div className="flex items-center gap-3.5 sm:gap-4 min-w-0">
+                    <div
+                      className={`w-11 h-11 rounded-xl flex items-center justify-center shrink-0 border transition-transform duration-200 ${
+                        isOpen
+                          ? "bg-blue-600 text-white border-blue-600 shadow-sm scale-105"
+                          : "bg-blue-50 text-blue-600 border-blue-100"
+                      }`}
+                    >
                       <Icon className="w-5 h-5" />
                     </div>
-                    <span className="text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full bg-[#F3F4F6] text-[#374151] border border-[#E5E8ED]">
+
+                    <div className="min-w-0">
+                      <div className="text-xs font-semibold uppercase tracking-wider text-[#64748B] mb-0.5">
+                        {pillar.subtitle}
+                      </div>
+                      <h3
+                        className={`text-base sm:text-xl font-bold tracking-tight transition-colors truncate sm:whitespace-normal ${
+                          isOpen ? "text-blue-600" : "text-[#0F172A]"
+                        }`}
+                      >
+                        {pillar.title}
+                      </h3>
+                    </div>
+                  </div>
+
+                  {/* Right: Badge + Explicit Expand/Collapse Button */}
+                  <div className="flex items-center gap-3 shrink-0">
+                    <span className="hidden sm:inline-flex text-[11px] font-semibold px-2.5 py-0.5 rounded-full border bg-blue-50 text-blue-700 border-blue-200/70">
                       {pillar.badge}
                     </span>
-                  </div>
 
-                  <div>
-                    <span className="text-[11px] font-semibold uppercase tracking-widest text-[#64748B] block mb-1">
-                      {pillar.subtitle}
-                    </span>
-                    <h3 className="text-xl font-bold text-[#0F172A] tracking-tight">
-                      {pillar.title}
-                    </h3>
-                    <p className="text-sm text-[#475569] mt-2 leading-relaxed">
-                      {pillar.description}
-                    </p>
+                    {/* Expand / Collapse Icon Button */}
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleToggle(idx);
+                      }}
+                      className={`w-8 h-8 sm:w-9 sm:h-9 rounded-xl flex items-center justify-center border transition-all duration-200 cursor-pointer ${
+                        isOpen
+                          ? "bg-blue-50 text-[#2563EB] border-blue-200 shadow-2xs scale-105"
+                          : "bg-[#F8FAFC] text-[#64748B] border-[#E2E8F0] hover:bg-blue-50 hover:text-[#2563EB] hover:border-blue-200"
+                      }`}
+                      aria-expanded={isOpen}
+                      aria-label={isOpen ? "Collapse details" : "Expand details"}
+                    >
+                      <ChevronDown
+                        className={`w-4 h-4 transition-transform duration-300 ${
+                          isOpen ? "rotate-180 text-[#2563EB]" : "rotate-0 text-[#64748B]"
+                        }`}
+                      />
+                    </button>
                   </div>
                 </div>
 
-                <div className="pt-4 border-t border-[#F1F5F9] flex flex-col sm:flex-row gap-2.5">
-                  <button
-                    onClick={openBookingModal}
-                    className="btn-primary flex-1 py-2.5 text-xs sm:text-sm font-semibold cursor-pointer active:scale-95 transition-transform"
-                  >
-                    Discuss Terms
-                  </button>
-                  <Link
-                    href="/partners/white-label"
-                    className="btn-secondary py-2.5 px-3 text-xs sm:text-sm font-semibold text-center active:scale-95 transition-transform"
-                  >
-                    Squad Details
-                  </Link>
-                </div>
+                {/* ── Expanded Content ── */}
+                {isOpen && (
+                  <div className="p-5 sm:p-6 pt-3 sm:pt-4 border-t border-slate-100 animate-in fade-in duration-200">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 items-start">
+                      
+                      {/* Left: Description + Guarantees */}
+                      <div className="space-y-4">
+                        <p className="text-[#475569] text-sm sm:text-base leading-relaxed">
+                          {pillar.description}
+                        </p>
+                        
+                        <div className="space-y-2 pt-1">
+                          <div className="text-xs font-semibold uppercase tracking-wider text-[#64748B] mb-2">
+                            Pillar Guarantees
+                          </div>
+                          {pillar.guarantees.map((g) => (
+                            <div key={g} className="flex items-start gap-2.5 text-xs sm:text-sm text-[#334155]">
+                              <CheckCircle2 className="w-4 h-4 shrink-0 mt-0.5 text-emerald-600" />
+                              <span>{g}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Right: Actions */}
+                      <div className="flex flex-col justify-end gap-3 pt-4 sm:pt-0">
+                        <button
+                          onClick={openBookingModal}
+                          className="btn-primary w-full flex items-center justify-center gap-2 py-3 text-sm font-semibold cursor-pointer active:scale-95 transition-transform"
+                        >
+                          <span>Discuss Partnership Terms</span>
+                          <ArrowRight className="w-4 h-4" />
+                        </button>
+                        <Link
+                          href="/partners/white-label"
+                          className="btn-secondary w-full flex items-center justify-center gap-2 py-2.5 text-sm font-semibold active:scale-95 transition-transform text-[#334155] hover:text-[#2563EB]"
+                        >
+                          View Full Partner Program
+                        </Link>
+                      </div>
+
+                    </div>
+                  </div>
+                )}
               </div>
             );
           })}

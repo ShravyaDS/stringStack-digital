@@ -55,12 +55,17 @@ export function Navigation() {
 
   return (
     <>
-      {/* ── TOP NAVIGATION BAR (Scroll-Shrink: 76px -> 60px) ── */}
+      {/* ── TOP NAVIGATION BAR (Guaranteed 100% Solid Pure White: No blur, no transparency) ── */}
       <header
-        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-200 ease-out ${
+        style={{
+          backgroundColor: "#ffffff",
+          backdropFilter: "none",
+          WebkitBackdropFilter: "none",
+        }}
+        className={`fixed top-0 left-0 right-0 z-50 bg-white border-b border-[#E2E8F0] transition-all duration-200 ease-out ${
           scrolled || drawerOpen
-            ? "bg-white/95 backdrop-blur-md border-b border-[#E5E8ED] py-2.5 shadow-[0_1px_3px_rgba(0,0,0,0.06)]"
-            : "bg-white/80 backdrop-blur-sm border-b border-[#F1F5F9] py-4"
+            ? "py-2.5 shadow-[0_2px_12px_rgba(0,0,0,0.06)]"
+            : "py-4 shadow-[0_1px_4px_rgba(0,0,0,0.03)]"
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -84,15 +89,25 @@ export function Navigation() {
                 { href: "/#tech-stack", label: "Tech Stack" },
                 { href: "/partners/white-label", label: "White-Label & Partners" },
                 { href: "/#process", label: "Process" },
-              ].map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className="px-3 py-1.5 rounded-md text-sm font-medium text-[#475569] hover:text-[#0F172A] hover:bg-[#F8FAFC] transition-colors whitespace-nowrap"
-                >
-                  {item.label}
-                </Link>
-              ))}
+              ].map((item) => {
+                const isActive = item.href.startsWith("/") && !item.href.startsWith("/#") && pathname === item.href;
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className={`relative px-3 py-1.5 rounded-md text-sm font-medium transition-colors whitespace-nowrap group ${
+                      isActive
+                        ? "text-[#2563EB] bg-blue-50"
+                        : "text-[#475569] hover:text-[#0F172A] hover:bg-[#F8FAFC]"
+                    }`}
+                  >
+                    {item.label}
+                    {isActive && (
+                      <span className="absolute bottom-0 left-3 right-3 h-[2px] rounded-full bg-[#2563EB]" />
+                    )}
+                  </Link>
+                );
+              })}
             </nav>
 
             {/* ── Right Actions ── */}
@@ -116,11 +131,11 @@ export function Navigation() {
                   e.stopPropagation();
                   setDrawerOpen((prev) => !prev);
                 }}
-                className="flex items-center justify-center w-9 h-9 rounded-lg border border-[#E2E8F0] text-[#334155] hover:bg-[#F8FAFC] cursor-pointer shrink-0 lg:hidden transition-all duration-200"
+                className="flex items-center justify-center w-10 h-10 rounded-lg border border-[#E2E8F0] text-[#1E293B] hover:bg-[#F8FAFC] active:bg-[#F1F5F9] cursor-pointer shrink-0 lg:hidden transition-all duration-150"
                 aria-label={drawerOpen ? "Close menu" : "Open menu"}
                 aria-expanded={drawerOpen}
               >
-                {drawerOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
+                {drawerOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
               </button>
             </div>
           </div>
@@ -135,7 +150,7 @@ export function Navigation() {
         {/* Backdrop */}
         <div
           onClick={() => setDrawerOpen(false)}
-          className={`fixed inset-0 bg-slate-900/40 backdrop-blur-xs transition-opacity duration-300 ${
+          className={`fixed inset-0 bg-slate-900/50 backdrop-blur-xs transition-opacity duration-300 ${
             drawerOpen ? "opacity-100" : "opacity-0"
           }`}
         />
@@ -147,10 +162,10 @@ export function Navigation() {
           }`}
         >
           {/* Drawer Header */}
-          <div className="p-5 flex items-center justify-between border-b border-[#E5E7EB] sticky top-0 z-20 bg-white">
+          <div className="p-4 sm:p-5 flex items-center justify-between border-b border-[#E5E7EB] sticky top-0 z-20 bg-white">
             <div className="flex items-center gap-2.5">
-              <div className="w-7 h-7 rounded-lg bg-[#2563EB] flex items-center justify-center">
-                <Code2 className="w-3.5 h-3.5 text-white" />
+              <div className="w-8 h-8 rounded-lg bg-[#2563EB] flex items-center justify-center">
+                <Code2 className="w-4 h-4 text-white" />
               </div>
               <span className="font-bold text-base text-[#0F172A] tracking-tight">
                 SprintStack<span className="text-[#2563EB]">.digital</span>
@@ -158,7 +173,7 @@ export function Navigation() {
             </div>
             <button
               onClick={() => setDrawerOpen(false)}
-              className="w-8 h-8 rounded-lg bg-slate-100 hover:bg-slate-200 text-[#475569] flex items-center justify-center transition-all cursor-pointer"
+              className="w-9 h-9 rounded-lg bg-slate-100 hover:bg-slate-200 active:bg-slate-300 text-[#475569] flex items-center justify-center transition-all cursor-pointer"
               aria-label="Close menu"
             >
               <X className="w-4 h-4" />
@@ -166,10 +181,10 @@ export function Navigation() {
           </div>
 
           {/* Drawer Links */}
-          <div className="p-5 space-y-6 flex-1">
+          <div className="p-4 sm:p-5 space-y-5 flex-1">
             {/* Solutions */}
-            <div className="space-y-1.5">
-              <span className="text-[11px] font-semibold uppercase tracking-widest text-blue-400/80 px-1 block">Solutions</span>
+            <div className="space-y-1">
+              <span className="text-[11px] font-bold uppercase tracking-widest text-[#2563EB] px-2 block mb-1">Solutions</span>
               {[
                 { href: "/services/web-development", label: "Web Applications & Platforms" },
                 { href: "/services/mobile-apps", label: "Native & Cross-Platform Mobile" },
@@ -180,7 +195,7 @@ export function Navigation() {
                   key={link.label}
                   href={link.href}
                   onClick={() => setDrawerOpen(false)}
-                  className="block px-3 py-2 rounded-lg text-sm text-[#475569] hover:text-[#0F172A] hover:bg-[#F8FAFC] transition-colors"
+                  className="block px-3 py-2.5 rounded-lg text-sm font-medium text-[#334155] hover:text-[#0F172A] hover:bg-[#F8FAFC] active:bg-[#F1F5F9] transition-colors"
                 >
                   {link.label}
                 </Link>
@@ -191,7 +206,7 @@ export function Navigation() {
 
             {/* Enterprise */}
             <div className="space-y-1">
-              <span className="text-[11px] font-semibold uppercase tracking-widest text-[#2563EB] px-1 block">Enterprise Software</span>
+              <span className="text-[11px] font-bold uppercase tracking-widest text-[#2563EB] px-2 block mb-1">Enterprise Software</span>
               {[
                 { href: "/products/attendance-erp", label: "Attendance & Workforce ERP" },
                 { href: "/#enterprise-solutions", label: "Project & Resource Governance" },
@@ -202,7 +217,7 @@ export function Navigation() {
                   key={link.label}
                   href={link.href}
                   onClick={() => setDrawerOpen(false)}
-                  className="block px-3 py-2 rounded-lg text-sm text-[#475569] hover:text-[#0F172A] hover:bg-[#F8FAFC] transition-colors"
+                  className="block px-3 py-2.5 rounded-lg text-sm font-medium text-[#334155] hover:text-[#0F172A] hover:bg-[#F8FAFC] active:bg-[#F1F5F9] transition-colors"
                 >
                   {link.label}
                 </Link>
@@ -213,7 +228,7 @@ export function Navigation() {
 
             {/* Company */}
             <div className="space-y-1">
-              <span className="text-[11px] font-semibold uppercase tracking-widest text-[#64748B] px-1 block">Company</span>
+              <span className="text-[11px] font-bold uppercase tracking-widest text-[#64748B] px-2 block mb-1">Company & Process</span>
               {[
                 { href: "/#tech-stack", label: "Technology Stack" },
                 { href: "/partners/white-label", label: "White-Label & Partners" },
@@ -225,7 +240,7 @@ export function Navigation() {
                   key={link.label}
                   href={link.href}
                   onClick={() => setDrawerOpen(false)}
-                  className="block px-3 py-2 rounded-lg text-sm text-[#475569] hover:text-[#0F172A] hover:bg-[#F8FAFC] transition-colors"
+                  className="block px-3 py-2.5 rounded-lg text-sm font-medium text-[#334155] hover:text-[#0F172A] hover:bg-[#F8FAFC] active:bg-[#F1F5F9] transition-colors"
                 >
                   {link.label}
                 </Link>
@@ -233,14 +248,20 @@ export function Navigation() {
             </div>
           </div>
 
-          {/* Drawer Footer */}
-          <div className="p-5 space-y-3 border-t border-[#E5E7EB] bg-[#F8FAFC]">
+          {/* Drawer Footer with Safe Area */}
+          <div className="p-4 sm:p-5 space-y-3 border-t border-[#E5E7EB] bg-[#F8FAFC] pb-safe">
             <button
               onClick={() => { setDrawerOpen(false); openBookingModal(); }}
-              className="btn-primary w-full inline-flex items-center justify-center gap-2 py-3 text-sm font-semibold cursor-pointer"
+              className="btn-primary w-full inline-flex items-center justify-center gap-2 py-3 text-sm font-semibold cursor-pointer active:scale-95 transition-transform"
             >
-              <span>Schedule a Technical Discovery</span>
+              <span>Schedule Technical Discovery</span>
               <ArrowRight className="w-4 h-4" />
+            </button>
+            <button
+              onClick={() => { setDrawerOpen(false); openDemoModal(); }}
+              className="btn-secondary w-full inline-flex items-center justify-center gap-2 py-2.5 text-xs font-semibold cursor-pointer active:scale-95 transition-transform text-[#334155]"
+            >
+              <span>Launch Live Product Demos</span>
             </button>
           </div>
         </div>

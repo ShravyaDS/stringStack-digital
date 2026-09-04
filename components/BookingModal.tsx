@@ -90,38 +90,38 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 md:p-8 bg-slate-900/50 backdrop-blur-xs animate-in fade-in duration-200"
+      className="fixed inset-0 z-50 flex items-center justify-center p-2.5 sm:p-6 md:p-8 bg-slate-900/60 backdrop-blur-xs animate-in fade-in duration-200"
       onClick={onClose}
     >
       <div
-        className="relative w-full max-w-2xl bg-white border border-[#E5E8ED] rounded-2xl shadow-2xl overflow-hidden animate-in zoom-in-95 duration-200"
+        className="relative w-full max-w-2xl bg-white border border-[#E5E8ED] rounded-2xl shadow-2xl overflow-hidden animate-in zoom-in-95 duration-200 my-auto"
         onClick={(e) => e.stopPropagation()}
       >
         {/* ── Header Bar ── */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-[#E5E8ED] bg-[#F8FAFC]">
-          <div className="flex items-center gap-2.5">
-            <span className="relative flex h-2.5 w-2.5">
+        <div className="flex items-center justify-between px-4 sm:px-6 py-3.5 sm:py-4 border-b border-[#E5E8ED] bg-[#F8FAFC]">
+          <div className="flex items-center gap-2 sm:gap-2.5">
+            <span className="relative flex h-2.5 w-2.5 shrink-0">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
               <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500" />
             </span>
-            <span className="text-xs font-semibold uppercase tracking-wider text-[#475569]">
-              Technical Discovery Session
+            <span className="text-xs font-semibold uppercase tracking-wider text-[#475569] truncate">
+              Technical Discovery
             </span>
-            <span className="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-[#EEF2FF] text-[#2554EB] border border-blue-100">
+            <span className="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-[#EEF2FF] text-[#2554EB] border border-blue-100 shrink-0">
               15 Min
             </span>
           </div>
           <button
             onClick={onClose}
             aria-label="Close booking modal"
-            className="text-[#64748B] hover:text-[#0F172A] p-1.5 rounded-lg hover:bg-slate-100 transition-colors cursor-pointer"
+            className="text-[#64748B] hover:text-[#0F172A] w-9 h-9 rounded-lg hover:bg-slate-200/70 active:bg-slate-300 flex items-center justify-center transition-colors cursor-pointer shrink-0"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
         {/* ── Content Body ── */}
-        <div className="p-6 md:p-8 max-h-[85vh] overflow-y-auto">
+        <div className="p-4 sm:p-6 md:p-8 max-h-[85vh] sm:max-h-[82vh] overflow-y-auto">
           {isSubmitted ? (
             <div className="py-8 text-center space-y-4">
               <div className="w-14 h-14 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-600 flex items-center justify-center mx-auto">
@@ -263,7 +263,7 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
                     placeholder="Alex Morgan"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    className="w-full bg-white border border-[#E5E8ED] rounded-xl px-3.5 py-2.5 text-sm text-[#0F172A] placeholder:text-[#94A3B8] focus:outline-none focus:border-[#2554EB] focus:ring-1 focus:ring-[#2554EB]"
+                    className="w-full bg-white border border-[#E5E8ED] rounded-xl px-3.5 py-2.5 text-base sm:text-sm text-[#0F172A] placeholder:text-[#94A3B8] focus:outline-none focus:border-[#2563EB] focus:ring-1 focus:ring-[#2563EB]"
                   />
                 </div>
                 <div className="space-y-1.5">
@@ -277,7 +277,7 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
                     placeholder="alex@enterprise.com"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="w-full bg-white border border-[#E5E8ED] rounded-xl px-3.5 py-2.5 text-sm text-[#0F172A] placeholder:text-[#94A3B8] focus:outline-none focus:border-[#2554EB] focus:ring-1 focus:ring-[#2554EB]"
+                    className="w-full bg-white border border-[#E5E8ED] rounded-xl px-3.5 py-2.5 text-base sm:text-sm text-[#0F172A] placeholder:text-[#94A3B8] focus:outline-none focus:border-[#2563EB] focus:ring-1 focus:ring-[#2563EB]"
                   />
                 </div>
               </div>

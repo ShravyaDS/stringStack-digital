@@ -28,8 +28,8 @@ export function FAQSection() {
 
   return (
     <section id="faq" className="py-20 lg:py-28 bg-[#F8FAFC] border-t border-[#E2E8F0] relative overflow-hidden">
-      {/* Soft one-sided color bleed (Bottom-Right) */}
-      <div className="absolute -bottom-20 -right-20 w-[550px] h-[550px] bg-[radial-gradient(circle,rgba(37,99,235,0.12)_0%,rgba(99,102,241,0.06)_40%,transparent_70%)] blur-[95px] pointer-events-none" />
+      {/* Soft brand blue ambient glow */}
+      <div className="absolute -bottom-20 -right-20 w-[550px] h-[550px] bg-[radial-gradient(circle,rgba(37,99,235,0.08)_0%,transparent_70%)] blur-[95px] pointer-events-none" />
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         

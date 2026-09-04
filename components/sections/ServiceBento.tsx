@@ -1,53 +1,58 @@
 "use client";
 
-import React from "react";
+import React, { useState, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Code2, Smartphone, ShoppingBag, Workflow } from "lucide-react";
+import {
+  Code2,
+  Smartphone,
+  ShoppingBag,
+  Workflow,
+  ChevronDown,
+  ChevronUp,
+  ArrowRight,
+  Eye,
+  EyeOff,
+} from "lucide-react";
 import { CORE_CAPABILITIES } from "@/lib/constants";
 import { useBookingModal } from "../ModalProvider";
 
-const CARD_THEMES = [
+const CARD_CONFIG = [
   {
     Icon: Code2,
-    accentColor: "bg-blue-600",
-    iconBg: "bg-blue-50 text-blue-600 border-blue-100",
-    badgeBg: "bg-blue-50 text-blue-700 border-blue-200/70",
     ctaLink: "/services/web-development",
     ctaLabel: "Architecture & Sprints",
     scopeLabel: "Scope Web Build",
+    imgSrc: "/images/services/web-apps.jpg",
   },
   {
     Icon: Smartphone,
-    accentColor: "bg-indigo-600",
-    iconBg: "bg-indigo-50 text-indigo-600 border-indigo-100",
-    badgeBg: "bg-indigo-50 text-indigo-700 border-indigo-200/70",
     ctaLink: "/services/mobile-apps",
     ctaLabel: "Explore Mobile Systems",
     scopeLabel: "Scope Mobile Build",
+    imgSrc: "/images/services/mobile-apps.jpg",
   },
   {
     Icon: ShoppingBag,
-    accentColor: "bg-violet-600",
-    iconBg: "bg-violet-50 text-violet-600 border-violet-100",
-    badgeBg: "bg-violet-50 text-violet-700 border-violet-200/70",
     ctaLink: "/services/web-development",
     ctaLabel: "Commerce Architecture",
     scopeLabel: "Scope Commerce Engine",
+    imgSrc: "/images/services/ecommerce.jpg",
   },
   {
     Icon: Workflow,
-    accentColor: "bg-cyan-600",
-    iconBg: "bg-cyan-50 text-cyan-600 border-cyan-100",
-    badgeBg: "bg-cyan-50 text-cyan-700 border-cyan-200/70",
     ctaLink: "/services/web-development",
     ctaLabel: "Middleware Pipeline",
     scopeLabel: "Scope Integration Build",
+    imgSrc: "/images/services/integrations.jpg",
   },
 ];
 
 export function ServiceBento() {
   const { openBookingModal } = useBookingModal();
+  // Multi-open state: any number of cards can be open simultaneously
+  const [openIndices, setOpenIndices] = useState<number[]>([0]);
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   const capabilities = [
     CORE_CAPABILITIES[0],
@@ -56,110 +61,226 @@ export function ServiceBento() {
     CORE_CAPABILITIES[3],
   ];
 
-  return (
-    <section id="solutions" className="py-20 lg:py-28 bg-[#FAFAF8] border-t border-[#E2E8F0] relative overflow-hidden">
-      {/* ── Aesthetic Architectural Wireframe Background (like TechMatrix) ── */}
-      <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden select-none">
-        <Image
-          src="/images/tech-stack/tech-stack-bg.jpg"
-          alt="Engineering Architectural Blueprint"
-          fill
-          priority={false}
-          className="object-cover object-center opacity-45"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#FAFAF8]/90 via-[#FAFAF8]/60 to-[#FAFAF8]/90" />
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(228,230,234,0.5)_1px,transparent_1px),linear-gradient(to_bottom,rgba(228,230,234,0.5)_1px,transparent_1px)] [background-size:36px_36px] [mask-image:radial-gradient(ellipse_80%_70%_at_50%_50%,black_25%,transparent_80%)] opacity-65" />
-      </div>
+  const isAllOpen = openIndices.length === capabilities.length;
 
-      {/* Soft "Color Bleed" Glow Effect (One Side Only — Top-Left Soft Bleed) */}
-      <div className="absolute -top-24 -left-20 w-[550px] h-[550px] bg-[radial-gradient(circle,rgba(37,99,235,0.14)_0%,rgba(99,102,241,0.08)_40%,transparent_70%)] blur-[90px] pointer-events-none z-0" />
+  const toggleAll = () => {
+    if (isAllOpen) {
+      setOpenIndices([]);
+    } else {
+      setOpenIndices(capabilities.map((_, i) => i));
+    }
+  };
+
+  const handleToggle = (idx: number) => {
+    const isCurrentlyOpen = openIndices.includes(idx);
+    if (!isCurrentlyOpen) {
+      setOpenIndices((prev) => [...prev, idx]);
+      // When opening, smoothly bring this card into comfortable view below navbar
+      setTimeout(() => {
+        const el = cardRefs.current[idx];
+        if (el) {
+          const rect = el.getBoundingClientRect();
+          const navHeight = 90;
+          const targetY = window.scrollY + rect.top - navHeight - 12;
+          window.scrollTo({ top: Math.max(0, targetY), behavior: "smooth" });
+        }
+      }, 50);
+    } else {
+      setOpenIndices((prev) => prev.filter((i) => i !== idx));
+    }
+  };
+
+  return (
+    <section
+      id="solutions"
+      className="py-16 lg:py-24 bg-[#F8FAFC] border-t border-[#E2E8F0] relative overflow-hidden scroll-mt-24"
+    >
+      {/* Subtle background grid pattern */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(228,230,234,0.45)_1px,transparent_1px),linear-gradient(to_bottom,rgba(228,230,234,0.45)_1px,transparent_1px)] [background-size:36px_36px] [mask-image:radial-gradient(ellipse_80%_70%_at_50%_50%,black_20%,transparent_80%)] opacity-60 pointer-events-none" />
+      {/* Soft brand ambient glow */}
+      <div className="absolute -top-24 -left-20 w-[500px] h-[500px] bg-[radial-gradient(circle,rgba(37,99,235,0.08)_0%,transparent_70%)] blur-[80px] pointer-events-none z-0" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* ── Section Header ── */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6 scroll-reveal">
-          <div className="space-y-3">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-5">
+          <div className="space-y-2.5 max-w-2xl">
             <span className="section-label">What We Build</span>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0F172A] tracking-tight">
               Core Engineering Capabilities
             </h2>
+            <p className="text-[#475569] text-sm sm:text-base leading-relaxed">
+              From high-concurrency web platforms to native mobile apps and enterprise middleware — engineered by senior squads on fixed weekly sprints.
+            </p>
           </div>
-          <p className="text-[#475569] max-w-md text-sm sm:text-base leading-relaxed">
-            From high-concurrency web platforms to native mobile apps and enterprise middleware — built by senior engineers on fixed weekly sprints.
-          </p>
+
+          {/* Master Expand / Collapse All Control */}
+          <div className="flex items-center gap-3 shrink-0">
+            <button
+              type="button"
+              onClick={toggleAll}
+              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg border border-[#E2E8F0] bg-white hover:bg-slate-50 text-xs font-semibold text-[#334155] shadow-2xs transition-colors cursor-pointer"
+            >
+              {isAllOpen ? (
+                <>
+                  <EyeOff className="w-4 h-4 text-[#64748B]" />
+                  <span>Collapse All</span>
+                </>
+              ) : (
+                <>
+                  <Eye className="w-4 h-4 text-[#2563EB]" />
+                  <span>Expand All</span>
+                </>
+              )}
+            </button>
+          </div>
         </div>
 
-        {/* ── 4 Capability Cards with Rich Accent Visuals ── */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 scroll-stagger">
+        {/* ── Expandable Capability Cards (Guaranteed 100% visible, smoothly scrolls into view) ── */}
+        <div className="space-y-4">
           {capabilities.map((cap, idx) => {
-            const theme = CARD_THEMES[idx];
+            const config = CARD_CONFIG[idx];
+            const Icon = config.Icon;
+            const isOpen = openIndices.includes(idx);
+
             return (
               <div
                 key={cap.headline}
-                className="bg-white rounded-2xl border border-[#E2E8F0] hover:border-[#CBD5E1] p-6 sm:p-7 shadow-[0_4px_16px_rgba(15,23,42,0.04)] card-interactive flex flex-col justify-between group transition-all duration-200 relative overflow-hidden"
+                ref={(el) => {
+                  cardRefs.current[idx] = el;
+                }}
+                className={`rounded-2xl border bg-white transition-all duration-300 scroll-mt-28 overflow-hidden ${
+                  isOpen
+                    ? "border-blue-400 shadow-[0_12px_36px_rgba(37,99,235,0.12)] ring-1 ring-blue-500/15"
+                    : "border-[#E2E8F0] shadow-[0_2px_8px_rgba(15,23,42,0.04)] hover:border-blue-200"
+                }`}
               >
-                {/* Top colored accent line */}
-                <div className={`absolute top-0 left-0 right-0 h-1 ${theme.accentColor}`} />
-
-                <div className="space-y-5 pt-1">
-                  {/* Card Header: Rich Icon + Badge */}
-                  <div className="flex items-center justify-between">
-                    <div className={`w-10 h-10 rounded-xl flex items-center justify-center border transition-transform duration-200 group-hover:scale-105 ${theme.iconBg}`}>
-                      <theme.Icon className="w-5 h-5" />
+                {/* ── Card Header (Always visible, triggers expansion) ── */}
+                <div
+                  onClick={() => handleToggle(idx)}
+                  className={`w-full flex items-center justify-between gap-4 p-5 sm:p-6 text-left cursor-pointer select-none transition-colors border-l-4 ${
+                    isOpen
+                      ? "border-l-[#2563EB] bg-blue-50/25"
+                      : "border-l-transparent hover:bg-slate-50/70"
+                  }`}
+                >
+                  {/* Left: Icon + Title info */}
+                  <div className="flex items-center gap-3.5 sm:gap-4 min-w-0">
+                    <div
+                      className={`w-11 h-11 rounded-xl flex items-center justify-center shrink-0 border transition-transform duration-200 ${
+                        isOpen
+                          ? "bg-blue-600 text-white border-blue-600 shadow-sm scale-105"
+                          : "bg-blue-50 text-blue-600 border-blue-100"
+                      }`}
+                    >
+                      <Icon className="w-5 h-5" />
                     </div>
-                    <span className={`text-[11px] font-semibold px-2.5 py-0.5 rounded-full border ${theme.badgeBg}`}>
+
+                    <div className="min-w-0">
+                      <div className="text-xs font-semibold uppercase tracking-wider text-[#64748B] mb-0.5">
+                        {cap.category}
+                      </div>
+                      <h3
+                        className={`text-base sm:text-xl font-bold tracking-tight transition-colors truncate sm:whitespace-normal ${
+                          isOpen ? "text-blue-600" : "text-[#0F172A]"
+                        }`}
+                      >
+                        {cap.headline}
+                      </h3>
+                    </div>
+                  </div>
+
+                  {/* Right: Badge + Explicit Expand/Collapse Button */}
+                  <div className="flex items-center gap-3 shrink-0">
+                    <span className="hidden sm:inline-flex text-[11px] font-semibold px-2.5 py-0.5 rounded-full border bg-blue-50 text-blue-700 border-blue-200/70">
                       {cap.badge}
                     </span>
-                  </div>
 
-                  {/* Headline & Description */}
-                  <div>
-                    <h3 className="text-xl sm:text-2xl font-bold text-[#0F172A] tracking-tight mb-2 group-hover:text-blue-600 transition-colors duration-200">
-                      {cap.headline}
-                    </h3>
-                    <p className="text-[#475569] text-sm leading-relaxed">
-                      {cap.description}
-                    </p>
-                  </div>
-
-                  {/* Preview Image with subtle zoom on hover */}
-                  <div className="relative aspect-[16/9] w-full rounded-xl overflow-hidden border border-[#E2E8F0] bg-slate-100">
-                    <Image
-                      src={`/images/services/${idx === 0 ? "web-apps" : idx === 1 ? "mobile-apps" : idx === 2 ? "ecommerce" : "integrations"}.jpg`}
-                      alt={cap.headline}
-                      fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
-                  </div>
-
-                  {/* Tech stack pills */}
-                  <div className="flex flex-wrap gap-1.5 pt-1">
-                    {cap.techStack.map((tech) => (
-                      <span
-                        key={tech}
-                        className="inline-flex items-center px-2.5 py-0.5 rounded-md text-[11px] font-medium bg-[#F1F5F9] text-[#334155] border border-[#E2E8F0]"
-                      >
-                        {tech}
-                      </span>
-                    ))}
+                    {/* Expand / Collapse Icon Button */}
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleToggle(idx);
+                      }}
+                      className={`w-8 h-8 sm:w-9 sm:h-9 rounded-xl flex items-center justify-center border transition-all duration-200 cursor-pointer ${
+                        isOpen
+                          ? "bg-blue-50 text-[#2563EB] border-blue-200 shadow-2xs scale-105"
+                          : "bg-[#F8FAFC] text-[#64748B] border-[#E2E8F0] hover:bg-blue-50 hover:text-[#2563EB] hover:border-blue-200"
+                      }`}
+                      aria-expanded={isOpen}
+                      aria-label={isOpen ? "Collapse details" : "Expand details"}
+                    >
+                      <ChevronDown
+                        className={`w-4 h-4 transition-transform duration-300 ${
+                          isOpen ? "rotate-180 text-[#2563EB]" : "rotate-0 text-[#64748B]"
+                        }`}
+                      />
+                    </button>
                   </div>
                 </div>
 
-                {/* Card footer */}
-                <div className="pt-5 mt-5 flex items-center justify-between border-t border-[#F1F5F9]">
-                  <Link
-                    href={theme.ctaLink}
-                    className="text-xs font-semibold text-[#2563EB] hover:text-[#1D4ED8] transition-colors"
-                  >
-                    {theme.ctaLabel}
-                  </Link>
-                  <button
-                    onClick={openBookingModal}
-                    className="text-xs font-semibold px-3.5 py-1.5 rounded-lg bg-[#F8FAFC] hover:bg-[#EEF2FF] hover:text-[#2563EB] text-[#334155] border border-[#E2E8F0] hover:border-blue-200 cursor-pointer transition-colors"
-                  >
-                    {theme.scopeLabel}
-                  </button>
-                </div>
+                {/* ── Expanded Content (Rendered directly, always fully visible) ── */}
+                {isOpen && (
+                  <div className="p-5 sm:p-6 pt-3 sm:pt-4 border-t border-slate-100 animate-in fade-in duration-200">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-center">
+                      
+                      {/* Left: Description + Tech Stack + CTAs */}
+                      <div className="space-y-5">
+                        <p className="text-[#475569] text-sm sm:text-base leading-relaxed">
+                          {cap.description}
+                        </p>
+
+                        {/* Tech Stack */}
+                        <div>
+                          <div className="text-xs font-semibold uppercase tracking-wider text-[#64748B] mb-2">
+                            Architecture &amp; Frameworks
+                          </div>
+                          <div className="flex flex-wrap gap-1.5">
+                            {cap.techStack.map((tech) => (
+                              <span
+                                key={tech}
+                                className="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium bg-[#F1F5F9] text-[#334155] border border-[#E2E8F0] hover:bg-blue-50 hover:text-[#2563EB] hover:border-blue-200 transition-colors cursor-default"
+                              >
+                                {tech}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+
+                        {/* CTAs */}
+                        <div className="pt-2 flex flex-col sm:flex-row sm:items-center gap-3">
+                          <button
+                            onClick={openBookingModal}
+                            className="btn-primary inline-flex items-center justify-center gap-2 px-5 py-2.5 text-sm font-semibold cursor-pointer active:scale-95 transition-transform"
+                          >
+                            <span>{config.scopeLabel}</span>
+                            <ArrowRight className="w-4 h-4" />
+                          </button>
+                          <Link
+                            href={config.ctaLink}
+                            className="inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-lg border border-[#E2E8F0] bg-white hover:bg-blue-50 hover:border-blue-200 text-sm font-semibold text-[#334155] hover:text-[#2563EB] transition-all hover:translate-x-0.5"
+                          >
+                            <span>{config.ctaLabel}</span>
+                            <ArrowRight className="w-4 h-4" />
+                          </Link>
+                        </div>
+                      </div>
+
+                      {/* Right: Graphic Preview */}
+                      <div className="relative aspect-[16/9] w-full rounded-xl overflow-hidden border border-[#E2E8F0] bg-slate-100 shadow-sm">
+                        <Image
+                          src={config.imgSrc}
+                          alt={cap.headline}
+                          fill
+                          className="object-cover"
+                          sizes="(max-width: 1024px) 100vw, 50vw"
+                        />
+                      </div>
+
+                    </div>
+                  </div>
+                )}
               </div>
             );
           })}

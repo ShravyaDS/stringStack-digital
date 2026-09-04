@@ -25,9 +25,9 @@ export function IndustriesSection() {
   const [selectedIndustry, setSelectedIndustry] = useState(0);
 
   const icons: Record<string, React.ReactNode> = {
-    CreditCard: <CreditCard className="w-6 h-6 text-accent-blue" />,
-    Truck: <Truck className="w-6 h-6 text-accent-cyan" />,
-    ShoppingBag: <ShoppingBag className="w-6 h-6 text-accent-emerald" />,
+    CreditCard: <CreditCard className="w-6 h-6 text-blue-400" />,
+    Truck: <Truck className="w-6 h-6 text-cyan-400" />,
+    ShoppingBag: <ShoppingBag className="w-6 h-6 text-emerald-400" />,
     HeartPulse: <HeartPulse className="w-6 h-6 text-red-400" />,
     Cpu: <Cpu className="w-6 h-6 text-indigo-400" />,
     Briefcase: <Briefcase className="w-6 h-6 text-amber-400" />,
@@ -36,7 +36,11 @@ export function IndustriesSection() {
   const activeInd = INDUSTRIES[selectedIndustry];
 
   return (
-    <section id="industries" className="py-24 bg-surface/40 border-t border-border relative overflow-hidden">
+    <section
+      id="industries"
+      className="dark-section py-24 border-t border-white/5 relative overflow-hidden"
+      style={{ background: "linear-gradient(180deg, #0E1623 0%, #090D16 100%)" }}
+    >
       {/* Radiant ambient glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[850px] h-[450px] bg-indigo-600/10 rounded-full blur-3xl pointer-events-none -z-10" />
 
@@ -70,16 +74,16 @@ export function IndustriesSection() {
                 onClick={() => setSelectedIndustry(idx)}
                 className={`p-8 rounded-3xl border transition-all duration-300 flex flex-col justify-between glow-card cursor-pointer group ${
                   isSelected
-                    ? "bg-surface border-indigo-500/80 shadow-2xl shadow-indigo-500/15 scale-[1.02]"
-                    : "bg-surface/80 border-border/90 hover:border-slate-600 hover:bg-surface"
+                    ? "bg-[#111827] border-indigo-500/80 shadow-2xl shadow-indigo-500/15 scale-[1.02]"
+                    : "bg-[#0D1424] border-white/8 hover:border-slate-600 hover:bg-[#111827]"
                 }`}
               >
                 <div className="space-y-5">
                   <div className="flex items-center justify-between">
-                    <div className="p-3.5 rounded-2xl bg-obsidian border border-slate-800 group-hover:scale-105 transition-transform">
+                    <div className="p-3.5 rounded-2xl bg-[#0A0E17] border border-slate-800 group-hover:scale-105 transition-transform">
                       {icons[ind.iconName]}
                     </div>
-                    <span className="text-[10px] font-mono uppercase px-2.5 py-1 rounded-md bg-obsidian border border-slate-800 text-slate-300 font-bold">
+                    <span className="text-[10px] font-mono uppercase px-2.5 py-1 rounded-md bg-[#0A0E17] border border-slate-800 text-slate-300 font-bold">
                       {ind.badge}
                     </span>
                   </div>
@@ -98,8 +102,8 @@ export function IndustriesSection() {
                 </div>
 
                 <div className="pt-6 mt-6 border-t border-slate-800/80 flex items-center justify-between text-xs font-mono">
-                  <span className="text-accent-emerald font-semibold">{ind.metrics}</span>
-                  <span className="text-accent-blue font-bold group-hover:translate-x-1 transition-transform flex items-center gap-1">
+                  <span className="accent-emerald font-semibold">{ind.metrics}</span>
+                  <span className="accent-blue font-bold group-hover:translate-x-1 transition-transform flex items-center gap-1">
                     Scope Sector <ArrowRight className="w-3.5 h-3.5" />
                   </span>
                 </div>
@@ -109,10 +113,10 @@ export function IndustriesSection() {
         </div>
 
         {/* Enterprise Industry Callout Banner */}
-        <div className="mt-14 p-7 sm:p-9 rounded-3xl bg-surface border border-slate-700/90 shadow-2xl glow-card flex flex-col lg:flex-row items-center justify-between gap-6">
+        <div className="mt-14 p-7 sm:p-9 rounded-3xl bg-[#111827] border border-slate-700/90 shadow-2xl glow-card flex flex-col lg:flex-row items-center justify-between gap-6">
           <div className="space-y-1.5 text-center lg:text-left">
             <h4 className="text-xl font-bold text-white tracking-tight flex items-center justify-center lg:justify-start gap-2">
-              <ShieldCheck className="w-5 h-5 text-accent-emerald" />
+              <ShieldCheck className="w-5 h-5 text-emerald-400" />
               <span>Need custom compliance or dedicated industry architecture?</span>
             </h4>
             <p className="text-xs text-slate-300 max-w-xl leading-relaxed">

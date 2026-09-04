@@ -40,10 +40,10 @@ const PRODUCT_IMAGES = [
 ];
 
 const MODULE_THEMES = [
-  { Icon: ShieldCheck, colorClass: "text-[#3B82F6]" },
-  { Icon: BarChart3, colorClass: "text-indigo-400" },
-  { Icon: Layers, colorClass: "text-emerald-400" },
-  { Icon: Activity, colorClass: "text-cyan-400" },
+  { Icon: ShieldCheck, colorClass: "text-[#2563EB]" },
+  { Icon: BarChart3, colorClass: "text-[#2563EB]" },
+  { Icon: Layers, colorClass: "text-[#2563EB]" },
+  { Icon: Activity, colorClass: "text-[#2563EB]" },
 ];
 
 export function ProductShowcase() {
@@ -112,96 +112,56 @@ export function ProductShowcase() {
   return (
     <section
       id="enterprise-solutions"
-      className="py-20 lg:py-28 bg-[#090D16] border-y border-[#1E293B] text-white relative overflow-hidden"
+      className="py-20 lg:py-28 bg-[#FFFFFF] border-t border-[#E2E8F0] relative overflow-hidden text-[#0F172A]"
       aria-label="Enterprise Solutions"
     >
-      {/* ── Cybernetic Circuit & Glowing Horizon Floor (Electric Cyan & Sapphire Horizon) ── */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden select-none">
-        
-        {/* Top-Right Cybernetic HUD Radar & Circuit Board Traces */}
-        <svg
-          className="absolute -top-12 -right-12 w-[620px] h-[620px] opacity-45 md:opacity-65"
-          viewBox="0 0 600 600"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <defs>
-            <linearGradient id="cyberCircuitGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#22D3EE" stopOpacity="0.85" />
-              <stop offset="50%" stopColor="#3B82F6" stopOpacity="0.55" />
-              <stop offset="100%" stopColor="#1D4ED8" stopOpacity="0.15" />
-            </linearGradient>
-          </defs>
-
-          {/* Concentric Telemetry HUD Rings */}
-          <circle cx="500" cy="100" r="180" stroke="url(#cyberCircuitGrad)" strokeWidth="1.5" strokeDasharray="6 8" className="animate-[spin_60s_linear_infinite] origin-[500px_100px]" />
-          <circle cx="500" cy="100" r="140" stroke="#38BDF8" strokeWidth="1" strokeDasharray="3 5" opacity="0.6" />
-          <circle cx="500" cy="100" r="100" stroke="#06B6D4" strokeWidth="1.5" strokeDasharray="16 10" className="animate-[spin_40s_linear_infinite_reverse] origin-[500px_100px]" />
-          <circle cx="500" cy="100" r="60" stroke="#60A5FA" strokeWidth="1" strokeDasharray="2 4" />
-          <circle cx="500" cy="100" r="24" fill="#0EA5E9" fillOpacity="0.15" stroke="#38BDF8" strokeWidth="1" />
-
-          {/* Radar Sweep Reticles */}
-          <line x1="320" y1="100" x2="500" y2="100" stroke="#38BDF8" strokeWidth="1" strokeDasharray="4 4" opacity="0.5" />
-          <line x1="500" y1="100" x2="500" y2="280" stroke="#38BDF8" strokeWidth="1" strokeDasharray="4 4" opacity="0.5" />
-
-          {/* Cybernetic PCB Circuit Board Traces (45° and 90° Routing) */}
-          <g stroke="url(#cyberCircuitGrad)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none">
-            <path d="M 400 100 L 320 100 L 260 160 L 180 160 L 120 220 L 40 220" />
-            <path d="M 430 170 L 370 230 L 300 230 L 240 290 L 140 290" />
-            <path d="M 500 240 L 500 300 L 440 360 L 360 360 L 310 410 L 200 410" />
-            <path d="M 360 100 L 290 100 L 230 160 L 230 240 L 170 300 L 80 300" />
-            <path d="M 470 200 L 410 260 L 410 330 L 350 390 L 280 390" />
-          </g>
-
-          {/* Circuit Connection Solder Nodes with Glow */}
-          <circle cx="40" cy="220" r="3.5" fill="#22D3EE" />
-          <circle cx="140" cy="290" r="3.5" fill="#22D3EE" />
-          <circle cx="200" cy="410" r="3.5" fill="#38BDF8" />
-          <circle cx="80" cy="300" r="3.5" fill="#38BDF8" />
-          <circle cx="280" cy="390" r="3.5" fill="#60A5FA" />
-          <circle cx="260" cy="160" r="2.5" fill="#38BDF8" opacity="0.8" />
-          <circle cx="300" cy="230" r="2.5" fill="#38BDF8" opacity="0.8" />
-          <circle cx="440" cy="360" r="2.5" fill="#38BDF8" opacity="0.8" />
-        </svg>
-
-        {/* Ambient Top-Right Glow Aura */}
-        <div className="absolute -top-16 -right-16 w-[650px] h-[650px] rounded-full bg-[radial-gradient(circle,rgba(6,182,212,0.18)_0%,rgba(37,99,235,0.12)_45%,transparent_70%)] blur-[95px]" />
-
-        {/* ── The Glowing Laser Horizon Beam (Light Floor) ── */}
-        <div className="absolute bottom-0 left-0 right-0 h-44 flex flex-col justify-end">
-          {/* Atmospheric Upward Light Haze Bleed */}
-          <div className="w-full h-36 bg-gradient-to-t from-cyan-500/22 via-blue-600/10 to-transparent blur-2xl" />
-          
-          {/* Intense Mid-Core Luminous Beam Glow */}
-          <div className="w-full h-7 bg-gradient-to-r from-transparent via-cyan-400/50 via-blue-500/60 to-transparent blur-md" />
-          
-          {/* Razor-Sharp 2px Illuminated Horizon Laser Rail */}
-          <div className="w-full h-[2px] bg-gradient-to-r from-transparent via-cyan-300 via-blue-400 to-transparent shadow-[0_0_24px_#22d3ee,0_0_48px_#3b82f6]" />
-        </div>
-
-        {/* Subtle Tech Grid */}
-        <div className="absolute inset-0 bg-[radial-gradient(#1E293B_1px,transparent_1px)] [background-size:32px_32px] opacity-35 [mask-image:radial-gradient(ellipse_at_center,black_30%,transparent_80%)]" />
+      {/* ── Aesthetic Architectural Blueprint Background ── */}
+      <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden select-none">
+        <Image
+          src="/images/tech-stack/tech-stack-bg.jpg"
+          alt="Enterprise Solutions Architecture"
+          fill
+          priority={false}
+          className="object-cover object-center opacity-30"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-white/95 via-white/80 to-white/95" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(228,230,234,0.5)_1px,transparent_1px),linear-gradient(to_bottom,rgba(228,230,234,0.5)_1px,transparent_1px)] [background-size:36px_36px] [mask-image:radial-gradient(ellipse_75%_65%_at_50%_45%,black_20%,transparent_80%)] opacity-60" />
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-[radial-gradient(circle,rgba(37,99,235,0.06)_0%,transparent_70%)] blur-3xl" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* ── Section Header ── */}
-        <div className="text-center max-w-3xl mx-auto mb-10 space-y-3 scroll-reveal">
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-xs font-semibold uppercase tracking-wider">
-            <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" />
-            <span>Enterprise Software Systems</span>
+        <div className="text-center max-w-3xl mx-auto mb-6 space-y-3">
+          <span className="section-label">
+            Enterprise Solutions
           </span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0F172A] tracking-tight">
             Enterprise Solutions
           </h2>
-          <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
+          <p className="text-[#475569] text-sm sm:text-base leading-relaxed">
             Mission-critical software systems tailored to your exact operational workflows — deployed on modern cloud infrastructure with zero recurring license lock-in.
           </p>
         </div>
 
-        {/* ── Segmented Module Tabs (Direct Switcher) ── */}
-        <div className="flex justify-center mb-8 scroll-reveal">
-          <div className="inline-flex flex-wrap items-center justify-center p-1.5 rounded-xl bg-[#111827] border border-[#1E293B] shadow-xl gap-1 max-w-full">
+        {/* ── Live Architecture Status Pill ── */}
+        <div className="flex items-center justify-center gap-2.5 text-xs font-mono text-slate-500 mb-8 flex-wrap">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 border border-slate-200 text-slate-700 shadow-2xs">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+            </span>
+            <span>Enterprise Cloud Node Active</span>
+          </span>
+          <span className="hidden sm:inline text-slate-300">•</span>
+          <span className="text-slate-500 hidden sm:inline">Edge Latency: &lt; 28ms</span>
+          <span className="hidden sm:inline text-slate-300">•</span>
+          <span className="text-slate-500 hidden sm:inline">99.99% Guaranteed SLA</span>
+        </div>
+
+        {/* ── Segmented Module Tabs (Swipeable Scrollbar-free on Mobile, Centered on Desktop) ── */}
+        <div className="flex justify-start sm:justify-center mb-6 sm:mb-8 overflow-x-auto no-scrollbar -mx-4 px-4 sm:mx-0 sm:px-0">
+          <div className="inline-flex items-center p-1 sm:p-1.5 rounded-xl bg-[#F1F5F9] border border-[#E2E8F0] shadow-xs gap-1 shrink-0">
             {ENTERPRISE_SOLUTIONS.map((mod, index) => {
               const isSelected = activeModuleIndex === index;
               const t = MODULE_THEMES[index];
@@ -209,16 +169,16 @@ export function ProductShowcase() {
                 <button
                   key={mod.id}
                   onClick={() => goToSlide(index)}
-                  className={`flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs font-semibold transition-all cursor-pointer whitespace-nowrap ${
+                  className={`flex items-center gap-1.5 sm:gap-2 px-3 sm:px-3.5 py-2 rounded-lg text-xs font-semibold transition-all cursor-pointer whitespace-nowrap shrink-0 ${
                     isSelected
-                      ? "bg-[#2563EB] text-white shadow-md shadow-blue-500/20"
-                      : "text-slate-400 hover:text-white hover:bg-white/5"
+                      ? "bg-[#2563EB] text-white shadow-xs"
+                      : "text-[#475569] hover:text-[#0F172A] hover:bg-white"
                   }`}
                 >
-                  <span className={`text-[10px] font-mono ${isSelected ? "text-blue-100" : "text-slate-500"}`}>
+                  <span className={`text-[10px] font-mono ${isSelected ? "text-blue-100" : "text-slate-400"}`}>
                     0{index + 1}
                   </span>
-                  <t.Icon className={`w-3.5 h-3.5 ${isSelected ? "text-white" : t.colorClass}`} />
+                  <t.Icon className={`w-3.5 h-3.5 ${isSelected ? "text-white" : "text-[#2563EB]"}`} />
                   <span>{mod.title.split("&")[0].trim()}</span>
                 </button>
               );
@@ -241,7 +201,7 @@ export function ProductShowcase() {
                 : "cylinderRollPrev 450ms cubic-bezier(0.16, 1, 0.3, 1) forwards",
               transformStyle: "preserve-3d",
             }}
-            className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center rounded-2xl p-6 sm:p-8 lg:p-10 bg-white border border-[#E2E8F0] shadow-2xl relative z-10"
+            className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-10 items-center rounded-2xl p-4 sm:p-8 lg:p-10 bg-white border border-[#E2E8F0] shadow-2xl relative z-10"
           >
             {/* Left Column: Details (5 cols, dark ink text on crisp white card) */}
             <div className="lg:col-span-5 space-y-6">
@@ -346,9 +306,9 @@ export function ProductShowcase() {
                 </div>
 
                 {/* Light Caption Bar */}
-                <div className="px-4 py-2.5 bg-[#F8FAFC] border-t border-[#E2E8F0] flex items-center justify-between text-xs">
-                  <span className="text-[#475569] font-medium truncate pr-2">{activeImage.caption}</span>
-                  <span className="flex items-center gap-2 shrink-0 text-emerald-700 font-semibold">
+                <div className="px-3 sm:px-4 py-2 sm:py-2.5 bg-[#F8FAFC] border-t border-[#E2E8F0] flex flex-col sm:flex-row sm:items-center justify-between gap-1 text-xs">
+                  <span className="text-[#475569] font-medium truncate text-[11px] sm:text-xs">{activeImage.caption}</span>
+                  <span className="flex items-center gap-1.5 shrink-0 text-emerald-700 font-semibold text-[11px] sm:text-xs">
                     <span className="relative flex h-2 w-2">
                       <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
                       <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
@@ -364,24 +324,24 @@ export function ProductShowcase() {
         </div>
 
         {/* ── Single, Unified Cylinder Navigation Controller ── */}
-        <div className="flex items-center justify-between pt-8 mt-4 max-w-xl mx-auto">
+        <div className="flex items-center justify-between pt-6 sm:pt-8 mt-4 max-w-xl mx-auto px-1">
           {/* Previous Solution */}
           <button
             onClick={handlePrev}
             aria-label="Previous Enterprise Solution"
-            className="flex items-center gap-2 px-4 py-2.5 rounded-xl border border-[#1E293B] bg-[#111827] hover:bg-[#1F2937] text-white text-xs font-semibold transition-all cursor-pointer active:scale-95 shadow-xs"
+            className="flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 sm:py-2.5 rounded-xl border border-[#E2E8F0] bg-white hover:bg-slate-50 text-[#0F172A] text-xs font-semibold transition-all cursor-pointer active:scale-95 shadow-xs"
           >
-            <ChevronLeft className="w-4 h-4" />
-            <span>Previous</span>
+            <ChevronLeft className="w-4 h-4 text-[#64748B]" />
+            <span className="hidden xs:inline sm:inline">Previous</span>
           </button>
 
           {/* Step Progress & Indicator Dots */}
-          <div className="flex items-center gap-3">
-            <span className="font-mono text-xs font-bold text-white">
-              0{activeModuleIndex + 1} <span className="text-slate-500">/ 0{totalModules}</span>
+          <div className="flex items-center gap-2 sm:gap-3">
+            <span className="font-mono text-xs font-bold text-[#0F172A]">
+              0{activeModuleIndex + 1} <span className="text-slate-400">/ 0{totalModules}</span>
             </span>
 
-            <div className="flex items-center gap-1.5">
+            <div className="hidden sm:flex items-center gap-1.5">
               {ENTERPRISE_SOLUTIONS.map((_, i) => (
                 <button
                   key={i}
@@ -390,7 +350,7 @@ export function ProductShowcase() {
                   className={`h-2 rounded-full transition-all cursor-pointer ${
                     activeModuleIndex === i
                       ? "w-7 bg-[#2563EB]"
-                      : "w-2 bg-slate-700 hover:bg-slate-500"
+                      : "w-2 bg-slate-300 hover:bg-slate-400"
                   }`}
                 />
               ))}
@@ -401,9 +361,9 @@ export function ProductShowcase() {
           <button
             onClick={handleNext}
             aria-label="Next Enterprise Solution"
-            className="flex items-center gap-2 px-5 py-2.5 rounded-xl border border-transparent bg-[#2563EB] hover:bg-[#1D4ED8] text-white text-xs font-semibold transition-all cursor-pointer active:scale-95 shadow-md shadow-blue-500/25"
+            className="flex items-center gap-1.5 sm:gap-2 px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-xl border border-transparent bg-[#2563EB] hover:bg-[#1D4ED8] text-white text-xs font-semibold transition-all cursor-pointer active:scale-95 shadow-xs"
           >
-            <span>Next Solution</span>
+            <span>Next<span className="hidden xs:inline sm:inline"> Solution</span></span>
             <ChevronRight className="w-4 h-4" />
           </button>
         </div>

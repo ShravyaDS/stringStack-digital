@@ -110,7 +110,7 @@ export default function RootLayout({
   const softwareAppSchema = generateSoftwareApplicationSchema();
 
   return (
-    <html lang="en" className={`dark ${inter.variable} ${jetbrainsMono.variable}`}>
+    <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`}>
       <head>
         {/* Structured Schema Markup */}
         <script

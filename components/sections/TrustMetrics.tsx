@@ -16,10 +16,10 @@ export function TrustMetrics() {
   ];
 
   const cardThemes = [
-    { iconClass: "icon-box-emerald", accentColor: "#34D399", borderAccent: "rgba(16,185,129,0.3)" },
     { iconClass: "icon-box-blue", accentColor: "#60A5FA", borderAccent: "rgba(59,130,246,0.3)" },
-    { iconClass: "icon-box-violet", accentColor: "#818CF8", borderAccent: "rgba(99,102,241,0.28)" },
-    { iconClass: "icon-box-cyan", accentColor: "#22D3EE", borderAccent: "rgba(6,182,212,0.3)" },
+    { iconClass: "icon-box-blue", accentColor: "#60A5FA", borderAccent: "rgba(59,130,246,0.3)" },
+    { iconClass: "icon-box-blue", accentColor: "#60A5FA", borderAccent: "rgba(59,130,246,0.3)" },
+    { iconClass: "icon-box-blue", accentColor: "#60A5FA", borderAccent: "rgba(59,130,246,0.3)" },
   ];
 
   const datacenterCodes: Record<string, { code: string; ping: string; location: string }> = {
@@ -33,7 +33,7 @@ export function TrustMetrics() {
 
   return (
     <section
-      className="py-20 md:py-24 relative overflow-hidden"
+      className="dark-section py-20 md:py-24 relative overflow-hidden"
       style={{ background: "linear-gradient(180deg, #090D16 0%, #0E1623 100%)" }}
     >
       {/* Top gradient accent */}

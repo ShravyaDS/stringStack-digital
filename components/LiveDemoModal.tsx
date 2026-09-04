@@ -91,28 +91,28 @@ export function LiveDemoModal({ isOpen, onClose, defaultTab = "attendance" }: Li
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 md:p-8 bg-slate-900/50 backdrop-blur-xs animate-in fade-in duration-200"
+      className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-6 md:p-8 bg-slate-900/60 backdrop-blur-xs animate-in fade-in duration-200"
       onClick={onClose}
     >
       <div
-        className="relative w-full max-w-4xl bg-white border border-[#E5E8ED] rounded-2xl shadow-[0_20px_60px_rgba(15,22,38,0.15)] overflow-hidden flex flex-col max-h-[90vh] animate-in zoom-in-95 duration-200"
+        className="relative w-full max-w-4xl bg-white border border-[#E5E8ED] rounded-2xl shadow-[0_20px_60px_rgba(15,22,38,0.15)] overflow-hidden flex flex-col max-h-[92vh] sm:max-h-[90vh] animate-in zoom-in-95 duration-200 my-auto"
         onClick={(e) => e.stopPropagation()}
       >
         {/* ── Header ── */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-[#E5E8ED] bg-[#F6F7F9]">
-          <div className="flex items-center gap-3">
-            <span className="relative flex h-2.5 w-2.5">
+        <div className="flex items-center justify-between px-4 sm:px-6 py-3.5 sm:py-4 border-b border-[#E5E8ED] bg-[#F6F7F9]">
+          <div className="flex items-center gap-2.5 sm:gap-3">
+            <span className="relative flex h-2.5 w-2.5 shrink-0">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
               <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500" />
             </span>
             <div>
-              <span className="text-[11px] font-semibold uppercase tracking-wider text-[#64748B] block">
+              <span className="text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider text-[#64748B] block">
                 Interactive Enterprise Sandbox
               </span>
-              <h2 className="text-base sm:text-lg font-bold text-[#0F172A] flex items-center gap-2">
-                SprintStack Production Software Suite
-                <span className="text-[11px] font-semibold px-2.5 py-0.5 rounded-full bg-[#E9F9F1] text-[#0E9F6E] border border-emerald-200">
-                  Live Sandbox
+              <h2 className="text-sm sm:text-base md:text-lg font-bold text-[#0F172A] flex items-center gap-2">
+                <span className="truncate">Production Software Suite</span>
+                <span className="text-[10px] sm:text-[11px] font-semibold px-2 py-0.5 rounded-full bg-[#E9F9F1] text-[#0E9F6E] border border-emerald-200 shrink-0">
+                  Live
                 </span>
               </h2>
             </div>
@@ -120,19 +120,19 @@ export function LiveDemoModal({ isOpen, onClose, defaultTab = "attendance" }: Li
           <button
             onClick={onClose}
             aria-label="Close demo modal"
-            className="text-[#64748B] hover:text-[#0F172A] p-1.5 rounded-lg hover:bg-slate-200/60 transition-colors cursor-pointer"
+            className="text-[#64748B] hover:text-[#0F172A] w-9 h-9 rounded-lg hover:bg-slate-200/60 active:bg-slate-300 transition-colors cursor-pointer flex items-center justify-center shrink-0"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
-        {/* ── Clean Light Tab Navigation ── */}
-        <div className="flex border-b border-[#E5E8ED] bg-[#F6F7F9] overflow-x-auto px-6 gap-2 text-xs font-semibold">
+        {/* ── Clean Light Tab Navigation (Horizontally Swipeable on Mobile) ── */}
+        <div className="flex border-b border-[#E5E8ED] bg-[#F6F7F9] overflow-x-auto no-scrollbar px-3 sm:px-6 gap-1.5 sm:gap-2 text-xs font-semibold shrink-0">
           {[
-            { id: "attendance", label: "Attendance ERP OS", Icon: Fingerprint },
-            { id: "governance", label: "Project & Resource Governance", Icon: BarChart3 },
-            { id: "crm", label: "Custom CRM & Routing", Icon: Users },
-            { id: "telemetry", label: "Process Telemetry & RBAC", Icon: Activity },
+            { id: "attendance", label: "Attendance ERP", Icon: Fingerprint },
+            { id: "governance", label: "Governance & Sprints", Icon: BarChart3 },
+            { id: "crm", label: "CRM & Routing", Icon: Users },
+            { id: "telemetry", label: "Telemetry & RBAC", Icon: Activity },
           ].map((tab) => {
             const isCurrent = activeTab === tab.id;
             const Icon = tab.Icon;
@@ -140,7 +140,7 @@ export function LiveDemoModal({ isOpen, onClose, defaultTab = "attendance" }: Li
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id as any)}
-                className={`px-3.5 py-2.5 transition-all flex items-center gap-2 shrink-0 cursor-pointer border-b-2 ${
+                className={`px-3 py-2.5 transition-all flex items-center gap-1.5 sm:gap-2 shrink-0 cursor-pointer border-b-2 whitespace-nowrap ${
                   isCurrent
                     ? "bg-white text-[#2554EB] border-[#2554EB] font-bold shadow-2xs rounded-t-lg -mb-[1px]"
                     : "text-[#64748B] hover:text-[#0F172A] border-transparent hover:bg-white/60 rounded-t-lg"
@@ -154,7 +154,7 @@ export function LiveDemoModal({ isOpen, onClose, defaultTab = "attendance" }: Li
         </div>
 
         {/* ── Content Body ── */}
-        <div className="p-6 overflow-y-auto space-y-6 flex-1 bg-white">
+        <div className="p-4 sm:p-6 overflow-y-auto space-y-5 sm:space-y-6 flex-1 bg-white">
           
           {/* ════ TAB 1: Attendance ERP OS ════ */}
           {activeTab === "attendance" && (
@@ -426,7 +426,7 @@ export function LiveDemoModal({ isOpen, onClose, defaultTab = "attendance" }: Li
         </div>
 
         {/* ── Footer Actions ── */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 px-6 py-4 border-t border-[#E5E8ED] bg-[#F6F7F9]">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 px-4 sm:px-6 py-3.5 sm:py-4 border-t border-[#E5E8ED] bg-[#F6F7F9] pb-safe">
           <span className="text-xs text-[#5B6472] font-medium text-center sm:text-left">
             Need a custom deployment with your exact corporate rules?
           </span>
@@ -436,7 +436,7 @@ export function LiveDemoModal({ isOpen, onClose, defaultTab = "attendance" }: Li
               onClose();
               openBookingModal();
             }}
-            className="btn-primary w-full sm:w-auto px-5 py-2.5 text-xs font-semibold cursor-pointer active:scale-95 transition-transform flex items-center justify-center gap-1.5"
+            className="btn-primary w-full sm:w-auto px-5 py-3 sm:py-2.5 text-xs font-semibold cursor-pointer active:scale-95 transition-transform flex items-center justify-center gap-1.5"
           >
             <span>Schedule 15-Min Technical Discovery</span>
             <ArrowRight className="w-4 h-4" />

@@ -17,7 +17,7 @@ export function Card({
   return (
     <div
       className={cn(
-        "bg-surface text-slate-100 rounded-2xl border border-border p-6 relative overflow-hidden transition-all duration-300",
+        "bg-[#111827] text-slate-100 rounded-2xl border border-slate-700/80 p-6 relative overflow-hidden transition-all duration-300",
         glow && "glow-card",
         interactive && "hover:border-slate-600 hover:shadow-xl hover:shadow-blue-500/5 hover:-translate-y-1",
         className
