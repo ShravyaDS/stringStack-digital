@@ -103,71 +103,82 @@ export function DiscoveryForm() {
           {/* Left Column: Direct Value Proposition (5 cols) */}
           <div className="lg:col-span-5 space-y-8">
             <div className="space-y-4">
-              <span className="section-label">Technical Discovery Funnel</span>
+              <span className="text-xs font-mono font-bold text-blue-600 dark:text-blue-400 tracking-widest uppercase flex items-center gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
+                05 — LEAD CAPTURE & DISCOVERY
+              </span>
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-[-0.03em] leading-tight">
-                Let&apos;s Scope Your Software Build.
+                Let&apos;s Build Your Software.
               </h2>
               <p className="text-slate-600 dark:text-slate-400 text-sm sm:text-base leading-relaxed">
-                Connect directly with our Principal Solutions Architects. Receive an actionable technical architecture proposal, sprint breakdown, and fixed pricing model within 24 hours.
+                Connect directly with our engineering team. Receive an actionable project proposal, sprint breakdown, and fixed-price estimate within 24 hours.
               </p>
             </div>
 
             {/* Direct Guarantees */}
             <div className="space-y-3.5">
-              <div className="p-4 rounded-xl bg-white dark:bg-[#111827] border border-slate-200 dark:border-[#1F2937] shadow-sm dark:shadow-[0_4px_20px_rgba(0,0,0,0.25)] flex items-start gap-4 hover:border-blue-500/40 transition-all">
+              <div className="ticks p-4 rounded-xl bg-white dark:bg-[#111827] border border-slate-200 dark:border-[#1F2937] shadow-xs dark:shadow-[0_4px_20px_rgba(0,0,0,0.25)] flex items-start gap-4 hover:border-blue-500/40 transition-all">
+                <span className="tk-bl"></span>
+                <span className="tk-br"></span>
                 <div className="p-2.5 rounded-lg bg-blue-500/10 border border-blue-500/20 text-blue-600 dark:text-blue-400 shrink-0">
                   <Clock className="w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="text-sm font-bold text-slate-900 dark:text-white">24-Hour Scope Turnaround</h3>
+                  <h3 className="text-sm font-bold text-slate-900 dark:text-white">24-Hour Proposal Turnaround</h3>
                   <p className="text-xs text-slate-600 dark:text-slate-400 mt-0.5 leading-relaxed">
-                    Complete milestone breakdown, tech stack audit, and delivery schedule delivered within 1 business day.
+                    Complete milestone breakdown, tech stack plan, and fixed pricing delivered within 1 business day.
                   </p>
                 </div>
               </div>
 
-              <div className="p-4 rounded-xl bg-white dark:bg-[#111827] border border-slate-200 dark:border-[#1F2937] shadow-sm dark:shadow-[0_4px_20px_rgba(0,0,0,0.25)] flex items-start gap-4 hover:border-blue-500/40 transition-all">
+              <div className="ticks p-4 rounded-xl bg-white dark:bg-[#111827] border border-slate-200 dark:border-[#1F2937] shadow-xs dark:shadow-[0_4px_20px_rgba(0,0,0,0.25)] flex items-start gap-4 hover:border-blue-500/40 transition-all">
+                <span className="tk-bl"></span>
+                <span className="tk-br"></span>
                 <div className="p-2.5 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 shrink-0">
                   <ShieldCheck className="w-5 h-5" />
                 </div>
                 <div>
                   <h3 className="text-sm font-bold text-slate-900 dark:text-white">Mutual NDA on Day 1</h3>
                   <p className="text-xs text-slate-600 dark:text-slate-400 mt-0.5 leading-relaxed">
-                    Enterprise non-disclosure agreements executed prior to any proprietary code, database, or API discussion.
+                    Standard mutual non-disclosure agreement signed to protect your ideas and data.
                   </p>
                 </div>
               </div>
 
-              <div className="p-4 rounded-xl bg-white dark:bg-[#111827] border border-slate-200 dark:border-[#1F2937] shadow-sm dark:shadow-[0_4px_20px_rgba(0,0,0,0.25)] flex items-start gap-4 hover:border-blue-500/40 transition-all">
+              <div className="ticks p-4 rounded-xl bg-white dark:bg-[#111827] border border-slate-200 dark:border-[#1F2937] shadow-xs dark:shadow-[0_4px_20px_rgba(0,0,0,0.25)] flex items-start gap-4 hover:border-blue-500/40 transition-all">
+                <span className="tk-bl"></span>
+                <span className="tk-br"></span>
                 <div className="p-2.5 rounded-lg bg-blue-500/10 border border-blue-500/20 text-blue-600 dark:text-blue-400 shrink-0">
                   <Zap className="w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="text-sm font-bold text-slate-900 dark:text-white">Zero Junior Pass-Through</h3>
+                  <h3 className="text-sm font-bold text-slate-900 dark:text-white">Direct Senior Engineers</h3>
                   <p className="text-xs text-slate-600 dark:text-slate-400 mt-0.5 leading-relaxed">
-                    You interface solely with senior full-stack architects with 6+ years shipping high-concurrency systems.
+                    You communicate directly with senior developers and architects who build your project.
                   </p>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Right Column: Elevated Form Card (7 cols) */}
+          {/* Right Column: Elevated Form Card with CAD Corner Ticks (7 cols) */}
           <div className="lg:col-span-7">
-            <div className="p-6 sm:p-8 lg:p-10 rounded-2xl bg-white dark:bg-[#111827] border border-slate-200 dark:border-[#1F2937] shadow-xl dark:shadow-[0_12px_40px_rgba(0,0,0,0.4)] text-slate-900 dark:text-white">
+            <div className="ticks p-6 sm:p-8 lg:p-10 rounded-2xl bg-white dark:bg-[#111827] border border-slate-200 dark:border-[#1F2937] shadow-xl dark:shadow-[0_12px_40px_rgba(0,0,0,0.4)] text-slate-900 dark:text-white">
+              <span className="tk-bl"></span>
+              <span className="tk-br"></span>
               {isSubmitted ? (
                 <div className="py-12 text-center space-y-4">
                   <div className="w-16 h-16 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center mx-auto border border-emerald-500/30">
                     <CheckCircle2 className="w-8 h-8" />
                   </div>
-                  <h3 className="text-2xl font-bold text-slate-900 dark:text-white">Discovery Brief Received</h3>
+                  <h3 className="text-2xl font-bold text-slate-900 dark:text-white">Project Inquiry Received</h3>
                   <p className="text-sm text-slate-600 dark:text-slate-300 max-w-md mx-auto">
-                    A Senior Technical Lead is reviewing your requirements. We will deliver your initial Sprint Plan and architecture breakdown within 24 business hours.
+                    An Engineering Lead is reviewing your requirements. We will send your initial sprint proposal and timeline estimate within 24 business hours.
                   </p>
                   {wantsNda && (
                     <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-xs font-semibold text-emerald-600 dark:text-emerald-400">
                       <ShieldCheck className="w-4 h-4" />
-                      <span>Mutual NDA Confirmation Dispatched</span>
+                      <span>Mutual NDA Ready</span>
                     </div>
                   )}
                 </div>
@@ -175,10 +186,10 @@ export function DiscoveryForm() {
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div className="border-b border-slate-200 dark:border-white/[0.08] pb-3 mb-2">
                     <h3 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white tracking-tight">
-                      Technical Discovery Brief
+                      Project Inquiry Form
                     </h3>
                     <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
-                      Fill out your project parameters to initiate the technical discovery sprint.
+                      Tell us about your project requirements to receive a fast, fixed estimate.
                     </p>
                   </div>
 

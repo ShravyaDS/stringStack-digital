@@ -1,50 +1,30 @@
 import { EpamHero } from "@/components/sections/EpamHero";
-import { TrustBanner } from "@/components/sections/TrustBanner";
-import { SocialProofBanner } from "@/components/sections/SocialProofBanner";
 import { ServiceBento } from "@/components/sections/ServiceBento";
 import { ProductShowcase } from "@/components/sections/ProductShowcase";
-import { TechMatrix } from "@/components/sections/TechMatrix";
-import { SprintCalculator } from "@/components/sections/SprintCalculator";
-import { PartnershipSection } from "@/components/sections/PartnershipSection";
 import { DeliveryFramework } from "@/components/sections/DeliveryFramework";
-import { FAQSection } from "@/components/sections/FAQSection";
-import { DiscoveryForm } from "@/components/sections/DiscoveryForm";
+import { TechMatrix } from "@/components/sections/TechMatrix";
+import { SocialProofBanner } from "@/components/sections/SocialProofBanner";
 
 export default function Home() {
   return (
     <>
-      {/* 1. Hero Section: Positioning, What We Build, CTAs & 3-Slide Crossfade */}
+      {/* 1. Hero: High-Performance Software Engineering (3-Slide Rotating Showcase) */}
       <EpamHero />
 
-      {/* 2. Enterprise Trust Guarantees: 100% IP, Agile Sprints, Global Compliance */}
-      <TrustBanner />
-
-      {/* 3. Social Proof & Engineering Guild: Authentic Studio Collaboration & Partner Tier */}
-      <SocialProofBanner />
-
-      {/* 4. Core Engineering Capabilities: Bento Grid (Web, Mobile, E-commerce, Middleware) */}
+      {/* 2. Solutions: What We Engineer (6 Core Engineering Bento Cards) */}
       <ServiceBento />
 
-      {/* 5. Enterprise Solutions: Bento Grid (Attendance ERP Flagship, Governance, CRM, Telemetry) */}
+      {/* 3. Enterprise Software: Ready-to-Deploy Software Solutions (4 Core Modules) */}
       <ProductShowcase />
 
-      {/* 5. Technology Stack: Modern Enterprise Ecosystem */}
-      <TechMatrix />
-
-      {/* 6. Interactive Sprint Scope & Timeline Estimator */}
-      <SprintCalculator />
-
-      {/* 7. White-Label & Agency Partnerships: 3-Step Agency Revenue Model */}
-      <PartnershipSection />
-
-      {/* 8. Delivery Process: 4 Structured Engineering Stages */}
+      {/* 4. Process: Our Process — From Discovery to Deployment (4 Connected Steps) */}
       <DeliveryFramework />
 
-      {/* 9. Engineering Engagement FAQ Accordion */}
-      <FAQSection />
+      {/* 5. Tech Stack: Modern Tools. Proven Results. (12 Core Technologies) */}
+      <TechMatrix />
 
-      {/* 10. Technical Discovery Funnel: Let's Scope Your Software Build */}
-      <DiscoveryForm />
+      {/* 6. Call to Action: Start Your Next Project (Pre-Footer Discovery Banner) */}
+      <SocialProofBanner />
     </>
   );
 }

@@ -2,7 +2,6 @@
 
 import React, { createContext, useContext, useState } from "react";
 import { BookingModal } from "./BookingModal";
-import { LiveDemoModal } from "./LiveDemoModal";
 
 interface ModalContextType {
   openBookingModal: () => void;
@@ -17,13 +16,12 @@ const ModalContext = createContext<ModalContextType | undefined>(undefined);
 
 export function ModalProvider({ children }: { children: React.ReactNode }) {
   const [isBookingOpen, setIsBookingOpen] = useState(false);
-  const [isDemoOpen, setIsDemoOpen] = useState(false);
 
   const openBookingModal = () => setIsBookingOpen(true);
   const closeBookingModal = () => setIsBookingOpen(false);
 
-  const openDemoModal = () => setIsDemoOpen(true);
-  const closeDemoModal = () => setIsDemoOpen(false);
+  const openDemoModal = () => setIsBookingOpen(true);
+  const closeDemoModal = () => setIsBookingOpen(false);
 
   return (
     <ModalContext.Provider
@@ -33,12 +31,11 @@ export function ModalProvider({ children }: { children: React.ReactNode }) {
         isBookingModalOpen: isBookingOpen,
         openDemoModal,
         closeDemoModal,
-        isDemoModalOpen: isDemoOpen,
+        isDemoModalOpen: isBookingOpen,
       }}
     >
       {children}
       <BookingModal isOpen={isBookingOpen} onClose={closeBookingModal} />
-      <LiveDemoModal isOpen={isDemoOpen} onClose={closeDemoModal} />
     </ModalContext.Provider>
   );
 }

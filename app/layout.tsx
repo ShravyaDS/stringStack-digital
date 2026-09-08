@@ -147,7 +147,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareAppSchema) }}
         />
       </head>
-      <body className="min-h-screen font-sans flex flex-col antialiased bg-[#090D16] text-[#F8FAFC] selection:bg-blue-600/30 selection:text-blue-200">
+      <body className="min-h-screen font-sans flex flex-col antialiased bg-slate-50 text-slate-900 dark:bg-[#090D16] dark:text-[#F8FAFC] selection:bg-blue-600/30 selection:text-blue-200 transition-colors duration-200">
         <ThemeProvider>
           <ModalProvider>
             <ScrollRevealProvider>

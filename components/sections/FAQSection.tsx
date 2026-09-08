@@ -29,7 +29,7 @@ export function FAQSection() {
   return (
     <section id="faq" className="py-28 lg:py-36 bg-slate-50 dark:bg-[#090D16] border-t border-slate-200 dark:border-[#1F2937] relative overflow-hidden scroll-mt-24 transition-colors duration-200">
       {/* Soft brand blue ambient glow */}
-      <div className="absolute -bottom-20 -right-20 w-[600px] h-[600px] bg-blue-600/[0.04] rounded-full blur-[110px] pointer-events-none" />
+      <div className="absolute -bottom-20 -right-20 w-[600px] h-[600px] bg-blue-600/[0.07] rounded-full blur-[110px] pointer-events-none animate-aura-pulse" />
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         

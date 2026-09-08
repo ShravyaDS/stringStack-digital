@@ -82,9 +82,9 @@ export function Navigation() {
               {[
                 { href: "/#solutions", label: "Solutions" },
                 { href: "/#enterprise-solutions", label: "Enterprise Software" },
+                { href: "/#process", label: "Process" },
                 { href: "/#tech-stack", label: "Tech Stack" },
                 { href: "/partners/white-label", label: "White-Label & Partners" },
-                { href: "/#process", label: "Process" },
               ].map((item) => {
                 const isActive = item.href.startsWith("/") && !item.href.startsWith("/#") && pathname === item.href;
                 return (
@@ -107,18 +107,18 @@ export function Navigation() {
             </nav>
 
             {/* ── Right Actions ── */}
-            <div className="flex items-center gap-2 sm:gap-2.5 shrink-0">
+            <div className="flex items-center gap-2 sm:gap-3 shrink-0">
 
               {/* Theme Selector Toggle */}
               <ThemeToggle />
 
-              {/* Primary CTA */}
+              {/* Primary Discovery CTA */}
               <button
                 onClick={openBookingModal}
-                className="btn-primary inline-flex items-center gap-1.5 px-4 sm:px-5 py-2 sm:py-2.5 text-xs sm:text-sm font-semibold cursor-pointer whitespace-nowrap text-white"
+                className="inline-flex items-center gap-1.5 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-semibold bg-blue-600 hover:bg-blue-500 text-white shadow-md shadow-blue-600/30 transition-all cursor-pointer whitespace-nowrap active:scale-95"
               >
-                <span className="hidden sm:inline">Schedule Discovery</span>
-                <span className="sm:hidden">Book</span>
+                <span className="hidden sm:inline">Schedule a Technical Discovery</span>
+                <span className="sm:hidden">Discovery</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </button>
 
