@@ -117,9 +117,7 @@ export function DiscoveryForm() {
 
             {/* Direct Guarantees */}
             <div className="space-y-3.5">
-              <div className="ticks p-4 rounded-xl bg-white dark:bg-[#111827] border border-slate-200 dark:border-[#1F2937] shadow-xs dark:shadow-[0_4px_20px_rgba(0,0,0,0.25)] flex items-start gap-4 hover:border-blue-500/40 transition-all">
-                <span className="tk-bl"></span>
-                <span className="tk-br"></span>
+              <div className="p-4 rounded-xl bg-white/90 dark:bg-[#111827]/80 backdrop-blur-md border border-slate-200/80 dark:border-white/[0.08] shadow-xs hover:shadow-lg hover:border-blue-500/40 hover:-translate-y-0.5 transition-all duration-300 flex items-start gap-4">
                 <div className="p-2.5 rounded-lg bg-blue-500/10 border border-blue-500/20 text-blue-600 dark:text-blue-400 shrink-0">
                   <Clock className="w-5 h-5" />
                 </div>
@@ -131,9 +129,7 @@ export function DiscoveryForm() {
                 </div>
               </div>
 
-              <div className="ticks p-4 rounded-xl bg-white dark:bg-[#111827] border border-slate-200 dark:border-[#1F2937] shadow-xs dark:shadow-[0_4px_20px_rgba(0,0,0,0.25)] flex items-start gap-4 hover:border-blue-500/40 transition-all">
-                <span className="tk-bl"></span>
-                <span className="tk-br"></span>
+              <div className="p-4 rounded-xl bg-white/90 dark:bg-[#111827]/80 backdrop-blur-md border border-slate-200/80 dark:border-white/[0.08] shadow-xs hover:shadow-lg hover:border-emerald-500/40 hover:-translate-y-0.5 transition-all duration-300 flex items-start gap-4">
                 <div className="p-2.5 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 shrink-0">
                   <ShieldCheck className="w-5 h-5" />
                 </div>
@@ -145,9 +141,7 @@ export function DiscoveryForm() {
                 </div>
               </div>
 
-              <div className="ticks p-4 rounded-xl bg-white dark:bg-[#111827] border border-slate-200 dark:border-[#1F2937] shadow-xs dark:shadow-[0_4px_20px_rgba(0,0,0,0.25)] flex items-start gap-4 hover:border-blue-500/40 transition-all">
-                <span className="tk-bl"></span>
-                <span className="tk-br"></span>
+              <div className="p-4 rounded-xl bg-white/90 dark:bg-[#111827]/80 backdrop-blur-md border border-slate-200/80 dark:border-white/[0.08] shadow-xs hover:shadow-lg hover:border-blue-500/40 hover:-translate-y-0.5 transition-all duration-300 flex items-start gap-4">
                 <div className="p-2.5 rounded-lg bg-blue-500/10 border border-blue-500/20 text-blue-600 dark:text-blue-400 shrink-0">
                   <Zap className="w-5 h-5" />
                 </div>
@@ -161,11 +155,9 @@ export function DiscoveryForm() {
             </div>
           </div>
 
-          {/* Right Column: Elevated Form Card with CAD Corner Ticks (7 cols) */}
+          {/* Right Column: Elevated Modern Glass Form Card (7 cols) */}
           <div className="lg:col-span-7">
-            <div className="ticks p-6 sm:p-8 lg:p-10 rounded-2xl bg-white dark:bg-[#111827] border border-slate-200 dark:border-[#1F2937] shadow-xl dark:shadow-[0_12px_40px_rgba(0,0,0,0.4)] text-slate-900 dark:text-white">
-              <span className="tk-bl"></span>
-              <span className="tk-br"></span>
+            <div className="p-6 sm:p-8 lg:p-10 rounded-3xl bg-white/95 dark:bg-[#111827]/90 backdrop-blur-md border border-slate-200/80 dark:border-white/[0.08] shadow-2xl dark:shadow-[0_12px_40px_rgba(0,0,0,0.4)] text-slate-900 dark:text-white">
               {isSubmitted ? (
                 <div className="py-12 text-center space-y-4">
                   <div className="w-16 h-16 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center mx-auto border border-emerald-500/30">

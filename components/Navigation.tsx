@@ -60,8 +60,8 @@ export function Navigation() {
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 ease-out bg-white/90 dark:bg-[#090D16]/85 backdrop-blur-md border-b border-slate-200 dark:border-white/[0.08] ${
           scrolled || drawerOpen
-            ? "py-3 shadow-md dark:shadow-[0_8px_32px_rgba(0,0,0,0.6)]"
-            : "py-4.5 shadow-xs dark:shadow-[0_4px_16px_rgba(0,0,0,0.3)]"
+            ? "py-2.5 shadow-md dark:shadow-[0_8px_32px_rgba(0,0,0,0.6)]"
+            : "py-3 sm:py-3.5 shadow-xs dark:shadow-[0_4px_16px_rgba(0,0,0,0.3)]"
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

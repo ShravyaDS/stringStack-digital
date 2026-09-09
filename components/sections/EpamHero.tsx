@@ -17,6 +17,7 @@ interface HeroSlide {
   secondaryCtaText: string;
   secondaryCtaLink: string;
   bgImage: string;
+  bgImageLight: string;
   accentColor: string;
 }
 
@@ -33,6 +34,7 @@ const HERO_SLIDES: HeroSlide[] = [
     secondaryCtaText: "Explore Enterprise Software",
     secondaryCtaLink: "/#enterprise-solutions",
     bgImage: "/images/hero/hero-slide-1.jpg",
+    bgImageLight: "/images/hero/hero-slide-1-light.jpg",
     accentColor: "blue",
   },
   {
@@ -47,6 +49,7 @@ const HERO_SLIDES: HeroSlide[] = [
     secondaryCtaText: "View Engineering Services",
     secondaryCtaLink: "/#solutions",
     bgImage: "/images/hero/hero-slide-2.jpg",
+    bgImageLight: "/images/hero/hero-slide-2-light.jpg",
     accentColor: "blue",
   },
   {
@@ -61,6 +64,7 @@ const HERO_SLIDES: HeroSlide[] = [
     secondaryCtaText: "Explore Attendance ERP",
     secondaryCtaLink: "/products/attendance-erp",
     bgImage: "/images/hero/hero-slide-3.jpg",
+    bgImageLight: "/images/hero/hero-slide-3-light.jpg",
     accentColor: "emerald",
   },
 ];
@@ -181,7 +185,7 @@ export function EpamHero() {
 
   return (
     <section
-      className="relative min-h-[85vh] sm:min-h-[90vh] md:min-h-[92vh] pt-24 sm:pt-28 pb-0 overflow-hidden flex flex-col bg-slate-50 dark:bg-[#090D16] text-slate-900 dark:text-white select-none sm:select-auto transition-colors duration-200"
+      className="relative min-h-[82vh] sm:min-h-[86vh] lg:min-h-[90vh] pt-16 sm:pt-20 pb-0 overflow-hidden flex flex-col bg-slate-50 dark:bg-[#090D16] text-slate-900 dark:text-white select-none sm:select-auto transition-colors duration-200"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
       onTouchStart={handleTouchStart}
@@ -189,25 +193,39 @@ export function EpamHero() {
     >
       {/* ── Background layers (Enhanced Visibility & Balanced Contrast) ── */}
       <div className="absolute inset-0 pointer-events-none z-0">
-        {/* Background images with Ken Burns subtle zoom and balanced visibility */}
+        {/* Background images with Ken Burns subtle zoom — theme-specific artwork */}
         {HERO_SLIDES.map((slide, idx) => (
           <div
             key={slide.id}
             className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
-              idx === currentSlideIndex ? "animate-ken-burns opacity-[0.25] dark:opacity-[0.52]" : "opacity-0"
+              idx === currentSlideIndex ? "animate-ken-burns opacity-100" : "opacity-0"
             }`}
           >
-            <Image
-              src={slide.bgImage}
-              alt={slide.eyebrow}
-              fill
-              priority={idx === 0}
-              className="object-cover object-right md:object-center"
-            />
+            {/* White theme: Dedicated pure-white studio background with crisp, 100% visible vibrant ribbons */}
+            <div className="absolute inset-0 block dark:hidden opacity-95">
+              <Image
+                src={slide.bgImageLight}
+                alt={slide.eyebrow}
+                fill
+                priority={idx === 0}
+                className="object-cover object-right md:object-center"
+              />
+            </div>
+
+            {/* Black theme: Dark canvas with glowing neon streaks — untouched original */}
+            <div className="absolute inset-0 hidden dark:block opacity-[0.52]">
+              <Image
+                src={slide.bgImage}
+                alt={slide.eyebrow}
+                fill
+                priority={idx === 0}
+                className="object-cover object-right md:object-center"
+              />
+            </div>
           </div>
         ))}
 
-        {/* Dual-theme left-weighted protective gradient for crystal clear text readability */}
+        {/* Dual-theme left-weighted protective gradient: protects text contrast while leaving image bright and fully visible across the hero */}
         <div
           className="absolute inset-0 hidden dark:block"
           style={{
@@ -219,12 +237,16 @@ export function EpamHero() {
           className="absolute inset-0 block dark:hidden"
           style={{
             background:
-              "linear-gradient(95deg, rgba(248,250,252,0.96) 0%, rgba(248,250,252,0.85) 45%, rgba(248,250,252,0.45) 75%, rgba(248,250,252,0.15) 100%)",
+              "linear-gradient(95deg, rgba(248,250,252,0.90) 0%, rgba(248,250,252,0.58) 36%, rgba(248,250,252,0.10) 65%, transparent 85%)",
           }}
         />
         <div
-          className="absolute inset-0"
+          className="absolute inset-0 hidden dark:block"
           style={{ background: "linear-gradient(to top, rgba(9,13,22,0.2) 0%, transparent 25%)" }}
+        />
+        <div
+          className="absolute inset-0 block dark:hidden"
+          style={{ background: "linear-gradient(to top, rgba(248,250,252,0.25) 0%, transparent 20%)" }}
         />
 
         {/* Soft "Color Bleed" Glow Effect */}
@@ -241,8 +263,8 @@ export function EpamHero() {
       </div>
 
       {/* ── Main Content ── */}
-      <div className="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex-1 flex flex-col justify-center py-8 sm:py-12">
-        <div className="max-w-[54rem] space-y-5 sm:space-y-7">
+      <div className="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex-1 flex flex-col justify-center py-3 sm:py-5 lg:py-6">
+        <div className="max-w-[54rem] space-y-3 sm:space-y-4">
           {/* Eyebrow badge (Single, Clean) */}
           <div
             className={`inline-flex items-center gap-2.5 transition-all duration-300 ${
@@ -268,7 +290,7 @@ export function EpamHero() {
               isTransitioning ? "opacity-0 -translate-y-2" : "opacity-100 translate-y-0"
             }`}
           >
-            <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-[4.25rem] font-extrabold tracking-[-0.035em] leading-[1.06] text-slate-900 dark:text-white">
+            <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-[3.25rem] font-extrabold tracking-[-0.03em] leading-[1.08] text-slate-900 dark:text-white max-w-3xl">
               {activeSlide.title}{" "}
               <span className="text-blue-600 dark:text-blue-500 block sm:inline">
                 {activeSlide.titleHighlight}
@@ -282,7 +304,7 @@ export function EpamHero() {
               isTransitioning ? "opacity-0" : "opacity-100"
             }`}
           >
-            <p className="text-slate-600 dark:text-slate-300/85 text-base sm:text-lg md:text-xl leading-relaxed max-w-2xl font-normal">
+            <p className="text-slate-600 dark:text-slate-300/90 text-sm sm:text-base md:text-[1.05rem] leading-relaxed max-w-2xl font-normal">
               {activeSlide.subtitle}
             </p>
           </div>
@@ -293,14 +315,14 @@ export function EpamHero() {
               isTransitioning ? "opacity-0" : "opacity-100"
             }`}
           >
-            <div className="flex items-center gap-1.5 pt-1 overflow-x-auto no-scrollbar max-w-full pb-1 -mx-4 px-4 sm:mx-0 sm:px-0 sm:flex-wrap">
-              <span className="text-xs text-slate-500 dark:text-slate-400 mr-1 hidden sm:inline shrink-0 font-mono">
+            <div className="flex items-center gap-1.5 pt-0.5 overflow-x-auto no-scrollbar max-w-full pb-0.5 -mx-4 px-4 sm:mx-0 sm:px-0 sm:flex-wrap">
+              <span className="text-[11px] text-slate-500 dark:text-slate-400 mr-1 hidden sm:inline shrink-0 font-mono">
                 Scope:
               </span>
               {WHAT_WE_BUILD.map((item) => (
                 <span
                   key={item}
-                  className="studio-pill whitespace-nowrap shrink-0 cursor-default bg-white/80 dark:bg-white/[0.04] border-slate-200 dark:border-[#1F2937] text-slate-700 dark:text-slate-300"
+                  className="px-2.5 py-0.5 rounded-md text-[11px] font-medium whitespace-nowrap shrink-0 cursor-default bg-slate-200/60 dark:bg-white/[0.04] border border-slate-300/70 dark:border-[#1F2937] text-slate-700 dark:text-slate-300 shadow-2xs"
                 >
                   {item}
                 </span>
@@ -310,7 +332,7 @@ export function EpamHero() {
 
           {/* Action CTAs */}
           <div
-            className={`flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 pt-2 transition-all duration-300 delay-150 ${
+            className={`flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-1 sm:pt-1.5 transition-all duration-300 delay-150 ${
               isTransitioning ? "opacity-0 translate-y-2" : "opacity-100 translate-y-0"
             }`}
           >
@@ -320,7 +342,7 @@ export function EpamHero() {
                 if (activeSlide.primaryCtaAction === "demo") openDemoModal();
                 else openBookingModal();
               }}
-              className="btn-primary w-full sm:w-auto px-6 sm:px-8 py-3.5 text-sm font-semibold cursor-pointer active:scale-95 transition-transform flex items-center justify-center gap-2"
+              className="btn-primary w-full sm:w-auto px-6 sm:px-7 py-2.5 sm:py-3 text-sm font-semibold cursor-pointer active:scale-95 transition-transform flex items-center justify-center gap-2 shadow-sm"
             >
               <span>{activeSlide.primaryCtaText}</span>
               <ArrowRight className="w-4 h-4" />
@@ -330,16 +352,16 @@ export function EpamHero() {
             <Link href={activeSlide.secondaryCtaLink} className="w-full sm:w-auto">
               <button
                 type="button"
-                className="btn-secondary w-full sm:w-auto px-6 py-3.5 text-sm font-semibold cursor-pointer active:scale-95 transition-transform flex items-center justify-center gap-2 bg-white/90 dark:bg-white/5 border-slate-300 dark:border-[#1F2937] text-slate-800 dark:text-white hover:bg-slate-100 dark:hover:bg-white/10"
+                className="btn-secondary w-full sm:w-auto px-5 sm:px-6 py-2.5 sm:py-3 text-sm font-semibold cursor-pointer active:scale-95 transition-transform flex items-center justify-center gap-2 bg-white/95 dark:bg-white/5 border-slate-300 dark:border-[#1F2937] text-slate-800 dark:text-white hover:bg-slate-100 dark:hover:bg-white/10"
               >
                 {activeSlide.secondaryCtaText}
               </button>
             </Link>
           </div>
 
-          {/* Trust stats strip with Count-Up (5 metrics: 6+, 1-2 Wk, 100%, <0.4s, 99.99%) */}
+          {/* Trust stats strip with Aesthetic Modern Glass Cards (5 metrics: 6+, 1-2 Wk, 100%, <0.4s, 99.99%) */}
           <div
-            className={`grid grid-cols-2 sm:grid-cols-5 gap-3 sm:gap-4 pt-3 max-w-3xl transition-all duration-300 delay-200 ${
+            className={`grid grid-cols-2 sm:grid-cols-5 gap-2 sm:gap-3 pt-1.5 sm:pt-2 max-w-3xl transition-all duration-300 delay-200 ${
               isTransitioning ? "opacity-0" : "opacity-100"
             }`}
           >
@@ -358,24 +380,30 @@ export function EpamHero() {
               return (
                 <div
                   key={stat.id}
-                  className={`flex items-center gap-2.5 p-2.5 rounded-xl border transition-all duration-200 ${
+                  className={`flex items-center gap-2.5 p-2 sm:p-2.5 rounded-xl border transition-all duration-300 hover:-translate-y-0.5 ${
                     isProof
-                      ? "bg-emerald-500/[0.08] dark:bg-emerald-500/[0.06] border-emerald-500/30 dark:border-emerald-500/25"
-                      : "bg-white dark:bg-[#111827] border-slate-200 dark:border-[#1F2937] shadow-xs dark:shadow-none"
+                      ? "bg-emerald-500/[0.08] dark:bg-emerald-500/[0.07] border-emerald-500/30 dark:border-emerald-500/25 hover:border-emerald-500/50 hover:shadow-md hover:shadow-emerald-500/10"
+                      : "bg-white/85 dark:bg-white/[0.04] backdrop-blur-md border-slate-200/90 dark:border-white/[0.08] hover:border-blue-500/40 hover:bg-white dark:hover:bg-white/[0.07] shadow-xs hover:shadow-lg hover:shadow-blue-500/10"
                   }`}
                 >
-                  <span className={isProof ? "text-emerald-600 dark:text-emerald-400 shrink-0" : "text-blue-600 dark:text-blue-400 shrink-0"}>
+                  <div
+                    className={`w-7 h-7 sm:w-8 sm:h-8 rounded-lg flex items-center justify-center shrink-0 ${
+                      isProof
+                        ? "bg-emerald-500/15 text-emerald-600 dark:text-emerald-400"
+                        : "bg-blue-500/10 dark:bg-blue-500/15 text-blue-600 dark:text-blue-400"
+                    }`}
+                  >
                     {stat.icon}
-                  </span>
+                  </div>
                   <div className="min-w-0">
                     <div
-                      className={`text-sm sm:text-base font-bold leading-none font-mono ${
+                      className={`text-xs sm:text-sm font-bold leading-none font-mono tracking-tight ${
                         isProof ? "text-emerald-600 dark:text-emerald-400" : "text-slate-900 dark:text-white"
                       }`}
                     >
                       {displayVal}
                     </div>
-                    <div className="text-[10px] text-slate-500 dark:text-slate-400 mt-1 truncate font-normal">
+                    <div className="text-[10px] text-slate-500 dark:text-slate-400 mt-0.5 truncate font-normal">
                       {stat.label}
                     </div>
                   </div>
@@ -387,8 +415,8 @@ export function EpamHero() {
       </div>
 
       {/* ── Slide Controls (Bottom Bar with High-Responsiveness Buttons) ── */}
-      <div className="relative z-30 border-t border-slate-200 dark:border-white/10 mt-auto bg-white/85 dark:bg-[#070B14]/85 backdrop-blur-md">
-        <div className="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-3.5">
+      <div className="relative z-30 border-t border-slate-200 dark:border-white/10 mt-auto bg-white/90 dark:bg-[#070B14]/85 backdrop-blur-md">
+        <div className="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-2 sm:py-2.5">
           <div className="flex items-center justify-between gap-4">
             {/* Slide indicators with progress (Enlarged hit target for easy clicking) */}
             <div className="flex items-center gap-1.5">
@@ -403,12 +431,12 @@ export function EpamHero() {
                       e.stopPropagation();
                       goToSlide(idx);
                     }}
-                    className="py-2.5 px-1.5 flex items-center justify-center cursor-pointer group"
+                    className="py-2 px-1.5 flex items-center justify-center cursor-pointer group"
                     aria-label={`Go to slide ${idx + 1}`}
                   >
                     <div
                       className={`relative overflow-hidden rounded-full transition-all duration-300 ${
-                        isActive ? "w-12 h-1.5" : "w-3 h-1.5"
+                        isActive ? "w-10 h-1.5" : "w-3 h-1.5"
                       } bg-slate-300 dark:bg-white/20 group-hover:bg-slate-400 dark:group-hover:bg-white/40`}
                     >
                       {isActive && (
@@ -432,18 +460,18 @@ export function EpamHero() {
                 <button
                   type="button"
                   onClick={handlePrev}
-                  className="w-9 h-9 rounded-lg flex items-center justify-center cursor-pointer transition-all duration-150 border border-slate-200 dark:border-white/15 bg-slate-100 dark:bg-white/10 hover:bg-slate-200 dark:hover:bg-white/20 text-slate-800 dark:text-white active:scale-95"
+                  className="w-8 h-8 rounded-lg flex items-center justify-center cursor-pointer transition-all duration-150 border border-slate-200 dark:border-white/15 bg-slate-100 dark:bg-white/10 hover:bg-slate-200 dark:hover:bg-white/20 text-slate-800 dark:text-white active:scale-95"
                   aria-label="Previous slide"
                 >
-                  <ArrowLeft className="w-4 h-4" />
+                  <ArrowLeft className="w-3.5 h-3.5" />
                 </button>
                 <button
                   type="button"
                   onClick={handleNext}
-                  className="w-9 h-9 rounded-lg flex items-center justify-center cursor-pointer transition-all duration-150 border border-slate-200 dark:border-white/15 bg-slate-100 dark:bg-white/10 hover:bg-slate-200 dark:hover:bg-white/20 text-slate-800 dark:text-white active:scale-95"
+                  className="w-8 h-8 rounded-lg flex items-center justify-center cursor-pointer transition-all duration-150 border border-slate-200 dark:border-white/15 bg-slate-100 dark:bg-white/10 hover:bg-slate-200 dark:hover:bg-white/20 text-slate-800 dark:text-white active:scale-95"
                   aria-label="Next slide"
                 >
-                  <ArrowRight className="w-4 h-4" />
+                  <ArrowRight className="w-3.5 h-3.5" />
                 </button>
               </div>
             </div>

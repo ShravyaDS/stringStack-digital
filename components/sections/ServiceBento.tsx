@@ -88,36 +88,36 @@ export function ServiceBento() {
           </div>
         </div>
 
-        {/* 6 Bento Grid Cards with Blueprint Corner Ticks & Indices */}
+        {/* 6 Bento Grid Cards with Modern Aesthetic Styling & Ambient Glow */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.map((item, idx) => (
             <div
               key={item.id}
               onClick={openBookingModal}
-              className="ticks group p-6 sm:p-7 rounded-2xl bg-white dark:bg-[#0C1220]/85 border border-slate-200 dark:border-white/10 hover:border-blue-500/60 hover:bg-blue-50/40 dark:hover:bg-[#10172A] transition-all duration-300 flex flex-col justify-between cursor-pointer hover:-translate-y-1 shadow-xs hover:shadow-xl relative"
+              className="group p-6 sm:p-7 rounded-2xl bg-white/90 dark:bg-[#0C1220]/80 backdrop-blur-md border border-slate-200/80 dark:border-white/[0.07] hover:border-blue-500/40 hover:bg-white dark:hover:bg-[#10172A] transition-all duration-300 flex flex-col justify-between cursor-pointer hover:-translate-y-1.5 shadow-sm hover:shadow-2xl hover:shadow-blue-500/10 relative overflow-hidden"
             >
-              <span className="tk-bl"></span>
-              <span className="tk-br"></span>
+              {/* Soft ambient corner glow on hover */}
+              <div className="absolute -top-16 -right-16 w-36 h-36 bg-blue-500/10 rounded-full blur-2xl pointer-events-none group-hover:scale-150 transition-transform duration-500" />
 
-              <div>
-                {/* Top Row: Index and top-right arrow */}
+              <div className="relative z-10">
+                {/* Top Row: Icon, Index badge and top-right arrow */}
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-blue-50 dark:bg-blue-500/10 border border-blue-200 dark:border-blue-500/20 flex items-center justify-center">
+                    <div className="w-10 h-10 rounded-xl bg-blue-500/10 dark:bg-blue-500/15 border border-blue-500/20 text-blue-600 dark:text-blue-400 flex items-center justify-center transition-transform group-hover:scale-105 duration-200">
                       {item.icon}
                     </div>
-                    <span className="text-[11px] font-mono font-semibold text-slate-400 dark:text-slate-500 tracking-wider">
-                      CARD 0{idx + 1}
+                    <span className="text-[10px] font-mono font-medium px-2 py-0.5 rounded-full bg-slate-100 dark:bg-white/[0.05] text-slate-500 dark:text-slate-400 border border-slate-200/60 dark:border-white/[0.06]">
+                      0{idx + 1}
                     </span>
                   </div>
 
-                  <div className="w-8 h-8 rounded-full flex items-center justify-center text-slate-400 dark:text-slate-500 group-hover:text-blue-600 dark:group-hover:text-blue-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all">
-                    <ArrowUpRight className="w-5 h-5" />
+                  <div className="w-8 h-8 rounded-full bg-slate-100 dark:bg-white/[0.04] flex items-center justify-center text-slate-400 dark:text-slate-500 group-hover:text-blue-600 dark:group-hover:text-blue-400 group-hover:bg-blue-50 dark:group-hover:bg-blue-500/10 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all">
+                    <ArrowUpRight className="w-4 h-4" />
                   </div>
                 </div>
 
                 {/* Title */}
-                <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-300 transition-colors">
+                <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                   {item.title}
                 </h3>
 
@@ -127,8 +127,8 @@ export function ServiceBento() {
                 </p>
               </div>
 
-              {/* Bottom Core Focus Tag Line (Dashed Blueprint Line) */}
-              <div className="pt-4 mt-5 border-t border-dashed border-slate-200 dark:border-white/10 text-[11px] font-mono text-slate-500 dark:text-slate-400 group-hover:text-slate-700 dark:group-hover:text-slate-300 transition-colors">
+              {/* Bottom Core Focus Tag Line */}
+              <div className="relative z-10 pt-4 mt-5 border-t border-slate-200/70 dark:border-white/[0.06] text-[11px] font-mono text-slate-500 dark:text-slate-400 group-hover:text-slate-700 dark:group-hover:text-slate-300 transition-colors">
                 <span className="text-blue-600 dark:text-blue-400 font-semibold">Core Focus: </span>
                 <span>{item.coreFocus}</span>
               </div>

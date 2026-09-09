@@ -12,10 +12,8 @@ export function SocialProofBanner() {
     <section className="bg-slate-50 dark:bg-[#050811] text-slate-900 dark:text-white border-t border-slate-200 dark:border-white/[0.08] relative transition-colors duration-200 py-16 lg:py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* ── PRE-FOOTER CTA BANNER with Blueprint Ticks & Landscape ── */}
-        <div className="ticks relative p-8 sm:p-14 rounded-3xl bg-gradient-to-r from-slate-900 via-[#0E1626] to-[#0A101D] border border-slate-800 dark:border-white/10 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-8 text-white overflow-hidden">
-          <span className="tk-bl"></span>
-          <span className="tk-br"></span>
+        {/* ── PRE-FOOTER CTA BANNER with Modern Ambient Glow & Landscape ── */}
+        <div className="relative p-8 sm:p-14 rounded-3xl bg-gradient-to-r from-slate-900 via-[#0E1626] to-[#0A101D] border border-slate-800 dark:border-white/10 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-8 text-white overflow-hidden">
           
           {/* Animated contact-landscape background image */}
           <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
