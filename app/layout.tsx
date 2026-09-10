@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { IBM_Plex_Sans } from "next/font/google";
 import "./globals.css";
 import { SITE_CONFIG } from "@/lib/constants";
 import {
@@ -8,24 +8,18 @@ import {
   generateSoftwareApplicationSchema,
 } from "@/lib/seo";
 import { ModalProvider } from "@/components/ModalProvider";
-import { ScrollRevealProvider } from "@/components/ScrollRevealProvider";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 
-const inter = Inter({
+const ibmPlexSans = IBM_Plex_Sans({
   subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
-});
-
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-jetbrains",
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-ibm-plex",
   display: "swap",
 });
 
 export const viewport: Viewport = {
-  themeColor: "#090D16",
+  themeColor: "#0F62FE",
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
@@ -34,22 +28,22 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_CONFIG.url),
   title: {
-    default: "SprintStack.digital | High-Velocity Product Engineering & Enterprise Software",
+    default: "SprintStack.digital — Enterprise Software Engineering, Delivered on Fixed Sprints",
     template: "%s | SprintStack.digital",
   },
   description:
-    "We architect, engineer, and deploy mission-critical web applications, Flutter mobile platforms, and enterprise ERP systems with sub-second performance and 0% agency fluff.",
+    "SprintStack designs and builds web platforms, mobile products, and proprietary enterprise software — architected up front, built in accountable sprint cycles, and handed over with full source ownership.",
   keywords: [
+    "SprintStack",
+    "Enterprise Software",
     "Custom ERP",
-    "SaaS Engineering",
-    "Flutter Development",
-    "React Enterprise Apps",
-    "Attendance Management Software",
-    "Next.js Development Services",
-    "White-Label Software Solutions",
-    "Enterprise Software Engineering",
-    "Workflow Automation Platform",
-    "Custom CRM Development",
+    "Web Applications",
+    "Mobile Applications",
+    "Flutter",
+    "React",
+    "Fixed Sprints",
+    "White Label Software",
+    "Workflow Automation",
   ],
   authors: [{ name: "SprintStack Engineering Team", url: SITE_CONFIG.url }],
   creator: "SprintStack.digital",
@@ -63,44 +57,21 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   openGraph: {
-    title: "SprintStack.digital | High-Velocity Product Engineering & Enterprise Software",
+    title: "SprintStack.digital — Enterprise Software Engineering, Delivered on Fixed Sprints",
     description:
-      "Enterprise web engineering, Flutter mobile systems, and proprietary Attendance ERP solutions architected for sub-second performance.",
+      "Enterprise software, engineered on fixed sprints. 100% IP ownership transferred at handover.",
     url: SITE_CONFIG.url,
-    siteName: SITE_CONFIG.name,
-    images: [
-      {
-        url: "/images/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "SprintStack.digital - High-Velocity Product Engineering",
-      },
-    ],
+    siteName: "SprintStack.digital",
     locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "SprintStack.digital | High-Velocity Product Engineering",
+    title: "SprintStack.digital — Enterprise Software Engineering, Delivered on Fixed Sprints",
     description:
-      "Mission-critical web, Flutter mobile platforms, and custom ERP systems with guaranteed delivery velocity.",
-    images: ["/images/og-image.jpg"],
-    creator: "@sprintstack",
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
+      "Enterprise software, engineered on fixed sprints. 100% IP ownership transferred at handover.",
   },
 };
-
-import { ThemeProvider } from "@/components/ThemeProvider";
 
 export default function RootLayout({
   children,
@@ -112,26 +83,13 @@ export default function RootLayout({
   const softwareAppSchema = generateSoftwareApplicationSchema();
 
   return (
-    <html lang="en" suppressHydrationWarning className={`dark ${inter.variable} ${jetbrainsMono.variable}`}>
+    <html lang="en" className={ibmPlexSans.variable}>
       <head>
-        {/* Anti-flicker theme initialization script */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              try {
-                const saved = localStorage.getItem('sprintstack_theme');
-                if (saved === 'light') {
-                  document.documentElement.classList.add('light');
-                  document.documentElement.classList.remove('dark');
-                  document.documentElement.setAttribute('data-theme', 'light');
-                } else {
-                  document.documentElement.classList.add('dark');
-                  document.documentElement.classList.remove('light');
-                  document.documentElement.setAttribute('data-theme', 'dark');
-                }
-              } catch (e) {}
-            `,
-          }}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap"
+          rel="stylesheet"
         />
         {/* Structured Schema Markup */}
         <script
@@ -147,16 +105,14 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareAppSchema) }}
         />
       </head>
-      <body className="min-h-screen font-sans flex flex-col antialiased bg-slate-50 text-slate-900 dark:bg-[#090D16] dark:text-[#F8FAFC] selection:bg-blue-600/30 selection:text-blue-200 transition-colors duration-200">
-        <ThemeProvider>
-          <ModalProvider>
-            <ScrollRevealProvider>
-              <Navigation />
-              <main className="flex-1">{children}</main>
-              <Footer />
-            </ScrollRevealProvider>
-          </ModalProvider>
-        </ThemeProvider>
+      <body className="min-h-screen flex flex-col antialiased">
+        <ModalProvider>
+          <Navigation />
+          <main id="top" className="flex-1">
+            {children}
+          </main>
+          <Footer />
+        </ModalProvider>
       </body>
     </html>
   );

@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SprintStack.digital — Enterprise Software Engineering, Delivered on Fixed Sprints</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0A0E17;
+    --body:#44505F;
+    --muted:#778394;
+    --bg:#FFFFFF;
+    --bg-soft:#F4F6F9;
+    --border:#E1E6ED;
+    --blue:#0F62FE;
+    --blue-dark:#0043CE;
+    --blue-soft:#EAF1FF;
+    --green:#12A150;
+    --navy:#050810;
+    --navy-2:#0E1524;
+    --navy-border:rgba(255,255,255,0.12);
+    --navy-text:#B7C0D1;
+    --shadow-sm: 0 1px 2px rgba(10,14,23,.06);
+    --shadow-md: 0 8px 24px rgba(10,14,23,.10);
+    --shadow-lg: 0 30px 60px -18px rgba(10,14,23,.35);
+    --r-sm:4px; --r-md:10px; --r-lg:14px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{ margin:0; background:var(--bg); color:var(--ink); font-family:'IBM Plex Sans', sans-serif; font-size:16px; line-height:1.6; -webkit-font-smoothing:antialiased; }
+  h1,h2,h3,h4{ font-family:'IBM Plex Sans', sans-serif; font-weight:700; margin:0; letter-spacing:-0.01em; color:var(--ink); }
+  p{margin:0; color:var(--body);}
+  a{color:inherit; text-decoration:none;}
+  ul{margin:0; padding:0; list-style:none;}
+  img{max-width:100%; display:block;}
+  .wrap{max-width:1200px; margin:0 auto; padding:0 32px;}
+  ::selection{background:var(--blue); color:#fff;}
+  :focus-visible{outline:2px solid var(--blue); outline-offset:2px;}
+  svg{display:block; flex-shrink:0;}
+  .icon{width:24px; height:24px; stroke:var(--blue); fill:none; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round;}
+
+  .label{ font-size:14px; font-weight:600; color:var(--blue); margin-bottom:14px; }
+  .section-head{max-width:640px; margin-bottom:48px;}
+  .section-head h2{font-size:clamp(28px,3.4vw,40px); line-height:1.15;}
+  .section-head p{margin-top:14px; font-size:17px; color:var(--body); max-width:560px;}
+  section{padding:96px 0;}
+  .soft{background:var(--bg-soft);}
+
+  .btn{ display:inline-flex; align-items:center; justify-content:center; gap:9px; padding:14px 26px; font-size:15px; font-weight:600; border-radius:var(--r-sm); cursor:pointer; border:1.5px solid transparent; font-family:'IBM Plex Sans'; transition:transform .15s ease, box-shadow .15s ease, background .15s ease, border-color .15s ease, color .15s ease, gap .15s ease; }
+  .btn svg{width:16px; height:16px; stroke-width:2;}
+  .btn-primary{background:var(--blue); color:#fff;}
+  .btn-primary:hover{background:var(--blue-dark); gap:13px;}
+  .btn-outline{border-color:var(--border); color:var(--ink); background:#fff;}
+  .btn-outline:hover{border-color:var(--ink);}
+  .btn-white{background:#fff; color:var(--navy);}
+  .btn-white:hover{gap:13px;}
+  .btn-ghost-light{border-color:rgba(255,255,255,.55); color:#fff;}
+  .btn-ghost-light:hover{border-color:#fff; background:rgba(255,255,255,.08);}
+
+  /* ---------- nav ---------- */
+  header{ position:sticky; top:0; z-index:50; background:#fff; border-bottom:1px solid var(--border); }
+  nav.wrap{ display:flex; align-items:center; justify-content:space-between; height:72px; }
+  .logo{display:flex; align-items:center; gap:9px;}
+  .logo-mark{ width:28px; height:28px; background:var(--blue); display:flex; align-items:center; justify-content:center; }
+  .logo-mark svg{width:14px; height:14px; stroke:#fff; fill:none; stroke-width:2.2;}
+  .logo-text{font-weight:700; font-size:18.5px; letter-spacing:-0.01em;}
+  .logo-text span{color:var(--muted); font-weight:500;}
+  .nav-links{display:flex; align-items:center; gap:26px;}
+  .nav-links a{ font-size:14.5px; font-weight:500; color:var(--body); transition:color .15s ease; }
+  .nav-links a:hover{color:var(--ink);}
+  .nav-cta{display:flex; align-items:center; gap:20px;}
+  .nav-cta > a.text-link{font-size:14.5px; font-weight:500; color:var(--body);}
+  .nav-cta > a.text-link:hover{color:var(--ink);}
+  .nav-cta .btn{padding:11px 20px; font-size:14px;}
+  .menu-toggle{display:none;}
+
+  /* ---------- hero (photo banner) ---------- */
+  .hero{ position:relative; min-height:620px; display:flex; align-items:flex-end; padding:0; overflow:hidden; }
+  .hero-media{ position:absolute; inset:0; z-index:0; }
+  .hero-media img{ width:100%; height:100%; object-fit:cover; }
+  .hero-media::after{ content:""; position:absolute; inset:0; background:linear-gradient(90deg, rgba(5,8,16,.86) 0%, rgba(5,8,16,.62) 42%, rgba(5,8,16,.18) 78%, rgba(5,8,16,0) 100%); }
+  .hero-content{ position:relative; z-index:1; padding:80px 0 64px; width:100%; }
+  .hero-content h1{ color:#fff; font-size:clamp(32px,4.2vw,50px); line-height:1.12; max-width:15ch; }
+  .hero-sub{margin-top:20px; font-size:17.5px; color:#D4DAE6; max-width:44ch;}
+  .hero-ctas{display:flex; gap:14px; margin-top:32px; flex-wrap:wrap;}
+
+  .stat-band{background:var(--blue); padding:44px 0;}
+  .stat-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
+  .stat-grid div{padding:0 24px; border-left:1px solid rgba(255,255,255,.28);}
+  .stat-grid div:first-child{border-left:none; padding-left:0;}
+  .stat-num{font-size:32px; font-weight:700; color:#fff; line-height:1;}
+  .stat-lbl{margin-top:8px; font-size:14.5px; color:#DCE6FF;}
+
+  /* ---------- capability grid ---------- */
+  .cap-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--border); border:1px solid var(--border);}
+  .cap-card{background:#fff; padding:30px 26px 34px; transition:background .2s ease;}
+  .cap-card:hover{background:var(--bg-soft);}
+  .cap-icon{ width:46px; height:46px; border:1.5px solid var(--border); display:flex; align-items:center; justify-content:center; margin-bottom:20px; }
+  .cap-card h3{font-size:17.5px; margin-bottom:10px;}
+  .cap-card p{font-size:14.5px; margin-bottom:16px;}
+  .cap-card ul{display:flex; flex-wrap:wrap; gap:7px;}
+  .cap-card li{ font-size:12px; font-weight:500; color:var(--body); background:var(--bg-soft); border:1px solid var(--border); padding:5px 10px; }
+
+  /* ---------- split blocks (enterprise modules) ---------- */
+  .split{display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center; padding:56px 0; border-bottom:1px solid var(--border);}
+  .split:last-of-type{border-bottom:none;}
+  .split.reverse .split-media{order:2;}
+  .split.reverse .split-text{order:1;}
+  .split-media img{ width:100%; height:340px; object-fit:cover; border-radius:var(--r-lg); box-shadow:var(--shadow-md); }
+  .split-text .idx{ font-size:13px; font-weight:600; color:var(--blue); margin-bottom:12px; }
+  .split-text h3{font-size:24px; margin-bottom:14px;}
+  .split-text > p{font-size:15.5px; margin-bottom:22px;}
+  .split-feats{ display:grid; grid-template-columns:1fr 1fr; gap:10px 20px; margin-bottom:24px; }
+  .split-feats div{ font-size:13.5px; color:var(--body); display:flex; align-items:center; gap:8px; }
+  .split-feats div svg{width:14px; height:14px; stroke:var(--green); stroke-width:2.4; flex-shrink:0;}
+  .split-link{font-size:14.5px; font-weight:600; color:var(--blue); display:inline-flex; align-items:center; gap:6px;}
+  .split-link:hover{gap:10px;}
+
+  /* ---------- technology ---------- */
+  .tech-header-wrap{display:flex; align-items:flex-end; justify-content:space-between; flex-wrap:wrap; gap:24px; margin-bottom:40px;}
+  .tech-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
+  .tech-card{position:relative; background:#FFFFFF; border:1px solid var(--border); border-radius:var(--r-md); padding:28px 26px; display:flex; flex-direction:column; transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease; overflow:hidden;}
+  .tech-card:hover{transform:translateY(-4px); border-color:#C7D4E5; box-shadow:0 16px 36px -12px rgba(10,14,23,.12), 0 2px 6px rgba(10,14,23,.04);}
+  .tech-card::before{content:""; position:absolute; top:0; left:0; right:0; height:3px; background:transparent; transition:background .2s ease;}
+  .tech-card:hover::before{background:linear-gradient(90deg, var(--blue) 0%, #408BFC 100%);}
+  .tech-card-header{display:flex; align-items:flex-start; justify-content:space-between; margin-bottom:18px;}
+  .tech-icon-wrap{width:46px; height:46px; border-radius:var(--r-sm); background:var(--blue-soft); display:flex; align-items:center; justify-content:center; color:var(--blue); transition:transform .2s ease, background .2s ease, color .2s ease;}
+  .tech-icon-wrap svg{width:22px; height:22px;}
+  .tech-card:hover .tech-icon-wrap{background:var(--blue); color:#FFFFFF; transform:scale(1.05);}
+  .tech-metric-badge{display:inline-flex; align-items:center; gap:5px; font-size:11.5px; font-weight:600; color:var(--blue); background:var(--blue-soft); border:1px solid rgba(15,98,254,.15); padding:4px 10px; border-radius:999px; letter-spacing:.02em;}
+  .tech-card h3{font-size:18px; font-weight:700; color:var(--ink); margin-bottom:8px; line-height:1.25;}
+  .tech-desc{font-size:14px; color:var(--body); line-height:1.5; margin-bottom:22px;}
+  .tech-tags-cloud{display:flex; flex-wrap:wrap; gap:8px; margin-top:auto;}
+  .tech-tag-chip{display:inline-flex; align-items:center; gap:7px; font-size:13px; font-weight:500; color:#2D3748; background:var(--bg-soft); border:1px solid var(--border); padding:6px 12px; border-radius:var(--r-sm); transition:all .15s ease; user-select:none;}
+  .tech-tag-chip:hover{background:#FFFFFF; border-color:var(--blue); color:var(--blue-dark); box-shadow:0 2px 8px rgba(15,98,254,.1); transform:translateY(-1px);}
+  .tech-tag-dot{width:6.5px; height:6.5px; border-radius:50%; flex-shrink:0;}
+  .tech-footer-strip{margin-top:36px; background:var(--bg-soft); border:1px solid var(--border); border-radius:var(--r-md); padding:18px 24px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px;}
+  .tech-strip-item{display:flex; align-items:center; gap:8px; font-size:13.5px; font-weight:500; color:var(--body);}
+  .tech-strip-item svg{width:15px; height:15px; stroke:var(--green); stroke-width:2.2;}
+
+
+  /* ---------- process ---------- */
+  .process-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:24px; position:relative;}
+  .process-line{position:absolute; top:22px; left:5%; right:5%; height:2px; background:var(--border); z-index:0;}
+  .phase{position:relative; z-index:1;}
+  .phase .num{ width:44px; height:44px; background:var(--ink); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:15px; margin-bottom:20px; }
+  .phase h4{font-size:16.5px; margin-bottom:10px;}
+  .phase ul li{font-size:13.5px; color:var(--body); margin-bottom:6px;}
+
+  /* ---------- quote band ---------- */
+  .quote-band{ background:var(--navy); padding:100px 0; text-align:center; }
+  .quote-band h2{ color:#fff; font-size:clamp(26px,3.6vw,42px); line-height:1.28; max-width:20ch; margin:0 auto; }
+  .quote-band .who{margin-top:24px; font-size:14.5px; color:var(--navy-text); font-weight:500;}
+
+  /* ---------- partners (photo split, dark) ---------- */
+  .partners{ position:relative; background:var(--navy); color:#fff; overflow:hidden; }
+  .partners-inner{display:grid; grid-template-columns:1fr 1fr; align-items:center;}
+  .partners-media{height:100%; min-height:520px;}
+  .partners-media img{width:100%; height:100%; object-fit:cover; display:block;}
+  .partners-text{padding:80px 64px;}
+  .partners-text .label{color:#8FB0FF;}
+  .partners-text h2{color:#fff; font-size:clamp(26px,3vw,36px); line-height:1.2; max-width:13ch;}
+  .partners-text p.lead{margin-top:18px; font-size:16.5px; color:var(--navy-text); max-width:42ch;}
+  .wl-flow{margin-top:28px; display:flex; align-items:center; gap:10px; flex-wrap:wrap;}
+  .wl-flow .node{ border:1px solid var(--navy-border); padding:9px 14px; font-size:13px; font-weight:500; color:#fff; }
+  .wl-flow .arrow{color:#5D7EE0;}
+  .wl-list{display:grid; gap:12px; margin-top:26px;}
+  .wl-list li{ font-size:14px; color:var(--navy-text); display:flex; gap:10px; align-items:flex-start; }
+  .wl-list li svg{width:15px; height:15px; stroke:#8FB0FF; stroke-width:2.2; margin-top:3px; flex-shrink:0;}
+
+  /* ---------- about (photo split) ---------- */
+  .about-split{display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center;}
+  .about-split img{width:100%; height:440px; object-fit:cover; border-radius:var(--r-lg); box-shadow:var(--shadow-md);}
+  .about-split h2{font-size:clamp(28px,3.2vw,36px); max-width:13ch; line-height:1.18;}
+  .about-copy p{margin-top:16px; font-size:16px;}
+  .about-principles{display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:28px;}
+  .about-principle{display:flex; gap:12px;}
+  .about-principle svg{width:18px; height:18px; stroke:var(--blue); stroke-width:2; margin-top:2px; flex-shrink:0;}
+  .about-principle h5{font-size:14.5px; font-weight:600; margin-bottom:3px;}
+  .about-principle p{font-size:13px;}
+
+  /* ---------- demos ---------- */
+  .demo-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:20px;}
+  .demo-card{ background:#fff; border:1px solid var(--border); overflow:hidden; transition:box-shadow .2s ease, transform .2s ease; }
+  .demo-card:hover{box-shadow:var(--shadow-md); transform:translateY(-3px);}
+  .demo-thumb{ height:120px; background:var(--blue-soft); display:flex; align-items:center; justify-content:center; }
+  .demo-thumb .icon{width:30px; height:30px;}
+  .demo-body{padding:20px;}
+  .demo-card h4{font-size:15px; margin-bottom:12px;}
+  .demo-card a{font-size:13.5px; font-weight:600; color:var(--blue);}
+
+  /* ---------- contact ---------- */
+  .contact-wrap{display:grid; grid-template-columns:.85fr 1.15fr;}
+  .contact-media{position:relative; min-height:560px;}
+  .contact-media img{width:100%; height:100%; object-fit:cover;}
+  .contact-media::after{content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(5,8,16,.78), rgba(5,8,16,.55));}
+  .contact-media-inner{position:relative; z-index:1; padding:64px 48px; height:100%; display:flex; flex-direction:column; justify-content:center;}
+  .contact-media-inner h2{color:#fff; font-size:clamp(26px,3vw,34px); max-width:12ch; line-height:1.2;}
+  .contact-media-inner p{margin-top:16px; font-size:15.5px; color:#D4DAE6;}
+  .contact-types{display:grid; gap:10px; margin-top:28px;}
+  .contact-types li{ font-size:14px; color:#D4DAE6; font-weight:500; display:flex; gap:10px; align-items:center; }
+  .contact-types li svg{width:15px; height:15px; stroke:#8FB0FF; stroke-width:2.2;}
+  .contact-form-wrap{padding:72px 56px; background:var(--bg-soft);}
+  .form-row{display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-bottom:18px;}
+  .field{display:flex; flex-direction:column; gap:7px;}
+  .field.full{grid-column:1 / -1;}
+  .field label{font-size:13px; font-weight:600; color:var(--ink);}
+  .field input, .field select, .field textarea{ background:#fff; border:1px solid var(--border); color:var(--ink); padding:12px 14px; font-family:'IBM Plex Sans'; font-size:14.5px; border-radius:var(--r-sm); }
+  .field input:focus, .field select:focus, .field textarea:focus{border-color:var(--blue); box-shadow:0 0 0 3px var(--blue-soft);}
+  .field textarea{resize:vertical; min-height:96px;}
+  .contact-form-wrap .btn{width:100%; margin-top:6px; padding:15px;}
+
+  /* ---------- footer ---------- */
+  footer{background:var(--navy); color:var(--navy-text); padding:64px 0 26px;}
+  .footer-top{display:grid; grid-template-columns:1.4fr repeat(4,1fr); gap:40px; padding-bottom:48px; border-bottom:1px solid var(--navy-border);}
+  .footer-brand .logo-text{color:#fff;}
+  .footer-brand p{margin-top:16px; color:#8994AC; font-size:14px; max-width:30ch;}
+  .footer-col h5{font-size:13.5px; font-weight:600; color:#fff; margin-bottom:16px;}
+  .footer-col ul{display:grid; gap:10px;}
+  .footer-col a{font-size:14px; color:var(--navy-text);}
+  .footer-col a:hover{color:#fff;}
+  .footer-bottom{ display:flex; justify-content:space-between; align-items:center; padding-top:22px; font-size:13px; color:#6E7A93; flex-wrap:wrap; gap:12px; }
+
+  /* ---------- responsive ---------- */
+  @media (max-width:980px){
+    .nav-links{display:none;}
+    .menu-toggle{display:block; background:none; border:1px solid var(--border); color:var(--ink); padding:8px 12px; cursor:pointer;}
+    .nav-cta .text-link{display:none;}
+    .hero{min-height:520px;}
+    .stat-grid{grid-template-columns:1fr; gap:20px;}
+    .stat-grid div{border-left:none; padding-left:0; border-top:1px solid rgba(255,255,255,.28); padding-top:18px;}
+    .stat-grid div:first-child{border-top:none; padding-top:0;}
+    .cap-grid{grid-template-columns:1fr 1fr;}
+    .split{grid-template-columns:1fr; gap:28px;}
+    .split.reverse .split-media, .split.reverse .split-text{order:0;}
+    .split-media img{height:260px;}
+    .stack-grid{grid-template-columns:1fr;}
+    .process-grid{grid-template-columns:1fr 1fr; row-gap:36px;}
+    .process-line{display:none;}
+    .partners-inner{grid-template-columns:1fr;}
+    .partners-media{min-height:300px;}
+    .partners-text{padding:56px 32px;}
+    .about-split{grid-template-columns:1fr; gap:32px;}
+    .about-split img{height:280px;}
+    .about-principles{grid-template-columns:1fr;}
+    .demo-grid{grid-template-columns:1fr 1fr;}
+    .contact-wrap{grid-template-columns:1fr;}
+    .contact-media{min-height:280px;}
+    .contact-form-wrap{padding:48px 28px;}
+    .form-row{grid-template-columns:1fr;}
+    .footer-top{grid-template-columns:1fr 1fr; row-gap:32px;}
+  }
+  @media (max-width:560px){
+    .wrap{padding:0 20px;}
+    .cap-grid{grid-template-columns:1fr;}
+    .process-grid{grid-template-columns:1fr;}
+    .demo-grid{grid-template-columns:1fr;}
+    .footer-top{grid-template-columns:1fr;}
+    section{padding:64px 0;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <a href="#top" class="logo">
+      <div class="logo-mark"><svg viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg></div>
+      <div class="logo-text">SprintStack<span>.digital</span></div>
+    </a>
+    <div class="nav-links">
+      <a href="#solutions">Solutions</a>
+      <a href="#enterprise">Enterprise Software</a>
+      <a href="#technology">Technology</a>
+      <a href="#partners">Partners</a>
+      <a href="#process">Process</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="nav-cta">
+      <a href="#demos" class="text-link">Live Demos</a>
+      <a href="#contact" class="btn btn-primary">Book Technical Discovery</a>
+    </div>
+    <button class="menu-toggle" aria-label="Menu">☰</button>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-media">
+      <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1800&q=80"
+           onerror="this.onerror=null;this.src='https://picsum.photos/seed/sprintstack-hero/1800/1000';"
+           alt="Engineering team collaborating around a laptop in a modern office">
+    </div>
+    <div class="wrap hero-content">
+      <h1>Enterprise software, engineered on fixed sprints.</h1>
+      <p class="hero-sub">SprintStack designs and builds web platforms, mobile products, and proprietary enterprise software — architected up front, built in accountable sprint cycles, and handed over with full source ownership.</p>
+      <div class="hero-ctas">
+        <a href="#contact" class="btn btn-primary">Book a Technical Discovery</a>
+        <a href="#enterprise" class="btn btn-ghost-light">Explore Enterprise Software</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="stat-band">
+    <div class="wrap stat-grid">
+      <div><div class="stat-num">100%</div><div class="stat-lbl">IP ownership transferred at handover</div></div>
+      <div><div class="stat-num">1–2 wk</div><div class="stat-lbl">Fixed sprint cycles, every engagement</div></div>
+      <div><div class="stat-num">6</div><div class="stat-lbl">Global markets actively served</div></div>
+    </div>
+  </div>
+
+  <!-- SOLUTIONS -->
+  <section id="solutions">
+    <div class="wrap">
+      <div class="label">Solutions</div>
+      <div class="section-head">
+        <h2>What we engineer</h2>
+        <p>Four core capabilities cover the full surface of a modern digital product — from customer-facing applications to the systems that keep them running.</p>
+      </div>
+      <div class="cap-grid">
+        <div class="cap-card">
+          <div class="cap-icon"><svg class="icon" viewBox="0 0 24 24"><rect x="2.5" y="4" width="19" height="16" rx="1"/><path d="M2.5 8h19"/></svg></div>
+          <h3>Web applications</h3>
+          <p>SaaS platforms, business portals, and enterprise web applications built for scale from day one.</p>
+          <ul><li>React</li><li>Next.js</li><li>Node.js</li><li>Python</li></ul>
+        </div>
+        <div class="cap-card">
+          <div class="cap-icon"><svg class="icon" viewBox="0 0 24 24"><rect x="6.5" y="2.5" width="11" height="19" rx="1.5"/><path d="M10 19h4"/></svg></div>
+          <h3>Mobile applications</h3>
+          <p>Native and cross-platform apps for consumer products and field-operation teams.</p>
+          <ul><li>iOS</li><li>Android</li><li>Flutter</li><li>React Native</li></ul>
+        </div>
+        <div class="cap-card">
+          <div class="cap-icon"><svg class="icon" viewBox="0 0 24 24"><path d="M3 4h2l1.6 10.2a2 2 0 0 0 2 1.8h7.6a2 2 0 0 0 2-1.6L20 8H6"/><circle cx="9" cy="20" r="1.3"/><circle cx="17" cy="20" r="1.3"/></svg></div>
+          <h3>E-commerce</h3>
+          <p>Custom commerce platforms, headless storefronts, marketplaces, and payment integrations.</p>
+          <ul><li>Headless Shopify</li><li>WooCommerce</li><li>Marketplaces</li><li>Payments</li></ul>
+        </div>
+        <div class="cap-card">
+          <div class="cap-icon"><svg class="icon" viewBox="0 0 24 24"><rect x="2.5" y="9" width="6" height="6" rx="1"/><rect x="15.5" y="9" width="6" height="6" rx="1"/><path d="M8.5 12h7"/></svg></div>
+          <h3>System integrations & automation</h3>
+          <p>REST and GraphQL APIs, ERP/CRM integrations, and automated data pipelines.</p>
+          <ul><li>REST / GraphQL</li><li>ERP · CRM</li><li>Automation</li><li>Data pipelines</li></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ENTERPRISE SOFTWARE — alternating photo/text -->
+  <section id="enterprise" class="soft">
+    <div class="wrap">
+      <div class="label">Enterprise software</div>
+      <div class="section-head">
+        <h2>Proprietary modules, ready to deploy</h2>
+        <p>Beyond custom builds, SprintStack maintains four enterprise software modules — ready to deploy or extend for your operation.</p>
+      </div>
+
+      <div class="split">
+        <div class="split-media">
+          <img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1200&q=80"
+               onerror="this.onerror=null;this.src='https://picsum.photos/seed/sprintstack-attendance/1200/900';"
+               alt="Employee checking in at a workplace access terminal">
+        </div>
+        <div class="split-text">
+          <div class="idx">Attendance & Workforce Management</div>
+          <h3>Presence, shifts, and payroll — synced automatically</h3>
+          <p>Track presence and shifts across locations, with payroll synced in real time.</p>
+          <div class="split-feats">
+            <div><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6"/></svg>Geofenced attendance</div>
+            <div><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6"/></svg>Biometric integration</div>
+            <div><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6"/></svg>Shift scheduling</div>
+            <div><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6"/></svg>Leave management</div>
+            <div><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6"/></svg>Overtime tracking</div>
+            <div><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6"/></svg>Payroll sync</div>
+          </div>
+          <a href="#demos" class="split-link">View live demo →</a>
+        </div>
+      </div>
+
+      <div class="split reverse">
+        <div class="split-media">
+          <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=80"
+               onerror="this.onerror=null;this.src='https://picsum.photos/seed/sprintstack-projects/1200/900';"
+               alt="Team planning a project timeline together at a table">
+        </div>
+        <div class="split-text">
+          <div class="idx">Project & Resource Management</div>
+          <h3>Plan, staff, and bill from one operating view</h3>
+          <p>Track delivery, allocate resources, and keep budgets accountable across every active project.</p>
+          <div class="split-feats">
+            <div><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6"/></svg>Project tracking</div>
+            <div><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6"/></svg>Gantt scheduling</div>
+            <div><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6"/></svg>Resource allocation</div>
+            <div><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6"/></svg>Utilization dashboards</div>
+            <div><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6"/></svg>Budget tracking</div>
+            <div><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6"/></svg>Milestone invoicing</div>
+          </div>
+          <a href="#demos" class="split-link">View live demo →</a>
+        </div>
+      </div>
+
+      <div class="split">
+        <div class="split-media">
+          <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1200&q=80"
+               onerror="this.onerror=null;this.src='https://picsum.photos/seed/sprintstack-crm/1200/900';"
+               alt="Two business professionals shaking hands after a meeting">
+        </div>
+        <div class="split-text">
+          <div class="idx">CRM & Lead Management</div>
+          <h3>From first contact to signed contract</h3>
+          <p>Move a lead through the pipeline without leaving the platform.</p>
+          <div class="split-feats">
+            <div><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6"/></svg>Lead management</div>
+            <div><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6"/></svg>Lead routing</div>
+            <div><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6"/></svg>Sales pipelines</div>
+            <div><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6"/></svg>Deal tracking</div>
+            <div><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6"/></svg>Quotations</div>
+            <div><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6"/></svg>Contract generation</div>
+          </div>
+          <a href="#demos" class="split-link">View live demo →</a>
+        </div>
+      </div>
+
+      <div class="split reverse">
+        <div class="split-media">
+          <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80"
+               onerror="this.onerror=null;this.src='https://picsum.photos/seed/sprintstack-automation/1200/900';"
+               alt="Server infrastructure powering automated business workflows">
+        </div>
+        <div class="split-text">
+          <div class="idx">Business Process Automation</div>
+          <h3>A live, auditable view of how the business runs</h3>
+          <p>Executive dashboards and workflow rules that keep every team accountable.</p>
+          <div class="split-feats">
+            <div><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6"/></svg>Executive dashboards</div>
+            <div><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6"/></svg>Live metrics</div>
+            <div><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6"/></svg>Automated alerts</div>
+            <div><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6"/></svg>Audit trails</div>
+            <div><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6"/></svg>Role-based access</div>
+            <div><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6"/></svg>Workflow rules</div>
+          </div>
+          <a href="#demos" class="split-link">View live demo →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TECHNOLOGY -->
+  <section id="technology">
+    <div class="wrap">
+      <div class="tech-header-wrap">
+        <div class="section-head" style="margin-bottom:0;">
+          <div class="label">Technology</div>
+          <h2>A stack built to last</h2>
+          <p>We choose proven, well-supported technology over trend-chasing — so what we hand over is maintainable for years, by any team.</p>
+        </div>
+      </div>
+
+      <div class="tech-grid">
+        <!-- Frontend -->
+        <div class="tech-card">
+          <div>
+            <div class="tech-card-header">
+              <div class="tech-icon-wrap">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="3" width="20" height="14" rx="2"/><line x1="2" y1="9" x2="22" y2="9"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
+                </svg>
+              </div>
+              <span class="tech-metric-badge">Sub-100ms TTFB</span>
+            </div>
+            <h3>Frontend Architecture</h3>
+            <p class="tech-desc">Component-driven, accessible client interfaces engineered with strict type safety, micro-interactions, and zero layout shift.</p>
+          </div>
+          <div class="tech-tags-cloud">
+            <span class="tech-tag-chip"><span class="tech-tag-dot" style="background:#06B6D4;"></span>React 19</span>
+            <span class="tech-tag-chip"><span class="tech-tag-dot" style="background:#0A0E17;"></span>Next.js</span>
+            <span class="tech-tag-chip"><span class="tech-tag-dot" style="background:#3178C6;"></span>TypeScript</span>
+            <span class="tech-tag-chip"><span class="tech-tag-dot" style="background:#38BDF8;"></span>Tailwind CSS</span>
+            <span class="tech-tag-chip"><span class="tech-tag-dot" style="background:#6366F1;"></span>State Machines</span>
+            <span class="tech-tag-chip"><span class="tech-tag-dot" style="background:#BD34FE;"></span>Vite</span>
+          </div>
+        </div>
+
+        <!-- Backend -->
+        <div class="tech-card">
+          <div>
+            <div class="tech-card-header">
+              <div class="tech-icon-wrap">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/>
+                </svg>
+              </div>
+              <span class="tech-metric-badge">High Concurrency</span>
+            </div>
+            <h3>Backend & Microservices</h3>
+            <p class="tech-desc">Horizontally scalable microservices, asynchronous queues, REST & GraphQL APIs engineered for sub-second database transactions.</p>
+          </div>
+          <div class="tech-tags-cloud">
+            <span class="tech-tag-chip"><span class="tech-tag-dot" style="background:#22C55E;"></span>Node.js</span>
+            <span class="tech-tag-chip"><span class="tech-tag-dot" style="background:#E11D48;"></span>NestJS</span>
+            <span class="tech-tag-chip"><span class="tech-tag-dot" style="background:#EAB308;"></span>Python</span>
+            <span class="tech-tag-chip"><span class="tech-tag-dot" style="background:#14B8A6;"></span>FastAPI</span>
+            <span class="tech-tag-chip"><span class="tech-tag-dot" style="background:#00ADD8;"></span>Go / Golang</span>
+            <span class="tech-tag-chip"><span class="tech-tag-dot" style="background:#64748B;"></span>Express</span>
+            <span class="tech-tag-chip"><span class="tech-tag-dot" style="background:#047857;"></span>Django</span>
+          </div>
+        </div>
+
+        <!-- Mobile -->
+        <div class="tech-card">
+          <div>
+            <div class="tech-card-header">
+              <div class="tech-icon-wrap">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/>
+                </svg>
+              </div>
+              <span class="tech-metric-badge">60 FPS Native</span>
+            </div>
+            <h3>Mobile & Cross-Platform</h3>
+            <p class="tech-desc">Smooth consumer and enterprise apps with native hardware bridges, offline SQLite storage, biometric gates, and instant boot.</p>
+          </div>
+          <div class="tech-tags-cloud">
+            <span class="tech-tag-chip"><span class="tech-tag-dot" style="background:#02569B;"></span>Flutter</span>
+            <span class="tech-tag-chip"><span class="tech-tag-dot" style="background:#61DAFB;"></span>React Native</span>
+            <span class="tech-tag-chip"><span class="tech-tag-dot" style="background:#F05138;"></span>Swift (iOS)</span>
+            <span class="tech-tag-chip"><span class="tech-tag-dot" style="background:#7F52FF;"></span>Kotlin (Android)</span>
+            <span class="tech-tag-chip"><span class="tech-tag-dot" style="background:#0175C2;"></span>Dart</span>
+            <span class="tech-tag-chip"><span class="tech-tag-dot" style="background:#475569;"></span>SQLite</span>
+          </div>
+        </div>
+
+        <!-- Database -->
+        <div class="tech-card">
+          <div>
+            <div class="tech-card-header">
+              <div class="tech-icon-wrap">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
+                </svg>
+              </div>
+              <span class="tech-metric-badge">ACID & Sub-5ms</span>
+            </div>
+            <h3>Databases & High-Speed Cache</h3>
+            <p class="tech-desc">Distributed relational engines and in-memory caches configured with automated failover, read replicas, and strict consistency.</p>
+          </div>
+          <div class="tech-tags-cloud">
+            <span class="tech-tag-chip"><span class="tech-tag-dot" style="background:#336791;"></span>PostgreSQL</span>
+            <span class="tech-tag-chip"><span class="tech-tag-dot" style="background:#DC2626;"></span>Redis</span>
+            <span class="tech-tag-chip"><span class="tech-tag-dot" style="background:#E48E00;"></span>MySQL</span>
+            <span class="tech-tag-chip"><span class="tech-tag-dot" style="background:#13AA52;"></span>MongoDB</span>
+            <span class="tech-tag-chip"><span class="tech-tag-dot" style="background:#3ECF8E;"></span>Supabase</span>
+            <span class="tech-tag-chip"><span class="tech-tag-dot" style="background:#8B5CF6;"></span>Prisma ORM</span>
+          </div>
+        </div>
+
+        <!-- Cloud & DevOps -->
+        <div class="tech-card">
+          <div>
+            <div class="tech-card-header">
+              <div class="tech-icon-wrap">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/>
+                </svg>
+              </div>
+              <span class="tech-metric-badge">99.99% SLA</span>
+            </div>
+            <h3>Cloud, DevOps & Infrastructure</h3>
+            <p class="tech-desc">Fully automated CI/CD pipelines, container orchestration, zero-downtime rollouts, and infrastructure-as-code deployments.</p>
+          </div>
+          <div class="tech-tags-cloud">
+            <span class="tech-tag-chip"><span class="tech-tag-dot" style="background:#FF9900;"></span>AWS</span>
+            <span class="tech-tag-chip"><span class="tech-tag-dot" style="background:#4285F4;"></span>Google Cloud</span>
+            <span class="tech-tag-chip"><span class="tech-tag-dot" style="background:#2496ED;"></span>Docker</span>
+            <span class="tech-tag-chip"><span class="tech-tag-dot" style="background:#326CE5;"></span>Kubernetes</span>
+            <span class="tech-tag-chip"><span class="tech-tag-dot" style="background:#6E40C9;"></span>GitHub Actions</span>
+            <span class="tech-tag-chip"><span class="tech-tag-dot" style="background:#844FBA;"></span>Terraform</span>
+          </div>
+        </div>
+
+        <!-- AI & Intelligence -->
+        <div class="tech-card">
+          <div>
+            <div class="tech-card-header">
+              <div class="tech-icon-wrap">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/>
+                </svg>
+              </div>
+              <span class="tech-metric-badge">LLM & Vector Ops</span>
+            </div>
+            <h3>AI Engineering & Intelligence</h3>
+            <p class="tech-desc">Production agentic workflows, contextual retrieval (RAG), vector embeddings, and autonomous enterprise intelligence.</p>
+          </div>
+          <div class="tech-tags-cloud">
+            <span class="tech-tag-chip"><span class="tech-tag-dot" style="background:#10A37F;"></span>OpenAI API</span>
+            <span class="tech-tag-chip"><span class="tech-tag-dot" style="background:#D97706;"></span>Anthropic Claude</span>
+            <span class="tech-tag-chip"><span class="tech-tag-dot" style="background:#1E293B;"></span>LangChain</span>
+            <span class="tech-tag-chip"><span class="tech-tag-dot" style="background:#4F46E5;"></span>PgVector / Pinecone</span>
+            <span class="tech-tag-chip"><span class="tech-tag-dot" style="background:#EE4C2C;"></span>PyTorch</span>
+            <span class="tech-tag-chip"><span class="tech-tag-dot" style="background:#0284C7;"></span>RAG Workflows</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tech-footer-strip">
+        <div class="tech-strip-item">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6"/></svg>
+          <span>100% Type-Safe TypeScript & Go</span>
+        </div>
+        <div class="tech-strip-item">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6"/></svg>
+          <span>Zero Vendor Lock-In & Open Standards</span>
+        </div>
+        <div class="tech-strip-item">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6"/></svg>
+          <span>Containerized & Reproducible CI/CD</span>
+        </div>
+        <div class="tech-strip-item">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6"/></svg>
+          <span>OWASP & SOC-2 Compliant Architecture</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section id="process" class="soft">
+    <div class="wrap">
+      <div class="label">Process</div>
+      <div class="section-head">
+        <h2>How a project moves from idea to production</h2>
+        <p>Every engagement runs through the same four phases — so you always know what stage a build is in, and what happens next.</p>
+      </div>
+      <div class="process-grid">
+        <div class="process-line"></div>
+        <div class="phase"><div class="num">01</div><h4>Architecture & scope</h4><ul><li>Requirements</li><li>Database design</li><li>API architecture</li><li>Scope lock</li></ul></div>
+        <div class="phase"><div class="num">02</div><h4>Sprint builds</h4><ul><li>1–2 week cycles</li><li>Live preview</li><li>Weekly demos</li><li>Feedback loop</li></ul></div>
+        <div class="phase"><div class="num">03</div><h4>QA & hardening</h4><ul><li>Cross-device testing</li><li>Security testing</li><li>API audits</li><li>Bug fixing</li></ul></div>
+        <div class="phase"><div class="num">04</div><h4>Launch & handover</h4><ul><li>Production deployment</li><li>Code transfer</li><li>Documentation</li><li>Knowledge transfer</li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="quote-band">
+    <div class="wrap">
+      <h2>One architecture. Every sprint visible. Full ownership at the end.</h2>
+      <div class="who">— the SprintStack delivery model</div>
+    </div>
+  </div>
+
+  <!-- PARTNERS -->
+  <section id="partners" class="partners">
+    <div class="partners-inner">
+      <div class="partners-media">
+        <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1200&q=80"
+             onerror="this.onerror=null;this.src='https://picsum.photos/seed/sprintstack-partners/1200/1400';"
+             alt="Two colleagues shaking hands to confirm a partnership agreement">
+      </div>
+      <div class="partners-text">
+        <div class="label">Partners</div>
+        <h2>Your clients. Your brand. Our engineering team.</h2>
+        <p class="lead">SprintStack builds under white label for agencies and technology service providers who need engineering capacity without the overhead of hiring a permanent team.</p>
+        <div class="wl-flow">
+          <div class="node">You bring the client</div><span class="arrow">→</span>
+          <div class="node">SprintStack builds</div><span class="arrow">→</span>
+          <div class="node">You deliver under your brand</div>
+        </div>
+        <ul class="wl-list">
+          <li><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6"/></svg>100% white-label development, no SprintStack branding client-side</li>
+          <li><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6"/></svg>Sprint-based development teams assigned to your account</li>
+          <li><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6"/></svg>Dedicated engineering pods for recurring partners</li>
+          <li><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6"/></svg>Full repository and code ownership passed to you</li>
+        </ul>
+        <div style="margin-top:32px;"><a href="#contact" class="btn btn-white">Discuss a partnership</a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="wrap">
+      <div class="label">About</div>
+      <div class="about-split">
+        <img src="https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?auto=format&fit=crop&w=1200&q=80"
+             onerror="this.onerror=null;this.src='https://picsum.photos/seed/sprintstack-about/1200/1000';"
+             alt="SprintStack engineering team working together in an open office">
+        <div class="about-copy">
+          <h2>An engineering partner, not a vendor</h2>
+          <p>SprintStack is a B2B software engineering company. We build custom web and mobile applications, maintain a set of proprietary enterprise software modules, and run white-label engineering for agencies that need to extend their own delivery capacity.</p>
+          <p>We work with clients across the US, UK, UAE, Singapore, Europe, and Australia, structuring every engagement around clear architecture up front, visible progress every sprint, and full ownership handed to you at the end.</p>
+          <div class="about-principles">
+            <div class="about-principle"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M12 3l8 4v5c0 5-3.5 7.5-8 9-4.5-1.5-8-4-8-9V7l8-4z"/></svg><div><h5>No vendor lock-in</h5><p>Source and infrastructure transfer at handover.</p></div></div>
+            <div class="about-principle"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg><div><h5>Security by default</h5><p>Audits built into every sprint.</p></div></div>
+            <div class="about-principle"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M3 17l5-6 4 4 6-8 3 4"/></svg><div><h5>Standards over trends</h5><p>Chosen for maintainability, not novelty.</p></div></div>
+            <div class="about-principle"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg><div><h5>Fixed cadence</h5><p>1–2 week sprints, every time.</p></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEMOS -->
+  <section id="demos" class="soft">
+    <div class="wrap">
+      <div class="label">Live product demos</div>
+      <div class="section-head"><h2>Product demo center</h2><p>See the enterprise modules running before you scope a build.</p></div>
+      <div class="demo-grid">
+        <div class="demo-card"><div class="demo-thumb"><svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg></div><div class="demo-body"><h4>Attendance & Workforce ERP</h4><a href="#contact">Request demo →</a></div></div>
+        <div class="demo-card"><div class="demo-thumb"><svg class="icon" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 19c.6-3.4 3-5 5.5-5s4.9 1.6 5.5 5"/></svg></div><div class="demo-body"><h4>CRM & Lead Management</h4><a href="#contact">Request demo →</a></div></div>
+        <div class="demo-card"><div class="demo-thumb"><svg class="icon" viewBox="0 0 24 24"><rect x="10" y="4.5" width="11" height="3" rx=".6"/><rect x="14" y="10.5" width="7" height="3" rx=".6"/><rect x="9" y="16.5" width="9" height="3" rx=".6"/></svg></div><div class="demo-body"><h4>Project & Resource Management</h4><a href="#contact">Request demo →</a></div></div>
+        <div class="demo-card"><div class="demo-thumb"><svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 3v2.2M12 18.8V21M21 12h-2.2M5.2 12H3M18.4 5.6l-1.6 1.6M7.2 16.8l-1.6 1.6M18.4 18.4l-1.6-1.6M7.2 7.2 5.6 5.6"/></svg></div><div class="demo-body"><h4>Business Process Automation</h4><a href="#contact">Request demo →</a></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" style="padding:0;">
+    <div class="contact-wrap">
+      <div class="contact-media">
+        <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=80"
+             onerror="this.onerror=null;this.src='https://picsum.photos/seed/sprintstack-contact/1200/1400';"
+             alt="Modern office building exterior">
+        <div class="contact-media-inner">
+          <div class="label" style="color:#8FB0FF;">Technical discovery</div>
+          <h2>Let's scope your software build</h2>
+          <p>Tell us what you're building. We'll come back with an architecture outline and a sprint plan — not a sales call.</p>
+          <ul class="contact-types">
+            <li><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6"/></svg>Custom web / SaaS</li>
+            <li><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6"/></svg>Mobile app</li>
+            <li><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6"/></svg>Attendance / ERP</li>
+            <li><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6"/></svg>CRM</li>
+            <li><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6"/></svg>Workflow automation</li>
+            <li><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6"/></svg>Legacy platform modernization</li>
+            <li><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6"/></svg>White-label partnership</li>
+          </ul>
+        </div>
+      </div>
+      <div class="contact-form-wrap">
+        <form onsubmit="event.preventDefault(); this.querySelector('.btn').textContent='Request received';">
+          <div class="form-row">
+            <div class="field"><label for="name">Full name</label><input id="name" type="text" required></div>
+            <div class="field"><label for="email">Work email</label><input id="email" type="email" required></div>
+          </div>
+          <div class="form-row">
+            <div class="field"><label for="phone">Phone / WhatsApp</label><input id="phone" type="tel"></div>
+            <div class="field"><label for="focus">Project focus</label>
+              <select id="focus">
+                <option>Custom Web / SaaS</option><option>Mobile App</option><option>Attendance / ERP</option>
+                <option>CRM</option><option>Workflow Automation</option><option>Legacy Platform Modernization</option><option>White-label Partnership</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="field full"><label for="timeline">Target timeline</label>
+              <select id="timeline">
+                <option>Immediate — within 4 weeks</option><option>1–3 months</option><option>3–6 months</option><option>Exploring options</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="field full"><label for="req">Project requirements</label><textarea id="req" placeholder="What are you building, and what's the current state of it?"></textarea></div>
+          </div>
+          <button type="submit" class="btn btn-primary">Request Architecture & Sprint Plan</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="logo"><div class="logo-mark"><svg viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg></div><div class="logo-text">SprintStack<span>.digital</span></div></div>
+        <p>B2B software engineering for teams that need a delivery partner, not a vendor.</p>
+      </div>
+      <div class="footer-col"><h5>Solutions</h5><ul>
+        <li><a href="#solutions">Web development</a></li><li><a href="#solutions">Mobile development</a></li>
+        <li><a href="#solutions">E-commerce</a></li><li><a href="#solutions">API & integrations</a></li></ul></div>
+      <div class="footer-col"><h5>Enterprise software</h5><ul>
+        <li><a href="#enterprise">Attendance & workforce</a></li><li><a href="#enterprise">Project management</a></li>
+        <li><a href="#enterprise">CRM</a></li><li><a href="#enterprise">Business automation</a></li></ul></div>
+      <div class="footer-col"><h5>Company</h5><ul>
+        <li><a href="#technology">Technology</a></li><li><a href="#process">Process</a></li>
+        <li><a href="#partners">White-label & partners</a></li><li><a href="#about">About</a></li></ul></div>
+      <div class="footer-col"><h5>Get started</h5><ul>
+        <li><a href="#demos">Live product demos</a></li><li><a href="#contact">Technical discovery</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 SprintStack.digital — all builds delivered with full source ownership</span>
+      <span>US · UK · UAE · Singapore · EU · AU</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

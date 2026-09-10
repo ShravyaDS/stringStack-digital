@@ -2,60 +2,96 @@
 
 import React from "react";
 import Link from "next/link";
-import { Code2 } from "lucide-react";
+import { useBookingModal } from "./ModalProvider";
 
 export function Footer() {
-  const navLinks = [
-    { href: "/#solutions", label: "Solutions" },
-    { href: "/#enterprise-solutions", label: "Enterprise Software" },
-    { href: "/#tech-stack", label: "Tech Stack" },
-    { href: "/partners/white-label", label: "White-Label & Partners" },
-    { href: "/#process", label: "Process" },
-  ];
+  const { openBookingModal } = useBookingModal();
 
   return (
-    <footer className="bg-slate-100 dark:bg-[#050811] text-slate-900 dark:text-white border-t border-slate-200 dark:border-white/[0.08] py-12 lg:py-16 transition-colors duration-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
-        
-        {/* Top Row: Brand & Navigation matching Figma */}
-        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 pb-8 border-b border-slate-200 dark:border-white/[0.08]">
-          <div className="space-y-1">
-            <Link href="/" className="flex items-center gap-2.5 select-none">
-              <div className="w-7 h-7 rounded-lg bg-blue-600 flex items-center justify-center">
-                <Code2 className="w-4 h-4 text-white" />
+    <footer>
+      <div className="wrap">
+        <div className="footer-top">
+          <div className="footer-brand">
+            <div className="logo">
+              <div className="logo-mark">
+                <svg viewBox="0 0 24 24">
+                  <path d="M4 12l5 5L20 6" />
+                </svg>
               </div>
-              <span className="font-bold text-lg text-slate-900 dark:text-white tracking-tight">
-                SprintStack<span className="text-blue-500">.digital</span>
-              </span>
-            </Link>
-            <p className="text-xs font-mono text-slate-500">
-              Build • Scale • Grow
+              <div className="logo-text">
+                SprintStack<span>.digital</span>
+              </div>
+            </div>
+            <p className="footer-tagline">
+              High-Velocity Product Engineering & Enterprise Software.
+              Architected up front, built in fixed sprint cycles, and handed over with 100% IP ownership.
             </p>
+            <div className="footer-markets">
+              <span className="markets-label">Global Delivery Hubs:</span>
+              <p className="markets-list">New York • London • Dubai • Singapore • Sydney • Bangalore</p>
+            </div>
           </div>
 
-          <div className="flex flex-wrap items-center gap-5 sm:gap-7 text-xs sm:text-sm text-slate-600 dark:text-slate-400">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="hover:text-slate-900 dark:hover:text-white transition-colors"
-              >
-                {link.label}
-              </Link>
-            ))}
+          <div className="footer-col">
+            <h5>Solutions</h5>
+            <ul>
+              <li><Link href="#solutions">Web Development</Link></li>
+              <li><Link href="#solutions">Mobile Development</Link></li>
+              <li><Link href="#solutions">E-commerce</Link></li>
+              <li><Link href="#solutions">Integrations & Automation</Link></li>
+            </ul>
+          </div>
+
+          <div className="footer-col">
+            <h5>Enterprise Software</h5>
+            <ul>
+              <li><Link href="#enterprise">Attendance ERP</Link></li>
+              <li><Link href="#enterprise">Project Management</Link></li>
+              <li><Link href="#enterprise">CRM Systems</Link></li>
+              <li><Link href="#enterprise">Business Automation</Link></li>
+            </ul>
+          </div>
+
+          <div className="footer-col">
+            <h5>Capabilities & Delivery</h5>
+            <ul>
+              <li><Link href="#technology">Tech Stack</Link></li>
+              <li><Link href="#process">Sprint Process</Link></li>
+              <li><Link href="#partners">White-Label</Link></li>
+              <li><Link href="#about">About SprintStack</Link></li>
+            </ul>
+          </div>
+
+          <div className="footer-col">
+            <h5>Get Started</h5>
+            <ul>
+              <li><Link href="#demos">Live Demos</Link></li>
+              <li>
+                <button
+                  type="button"
+                  onClick={openBookingModal}
+                  className="footer-link-btn"
+                >
+                  Book Discovery
+                </button>
+              </li>
+              <li><Link href="#contact">Contact Team</Link></li>
+            </ul>
           </div>
         </div>
 
-        {/* Bottom Row: Copyright & Tagline matching Figma */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 font-mono">
-          <div>
-            © 2026 SprintStack.digital. All rights reserved.
+        <div className="footer-bottom">
+          <div className="footer-legal-copy">
+            <span>© {new Date().getFullYear()} SprintStack.digital — All builds delivered with 100% IP ownership & zero vendor lock-in.</span>
           </div>
-          <div>
-            High-Performance Engineering for a Global Tomorrow.
+          <div className="footer-legal-links">
+            <Link href="/privacy">Privacy Policy</Link>
+            <span className="dot-sep">•</span>
+            <Link href="/terms">Terms of Service</Link>
+            <span className="dot-sep">•</span>
+            <Link href="#process">Security & Compliance</Link>
           </div>
         </div>
-
       </div>
     </footer>
   );
