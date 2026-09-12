@@ -27,17 +27,6 @@
   --r-lg: 14px;
 }
 
-/* Fade‑in animation for scroll reveal */
-.fade-in {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-}
-.fade-in.visible {
-  opacity: 1;
-  transform: none;
-}
-
 * {
   box-sizing: border-box;
 }
@@ -1160,30 +1149,30 @@ header {
   color: var(--muted);
 }
 
-/* Stack card grid — 3 on top, 2 on bottom */
+/* Stack card grid — 3 on top, 2 centered on bottom */
 .stack-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 20px;
 }
 
-.stack-card:nth-child(n+4) {
-  grid-column: span 1;
-}
-
-/* Put the bottom two cards centred */
-.stack-grid:has(.stack-card:nth-child(5):last-child) .stack-card:nth-child(4),
-.stack-grid:has(.stack-card:nth-child(5):last-child) .stack-card:nth-child(5) {
-  grid-column: span 1;
-}
-
-/* Individual stack card */
 .stack-card {
+  grid-column: span 2;
   background: #FFFFFF;
   border: 1px solid #DDE4EF;
   border-radius: 10px;
   padding: 24px;
   transition: box-shadow 0.18s ease, transform 0.18s ease, border-color 0.18s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+/* When all 5 cards are visible, center the bottom row */
+.stack-grid:has(> :nth-child(5):last-child) .stack-card:nth-child(4) {
+  grid-column: 2 / span 2;
+}
+.stack-grid:has(> :nth-child(5):last-child) .stack-card:nth-child(5) {
+  grid-column: 4 / span 2;
 }
 
 .stack-card:hover {
@@ -1354,7 +1343,9 @@ header {
   .stack-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-  .stack-card:nth-child(n) {
+  .stack-card,
+  .stack-grid:has(> :nth-child(5):last-child) .stack-card:nth-child(4),
+  .stack-grid:has(> :nth-child(5):last-child) .stack-card:nth-child(5) {
     grid-column: auto;
   }
 }
