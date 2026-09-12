@@ -142,6 +142,32 @@ export async function processLeadSubmission(data: LeadSubmission): Promise<LeadR
     }
   }
 
+  // 6. Optional Google Sheets (Apps Script Webhook) Forwarding
+  const googleSheetWebhook =
+    process.env.GOOGLE_SHEET_WEBHOOK_URL || process.env.GOOGLE_SHEETS_URL;
+  if (googleSheetWebhook && googleSheetWebhook.startsWith("https://")) {
+    try {
+      await fetch(googleSheetWebhook, {
+        method: "POST",
+        redirect: "follow",
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        body: JSON.stringify({
+          leadId,
+          timestamp: submissionTimestamp,
+          fullName: fullName.trim(),
+          workEmail: normalizedEmail,
+          phone: phone ? phone.trim() : "",
+          projectFocus: projectFocus || "General Software Engineering",
+          estimatedTimeline: estimatedTimeline || "Exploring",
+          projectOverview: projectOverview ? projectOverview.trim() : "",
+          source,
+        }),
+      });
+    } catch (sheetError) {
+      console.warn("[GOOGLE_SHEET_DISPATCH_SKIPPED]", sheetError);
+    }
+  }
+
   return {
     success: true,
     leadId,

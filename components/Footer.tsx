@@ -57,8 +57,8 @@ export function Footer() {
             <ul>
               <li><Link href="#technology">Tech Stack</Link></li>
               <li><Link href="#process">Sprint Process</Link></li>
-              <li><Link href="#partners">White-Label</Link></li>
-              <li><Link href="#about">About SprintStack</Link></li>
+              <li><Link href="#demos">Live Demos</Link></li>
+              <li><Link href="#contact">Technical Discovery</Link></li>
             </ul>
           </div>
 

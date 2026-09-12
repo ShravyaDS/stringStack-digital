@@ -26,16 +26,12 @@ export function Navigation() {
           <Link href="#solutions">Solutions</Link>
           <Link href="#enterprise">Enterprise Software</Link>
           <Link href="#technology">Technology</Link>
-          <Link href="#partners">White-Label</Link>
           <Link href="#process">Process</Link>
-          <Link href="#about">About</Link>
+          <Link href="#demos">Live Demos</Link>
           <Link href="#contact">Contact</Link>
         </div>
 
         <div className="nav-cta">
-          <Link href="#demos" className="text-link">
-            Live Demos
-          </Link>
           <button
             type="button"
             onClick={openBookingModal}
@@ -66,14 +62,11 @@ export function Navigation() {
         <Link href="#technology" onClick={() => setMobileMenuOpen(false)}>
           Technology
         </Link>
-        <Link href="#partners" onClick={() => setMobileMenuOpen(false)}>
-          White-Label &amp; Partners
-        </Link>
         <Link href="#process" onClick={() => setMobileMenuOpen(false)}>
           Process
         </Link>
-        <Link href="#about" onClick={() => setMobileMenuOpen(false)}>
-          About
+        <Link href="#demos" onClick={() => setMobileMenuOpen(false)}>
+          Live Product Demos
         </Link>
         <Link href="#contact" onClick={() => setMobileMenuOpen(false)}>
           Contact

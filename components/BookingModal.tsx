@@ -17,6 +17,7 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
   const [timezone, setTimezone] = useState<string>("UTC+00:00 (London/GMT)");
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [whatsappUrl, setWhatsappUrl] = useState("");
 
   useEffect(() => {
     try {
@@ -67,6 +68,22 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
     e.preventDefault();
     setIsSubmitting(true);
 
+    const waNumber = "917760229555";
+    const waText = [
+      `*New 15-Minute Technical Discovery Booking — SprintStack.digital*`,
+      ``,
+      `👤 *Name:* ${name || "Discovery Lead"}`,
+      `📧 *Email:* ${email}`,
+      `🎯 *Consultation Focus:* ${focusArea}`,
+      `📅 *Target Date:* ${selectedDate}`,
+      `⏰ *Slot:* ${selectedSlot} (${timezone})`,
+    ]
+      .filter(Boolean)
+      .join("\n");
+
+    const waLink = `https://wa.me/${waNumber}?text=${encodeURIComponent(waText)}`;
+    setWhatsappUrl(waLink);
+
     try {
       await fetch("/api/discovery-form", {
         method: "POST",
@@ -77,12 +94,19 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
           projectFocus: focusArea,
           timeline: "immediate",
           projectOverview: `Discovery Call scheduled for ${selectedDate} at ${selectedSlot} (${timezone}). Focus: ${focusArea}`,
+          source: "booking_modal",
         }),
       });
       setIsSubmitted(true);
+      if (typeof window !== "undefined") {
+        window.open(waLink, "_blank");
+      }
     } catch (err) {
       console.error("Failed to book slot", err);
       setIsSubmitted(true);
+      if (typeof window !== "undefined") {
+        window.open(waLink, "_blank");
+      }
     } finally {
       setIsSubmitting(false);
     }
@@ -137,10 +161,20 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
                 <div><span className="text-[#64748B]">Topic:</span> <strong className="text-[#0F172A]">{focusArea}</strong></div>
                 <div><span className="text-[#64748B]">Timezone:</span> <strong className="text-[#0F172A]">{timezone}</strong></div>
               </div>
-              <div className="pt-3">
+              <div className="pt-3 flex flex-col sm:flex-row items-center justify-center gap-3">
+                {whatsappUrl && (
+                  <a
+                    href={whatsappUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full sm:w-auto px-5 py-2.5 rounded-lg bg-[#25D366] hover:bg-[#1EBE5D] text-white text-sm font-semibold transition-colors flex items-center justify-center gap-2 no-underline"
+                  >
+                    💬 Chat on WhatsApp (+91 77602 29555)
+                  </a>
+                )}
                 <button
                   onClick={onClose}
-                  className="btn-primary px-6 py-2.5 text-sm font-semibold cursor-pointer"
+                  className="w-full sm:w-auto px-6 py-2.5 text-sm font-semibold border border-[#E5E8ED] rounded-lg text-[#475569] hover:bg-slate-100 cursor-pointer"
                 >
                   Done
                 </button>
@@ -167,7 +201,7 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
                     "Full-Stack Web Engineering (Next.js)",
                     "Mobile App & Flutter Development",
                     "Attendance ERP & Workforce Suite",
-                    "White-Label Agency Partnership",
+                    "Workflow & Cloud Automation",
                   ].map((area) => {
                     const isSelected = focusArea === area;
                     return (

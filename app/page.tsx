@@ -4,9 +4,6 @@ import { FormEvent, useMemo, useState } from "react";
 import {
   Check,
   Clock3,
-  Code2,
-  Cpu,
-  Database,
   Layers3,
   Monitor,
   Search,
@@ -161,6 +158,7 @@ export default function Home() {
   const [stackFilter, setStackFilter] = useState("All");
   const [stackSearch, setStackSearch] = useState("");
   const [activeDemo, setActiveDemo] = useState(0);
+  const [activeModule, setActiveModule] = useState(0);
   const [selectedTechnology, setSelectedTechnology] = useState("React 19");
 
   const visibleStacks = useMemo(() => {
@@ -177,33 +175,63 @@ export default function Home() {
     });
   }, [stackFilter, stackSearch]);
 
+  const [whatsappLink, setWhatsappLink] = useState("");
+
   const submit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setSubmitting(true);
     setFormError("");
     const data = new FormData(event.currentTarget);
+    const name = (data.get("name") as string) || "";
+    const email = (data.get("email") as string) || "";
+    const phone = (data.get("phone") as string) || "";
+    const focus = (data.get("focus") as string) || "Custom Web / SaaS";
+    const timeline = (data.get("timeline") as string) || "Immediate — within 4 weeks";
+    const requirements = (data.get("requirements") as string) || "";
+
+    const waNumber = "917760229555";
+    const waText = [
+      `*New Technical Discovery Brief — SprintStack.digital*`,
+      ``,
+      `👤 *Name:* ${name}`,
+      `📧 *Email:* ${email}`,
+      phone ? `📱 *Phone:* ${phone}` : null,
+      `🎯 *Project Focus:* ${focus}`,
+      `⏱️ *Target Timeline:* ${timeline}`,
+      requirements ? `📝 *Requirements:*\n${requirements}` : null,
+    ]
+      .filter(Boolean)
+      .join("\n");
+
+    const waUrl = `https://wa.me/${waNumber}?text=${encodeURIComponent(waText)}`;
+    setWhatsappLink(waUrl);
+
     try {
-      const response = await fetch("/api/discovery-form", {
+      await fetch("/api/discovery-form", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          name: data.get("name"),
-          email: data.get("email"),
-          phone: data.get("phone"),
-          projectFocus: data.get("focus"),
-          timeline: data.get("timeline"),
-          projectOverview: data.get("requirements"),
+          name,
+          email,
+          phone,
+          projectFocus: focus,
+          timeline,
+          projectOverview: requirements,
+          source: "contact_section",
         }),
       });
-      if (!response.ok) throw new Error("Unable to send your request.");
+
       setSubmitted(true);
+      if (typeof window !== "undefined") {
+        window.open(waUrl, "_blank");
+      }
       event.currentTarget.reset();
     } catch (error) {
-      setFormError(
-        error instanceof Error
-          ? error.message
-          : "Unable to send your request. Please try again."
-      );
+      // Even if network fails, still allow WhatsApp direct connection
+      setSubmitted(true);
+      if (typeof window !== "undefined") {
+        window.open(waUrl, "_blank");
+      }
     } finally {
       setSubmitting(false);
     }
@@ -306,43 +334,61 @@ export default function Home() {
               Either way, the code and infrastructure are yours.
             </p>
           </div>
-          {modules.map((module, index) => (
-            <article
-              className={`split ${index % 2 ? "reverse" : ""}`}
-              key={module.title}
-            >
-              <div className="split-media">
-                <img
-                  src={`https://images.unsplash.com/${module.image}?auto=format&fit=crop&w=1200&q=80`}
-                  alt={module.title}
-                />
+          {/* Module Switcher Tabs */}
+          <div className="enterprise-nav-tabs" role="tablist">
+            {modules.map((module, index) => (
+              <button
+                type="button"
+                key={module.title}
+                onClick={() => setActiveModule(index)}
+                className={`enterprise-tab-btn ${activeModule === index ? "active" : ""}`}
+                role="tab"
+                aria-selected={activeModule === index}
+              >
+                <span className="tab-idx">0{index + 1}</span>
+                <span className="tab-name">{module.title}</span>
+              </button>
+            ))}
+          </div>
+
+          {/* Active Module Showcase Card */}
+          <div className="enterprise-showcase-card">
+            <div className="enterprise-showcase-content">
+              <div className="idx">{modules[activeModule].title}</div>
+              <h3>{modules[activeModule].heading}</h3>
+              <p>
+                Production-ready software designed for visibility, accountability,
+                and dependable day-to-day execution across your organization.
+              </p>
+              <div className="split-feats">
+                {modules[activeModule].features.map((feature) => (
+                  <div key={feature}>
+                    <Check />
+                    {feature}
+                  </div>
+                ))}
               </div>
-              <div className="split-text">
-                <div className="idx">{module.title}</div>
-                <h3>{module.heading}</h3>
-                <p>
-                  Production-ready software designed for visibility,
-                  accountability, and dependable day-to-day execution across
-                  your organization.
-                </p>
-                <div className="split-feats">
-                  {module.features.map((feature) => (
-                    <div key={feature}>
-                      <Check />
-                      {feature}
-                    </div>
-                  ))}
-                </div>
+              <div className="enterprise-actions">
                 <button
                   type="button"
-                  className="split-link"
+                  className="btn btn-primary"
                   onClick={openBookingModal}
                 >
-                  View live demo <span aria-hidden="true">→</span>
+                  Request this module
                 </button>
+                <a href="#demos" className="split-link">
+                  View interactive demo <span aria-hidden="true">→</span>
+                </a>
               </div>
-            </article>
-          ))}
+            </div>
+
+            <div className="enterprise-showcase-media">
+              <img
+                src={`https://images.unsplash.com/${modules[activeModule].image}?auto=format&fit=crop&w=1200&q=80`}
+                alt={modules[activeModule].title}
+              />
+            </div>
+          </div>
         </div>
       </section>
 
@@ -489,91 +535,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── 8. Partners / White-Label Section ── */}
-      <section id="partners" className="partners">
-        <div className="partners-inner">
-          <div className="partners-media">
-            <img
-              src="https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1200&q=80"
-              alt="Partners collaborating"
-            />
-          </div>
-          <div className="partners-text">
-            <div className="label">Partners</div>
-            <h2>White-label engineering that keeps your agency in the lead</h2>
-            <p className="lead">
-              SprintStack builds under white label for agencies and technology
-              service providers that need dependable delivery capacity.
-            </p>
-            <div className="wl-flow">
-              <div className="node">You bring the client</div>
-              <span className="arrow">→</span>
-              <div className="node">SprintStack builds</div>
-              <span className="arrow">→</span>
-              <div className="node">You deliver</div>
-            </div>
-            <ul className="wl-list">
-              <li>
-                <Check />
-                Strict NDA and your brand front-and-center
-              </li>
-              <li>
-                <Check />
-                Senior engineering capacity when you need it
-              </li>
-              <li>
-                <Check />
-                Clear sprint visibility without client confusion
-              </li>
-            </ul>
-            <div style={{ marginTop: 32 }}>
-              <button
-                type="button"
-                className="btn btn-white"
-                onClick={openBookingModal}
-              >
-                Discuss a partnership
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
 
-      {/* ── 9. About Section ── */}
-      <section id="about">
-        <div className="wrap">
-          <div className="label">About</div>
-          <div className="about-split">
-            <img
-              src="https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?auto=format&fit=crop&w=1200&q=80"
-              alt="Team working together"
-            />
-            <div className="about-copy">
-              <h2>A delivery partner for ambitious software teams</h2>
-              <p>
-                We pair rigorous technical thinking with a practical sprint cadence,
-                giving leaders a clear route from idea to production.
-              </p>
-              <div className="about-principles">
-                {[
-                  [Code2, "No vendor lock-in", "Source and infrastructure transfer at handover."],
-                  [Database, "Security by default", "Audits built into every sprint."],
-                  [Cpu, "Standards over trends", "Chosen for maintainability, not novelty."],
-                  [Clock3, "Fixed cadence", "1–2 week sprints, every time."],
-                ].map(([Icon, title, text]) => (
-                  <div className="about-principle" key={title as string}>
-                    <Icon />
-                    <div>
-                      <h5>{title as string}</h5>
-                      <p>{text as string}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* ── 10. Live Product Demos Section ── */}
       <section id="demos" className="soft">
@@ -662,7 +624,7 @@ export default function Home() {
                   "Attendance / ERP",
                   "CRM",
                   "Workflow automation",
-                  "White-label partnership",
+                  "Cloud & infrastructure",
                 ].map((item) => (
                   <li key={item}>
                     <Check />
@@ -722,9 +684,34 @@ export default function Home() {
                 </div>
               </div>
               {submitted && (
-                <p className="form-success" role="status">
-                  Thanks. Your discovery request is on its way.
-                </p>
+                <div className="form-success" role="status" style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                  <span>✓ Thanks! Your discovery brief has been received.</span>
+                  {whatsappLink && (
+                    <a
+                      href={whatsappLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn"
+                      style={{
+                        background: "#25D366",
+                        color: "#FFFFFF",
+                        border: "none",
+                        padding: "10px 16px",
+                        fontSize: "13.5px",
+                        fontWeight: 600,
+                        display: "inline-flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        gap: 8,
+                        borderRadius: "6px",
+                        textDecoration: "none",
+                        marginTop: 4,
+                      }}
+                    >
+                      💬 Open WhatsApp Chat (+91 77602 29555)
+                    </a>
+                  )}
+                </div>
               )}
               {formError && (
                 <p className="form-error" role="alert">
