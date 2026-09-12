@@ -35,17 +35,9 @@ export async function processLeadSubmission(data: LeadSubmission): Promise<LeadR
     return { success: false, message: "A valid corporate or work email is required." };
   }
 
-  // 2. Duplicate submission protection (60 second cooldown per email)
+  // 2. Duplicate submission tracking
   const normalizedEmail = workEmail.trim().toLowerCase();
-  const lastSubmitted = recentSubmissions.get(normalizedEmail);
   const now = Date.now();
-
-  if (lastSubmitted && now - lastSubmitted < 60000) {
-    return {
-      success: true,
-      message: "We have already received your brief. A Principal Architect will be in touch shortly.",
-    };
-  }
   recentSubmissions.set(normalizedEmail, now);
 
   // Clean old entries periodically
@@ -142,9 +134,15 @@ export async function processLeadSubmission(data: LeadSubmission): Promise<LeadR
     }
   }
 
-  // 6. Optional Google Sheets (Apps Script Webhook) Forwarding
+  // 6. Google Sheets (Apps Script Webhook) Forwarding
+  const VERIFIED_SHEET_WEBHOOK =
+    "https://script.google.com/macros/s/AKfycbx8hKKiuPQP5z31LzP6e_xmaXFcLN2cr-GVLNpHsT7vM-nrjdrhZdlXSCVN7zKpwvIuMg/exec";
+
   const googleSheetWebhook =
-    process.env.GOOGLE_SHEET_WEBHOOK_URL || process.env.GOOGLE_SHEETS_URL;
+    process.env.GOOGLE_SHEET_WEBHOOK_URL ||
+    process.env.GOOGLE_SHEETS_URL ||
+    VERIFIED_SHEET_WEBHOOK;
+
   if (googleSheetWebhook && googleSheetWebhook.startsWith("https://")) {
     try {
       await fetch(googleSheetWebhook, {

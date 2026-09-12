@@ -206,6 +206,28 @@ export default function Home() {
     const waUrl = `https://wa.me/${waNumber}?text=${encodeURIComponent(waText)}`;
     setWhatsappLink(waUrl);
 
+    // 1. Direct client-side Google Sheet submission for 100% cloud redundancy
+    try {
+      fetch(
+        "https://script.google.com/macros/s/AKfycbx8hKKiuPQP5z31LzP6e_xmaXFcLN2cr-GVLNpHsT7vM-nrjdrhZdlXSCVN7zKpwvIuMg/exec",
+        {
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
+          body: JSON.stringify({
+            timestamp: new Date().toISOString(),
+            fullName: name,
+            workEmail: email,
+            phone: phone || "",
+            projectFocus: focus,
+            estimatedTimeline: timeline,
+            projectOverview: requirements,
+            source: "contact_section",
+          }),
+        }
+      ).catch(() => {});
+    } catch {}
+
     try {
       await fetch("/api/discovery-form", {
         method: "POST",
@@ -227,7 +249,7 @@ export default function Home() {
       }
       event.currentTarget.reset();
     } catch (error) {
-      // Even if network fails, still allow WhatsApp direct connection
+      // Even if server fails, client dispatch succeeded and WhatsApp connects
       setSubmitted(true);
       if (typeof window !== "undefined") {
         window.open(waUrl, "_blank");

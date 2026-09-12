@@ -84,6 +84,28 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
     const waLink = `https://wa.me/${waNumber}?text=${encodeURIComponent(waText)}`;
     setWhatsappUrl(waLink);
 
+    // 1. Direct client-side Google Sheet submission for 100% cloud redundancy
+    try {
+      fetch(
+        "https://script.google.com/macros/s/AKfycbx8hKKiuPQP5z31LzP6e_xmaXFcLN2cr-GVLNpHsT7vM-nrjdrhZdlXSCVN7zKpwvIuMg/exec",
+        {
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
+          body: JSON.stringify({
+            timestamp: new Date().toISOString(),
+            fullName: name || "Anonymous Discovery Lead",
+            workEmail: email,
+            phone: "",
+            projectFocus: focusArea,
+            estimatedTimeline: "Immediate",
+            projectOverview: `Discovery Call scheduled for ${selectedDate} at ${selectedSlot} (${timezone}). Focus: ${focusArea}`,
+            source: "booking_modal",
+          }),
+        }
+      ).catch(() => {});
+    } catch {}
+
     try {
       await fetch("/api/discovery-form", {
         method: "POST",
