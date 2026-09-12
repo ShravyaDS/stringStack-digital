@@ -326,12 +326,13 @@ export default function Home() {
       {/* ── 4. Enterprise Software Section ── */}
       <section id="enterprise" className="soft">
         <div className="wrap">
-          <div className="label">Enterprise software</div>
-          <div className="section-head">
-            <h2>Proven business modules, ready to shape around your operations</h2>
+          <div className="section-head-compact">
+            <div>
+              <span className="label">Enterprise software</span>
+              <h2>Proven business modules ready to deploy</h2>
+            </div>
             <p>
-              Start from a mature foundation or build an entirely bespoke platform.
-              Either way, the code and infrastructure are yours.
+              Mature foundations, shaped around your operations with 100% source code ownership.
             </p>
           </div>
           {/* Module Switcher Tabs */}
@@ -356,10 +357,6 @@ export default function Home() {
             <div className="enterprise-showcase-content">
               <div className="idx">{modules[activeModule].title}</div>
               <h3>{modules[activeModule].heading}</h3>
-              <p>
-                Production-ready software designed for visibility, accountability,
-                and dependable day-to-day execution across your organization.
-              </p>
               <div className="split-feats">
                 {modules[activeModule].features.map((feature) => (
                   <div key={feature}>
@@ -395,14 +392,13 @@ export default function Home() {
       {/* ── 5. Technology Stack Section ── */}
       <section id="technology" className="technology-showcase">
         <div className="wrap">
-          <div className="technology-heading">
+          <div className="section-head-compact">
             <div>
-              <div className="label">Technology</div>
-              <h2>Built from systems your team will trust for years.</h2>
+              <span className="label">Technology</span>
+              <h2>Engineered for durability &amp; performance</h2>
             </div>
             <p>
-              We combine mature tools into a practical architecture that is fast
-              to ship, straightforward to operate, and ready to evolve.
+              Battle-tested tools assembled into an architecture that is fast, secure, and ready to evolve.
             </p>
           </div>
 
@@ -428,41 +424,36 @@ export default function Home() {
             <label className="stack-search">
               <Search aria-hidden="true" />
               <input
+                type="search"
+                placeholder="Find technology..."
                 value={stackSearch}
-                onChange={(event) => setStackSearch(event.target.value)}
-                placeholder="Find a technology"
-                aria-label="Search technology"
+                onChange={(e) => setStackSearch(e.target.value)}
+                aria-label="Search technologies"
               />
             </label>
           </div>
 
           <div className="stack-grid">
-            {visibleStacks.map(({ name, summary, tags }) => (
-              <article className="stack-card" key={name}>
+            {visibleStacks.map((stack, stackIndex) => (
+              <article className="stack-card" key={stack.name}>
                 <div className="stack-identity">
                   <div className="stack-lead-logo">
                     <TechLogo
-                      name={tags[0]}
+                      name={stack.tags[0]}
                       className="stack-lead-logo-inner"
                     />
                   </div>
                   <div>
-                    <span className="stack-eyebrow">
-                      Engineering system 0
-                      {stacks.findIndex((stack) => stack.name === name) + 1}
-                    </span>
-                    <h4>{name}</h4>
+                    <span className="stack-eyebrow">0{stackIndex + 1}</span>
+                    <h4>{stack.name}</h4>
                   </div>
                 </div>
-                <p className="stack-summary">{summary}</p>
                 <div className="tags">
-                  {tags.map((tag) => (
+                  {stack.tags.slice(0, 4).map((tag) => (
                     <button
                       type="button"
                       key={tag}
-                      className={`tech-tile ${
-                        selectedTechnology === tag ? "active" : ""
-                      }`}
+                      className={`tech-tile ${selectedTechnology === tag ? "active" : ""}`}
                       onClick={() => setSelectedTechnology(tag)}
                       aria-pressed={selectedTechnology === tag}
                     >
@@ -475,6 +466,14 @@ export default function Home() {
                       </span>
                     </button>
                   ))}
+                  {stack.tags.length > 4 && (
+                    <span
+                      className="tech-tile-more"
+                      title={stack.tags.slice(4).join(", ")}
+                    >
+                      +{stack.tags.length - 4}
+                    </span>
+                  )}
                 </div>
               </article>
             ))}
