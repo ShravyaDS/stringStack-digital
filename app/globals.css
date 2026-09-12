@@ -144,10 +144,6 @@ section {
   padding: 48px 0;
 }
 
-section[id] {
-  scroll-margin-top: 80px;
-}
-
 .soft {
   background: var(--bg-soft);
 }
@@ -1366,10 +1362,6 @@ footer {
 
   section {
     padding: 34px 0;
-  }
-
-  section[id] {
-    scroll-margin-top: 74px;
   }
 
   .section-head {
