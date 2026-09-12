@@ -219,43 +219,47 @@ export default function Home() {
             alt="Engineering team collaborating on software architecture"
           />
         </div>
-        <div className="wrap hero-content">
-          <h1>Enterprise software, engineered on fixed sprints.</h1>
-          <p className="hero-sub">
-            SprintStack designs and builds web platforms, mobile products, and
-            proprietary enterprise software. Architected up front, built in
-            accountable sprint cycles, and handed over with full source code
-            ownership.
-          </p>
-          <div className="hero-ctas">
-            <button
-              type="button"
-              className="btn btn-primary"
-              onClick={openBookingModal}
-            >
-              Book a Technical Discovery
-            </button>
-            <a href="#enterprise" className="btn btn-ghost-light">
-              Explore Enterprise Software
-            </a>
+        <div className="wrap">
+          <div className="hero-content">
+            <h1>Enterprise software, engineered on fixed sprints.</h1>
+            <p className="hero-sub">
+              SprintStack designs and builds web platforms, mobile products, and
+              proprietary enterprise software. Architected up front, built in
+              accountable sprint cycles, and handed over with full source code
+              ownership.
+            </p>
+            <div className="hero-ctas">
+              <button
+                type="button"
+                className="btn btn-primary"
+                onClick={openBookingModal}
+              >
+                Book a Technical Discovery
+              </button>
+              <a href="#enterprise" className="btn btn-ghost-light">
+                Explore Enterprise Software
+              </a>
+            </div>
           </div>
         </div>
       </section>
 
       {/* ── 2. Stat Band ── */}
       <div className="stat-band">
-        <div className="wrap stat-grid">
-          <div>
-            <div className="stat-num">100%</div>
-            <div className="stat-lbl">IP ownership transferred at handover</div>
-          </div>
-          <div>
-            <div className="stat-num">1–2 wk</div>
-            <div className="stat-lbl">Fixed sprint cycles, every engagement</div>
-          </div>
-          <div>
-            <div className="stat-num">6</div>
-            <div className="stat-lbl">Global markets actively served</div>
+        <div className="wrap">
+          <div className="stat-grid">
+            <div className="stat-item">
+              <div className="stat-num">100%</div>
+              <div className="stat-lbl">IP ownership transferred at handover</div>
+            </div>
+            <div className="stat-item">
+              <div className="stat-num">1–2 wk</div>
+              <div className="stat-lbl">Fixed sprint cycles, every engagement</div>
+            </div>
+            <div className="stat-item">
+              <div className="stat-num">6</div>
+              <div className="stat-lbl">Global markets actively served</div>
+            </div>
           </div>
         </div>
       </div>
